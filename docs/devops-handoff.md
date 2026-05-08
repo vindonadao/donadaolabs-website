@@ -3,71 +3,100 @@
 **From:** @aiox-master (Orion)
 **To:** @devops (Gage)
 **Story:** 1.1 — Landing v1 (donadaolabs.com)
-**Status:** Ready for deploy
-**Date:** 2026-05-07
+**Status:** Deployed to Vercel — pending DNS cutover
+**Date:** 2026-05-08
 
 ---
 
 ## What's done
 
-- ✅ Next.js 14 (App Router) scaffold
-- ✅ Brand integration (tokens.css, Tailwind config, fonts via next/font)
-- ✅ All 9 sections built and rendering
-- ✅ Quality gates: lint, typecheck, build all passing
-- ✅ Local git repo initialized by `create-next-app`
+- [x] Next.js 14 (App Router) scaffold
+- [x] Brand integration (tokens.css, Tailwind config, fonts via next/font)
+- [x] All 9 sections built and rendering
+- [x] Quality gates: lint, typecheck, build all passing
+- [x] Local git repo initialized by `create-next-app`
+- [x] **GitHub remote live:** https://github.com/vindonadao/donadaolabs-website (public)
+- [x] **Vercel project linked + deployed to production** (2026-05-08)
+- [x] **GitHub auto-deploy connected** — every push to `main` triggers a Vercel build
+- [x] **Custom domains added to Vercel project** (`donadaolabs.com` + `www.donadaolabs.com`) — pending DNS
 
-## What @devops needs to do (not done — outside agent authority)
+---
 
-### 1. GitHub remote
-```bash
-cd "~/Desktop/Donadao Labs Branding/03-website-next"
-gh repo create donadaolabs/website --private --source=. --remote=origin --push
-# OR for personal account:
-gh repo create viniciusdonadao/donadaolabs-website --private --source=. --remote=origin --push
+## Vercel deploy summary
+
+| Field | Value |
+|---|---|
+| Vercel scope | `vindonadaos-projects` |
+| Project | `donadaolabs-website` |
+| Project URL (dashboard) | https://vercel.com/vindonadaos-projects/donadaolabs-website |
+| Production deploy URL | https://donadaolabs-website.vercel.app |
+| Deployment ID | `dpl_CnsgiBdXfJBkNNPhmNqiZSR6bPQ2` |
+| Inspector URL | https://vercel.com/vindonadaos-projects/donadaolabs-website/CnsgiBdXfJBkNNPhmNqiZSR6bPQ2 |
+| Build time | ~49s |
+| Build region | Washington, D.C. (iad1) |
+| Build machine | 2 cores, 8 GB |
+| Status | READY (HTTP 200, 67.8 KB rendered) |
+| GitHub integration | Connected (`vindonadao/donadaolabs-website`) |
+
+Validation:
+```
+$ curl -sI https://donadaolabs-website.vercel.app
+HTTP 200 · 67883 bytes · 0.99s
 ```
 
-### 2. Vercel deploy
-```bash
-# From the project root:
-npx vercel link
-npx vercel --prod
+---
 
-# OR via web UI:
-# https://vercel.com/new → import the repo → deploy (no env vars needed for v1)
-```
+## DNS cutover — ACTION REQUIRED by founder
 
-Vercel auto-detects Next.js 14, no manual config needed.
+**Important correction from earlier assumption:** The domain's nameservers are currently pointing at **`registrar-servers.com`** (Namecheap), NOT Cloudflare. The DNS records below must be added wherever DNS is currently managed for `donadaolabs.com`.
 
-### 3. Cloudflare DNS
-Domain: `donadaolabs.com` (already registered per founder confirmation)
+If the founder wants to keep DNS at the current Namecheap nameservers, add these records there. If he wants to migrate to Cloudflare DNS, he should first move the domain there and then add the records.
+
+### Records to add (Vercel-provided)
 
 ```
-# A records (Vercel apex)
-@   A   76.76.21.21
+# Apex (donadaolabs.com)
+Type:  A
+Host:  @
+Value: 76.76.21.21
+TTL:   Auto / 300
 
-# CNAME (www)
-www CNAME cname.vercel-dns.com.
+# www subdomain
+Type:  A
+Host:  www
+Value: 76.76.21.21
+TTL:   Auto / 300
 ```
 
-Add `donadaolabs.com` and `www.donadaolabs.com` in Vercel dashboard → Domains.
+> Vercel reported the apex requires `A 76.76.21.21` for both `donadaolabs.com` and `www.donadaolabs.com`. (Vercel auto-handles SSL via Let's Encrypt once DNS resolves.)
+>
+> Alternative path Vercel offered: change nameservers to `ns1.vercel-dns.com` / `ns2.vercel-dns.com` to delegate DNS entirely to Vercel. Either approach works.
 
-### 4. Post-deploy validation
+### Cloudflare-specific note (only if domain is migrated there)
+
+If/when DNS is moved to Cloudflare:
+- Set the apex `A` record to **DNS only (gray cloud)** initially — Vercel handles SSL.
+- After cert is provisioned and confirmed working, the founder can switch to **proxied (orange cloud)** if desired — but this may briefly break SSL handshake during cutover.
+
+---
+
+## Post-DNS validation checklist
+
+After DNS is updated and propagated (5min – 48h depending on provider):
 
 - [ ] `https://donadaolabs.com` resolves and renders
-- [ ] `https://www.donadaolabs.com` redirects to apex (or vice-versa)
+- [ ] `https://www.donadaolabs.com` redirects to apex (or vice-versa — Vercel handles this automatically)
 - [ ] SSL active (Let's Encrypt via Vercel)
 - [ ] All Cal.com CTAs open `https://cal.com/donadaolabs/diagnostico` in new tab
 - [ ] Mobile responsive on iPhone + Android
 - [ ] Run Lighthouse on production URL (target: Performance ≥ 90)
 
-### 5. Quality gates pre-push (Constitution: Quality First)
-
+To re-check Vercel domain status after DNS update:
 ```bash
 cd "~/Desktop/Donadao Labs Branding/03-website-next"
-npm run lint && npm run typecheck && npm run build
+vercel domains ls
+vercel domains inspect donadaolabs.com
 ```
-
-All three must pass. Already validated locally — should reproduce.
 
 ---
 
@@ -133,4 +162,4 @@ npm run typecheck    # TypeScript noEmit check
 
 ---
 
-— Orion, orquestrando o sistema 🎯
+— Gage, deploy entregue. Aguardando DNS para encerrar v1.

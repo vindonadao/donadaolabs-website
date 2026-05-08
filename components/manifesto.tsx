@@ -16,9 +16,6 @@ export function Manifesto(): React.ReactElement {
           <br />
           <em className="not-italic gradient-text">{MANIFESTO.quoteEm}</em>
         </blockquote>
-        <p className="mt-12 text-center font-mono text-xs uppercase tracking-widest text-stone-500">
-          {MANIFESTO.attr}
-        </p>
       </div>
     </section>
   );

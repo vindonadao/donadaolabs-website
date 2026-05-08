@@ -182,7 +182,6 @@ export const FOUNDER = {
 export const MANIFESTO = {
   quote: 'Software não é arte.',
   quoteEm: 'É infraestrutura de receita.',
-  attr: '— Donadão Labs Manifesto',
 } as const;
 
 export const HERO = {

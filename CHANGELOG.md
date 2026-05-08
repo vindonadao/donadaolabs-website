@@ -12,8 +12,12 @@ and this project uses revision-based versioning (`rev-X.Y`).
 - Security headers: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`
 - Immutable cache headers for `/brand/*` and `/clients/*` static assets (`max-age=31536000`)
 - `next.config.mjs`: `poweredByHeader: false`, `compress: true`, `reactStrictMode: true`
+- Dynamic Open Graph image route at `/api/og` (next/og, edge runtime, 1200×630 PNG)
+- Inter Tight static TTFs (600 + 800) in `public/fonts/`, extracted from Google Fonts variable font
+- Twitter Card metadata wired with `summary_large_image` referencing `/api/og`
 
 ### Changed
+- Removed "Donadão Labs Manifesto" attribution from the manifesto section (visual front-end only — file/constant names retained for code clarity)
 
 ### Fixed
 

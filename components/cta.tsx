@@ -2,7 +2,7 @@ import { CTA_FINAL, LINKS } from '@/lib/constants';
 
 export function Cta(): React.ReactElement {
   return (
-    <section id="contact" className="relative isolate py-32 text-center">
+    <section id="contact" className="relative isolate overflow-hidden py-32 text-center">
       <div
         className="absolute left-1/2 top-1/2 -z-10 h-[800px] w-[1200px] -translate-x-1/2 -translate-y-1/2 opacity-40 blur-2xl"
         style={{

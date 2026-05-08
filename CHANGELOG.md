@@ -20,6 +20,7 @@ and this project uses revision-based versioning (`rev-X.Y`).
 - Removed "Donadão Labs Manifesto" attribution from the manifesto section (visual front-end only — file/constant names retained for code clarity)
 
 ### Fixed
+- Mobile horizontal overflow caused by CTA section glow leaking beyond viewport (`<section id="contact">` was missing `overflow-hidden`). Defensive `overflow-x: hidden` also applied to `html`.
 
 ---
 

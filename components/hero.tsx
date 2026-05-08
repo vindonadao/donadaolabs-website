@@ -70,18 +70,21 @@ export function Hero(): React.ReactElement {
           <p className="mb-6 font-mono text-xs uppercase tracking-widest text-stone-500">
             Construído para
           </p>
-          <div className="grid grid-cols-2 items-center gap-x-10 gap-y-6 sm:grid-cols-4 md:gap-x-16">
-            {CLIENT_LOGOS.map((logo) => (
+          <div className="grid grid-cols-2 items-center gap-x-4 gap-y-10 sm:grid-cols-4">
+            {CLIENT_LOGOS.map((logo, idx) => (
               <div
                 key={logo.name}
-                className="flex items-center justify-start opacity-70 transition-opacity hover:opacity-100"
+                className={`flex h-24 w-full items-center justify-center opacity-80 transition-opacity hover:opacity-100 ${
+                  idx === 2 ? 'sm:pl-11 lg:pl-[68px]' : ''
+                }`}
               >
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  width={180}
-                  height={40}
-                  className="h-10 w-auto max-w-full"
+                  width={400}
+                  height={400}
+                  style={{ maxWidth: logo.maxWidth ?? '200px' }}
+                  className="h-full w-auto object-contain"
                 />
               </div>
             ))}

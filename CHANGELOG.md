@@ -17,12 +17,16 @@ and this project uses revision-based versioning (`rev-X.Y`).
 - Twitter Card metadata wired with `summary_large_image` referencing `/api/og`
 - Dual-state Services cards: accessible PT default (visible to all) + technical detail revealed on hover (desktop) or tap (mobile). Hover-capability detection via `matchMedia` prevents iOS hover-sticky bug.
 - New `components/service-card.tsx` client component with cross-fade transition between accessible and technical copy.
+- Real client logos in trust wall: Gabriel Nabi, Diskat Presentes, Diskat Ops, Cali Garage (PNG with transparent background, processed via rembg + Python thresholding to integrate with dark theme)
+- Optional `maxWidth` field in `ClientLogo` interface for per-logo width tuning (Diskat Ops 320px due to 5.71:1 aspect ratio)
 
 ### Changed
 - Removed "Donadão Labs Manifesto" attribution from the manifesto section (visual front-end only — file/constant names retained for code clarity)
 - Hero subline rewritten in accessible PT (target: non-technical audiences). Tagline `AI software that actually ships.` retained as brand signature.
 - Services section title (`Tudo o que seu negócio precisa. Em um único lugar.`) and subline rewritten to remove jargon.
 - `Service` interface refactored to carry both accessible and technical title/body pairs.
+- Trust wall layout reworked: 4-column grid on desktop with per-cell width sizing and extra padding around the center pair (Diskat Ops) for visual balance across logos with very different aspect ratios.
+- Replaced 4 typographic SVG placeholders with real client PNG logos.
 
 ### Fixed
 - Mobile horizontal overflow caused by CTA section glow leaking beyond viewport (`<section id="contact">` was missing `overflow-hidden`). Defensive `overflow-x: hidden` also applied to `html`.

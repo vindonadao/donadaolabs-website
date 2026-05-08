@@ -1,0 +1,202 @@
+/**
+ * Donadão Labs — Site constants
+ * Source of truth for copy, URLs, and structured data.
+ * Voice/tone: 70% formal · 60% técnico · vocab: ships, built, real, lab, craft.
+ */
+
+export const SITE = {
+  name: 'Donadão Labs',
+  tagline: 'AI software that actually ships.',
+  taglineEm: 'actually ships.',
+  description:
+    'Lab AI-first que constrói software e AI agents para negócios que precisam crescer. Do diagnóstico ao deploy, com infraestrutura que escala.',
+  url: 'https://donadaolabs.com',
+  email: 'contato@donadaolabs.com',
+} as const;
+
+export const LINKS = {
+  cal: 'https://cal.com/donadaolabs/diagnostico',
+  linkedin: 'https://linkedin.com/in/viniciusdonadao',
+  github: 'https://github.com/vindonadao',
+  instagram: 'https://instagram.com/donadaolabs',
+} as const;
+
+export const NAV_LINKS = [
+  { label: 'Abordagem', href: '#approach' },
+  { label: 'Cases', href: '#cases' },
+  { label: 'Founder', href: '#founder' },
+] as const;
+
+export interface ClientLogo {
+  name: string;
+  src: string;
+  alt: string;
+}
+
+export const CLIENT_LOGOS: readonly ClientLogo[] = [
+  {
+    name: 'Gabriel Nabi',
+    src: '/clients/gabriel-nabi.svg',
+    alt: 'Gabriel Nabi Pet Photography',
+  },
+  {
+    name: 'Diskat Presentes',
+    src: '/clients/diskat-presentes.svg',
+    alt: 'Diskat Presentes',
+  },
+  {
+    name: 'Diskat Ops',
+    src: '/clients/diskat-ops.svg',
+    alt: 'Diskat Ops — CRM',
+  },
+  {
+    name: 'Cali Garage',
+    src: '/clients/cali-garage.svg',
+    alt: 'Cali Garage — Reparos Automotivos',
+  },
+] as const;
+
+export interface Service {
+  id: string;
+  title: string;
+  body: string;
+}
+
+export const SERVICES: readonly Service[] = [
+  {
+    id: 'build',
+    title: 'Build',
+    body: 'Apps from scratch, legacy rescue e enterprise build. Engenharia full-stack pragmática, sem stack frankenstein.',
+  },
+  {
+    id: 'systems',
+    title: 'Systems',
+    body: 'CRM e SaaS — novos ou existentes. Multi-tenant, queries em ms, dashboards reais. Database engineering quando importa.',
+  },
+  {
+    id: 'automate',
+    title: 'Automate',
+    body: 'AI agents que rodam atendimento, follow-up e qualificação. Layer em cima do software existente, com guardrails e observabilidade.',
+  },
+  {
+    id: 'infra',
+    title: 'Infra',
+    body: 'Domínio, DNS, repositório, CI/CD, deploy, SSL e monitoramento. Bundled em todo projeto — não vendido em separado.',
+  },
+] as const;
+
+export interface Pillar {
+  num: string;
+  label: string;
+  title: string;
+  body: string;
+}
+
+export const PILLARS: readonly Pillar[] = [
+  {
+    num: '01',
+    label: 'Diagnose',
+    title: 'Entender o problema comercial',
+    body: 'Antes de uma linha de código: onde sua receita escapa, que processo você roda no braço e o que tecnologia pode mover de fato.',
+  },
+  {
+    num: '02',
+    label: 'Build',
+    title: 'Software que ships',
+    body: 'Engenharia full-stack pragmática. Sem stack frankenstein, sem promessas. O que sobe em produção, escala.',
+  },
+  {
+    num: '03',
+    label: 'Automate',
+    title: 'Camada de AI agents',
+    body: 'Em cima do software, agents que automatizam operação: atendimento, follow-up, gestão. AI que tira trabalho chato da sua mesa.',
+  },
+] as const;
+
+export interface Case {
+  num: string;
+  client: string;
+  meta: string;
+  title: string;
+  desc: string;
+  stack: readonly string[];
+}
+
+export const CASES: readonly Case[] = [
+  {
+    num: '01',
+    client: 'Gabriel Nabi',
+    meta: 'Plataforma SaaS · Pet Photography',
+    title: 'Plataforma de pagamento para fotógrafos',
+    desc: 'Site de apresentação completo com pagamento integrado e captação de contato. Substitui Linktree + WhatsApp + cobrança manual.',
+    stack: ['React', 'Node', 'Stripe', 'Postgres'],
+  },
+  {
+    num: '02',
+    client: 'Diskat Presentes',
+    meta: 'E-commerce · 3D',
+    title: 'E-commerce com visualização 3D',
+    desc: 'Loja com visualização 3D do produto, checkout otimizado e painel de gestão. UX premium em categoria commoditizada.',
+    stack: ['Next.js', 'Three.js', 'Stripe', 'Postgres'],
+  },
+  {
+    num: '03',
+    client: 'Diskat Ops',
+    meta: 'CRM interno · SaaS',
+    title: 'Software de controle de operação',
+    desc: 'Painel enxuto para acompanhar vendas, estoque e performance — sem cair no excesso de uma ERP cara.',
+    stack: ['React', 'Node', 'Postgres', 'Redis'],
+  },
+  {
+    num: '04',
+    client: 'Cali Garage',
+    meta: 'Landing page · Manutenção veicular',
+    title: 'Site institucional para oficina automotiva',
+    desc: 'Landing de apresentação dos serviços, captação de contato e canal direto com o cliente. Site real para um negócio que vive offline.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Vercel'],
+  },
+] as const;
+
+export interface StackChip {
+  label: string;
+}
+
+export const STACK_CHIPS: readonly StackChip[] = [
+  { label: 'Next.js' },
+  { label: 'TypeScript' },
+  { label: 'Postgres' },
+  { label: 'Stripe' },
+  { label: 'OpenAI' },
+  { label: 'Anthropic' },
+  { label: 'Vercel' },
+  { label: 'Cloudflare' },
+] as const;
+
+export const FOUNDER = {
+  name: 'Vinicius Donadão',
+  role: 'Computer Scientist · Founder',
+  bio1: 'Cientista da computação. Construo software e AI agents que resolvem o problema certo — o de gerar receita.',
+  bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar e foco atual em AI agents para automatizar operação comercial em pequenas e médias empresas.',
+} as const;
+
+export const MANIFESTO = {
+  quote: 'Software não é arte.',
+  quoteEm: 'É infraestrutura de receita.',
+  attr: '— Donadão Labs Manifesto',
+} as const;
+
+export const HERO = {
+  badge: 'AI Software Lab · 2026',
+  headline: 'AI software',
+  headlineEm: 'actually ships.',
+  sub: 'Construímos software e AI agents para negócios que precisam crescer. Do diagnóstico ao deploy, com infraestrutura que escala — não promessas.',
+  ctaPrimary: 'Agendar diagnóstico',
+  ctaSecondary: 'Ver os cases',
+} as const;
+
+export const CTA_FINAL = {
+  headline: 'Pronto',
+  headlineEm: 'ship?',
+  sub: 'Conta o que precisa rodar. Em 30 minutos sai o diagnóstico e um plano de implementação real.',
+  button: 'Agendar diagnóstico',
+} as const;

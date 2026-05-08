@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Donadão Labs · Wordmark with Electric Purple accent square
+  Used as primary marketing wordmark.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 520 96"
+     role="img"
+     aria-label="Donadão Labs">
+  <title>Donadão Labs</title>
+  <defs>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;800&amp;display=swap');
+      .donadao-text {
+        font-family: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 800;
+        font-size: 72px;
+        letter-spacing: -3px;
+      }
+      .labs-text {
+        font-family: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 500;
+        font-size: 72px;
+        letter-spacing: -2px;
+      }
+    </style>
+    <linearGradient id="wmPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B7BFF"/>
+      <stop offset="100%" stop-color="#4B3DD9"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="72" class="donadao-text" fill="currentColor">Donadão</text>
+  <text x="320" y="72" class="labs-text" fill="currentColor">Labs</text>
+  <rect x="468" y="56" width="20" height="20" rx="3" fill="url(#wmPurple)"/>
+</svg>

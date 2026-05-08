@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Donadão Labs · Monogram DD v1.1
+  App-icon style · Cinematic gradient · Distinctive geometry
+  D1 = solid filled (left) · D2 = outlined (right) · accent dot connector
+  Use for: app icons, splash screens, social avatars, favicon@high-res.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 256 256"
+     role="img"
+     aria-label="Donadão Labs">
+  <title>Donadão Labs · DD</title>
+
+  <defs>
+    <linearGradient id="ddPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B7BFF"/>
+      <stop offset="50%" stop-color="#6E5BFF"/>
+      <stop offset="100%" stop-color="#4B3DD9"/>
+    </linearGradient>
+    <linearGradient id="ddInk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181B"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <radialGradient id="ddGlow" cx="30%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#6E5BFF" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#6E5BFF" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#6E5BFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Rounded square tile background -->
+  <rect width="256" height="256" rx="56" fill="url(#ddInk)"/>
+
+  <!-- Subtle inner glow -->
+  <rect width="256" height="256" rx="56" fill="url(#ddGlow)"/>
+
+  <!-- D1 — solid purple gradient (top-left) -->
+  <path fill="url(#ddPurple)" fill-rule="evenodd" clip-rule="evenodd"
+        d="M48 64
+           L48 192
+           L96 192
+           C 132 192, 160 164, 160 128
+           C 160 92, 132 64, 96 64
+           Z
+           M76 92
+           L96 92
+           C 116 92, 132 108, 132 128
+           C 132 148, 116 164, 96 164
+           L76 164
+           Z"/>
+
+  <!-- D2 — outlined (overlapping right) -->
+  <path fill="none" stroke="#FAFAFA" stroke-width="10" stroke-linejoin="round"
+        d="M120 64
+           L120 192
+           L168 192
+           C 204 192, 232 164, 232 128
+           C 232 92, 204 64, 168 64
+           Z"/>
+  <path fill="none" stroke="#FAFAFA" stroke-width="6" stroke-linejoin="round"
+        d="M148 92
+           L168 92
+           C 188 92, 204 108, 204 128
+           C 204 148, 188 164, 168 164
+           L148 164
+           Z"/>
+
+  <!-- Accent dot bottom-right corner -->
+  <circle cx="216" cy="216" r="10" fill="#6E5BFF"/>
+  <circle cx="216" cy="216" r="6" fill="#FAFAFA"/>
+</svg>

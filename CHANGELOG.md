@@ -15,9 +15,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 - Dynamic Open Graph image route at `/api/og` (next/og, edge runtime, 1200×630 PNG)
 - Inter Tight static TTFs (600 + 800) in `public/fonts/`, extracted from Google Fonts variable font
 - Twitter Card metadata wired with `summary_large_image` referencing `/api/og`
+- Dual-state Services cards: accessible PT default (visible to all) + technical detail revealed on hover (desktop) or tap (mobile). Hover-capability detection via `matchMedia` prevents iOS hover-sticky bug.
+- New `components/service-card.tsx` client component with cross-fade transition between accessible and technical copy.
 
 ### Changed
 - Removed "Donadão Labs Manifesto" attribution from the manifesto section (visual front-end only — file/constant names retained for code clarity)
+- Hero subline rewritten in accessible PT (target: non-technical audiences). Tagline `AI software that actually ships.` retained as brand signature.
+- Services section title (`Tudo o que seu negócio precisa. Em um único lugar.`) and subline rewritten to remove jargon.
+- `Service` interface refactored to carry both accessible and technical title/body pairs.
 
 ### Fixed
 - Mobile horizontal overflow caused by CTA section glow leaking beyond viewport (`<section id="contact">` was missing `overflow-hidden`). Defensive `overflow-x: hidden` also applied to `html`.

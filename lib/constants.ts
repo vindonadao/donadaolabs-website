@@ -58,30 +58,58 @@ export const CLIENT_LOGOS: readonly ClientLogo[] = [
 
 export interface Service {
   id: string;
-  title: string;
-  body: string;
+  num: string;
+  techLabel: string;
+  accessibleTitle: string;
+  accessibleBody: string;
+  technicalTitle: string;
+  technicalBody: string;
 }
 
 export const SERVICES: readonly Service[] = [
   {
     id: 'build',
-    title: 'Build',
-    body: 'Apps from scratch, legacy rescue e enterprise build. Engenharia full-stack pragmática, sem stack frankenstein.',
+    num: '01',
+    techLabel: 'BUILD',
+    accessibleTitle: 'Software sob medida',
+    accessibleBody:
+      'Construímos o software que seu negócio precisa, do zero — ou resgatamos sistemas que pararam de escalar.',
+    technicalTitle: 'Apps from scratch',
+    technicalBody:
+      'Engenharia full-stack pragmática, sem stack frankenstein. Apps from scratch, legacy rescue e enterprise build.',
   },
   {
     id: 'systems',
-    title: 'Systems',
-    body: 'CRM e SaaS — novos ou existentes. Multi-tenant, queries em ms, dashboards reais. Database engineering quando importa.',
+    num: '02',
+    techLabel: 'SYSTEMS',
+    accessibleTitle: 'Sistemas de gestão',
+    accessibleBody:
+      'CRM, painéis e ferramentas internas pra sua operação rodar organizada. Novos ou evoluindo o que já existe.',
+    technicalTitle: 'CRM & SaaS',
+    technicalBody:
+      'CRM e SaaS — novos ou existentes. Multi-tenant, queries em ms, dashboards reais. Database engineering quando importa.',
   },
   {
     id: 'automate',
-    title: 'Automate',
-    body: 'AI agents que rodam atendimento, follow-up e qualificação. Layer em cima do software existente, com guardrails e observabilidade.',
+    num: '03',
+    techLabel: 'AUTOMATE',
+    accessibleTitle: 'Automação com AI',
+    accessibleBody:
+      'Atendimento, follow-up e qualificação de lead automatizados. AI que tira trabalho repetitivo da sua mesa.',
+    technicalTitle: 'AI agents',
+    technicalBody:
+      'AI agents que rodam atendimento, follow-up e qualificação. Layer em cima do software existente, com guardrails e observabilidade.',
   },
   {
     id: 'infra',
-    title: 'Infra',
-    body: 'Domínio, DNS, repositório, CI/CD, deploy, SSL e monitoramento. Bundled em todo projeto — não vendido em separado.',
+    num: '04',
+    techLabel: 'INFRA',
+    accessibleTitle: 'Tudo no ar',
+    accessibleBody:
+      'Domínio, servidor, atualizações, segurança. Cuidamos da infraestrutura inteira — você só vê o produto rodando.',
+    technicalTitle: 'Full setup',
+    technicalBody:
+      'Domínio, DNS, repositório, CI/CD, deploy, SSL e monitoramento. Bundled em todo projeto — não vendido em separado.',
   },
 ] as const;
 
@@ -188,7 +216,7 @@ export const HERO = {
   badge: 'AI Software Lab · 2026',
   headline: 'AI software',
   headlineEm: 'actually ships.',
-  sub: 'Construímos software e AI agents para negócios que precisam crescer. Do diagnóstico ao deploy, com infraestrutura que escala — não promessas.',
+  sub: 'Construímos sites, sistemas e automações pro seu negócio crescer. Você fala o problema, a gente entrega rodando — sem promessa furada.',
   ctaPrimary: 'Agendar diagnóstico',
   ctaSecondary: 'Ver os cases',
 } as const;

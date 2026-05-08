@@ -8,6 +8,10 @@ and this project uses revision-based versioning (`rev-X.Y`).
 ## [Unreleased]
 
 ### Added
+- HSTS header (`Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`) to force HTTPS in browsers that have visited at least once
+- Security headers: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+- Immutable cache headers for `/brand/*` and `/clients/*` static assets (`max-age=31536000`)
+- `next.config.mjs`: `poweredByHeader: false`, `compress: true`, `reactStrictMode: true`
 
 ### Changed
 

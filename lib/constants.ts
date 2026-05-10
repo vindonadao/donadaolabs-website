@@ -31,6 +31,7 @@ export interface ClientLogo {
   name: string;
   src: string;
   alt: string;
+  url?: string;
   maxWidth?: string;
 }
 
@@ -39,11 +40,13 @@ export const CLIENT_LOGOS: readonly ClientLogo[] = [
     name: 'Gabriel Nabi',
     src: '/clients/gabriel-nabi.png',
     alt: 'Gabriel Nabi Pet Photography',
+    url: 'https://gabrielnabi.donadaolabs.com',
   },
   {
     name: 'Diskat Presentes',
     src: '/clients/diskat-presentes.png',
     alt: 'Diskat Presentes Criativos',
+    url: 'https://diskatpresentes.com.br',
   },
   {
     name: 'Diskat Ops',
@@ -55,6 +58,7 @@ export const CLIENT_LOGOS: readonly ClientLogo[] = [
     name: 'Cali Garage',
     src: '/clients/cali-garage.png',
     alt: 'Cali Garage — Reparos Automotivos',
+    url: 'https://caligarage.donadaolabs.com',
   },
 ] as const;
 

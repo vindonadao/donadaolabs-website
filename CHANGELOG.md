@@ -8,6 +8,9 @@ and this project uses revision-based versioning (`rev-X.Y`).
 ## [Unreleased]
 
 ### Added
+- Clickable client logos in trust wall: Gabriel Nabi, Diskat Presentes, Cali Garage open in new tab. Diskat Ops (internal CRM) intentionally not linked.
+- `ClientLogo` interface gained optional `url?: string` field for per-client links.
+- Vercel subdomains wired: `gabrielnabi.donadaolabs.com` → Gabriel Nabi project; `caligarage.donadaolabs.com` → Cali Garage project. Diskat Presentes uses external domain `diskatpresentes.com.br`.
 
 ### Changed
 

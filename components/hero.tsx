@@ -71,13 +71,8 @@ export function Hero(): React.ReactElement {
             Construído para
           </p>
           <div className="grid grid-cols-2 items-center gap-x-4 gap-y-10 sm:grid-cols-4">
-            {CLIENT_LOGOS.map((logo, idx) => (
-              <div
-                key={logo.name}
-                className={`flex h-24 w-full items-center justify-center opacity-80 transition-opacity hover:opacity-100 ${
-                  idx === 2 ? 'sm:pl-11 lg:pl-[68px]' : ''
-                }`}
-              >
+            {CLIENT_LOGOS.map((logo, idx) => {
+              const image = (
                 <Image
                   src={logo.src}
                   alt={logo.alt}
@@ -86,8 +81,33 @@ export function Hero(): React.ReactElement {
                   style={{ maxWidth: logo.maxWidth ?? '200px' }}
                   className="h-full w-auto object-contain"
                 />
-              </div>
-            ))}
+              );
+
+              const cellClassName = `flex h-24 w-full items-center justify-center opacity-80 transition-all hover:opacity-100 ${
+                idx === 2 ? 'sm:pl-11 lg:pl-[68px]' : ''
+              }`;
+
+              if (logo.url) {
+                return (
+                  <a
+                    key={logo.name}
+                    href={logo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visitar site de ${logo.name}`}
+                    className={`${cellClassName} hover:scale-[1.04]`}
+                  >
+                    {image}
+                  </a>
+                );
+              }
+
+              return (
+                <div key={logo.name} className={cellClassName}>
+                  {image}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

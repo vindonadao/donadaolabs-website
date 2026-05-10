@@ -8,6 +8,18 @@ and this project uses revision-based versioning (`rev-X.Y`).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+---
+
+## [rev-1.1] — 2026-05-10
+
+Quality, accessibility and authenticity pass: real client logos, dual-state services for non-tech audiences, dynamic OG image, security headers, mobile fix.
+
+### Added
 - HSTS header (`Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`) to force HTTPS in browsers that have visited at least once
 - Security headers: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`
 - Immutable cache headers for `/brand/*` and `/clients/*` static assets (`max-age=31536000`)
@@ -65,5 +77,6 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-1.0...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-1.1...HEAD
+[rev-1.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.1
 [rev-1.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.0

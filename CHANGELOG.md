@@ -8,6 +8,18 @@ and this project uses revision-based versioning (`rev-X.Y`).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+---
+
+## [rev-1.3] — 2026-05-10
+
+Polish & truth pass: factual case corrections, clickable client logos with Vercel subdomains, accessibility audit (Lighthouse 100 on a11y).
+
+### Added
 - Clickable client logos in trust wall: Gabriel Nabi, Diskat Presentes, Cali Garage open in new tab. Diskat Ops (internal CRM) intentionally not linked.
 - `ClientLogo` interface gained optional `url?: string` field for per-client links.
 - Vercel subdomains wired: `gabrielnabi.donadaolabs.com` → Gabriel Nabi project; `caligarage.donadaolabs.com` → Cali Garage project. Diskat Presentes uses external domain `diskatpresentes.com.br`.
@@ -99,7 +111,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-1.2...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-1.3...HEAD
+[rev-1.3]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.3
 [rev-1.2]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.2
 [rev-1.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.1
 [rev-1.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.0

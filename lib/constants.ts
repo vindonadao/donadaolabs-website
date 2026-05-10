@@ -208,9 +208,9 @@ export const STACK_CHIPS: readonly StackChip[] = [
 
 export const FOUNDER = {
   name: 'Vinicius Donadão',
-  role: 'Computer Scientist · Founder',
-  bio1: 'Cientista da computação. Construo software e AI agents que resolvem o problema certo — o de gerar receita.',
-  bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar e foco atual em AI agents para automatizar operação comercial em pequenas e médias empresas.',
+  role: 'Computer Scientist · Founder · Industrial Systems',
+  bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo — o de gerar receita.',
+  bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
 } as const;
 
 export const MANIFESTO = {

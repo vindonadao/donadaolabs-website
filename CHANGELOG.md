@@ -10,6 +10,7 @@ and this project uses revision-based versioning (`rev-X.Y`).
 ### Added
 
 ### Changed
+- Founder section copy: role gained `· Industrial Systems`; bio surfaces "background em automação industrial crítica"; ICP sharpened to "negócios que já faturam, mas ainda operam no WhatsApp".
 
 ### Fixed
 

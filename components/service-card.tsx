@@ -53,7 +53,6 @@ export function ServiceCard({ service }: ServiceCardProps): React.ReactElement {
     <button
       type="button"
       aria-pressed={isTechnical}
-      aria-label={`${service.accessibleTitle}. Toque para alternar entre descrição acessível e técnica.`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleFocus}
@@ -63,7 +62,7 @@ export function ServiceCard({ service }: ServiceCardProps): React.ReactElement {
     >
       {/* Header: number + state pill */}
       <div className="mb-6 flex items-center justify-between gap-3">
-        <span className="font-mono text-xs uppercase tracking-widest text-stone-500">
+        <span className="font-mono text-xs uppercase tracking-widest text-stone-400">
           {service.num}
         </span>
         <span

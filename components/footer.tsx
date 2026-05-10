@@ -15,9 +15,9 @@ export function Footer(): React.ReactElement {
           </div>
 
           <div>
-            <h4 className="mb-4 font-mono text-xs uppercase tracking-widest text-stone-500">
+            <p className="mb-4 font-mono text-xs uppercase tracking-widest text-stone-400">
               Site
-            </h4>
+            </p>
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
@@ -30,9 +30,9 @@ export function Footer(): React.ReactElement {
           </div>
 
           <div>
-            <h4 className="mb-4 font-mono text-xs uppercase tracking-widest text-stone-500">
+            <p className="mb-4 font-mono text-xs uppercase tracking-widest text-stone-400">
               Contato
-            </h4>
+            </p>
             <a
               href={`mailto:${SITE.email}`}
               className="mb-2 block text-sm text-stone-300 transition-colors hover:text-accent-bright"
@@ -50,9 +50,9 @@ export function Footer(): React.ReactElement {
           </div>
 
           <div>
-            <h4 className="mb-4 font-mono text-xs uppercase tracking-widest text-stone-500">
+            <p className="mb-4 font-mono text-xs uppercase tracking-widest text-stone-400">
               Founder
-            </h4>
+            </p>
             <a
               href={LINKS.linkedin}
               target="_blank"

@@ -15,7 +15,7 @@ export function Services(): React.ReactElement {
         <p className="mb-12 max-w-[64ch] text-xl text-stone-300">
           Do site simples ao sistema completo, com automação e tudo no ar. Você não precisa
           contratar mais ninguém.
-          <span className="mt-2 block text-base text-stone-500">
+          <span className="mt-2 block text-base text-stone-400">
             Toque em cada card para ver o detalhe técnico.
           </span>
         </p>

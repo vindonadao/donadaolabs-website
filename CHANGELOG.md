@@ -16,6 +16,7 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ### Fixed
 - Case 01 (Gabriel Nabi) and Case 02 (Diskat Presentes) reframed in HERO/Cases section: Case 01 is a full photographer landing page with payment integration (not "payment platform"); Case 02 sells products manufactured by 3D printing (not "3D visualization e-commerce"). Three.js removed from Case 02 stack pills.
+- Accessibility (Lighthouse mobile 94 → ~100): color-contrast on `text-stone-500` mono labels (3.66:1 below AA 4.5) bumped to `text-stone-400`; footer column labels switched from `<h4>` to `<p>` to fix heading-order skip (h2 → h4); removed conflicting `aria-label` on ServiceCard buttons so accessible name matches visible content.
 
 ---
 

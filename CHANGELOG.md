@@ -12,6 +12,7 @@ and this project uses revision-based versioning (`rev-X.Y`).
 ### Changed
 
 ### Fixed
+- Case 01 (Gabriel Nabi) and Case 02 (Diskat Presentes) reframed in HERO/Cases section: Case 01 is a full photographer landing page with payment integration (not "payment platform"); Case 02 sells products manufactured by 3D printing (not "3D visualization e-commerce"). Three.js removed from Case 02 stack pills.
 
 ---
 

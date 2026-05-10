@@ -1,7 +1,28 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Inter, Inter_Tight, JetBrains_Mono } from 'next/font/google';
-import { SITE } from '@/lib/constants';
+import { LINKS, SITE } from '@/lib/constants';
 import './globals.css';
+
+const ORGANIZATION_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.name,
+  alternateName: 'Donadão Labs',
+  url: SITE.url,
+  logo: `${SITE.url}/brand/monogram-dd-accent.svg`,
+  description: SITE.description,
+  email: SITE.email,
+  founder: {
+    '@type': 'Person',
+    name: 'Vinicius Donadão',
+    jobTitle: 'Computer Scientist · Founder',
+    url: LINKS.linkedin,
+  },
+  sameAs: [LINKS.linkedin, LINKS.github, LINKS.instagram],
+  knowsAbout: ['AI software', 'AI agents', 'SaaS', 'Next.js', 'TypeScript', 'Postgres'],
+} as const;
 
 const interTight = Inter_Tight({
   subsets: ['latin'],
@@ -93,7 +114,17 @@ export default function RootLayout({ children }: RootLayoutProps): React.ReactEl
       lang="pt-BR"
       className={`${interTight.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="bg-charcoal text-offwhite antialiased">{children}</body>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
+        />
+      </head>
+      <body className="bg-charcoal text-offwhite antialiased">
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

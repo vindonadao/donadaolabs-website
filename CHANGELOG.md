@@ -15,6 +15,23 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-1.2] — 2026-05-10
+
+Observability, SEO & polish: analytics wired, sitemap + robots + JSON-LD, custom 404, HSTS preload submitted.
+
+### Added
+- Vercel Web Analytics + Speed Insights (free tier, page views + Core Web Vitals tracking)
+- `app/robots.ts` — Next.js native robots.txt route (allow all, disallow /api/)
+- `app/sitemap.ts` — Next.js native sitemap.xml route (single URL, priority 1)
+- Schema.org Organization JSON-LD markup in `<head>` (founder, sameAs, knowsAbout)
+- Custom 404 page (`app/not-found.tsx`) — brand-aligned with mesh + glow + CTA back to home
+- HSTS preload submission to hstspreload.org (status: pending, 6-12 weeks until baked into Chromium)
+
+### Changed
+- `donadaolabs.md` (parent context dir) updated with Case 04 Cali Garage, accessible hero copy, manifesto attribution note (founder ref outside repo)
+
+---
+
 ## [rev-1.1] — 2026-05-10
 
 Quality, accessibility and authenticity pass: real client logos, dual-state services for non-tech audiences, dynamic OG image, security headers, mobile fix.
@@ -77,6 +94,7 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-1.1...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-1.2...HEAD
+[rev-1.2]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.2
 [rev-1.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.1
 [rev-1.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.0

@@ -11,7 +11,7 @@ const ORGANIZATION_JSONLD = {
   name: SITE.name,
   alternateName: 'Donadão Labs',
   url: SITE.url,
-  logo: `${SITE.url}/brand/monogram-dd-accent.svg`,
+  logo: `${SITE.url}/brand/logo-mark.svg`,
   description: SITE.description,
   email: SITE.email,
   founder: {
@@ -120,7 +120,7 @@ export default function RootLayout({ children }: RootLayoutProps): React.ReactEl
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
         />
       </head>
-      <body className="bg-charcoal text-offwhite antialiased">
+      <body className="bg-ink text-offwhite antialiased">
         {children}
         <Analytics />
         <SpeedInsights />

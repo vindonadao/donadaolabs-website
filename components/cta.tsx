@@ -1,30 +1,40 @@
-import { CTA_FINAL, LINKS } from '@/lib/constants';
+import { Ship } from '@/components/ship';
+import { CTA_FINAL, LINKS, SITE } from '@/lib/constants';
 
 export function Cta(): React.ReactElement {
   return (
-    <section id="contact" className="relative isolate overflow-hidden py-32 text-center">
-      <div
-        className="absolute left-1/2 top-1/2 -z-10 h-[800px] w-[1200px] -translate-x-1/2 -translate-y-1/2 opacity-40 blur-2xl"
-        style={{
-          background:
-            'radial-gradient(ellipse, rgba(110, 91, 255, 0.45) 0%, transparent 60%)',
-        }}
-      />
-      <div className="mx-auto max-w-[1200px] px-6 md:px-8">
-        <h2 className="mb-8 font-display text-[clamp(2.5rem,8vw,6rem)] font-extrabold leading-[0.95] tracking-tightest text-balance">
-          {CTA_FINAL.headline}
-          <br />
-          para <em className="not-italic gradient-text">{CTA_FINAL.headlineEm}</em>
+    <section
+      id="contact"
+      className="relative isolate mt-6 overflow-hidden border-t border-white/[0.08] px-6 py-28 text-center md:px-10"
+      style={{
+        background:
+          'radial-gradient(circle at 50% 100%, rgba(0, 245, 122, 0.14) 0%, transparent 60%)',
+      }}
+    >
+      <div className="mx-auto max-w-[1280px]">
+        <h2 className="m-0 font-display text-[clamp(2.5rem,8vw,5.5rem)] font-semibold leading-[1] tracking-tightest text-pretty">
+          {CTA_FINAL.headline}{' '}
+          <Ship>
+            <span className="italic gradient-text">{CTA_FINAL.headlineEm}</span>
+          </Ship>
         </h2>
-        <p className="mx-auto mb-12 max-w-[50ch] text-xl text-stone-300">{CTA_FINAL.sub}</p>
+        <p className="mx-auto mt-5.5 max-w-[560px] text-[18px] text-offwhite/55">
+          {CTA_FINAL.sub}
+        </p>
         <a
           href={LINKS.cal}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-brand-md bg-gradient-purple px-8 py-4 font-display text-base font-semibold text-white shadow-glow transition-all hover:-translate-y-0.5 hover:shadow-glow-strong"
+          className="mt-9 inline-block rounded-[8px] bg-gradient-green px-6 py-3.5 text-[15px] font-semibold text-black shadow-glow transition-all duration-200 hover:-translate-y-1 hover:shadow-glow-strong"
         >
-          {CTA_FINAL.button} <span aria-hidden>→</span>
+          {CTA_FINAL.button} →
         </a>
+        <div className="mt-4.5 font-mono text-[11px] text-offwhite/55">
+          ou{' '}
+          <a href={`mailto:${SITE.email}`} className="text-offwhite/55 underline-offset-2 hover:underline">
+            {SITE.email}
+          </a>
+        </div>
       </div>
     </section>
   );

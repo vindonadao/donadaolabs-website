@@ -1,7 +1,7 @@
 /**
- * Donadão Labs — Site constants
- * Source of truth for copy, URLs, and structured data.
- * Voice/tone: 70% formal · 60% técnico · vocab: ships, built, real, lab, craft.
+ * Donadão Labs — Site constants (rev-2.0 · dataviz)
+ * Source of truth for all copy, numbers, links and editable site data.
+ * Edit values here, no need to touch component files.
  */
 
 export const SITE = {
@@ -22,9 +22,41 @@ export const LINKS = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: 'Abordagem', href: '#approach' },
+  { label: 'Abordagem', href: '#abordagem' },
   { label: 'Cases', href: '#cases' },
   { label: 'Founder', href: '#founder' },
+  { label: 'Changelog', href: '#changelog' },
+  { label: 'FAQ', href: '#faq' },
+] as const;
+
+// Status pill shown at top-right of the nav. Update when slots change.
+export const HEADER = {
+  status: 'live · operando · 2 slots jul/26',
+} as const;
+
+// 7-day throughput chart in the hero (right side, sticky).
+// `bars`: 7 numbers (mon–sun). The chart normalizes to the max.
+export const THROUGHPUT = {
+  label: 'AGENT THROUGHPUT · 7D',
+  total: '474',
+  unit: 'conv/sem',
+  delta: '↑ 18.4%',
+  days: ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'],
+  bars: [42, 58, 51, 73, 88, 67, 95],
+} as const;
+
+export interface Metric {
+  label: string;
+  value: string;
+  sub: string;
+  spark?: readonly number[];
+}
+
+export const METRICS: readonly Metric[] = [
+  { label: 'Produtos no ar', value: '04', sub: 'em produção', spark: [2, 2, 3, 3, 3, 4, 4] },
+  { label: 'Em construção', value: '03', sub: 'paralelos · Q2/26', spark: [0, 1, 1, 2, 2, 3, 3] },
+  { label: 'Próximo slot', value: 'JUL', sub: '2 vagas · 2026' },
+  { label: 'Uptime do portfólio', value: '99.9%', sub: 'últimos 90 dias', spark: [99.7, 99.8, 99.9, 99.9, 100, 99.9, 99.9] },
 ] as const;
 
 export interface ClientLogo {
@@ -70,57 +102,63 @@ export interface Service {
   accessibleBody: string;
   technicalTitle: string;
   technicalBody: string;
+  bullets: readonly string[];
 }
 
 export const SERVICES: readonly Service[] = [
   {
     id: 'build',
     num: '01',
-    techLabel: 'BUILD',
+    techLabel: 'Apps from scratch · Legacy rescue',
     accessibleTitle: 'Software sob medida',
     accessibleBody:
-      'Construímos o software que seu negócio precisa, do zero — ou resgatamos sistemas que pararam de escalar.',
+      'Aquele site, sistema ou app que seu negócio precisa, feito do zero pra você — ou consertando algo que parou de funcionar.',
     technicalTitle: 'Apps from scratch',
     technicalBody:
-      'Engenharia full-stack pragmática, sem stack frankenstein. Apps from scratch, legacy rescue e enterprise build.',
+      'Construa apps from scratch ou faça legacy rescue de sistemas que pararam de escalar. Full-stack pragmático, sem stack frankenstein.',
+    bullets: ['Full-stack pragmático', 'Sem stack frankenstein', 'Deploy em 2–6 semanas'],
   },
   {
     id: 'systems',
     num: '02',
-    techLabel: 'SYSTEMS',
+    techLabel: 'CRM · SaaS interno',
     accessibleTitle: 'Sistemas de gestão',
     accessibleBody:
-      'CRM, painéis e ferramentas internas pra sua operação rodar organizada. Novos ou evoluindo o que já existe.',
+      'Um painel pra acompanhar vendas, estoque, equipe e clientes em um lugar só — sem mil planilhas espalhadas.',
     technicalTitle: 'CRM & SaaS',
     technicalBody:
-      'CRM e SaaS — novos ou existentes. Multi-tenant, queries em ms, dashboards reais. Database engineering quando importa.',
+      'CRM, painel interno e SaaS multi-tenant. Queries em ms, dashboards reais, observabilidade quando importa.',
+    bullets: ['Multi-tenant', 'Queries em ms', 'Dashboards reais'],
   },
   {
     id: 'automate',
     num: '03',
-    techLabel: 'AUTOMATE',
+    techLabel: 'AI agents · WhatsApp · E-mail',
     accessibleTitle: 'Automação com AI',
     accessibleBody:
-      'Atendimento, follow-up e qualificação de lead automatizados. AI que tira trabalho repetitivo da sua mesa.',
+      'Um “robô” que atende seu cliente no WhatsApp, faz follow-up e qualifica lead — 24h por dia, sem você precisar estar lá.',
     technicalTitle: 'AI agents',
     technicalBody:
-      'AI agents que rodam atendimento, follow-up e qualificação. Layer em cima do software existente, com guardrails e observabilidade.',
+      'AI agents em cima do software existente. Guardrails, observabilidade e custo controlado por conversa.',
+    bullets: ['Guardrails e logs', 'Observabilidade', 'Custo controlado'],
   },
   {
     id: 'infra',
     num: '04',
-    techLabel: 'INFRA',
-    accessibleTitle: 'Tudo no ar',
+    techLabel: 'Bundled · Não vendido separado',
+    accessibleTitle: 'Infra & deploy',
     accessibleBody:
-      'Domínio, servidor, atualizações, segurança. Cuidamos da infraestrutura inteira — você só vê o produto rodando.',
+      'Aquela parte chata por trás: domínio, servidor, atualizações de segurança. A gente cuida. Você só vê rodando.',
     technicalTitle: 'Full setup',
     technicalBody:
-      'Domínio, DNS, repositório, CI/CD, deploy, SSL e monitoramento. Bundled em todo projeto — não vendido em separado.',
+      'Domínio, DNS, CI/CD, SSL e monitoramento bundled em todo projeto. SLA com resposta < 4h úteis.',
+    bullets: ['SLA monitorado', 'Backups diários', 'Resposta < 4h úteis'],
   },
 ] as const;
 
 export interface Pillar {
   num: string;
+  day: string;
   label: string;
   title: string;
   body: string;
@@ -129,65 +167,116 @@ export interface Pillar {
 export const PILLARS: readonly Pillar[] = [
   {
     num: '01',
+    day: 'Dia 0–3',
     label: 'Diagnose',
     title: 'Entender o problema comercial',
     body: 'Antes de uma linha de código: onde sua receita escapa, que processo você roda no braço e o que tecnologia pode mover de fato.',
   },
   {
     num: '02',
+    day: 'Dia 3–21',
     label: 'Build',
     title: 'Software que ships',
     body: 'Engenharia full-stack pragmática. Sem stack frankenstein, sem promessas. O que sobe em produção, escala.',
   },
   {
     num: '03',
+    day: 'Dia 21+',
     label: 'Automate',
     title: 'Camada de AI agents',
     body: 'Em cima do software, agents que automatizam operação: atendimento, follow-up, gestão. AI que tira trabalho chato da sua mesa.',
   },
 ] as const;
 
+export type CaseShape = 'aperture' | 'layers' | 'grid' | 'hex';
+export type CaseStyle = 'serif' | 'sans-bold' | 'sans-condensed' | 'mono';
+
 export interface Case {
   num: string;
   client: string;
+  kind: string;
   meta: string;
   title: string;
   desc: string;
+  metric: string;
+  href: string;
   stack: readonly string[];
+  logo: {
+    image: string | null;
+    shape: CaseShape;
+    display: string;
+    style: CaseStyle;
+  };
 }
 
 export const CASES: readonly Case[] = [
   {
     num: '01',
     client: 'Gabriel Nabi',
+    kind: 'Landing page · Pet Photography',
     meta: 'Landing page · Pet Photography',
-    title: 'Landing page completa para fotógrafo',
-    desc: 'Site de apresentação do trabalho com captação de contato, agenda e pagamento integrado. Substitui Linktree + WhatsApp + cobrança manual em um único endereço.',
+    title: 'Landing completa para fotógrafo',
+    desc: 'Site de apresentação do trabalho com captação de contato, agenda e pagamento integrado. Substitui Linktree + WhatsApp + cobrança manual.',
+    metric: '↑ 3.2× contato qualificado',
+    href: 'https://gabrielnabi.donadaolabs.com',
     stack: ['React', 'Node', 'Stripe', 'Postgres'],
+    logo: {
+      image: '/clients/gabriel-nabi.png',
+      shape: 'aperture',
+      display: 'gabriel nabi',
+      style: 'serif',
+    },
   },
   {
     num: '02',
     client: 'Diskat Presentes',
+    kind: 'E-commerce · Impressão 3D',
     meta: 'E-commerce · Impressão 3D',
-    title: 'E-commerce de produtos de impressão 3D',
+    title: 'E-commerce de impressão 3D',
     desc: 'Loja completa com checkout otimizado e painel de gestão para venda de produtos impressos em 3D. UX premium em categoria commoditizada.',
+    metric: 'Checkout < 90s',
+    href: 'https://diskatpresentes.com.br',
     stack: ['Next.js', 'Stripe', 'Postgres'],
+    logo: {
+      image: '/clients/diskat-presentes.png',
+      shape: 'layers',
+      display: 'DISKAT presentes',
+      style: 'sans-bold',
+    },
   },
   {
     num: '03',
     client: 'Diskat Ops',
+    kind: 'CRM interno · SaaS',
     meta: 'CRM interno · SaaS',
-    title: 'Software de controle de operação',
+    title: 'Painel de operação interna',
     desc: 'Painel enxuto para acompanhar vendas, estoque e performance — sem cair no excesso de uma ERP cara.',
+    metric: '12h/semana economizadas',
+    href: '#',
     stack: ['React', 'Node', 'Postgres', 'Redis'],
+    logo: {
+      image: '/clients/diskat-ops.png',
+      shape: 'grid',
+      display: 'diskat/ops',
+      style: 'mono',
+    },
   },
   {
     num: '04',
     client: 'Cali Garage',
+    kind: 'Landing page · Manutenção veicular',
     meta: 'Landing page · Manutenção veicular',
-    title: 'Site institucional para oficina automotiva',
+    title: 'Site institucional para oficina',
     desc: 'Landing de apresentação dos serviços, captação de contato e canal direto com o cliente. Site real para um negócio que vive offline.',
+    metric: '↑ orçamentos via web',
+    href: 'https://caligarage.donadaolabs.com',
     stack: ['Next.js', 'TypeScript', 'Tailwind', 'Vercel'],
+    logo: {
+      image: '/clients/cali-garage.png',
+      shape: 'hex',
+      display: 'CALI GARAGE',
+      style: 'sans-condensed',
+    },
   },
 ] as const;
 
@@ -206,30 +295,114 @@ export const STACK_CHIPS: readonly StackChip[] = [
   { label: 'Cloudflare' },
 ] as const;
 
+export interface ChangelogEntry {
+  date: string;
+  tag: 'shipped' | 'agent' | 'infra' | 'rfc' | 'hotfix';
+  text: string;
+}
+
+export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-05-09', tag: 'shipped', text: 'Diskat Ops · novo módulo de previsão de estoque com forecasting semanal.' },
+  { date: '2026-05-02', tag: 'agent',   text: 'Agent de qualificação no WhatsApp em produção — média 38s/lead.' },
+  { date: '2026-04-24', tag: 'infra',   text: 'Migração da malha interna pra Cloudflare Tunnel · -41% latência média.' },
+  { date: '2026-04-15', tag: 'shipped', text: 'Gabriel Nabi · agenda integrada com Stripe (pagamento on-hold).' },
+  { date: '2026-04-03', tag: 'rfc',     text: 'RFC interno · padronização de observabilidade pra agents em produção.' },
+] as const;
+
+export interface FAQEntry {
+  q: string;
+  a: string;
+}
+
+export const FAQ: readonly FAQEntry[] = [
+  {
+    q: 'Preciso saber exatamente o que quero?',
+    a: 'Não. O diagnóstico de 30 minutos serve pra isso. Você chega com o problema, sai com um plano com escopo, prazo e o que faz sentido construir primeiro.',
+  },
+  {
+    q: 'Quanto tempo demora?',
+    a: 'Landing simples: 2–3 semanas. E-commerce ou painel interno: 4–6 semanas. AI agent layer: depende do volume, mas tipicamente 2–4 semanas em cima de algo já no ar.',
+  },
+  {
+    q: 'Vocês mantêm o sistema depois?',
+    a: 'Sim. Todo projeto entra em retainer leve pós-deploy: monitoramento, atualizações de segurança, bug fixes. Evolução de produto entra como sprint separado.',
+  },
+  {
+    q: 'E se eu quiser mexer eu mesmo no código?',
+    a: 'Tudo seu. Repositório, infra, contas de provider — tudo entregue no seu nome. Sem lock-in, sem CMS proprietário escondido.',
+  },
+  {
+    q: 'Quanto custa?',
+    a: 'Depende do escopo. Projetos costumam ficar entre 5 e 6 dígitos. O diagnóstico já entrega faixa de preço — sem compromisso de seguir.',
+  },
+] as const;
+
 export const FOUNDER = {
   name: 'Vinicius Donadão',
-  role: 'Computer Scientist · Founder · Industrial Systems',
+  role: 'Computer Scientist · Founder',
   bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo — o de gerar receita.',
-  bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+  bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar, três em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+  photo: '/founder.jpg',
 } as const;
 
 export const MANIFESTO = {
   quote: 'Software não é arte.',
   quoteEm: 'É infraestrutura de receita.',
+  attribution: 'Vinicius Donadão · Founder',
 } as const;
 
 export const HERO = {
-  badge: 'AI Software Lab · 2026',
+  badge: 'AI Software Lab · ao vivo · 2026',
   headline: 'AI software',
-  headlineEm: 'actually ships.',
+  headlineEm: 'actually ships',
   sub: 'Construímos sites, sistemas e automações pro seu negócio crescer. Você fala o problema, a gente entrega rodando — sem promessa furada.',
   ctaPrimary: 'Agendar diagnóstico',
   ctaSecondary: 'Ver os cases',
 } as const;
 
+export const PLAIN_PORTUGUESE = {
+  eyebrow: 'Em português claro',
+  body:
+    'A gente faz o site, o sistema ou a automação que seu negócio precisa. Você fala o problema — mesmo sem saber a solução. A gente entrega tudo pronto, rodando.',
+  bodyMuted: 'Você não precisa entender de tecnologia pra trabalhar com a gente.',
+} as const;
+
+export const SHIP_TOOLTIP = {
+  eyebrow: '* ship · /ʃɪp/ · do inglês',
+  bold: 'Entregar pra valer.',
+  rest:
+    'Software no ar, funcionando, gerando venda. Não é demo, não é promessa, não é projeto que trava no meio.',
+} as const;
+
 export const CTA_FINAL = {
-  headline: 'Pronto',
+  headline: 'Pronto para',
   headlineEm: 'ship?',
-  sub: 'Conta o que precisa rodar. Em 30 minutos sai o diagnóstico e um plano de implementação real.',
+  sub: 'Conta o que precisa rodar. Em 30 minutos sai diagnóstico + plano real de implementação.',
   button: 'Agendar diagnóstico',
+} as const;
+
+export const AGENT = {
+  apiEndpoint: '/api/diagnose',
+  label: '◆ agent diagnóstico · processando ao vivo',
+  placeholder: 'descreva o problema do seu negócio em 1 frase',
+  btnLabel: 'rodar diagnóstico',
+  examples: [
+    'tenho um e-commerce no shopify e quero automatizar o pós-venda',
+    'minha equipe perde 10h/semana copiando dado entre planilha e WhatsApp',
+    'quero um site de apresentação que capte lead direto pra CRM',
+  ],
+  emailGate: {
+    title: 'Quer o plano completo + roadmap por email?',
+    sub: 'Deixo um plano detalhado de implementação na sua caixa. Sem spam, sem newsletter chata.',
+    cta: 'Receber plano',
+    success: '✓ Enviado! Te chamo no WhatsApp/email em até 24h.',
+  },
+  blockedMessage:
+    'Pra continuar perguntando, deixe seu email — assim eu te chamo de volta. Se prefere falar comigo direto, agenda o diagnóstico ali embaixo. Os dois caminhos funcionam.',
+  dailyCapMessage:
+    'O agent já rodou 100 diagnósticos hoje (cap diário pra eu garantir qualidade nas respostas). Você chegou bem perto do limite — vamos conversar direto. Agenda uma call de 30min comigo, sem compromisso.',
+  rateLimitMessage:
+    'Calma — só 1 pergunta a cada 10 segundos por visitante. Tenta de novo em alguns instantes.',
+  privacy:
+    'Ao usar o agent, você concorda que sua pergunta, IP e email (se fornecido) sejam armazenados para contato e melhoria do serviço. Conforme LGPD.',
 } as const;

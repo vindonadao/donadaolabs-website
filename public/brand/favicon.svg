@@ -1,31 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Favicon variant — bold legible @16/32px
-  Single D in purple square + accent dot. Optimized for tiny rendering.
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Donadão Labs">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none" role="img" aria-label="Donadão Labs">
   <title>Donadão Labs</title>
   <defs>
-    <linearGradient id="favPurple" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8B7BFF"/>
-      <stop offset="100%" stop-color="#4B3DD9"/>
+    <linearGradient id="dl-fav-grad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#056B30" />
+      <stop offset="100%" stop-color="#00F57A" />
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="url(#favPurple)"/>
-  <!-- Bold D — readable at 16px -->
-  <path fill="#FAFAFA" fill-rule="evenodd" clip-rule="evenodd"
-        d="M16 14
-           L16 50
-           L30 50
-           C 41 50, 50 41, 50 32
-           C 50 23, 41 14, 30 14
-           Z
-           M24 22
-           L30 22
-           C 36 22, 42 26, 42 32
-           C 42 38, 36 42, 30 42
-           L24 42
-           Z"/>
-  <!-- Accent dot -->
-  <circle cx="54" cy="10" r="3" fill="#FAFAFA"/>
+  <rect width="32" height="32" rx="6" fill="#070709" />
+  <rect x="3"  y="18" width="6" height="11" rx="1.5" fill="#056B30" opacity="0.9" />
+  <rect x="13" y="10" width="6" height="19" rx="1.5" fill="url(#dl-fav-grad)" />
+  <rect x="23" y="3"  width="6" height="26" rx="1.5" fill="#00F57A" />
+  <circle cx="26" cy="6" r="1.6" fill="#070709" />
 </svg>

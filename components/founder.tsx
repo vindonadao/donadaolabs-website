@@ -1,74 +1,79 @@
+import Image from 'next/image';
+import { SectionHeader } from '@/components/section-header';
 import { FOUNDER, LINKS } from '@/lib/constants';
+
+const SOCIALS = [
+  { label: 'LinkedIn', href: LINKS.linkedin },
+  { label: 'GitHub', href: LINKS.github },
+  { label: 'Instagram', href: LINKS.instagram },
+] as const;
 
 export function Founder(): React.ReactElement {
   return (
-    <section id="founder" className="relative py-32">
-      <div className="mx-auto max-w-[1200px] px-6 md:px-8">
-        <span className="mb-4 inline-block rounded border border-accent/30 bg-accent/[0.14] px-3 py-1 font-mono text-xs uppercase tracking-widest text-accent-bright">
-          04 · Quem opera
-        </span>
-        <h2 className="mb-4 max-w-[24ch] font-display text-[clamp(2rem,5vw,3rem)] font-bold leading-tight tracking-brand-tight text-balance">
-          Pessoa por trás <em className="not-italic text-accent-bright">do código.</em>
-        </h2>
-        <p className="mb-12 max-w-[60ch] text-xl text-stone-300">
-          Sem agência intermediária. Você fala direto com quem constrói.
-        </p>
-
-        <div className="relative isolate overflow-hidden rounded-brand-xl border border-stone-800 bg-stone-900 p-12">
+    <section id="founder" className="mt-6 border-t border-white/[0.08]">
+      <SectionHeader
+        idx="05"
+        eyebrow="Quem opera"
+        title="Pessoa por trás do código."
+        sub="Sem agência intermediária. Você fala direto com quem constrói."
+      />
+      <div className="grid grid-cols-1 gap-12 px-6 pb-20 md:grid-cols-[260px_1fr] md:px-10">
+        {/* Photo frame */}
+        <div className="relative h-[280px] w-[240px] overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal">
+          <Image
+            src={FOUNDER.photo}
+            alt={FOUNDER.name}
+            fill
+            sizes="240px"
+            className="object-cover"
+            priority
+          />
+          {/* Bottom fade-to-bg gradient */}
           <div
-            className="absolute right-0 top-0 -z-10 h-[400px] w-[400px] opacity-40 blur-3xl"
+            className="pointer-events-none absolute inset-0"
             style={{
-              background:
-                'radial-gradient(circle, rgba(110, 91, 255, 0.45) 0%, transparent 70%)',
+              background: 'linear-gradient(180deg, transparent 55%, #070709 100%)',
             }}
           />
-          <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[280px_1fr] md:gap-16">
-            <div className="relative flex h-[240px] w-[240px] items-center justify-center rounded-brand-xl border border-accent-deep bg-gradient-to-br from-ink via-accent-darker/40 to-ink shadow-[0_16px_48px_rgba(0,0,0,0.5),0_0_60px_rgba(110,91,255,0.45)]">
-              <span className="font-display text-[6rem] font-extrabold tracking-tightest gradient-text">
-                VD
-              </span>
-            </div>
+          {/* Founder · live badge */}
+          <div
+            className="absolute bottom-2.5 left-3 flex items-center gap-1.5 font-mono text-[10px] text-accent"
+            style={{ textShadow: '0 1px 4px #070709' }}
+          >
+            <span
+              className="h-1.5 w-1.5 animate-dl-pulse rounded-full bg-accent"
+              style={{ boxShadow: '0 0 6px #00F57A' }}
+            />
+            founder · ao vivo
+          </div>
+        </div>
 
-            <div>
-              <h3 className="mb-2 font-display text-4xl font-bold tracking-brand-tight md:text-5xl">
-                {FOUNDER.name}
-              </h3>
-              <p className="mb-8 font-mono text-sm tracking-brand-wide text-accent-bright">
-                {FOUNDER.role}
-              </p>
-              <p className="mb-4 max-w-[56ch] text-base leading-[1.65] text-stone-300">
-                {FOUNDER.bio1}
-              </p>
-              <p className="mb-6 max-w-[56ch] text-base leading-[1.65] text-stone-300">
-                {FOUNDER.bio2}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={LINKS.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-brand-md border border-stone-700 bg-stone-800 px-4 py-2 font-mono text-sm text-stone-300 transition-all hover:border-accent hover:bg-accent/[0.14] hover:text-offwhite"
-                >
-                  LinkedIn ↗
-                </a>
-                <a
-                  href={LINKS.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-brand-md border border-stone-700 bg-stone-800 px-4 py-2 font-mono text-sm text-stone-300 transition-all hover:border-accent hover:bg-accent/[0.14] hover:text-offwhite"
-                >
-                  GitHub ↗
-                </a>
-                <a
-                  href={LINKS.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-brand-md border border-stone-700 bg-stone-800 px-4 py-2 font-mono text-sm text-stone-300 transition-all hover:border-accent hover:bg-accent/[0.14] hover:text-offwhite"
-                >
-                  Instagram ↗
-                </a>
-              </div>
-            </div>
+        {/* Bio */}
+        <div>
+          <h3 className="m-0 font-display text-[36px] font-semibold tracking-brand-tight">
+            {FOUNDER.name}
+          </h3>
+          <div className="mt-1.5 font-mono text-xs uppercase tracking-widest text-accent">
+            {FOUNDER.role}
+          </div>
+          <p className="mt-5.5 max-w-[680px] text-base leading-[1.6] text-offwhite">
+            {FOUNDER.bio1}
+          </p>
+          <p className="mt-3.5 max-w-[680px] text-base leading-[1.6] text-offwhite/55">
+            {FOUNDER.bio2}
+          </p>
+          <div className="mt-7 flex flex-wrap gap-2.5">
+            {SOCIALS.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-[6px] border border-white/[0.08] bg-charcoal px-3.5 py-2 text-[13px] text-offwhite transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-accent/[0.08] hover:text-accent"
+              >
+                {s.label} ↗
+              </a>
+            ))}
           </div>
         </div>
       </div>

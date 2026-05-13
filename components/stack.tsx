@@ -2,16 +2,16 @@ import { STACK_CHIPS } from '@/lib/constants';
 
 export function Stack(): React.ReactElement {
   return (
-    <section className="relative py-24">
-      <div className="mx-auto max-w-[1200px] px-6 text-center md:px-8">
-        <p className="mb-6 font-mono text-xs uppercase tracking-widest text-stone-500">
-          Stack que rodamos
-        </p>
-        <div className="mx-auto flex max-w-[800px] flex-wrap justify-center gap-2">
+    <section className="border-b border-white/[0.08] px-6 py-8 md:px-10">
+      <div className="mx-auto flex max-w-[1280px] flex-wrap items-center gap-x-8 gap-y-4">
+        <div className="whitespace-nowrap font-mono text-[11px] uppercase tracking-widest text-offwhite/55">
+          Stack em produção
+        </div>
+        <div className="flex flex-wrap gap-2">
           {STACK_CHIPS.map((chip) => (
             <span
               key={chip.label}
-              className="rounded-full border border-stone-700 bg-stone-900 px-4 py-2 font-mono text-sm text-stone-300"
+              className="rounded-[6px] border border-white/[0.08] bg-charcoal px-3 py-1.5 font-mono text-xs text-offwhite transition-colors duration-200 hover:border-accent/60 hover:text-accent"
             >
               {chip.label}
             </span>

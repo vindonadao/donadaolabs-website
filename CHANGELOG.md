@@ -10,9 +10,51 @@ and this project uses revision-based versioning (`rev-X.Y`).
 ### Added
 
 ### Changed
-- Founder section copy: role gained `· Industrial Systems`; bio surfaces "background em automação industrial crítica"; ICP sharpened to "negócios que já faturam, mas ainda operam no WhatsApp".
 
 ### Fixed
+
+---
+
+## [rev-2.0] — 2026-05-13
+
+Major redesign — "Dataviz" direction from Claude Design handoff bundle. Palette pivot purple → green phosphor, live AI agent in hero, six new sections (PlainPortuguese, Metrics, Throughput chart, Changelog, FAQ, Process), editorial founder photo, and a real backend for the diagnose agent (Anthropic Haiku + Upstash rate-limit + Z-API WhatsApp notification).
+
+### Added
+- **Live AI agent in hero** (`components/live-agent.tsx`) — POST to `/api/diagnose`, structured response (DIAGNÓSTICO / SOLUÇÃO / STACK / PRAZO / PRÓXIMO PASSO), localStorage clientId persistence, email-gate after first ask, hard blocks for daily cap and rate-limit, graceful "agent offline" fallback when backend isn't deployed.
+- **`/api/diagnose` route** (`app/api/diagnose/route.ts`) — Next.js App Router serverless function: cap diário 100/dia, rate-limit 10s/IP, email-gate per clientId, Anthropic Haiku 4.5 call, WhatsApp notification via Z-API, fallback in-memory store when Upstash creds are missing.
+- **`.env.example`** with the 6 vars needed for the agent backend (Anthropic, Upstash REST, Z-API instance/token/client-token, founder WhatsApp number).
+- **Hero throughput chart** (`components/throughput-chart.tsx`) — 7-day animated bar chart with grid background, live pulse, headline number + delta.
+- **PlainPortuguese section** (`components/plain-portuguese.tsx`) — bridge block between technical headline and non-technical audience.
+- **Metrics row** (`components/metrics.tsx`) — 4 cards with count-up animation + sparklines (Produtos no ar · Em construção · Próximo slot · Uptime).
+- **Changelog section** (`components/changelog.tsx`) — public 5-entry timeline (`shipped` / `agent` / `infra` / `rfc` / `hotfix` tags).
+- **FAQ accordion** (`components/faq.tsx`) — 5 entries, first one open by default.
+- **Ship tooltip** (`components/ship.tsx`) — dotted underline + asterisk on the word "ship*" in hero and final CTA, popover explains the english term in plain portuguese.
+- **Editorial founder photo** at `public/founder.jpg` (replaces "VD" monogram square in the founder section); new `● founder · ao vivo` pulse badge on the 240×280 frame.
+- **Logo mark** (`components/logo-mark.tsx`, `public/brand/logo-mark.svg`) — 3 ascending bars (metáfora de "ships") in green gradient, used in nav and footer.
+- **Shared primitives**: `components/sparkline.tsx`, `components/case-mark.tsx`, `components/section-header.tsx`.
+- **Status pill in nav** — `live · operando · 2 slots jul/26` with pulsing accent dot.
+
+### Changed
+- **Palette pivot** — accent moved from electric purple (`#6e5bff`/`#4b3dd9`) to green phosphor (`#00F57A`/`#056B30`). Background bumped from `#0e0e10` → `#070709` (ink). All gradients, shadows, glows and CSS tokens migrated.
+- **`tailwind.config.ts`** — new color scale (ink, charcoal, surface, accent.{DEFAULT,bright,deep,darker}), removed purple gradients, added `gradient-green`, `gradient-green-text`, `gradient-mesh`, `bg-grid-faint`, new shadows (`glow-cursor` for the headline cursor), and 3 keyframes (`dl-pulse`, `dl-blink`, `dl-tick`).
+- **`globals.css`** — CSS custom properties rewritten as `--ddl-accent`/`--ddl-accent-deep` (green), surface/border tokens follow the dataviz theme, plus utilities `.dl-cursor` (blinking cursor with glow), `.dl-dots`, `.text-pretty`, `.bg-grid-faint`.
+- **Hero** — two-column layout (headline left, sticky throughput chart right). Headline keeps "AI software that *actually ships*" but the gradient italic span now uses green and ends with a blinking cursor with halo. Subhead reads as plain-portuguese, no jargon.
+- **Services cards** — dual-track layout: human copy (large) + `// téc.` dashed block (smaller, muted) + 3 check-bullets. Replaces the toggle-card pattern from rev-1.x (`components/service-card.tsx` removed).
+- **Approach → Process** — kept 3 cards but added `Dia 0–3 / 3–21 / 21+` time badges and gradient-green numeric tile.
+- **Cases** — full redesign: each card has a 180px thumbnail with grid background, `client.app` kind label, pulsing `● live` indicator, centered logo lockup (real PNG with `brightness-0 invert` filter), metric + 8-point sparkline footer, and a stack pills row below.
+- **Manifesto** — gained attribution line (`— Vinicius Donadão · Founder`) and a `◆ princípio` mono eyebrow; green radial glow replaces purple.
+- **Stack** — switched from centered chip cloud to left-aligned "Stack em produção" label + pills row.
+- **Founder** — `Computer Scientist · Founder` role (dropped `· Industrial Systems` qualifier — the industrial automation note now lives in the bio); photo replaces the "VD" monogram tile; bio mentions "três em construção" alongside "quatro produtos no ar".
+- **CTA** — "Pronto para ship?" gains the same Ship tooltip as the hero.
+- **Nav** — green `/` separator in wordmark (`donadão/labs`), new logo mark, hidden status pill on mobile (visible md+), green gradient CTA button.
+- **Footer** — collapsed from 4-column grid to a single-line build banner (`© 2026 donadão/labs · donadaolabs.com` · `build · 2026.05.13 · live`) — links live in the sectioned page itself.
+- **`app/page.tsx`** — section order redone to match the dataviz mockup: Hero → PlainPortuguese → Metrics → Stack → Services → Approach → Cases → Manifesto → Changelog → Founder → FAQ → CTA → Footer.
+- **`lib/constants.ts`** — extended with `HEADER`, `THROUGHPUT`, `METRICS`, `CHANGELOG`, `FAQ`, `PLAIN_PORTUGUESE`, `SHIP_TOOLTIP`, `AGENT`; `Case` interface expanded with `kind`, `metric`, `href`, `logo` (shape/display/style). New nav links for `#changelog` and `#faq`.
+- **`app/layout.tsx`** — body bg now `bg-ink`; Organization JSON-LD logo path updated to `/brand/logo-mark.svg`.
+- **Founder bio** — `· Industrial Systems` removed from role per dataviz design; "background em automação industrial crítica" already captured in bio1.
+
+### Fixed
+- **Favicon** — old purple-D-on-purple-square SVG replaced with the same 3-bar mark on `#070709` so the favicon matches the live brand.
 
 ---
 
@@ -112,7 +154,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-1.3...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.0...HEAD
+[rev-2.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.0
 [rev-1.3]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.3
 [rev-1.2]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.2
 [rev-1.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.1

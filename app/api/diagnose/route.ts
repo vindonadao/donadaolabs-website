@@ -72,11 +72,10 @@ export async function POST(req: NextRequest): Promise<Response> {
   // ─── register-email ────────────────────────────────────────────────────────
   if (action === 'register-email') {
     if (!isEmail(email)) return json({ message: 'invalid email' }, 400);
-    await redis('SET', [
-      `dl:cid:${clientId}:email`,
-      email!,
-      'EX',
-      String(ASKED_TTL_SECONDS),
+    // Grava o email nos dois gates (clientId E ip) pra desbloquear ambos.
+    await Promise.all([
+      redis('SET', [`dl:cid:${clientId}:email`, email!, 'EX', String(ASKED_TTL_SECONDS)]),
+      redis('SET', [`dl:ip:${ip}:email`, email!, 'EX', String(ASKED_TTL_SECONDS)]),
     ]);
     await notify(
       `📩 EMAIL CAPTURADO\n` +
@@ -108,15 +107,25 @@ export async function POST(req: NextRequest): Promise<Response> {
   }
   await redis('SET', [rlKey, '1', 'EX', String(RATE_LIMIT_SECONDS)]);
 
-  // 3) email gate por clientId
+  // 3) email gate — dupla camada: clientId (localStorage) + IP (rede).
+  // ClientId sozinho falha quando navegador apaga localStorage (modo anônimo,
+  // limpeza manual, refresh em algumas configs). O IP gate é a rede de
+  // proteção: mesmo abrindo aba anônima e refresh, o IP delata.
+  // OR-lógica: se *qualquer um* dos dois já perguntou e não tem email, bloqueia.
   const askedKey = `dl:cid:${clientId}:asked`;
   const emailKey = `dl:cid:${clientId}:email`;
-  const [askedBefore, storedEmail] = await Promise.all([
+  const ipAskedKey = `dl:ip:${ip}:asked`;
+  const ipEmailKey = `dl:ip:${ip}:email`;
+  const [askedBefore, storedEmail, ipAsked, ipStoredEmail] = await Promise.all([
     redis('GET', [askedKey]) as Promise<string | null>,
     redis('GET', [emailKey]) as Promise<string | null>,
+    redis('GET', [ipAskedKey]) as Promise<string | null>,
+    redis('GET', [ipEmailKey]) as Promise<string | null>,
   ]);
-  const effectiveEmail = (isEmail(email) ? email! : null) ?? storedEmail ?? null;
-  if (askedBefore && !effectiveEmail) {
+  const effectiveEmail =
+    (isEmail(email) ? email! : null) ?? storedEmail ?? ipStoredEmail ?? null;
+  const anyAsked = askedBefore || ipAsked;
+  if (anyAsked && !effectiveEmail) {
     return json({ code: 'NEED_EMAIL', message: 'email required to continue' }, 403);
   }
 
@@ -130,10 +139,20 @@ export async function POST(req: NextRequest): Promise<Response> {
     return json({ message: 'AI provider error', detail: msg }, 502);
   }
 
-  // 5) persiste estado + incrementa cap
-  await redis('SET', [askedKey, '1', 'EX', String(ASKED_TTL_SECONDS)]);
-  if (effectiveEmail && !storedEmail) {
-    await redis('SET', [emailKey, effectiveEmail, 'EX', String(ASKED_TTL_SECONDS)]);
+  // 5) persiste estado nos DOIS gates + incrementa cap
+  await Promise.all([
+    redis('SET', [askedKey, '1', 'EX', String(ASKED_TTL_SECONDS)]),
+    redis('SET', [ipAskedKey, '1', 'EX', String(ASKED_TTL_SECONDS)]),
+  ]);
+  if (effectiveEmail) {
+    const promises: Array<Promise<unknown>> = [];
+    if (!storedEmail) {
+      promises.push(redis('SET', [emailKey, effectiveEmail, 'EX', String(ASKED_TTL_SECONDS)]));
+    }
+    if (!ipStoredEmail) {
+      promises.push(redis('SET', [ipEmailKey, effectiveEmail, 'EX', String(ASKED_TTL_SECONDS)]));
+    }
+    if (promises.length > 0) await Promise.all(promises);
   }
   await redis('INCR', [capKey]);
   await redis('EXPIRE', [capKey, String(60 * 60 * 26)]);

@@ -15,9 +15,9 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
-## [rev-2.0] — 2026-05-13
+## [rev-2.0] — 2026-05-14
 
-Major redesign — "Dataviz" direction from Claude Design handoff bundle. Palette pivot purple → green phosphor, live AI agent in hero, six new sections (PlainPortuguese, Metrics, Throughput chart, Changelog, FAQ, Process), editorial founder photo, and a real backend for the diagnose agent (Anthropic Haiku + Upstash rate-limit + Z-API WhatsApp notification).
+Major redesign — "Dataviz" direction from Claude Design handoff bundle. Palette pivot purple → green phosphor, live AI agent in hero, six new sections (PlainPortuguese, Metrics, Throughput chart, Changelog, FAQ, Process), editorial founder photo, and a real backend for the diagnose agent (Anthropic Haiku + Upstash rate-limit + Telegram push + Resend email + Z-API WhatsApp).
 
 ### Added
 - **Live AI agent in hero** (`components/live-agent.tsx`) — POST to `/api/diagnose`, structured response (DIAGNÓSTICO / SOLUÇÃO / STACK / PRAZO / PRÓXIMO PASSO), localStorage clientId persistence, email-gate after first ask, hard blocks for daily cap and rate-limit, graceful "agent offline" fallback when backend isn't deployed.

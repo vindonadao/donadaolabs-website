@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 interface LogoMarkProps {
-  /** Visual size in pixels (square). Defaults to 41 (nav default). */
+  /** Visual size in pixels (square). Defaults to 50 (nav default). */
   size?: number;
   className?: string;
 }
@@ -15,7 +15,7 @@ interface LogoMarkProps {
  * has built-in `<filter>` glow — Next.js image optimization would rasterize and
  * destroy the filter effect.
  */
-export function LogoMark({ size = 41, className }: LogoMarkProps): React.ReactElement {
+export function LogoMark({ size = 50, className }: LogoMarkProps): React.ReactElement {
   return (
     <img
       src="/brand/logo-mark.svg"

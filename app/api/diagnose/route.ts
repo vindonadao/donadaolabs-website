@@ -15,6 +15,8 @@
  *   UPSTASH_REDIS_TOKEN    REST token do mesmo banco
  *   TELEGRAM_BOT_TOKEN     token do bot criado no @BotFather
  *   TELEGRAM_CHAT_ID       seu chat ID (descobre via @userinfobot)
+ *   RESEND_API_KEY         chave do resend.com (só pra notificar leads por email)
+ *   NOTIFICATION_EMAIL     destinatário dos emails de lead (default: donadaolabs@gmail.com)
  *   ZAPI_INSTANCE_ID       ID da instância z-api.io        (opcional)
  *   ZAPI_TOKEN             token da instância z-api.io     (opcional)
  *   ZAPI_CLIENT_TOKEN      account token do z-api          (opcional)
@@ -77,13 +79,23 @@ export async function POST(req: NextRequest): Promise<Response> {
       redis('SET', [`dl:cid:${clientId}:email`, email!, 'EX', String(ASKED_TTL_SECONDS)]),
       redis('SET', [`dl:ip:${ip}:email`, email!, 'EX', String(ASKED_TTL_SECONDS)]),
     ]);
-    await notify(
+    const leadMessage =
       `📩 EMAIL CAPTURADO\n` +
-        `cid: ${clientId.slice(0, 8)}\n` +
-        `email: ${email}\n` +
-        `IP: ${ip}\n` +
-        `(visitante já tinha rodado um diagnóstico)`,
-    );
+      `cid: ${clientId.slice(0, 8)}\n` +
+      `email: ${email}\n` +
+      `IP: ${ip}\n` +
+      `UA: ${ua.slice(0, 60)}\n` +
+      `(visitante já tinha rodado um diagnóstico)`;
+    // Lead capturado dispara DOIS canais em paralelo:
+    //   1. Telegram → push instantâneo no celular do founder
+    //   2. Email pra donadaolabs@gmail.com → Reply-To do visitante,
+    //      pra o founder responder no Gmail e a resposta ir pro lead
+    await Promise.allSettled([
+      notify(leadMessage),
+      notifyEmail(leadMessage, email!).catch((e) =>
+        console.error('[email]', (e as Error).message),
+      ),
+    ]);
     return json({ ok: true }, 200);
   }
 
@@ -256,6 +268,40 @@ async function notify(text: string): Promise<void> {
     notifyTelegram(text).catch((e) => console.error('[telegram]', (e as Error).message)),
     notifyWhatsApp(text).catch((e) => console.error('[whatsapp]', (e as Error).message)),
   ]);
+}
+
+// Email notification via Resend (resend.com). Reply-To é setado pro email do
+// visitante — assim ao apertar "Reply" no Gmail, a resposta vai direto pra
+// ele. Usado apenas no fluxo de captura de lead (register-email), não nos
+// diagnósticos (pra não inundar a caixa).
+async function notifyEmail(text: string, visitorEmail: string): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (isPlaceholder(apiKey)) {
+    return; // canal não configurado — segue em frente em silêncio
+  }
+
+  const to = process.env.NOTIFICATION_EMAIL ?? 'donadaolabs@gmail.com';
+  const from = process.env.NOTIFICATION_FROM ?? 'Donadão Labs Agent <onboarding@resend.dev>';
+
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: [to],
+      reply_to: visitorEmail,
+      subject: `📩 Novo lead capturado · ${visitorEmail}`,
+      text,
+    }),
+  });
+
+  if (!r.ok) {
+    const t = await r.text();
+    throw new Error(`resend ${r.status}: ${t.slice(0, 200)}`);
+  }
 }
 
 async function notifyTelegram(text: string): Promise<void> {

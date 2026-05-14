@@ -297,15 +297,26 @@ function isPlaceholder(v: string | undefined): boolean {
 }
 
 async function redis(cmd: RedisCommand, args: string[] = []): Promise<unknown> {
-  const url = process.env.UPSTASH_REDIS_URL;
-  const token = process.env.UPSTASH_REDIS_TOKEN;
+  // Aceita os dois nomes: o que o Upstash exporta (UPSTASH_REDIS_REST_*) e o
+  // nome mais curto que era a convenção antiga. Evita surpresa quando colando
+  // o snippet do painel Upstash direto no .env.
+  const url = process.env.UPSTASH_REDIS_REST_URL ?? process.env.UPSTASH_REDIS_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.UPSTASH_REDIS_TOKEN;
   if (isPlaceholder(url) || isPlaceholder(token)) return memoryStore(cmd, args);
 
   const path = args.map(encodeURIComponent).join('/');
   const r = await fetch(`${url}/${cmd}/${path}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  const data = (await r.json()) as { result: unknown };
+  const data = (await r.json()) as { result?: unknown; error?: string };
+
+  // Misconfig fail-loud: rate-limit/cap/email-gate dependem de ler/escrever
+  // estado. Se o Upstash rejeitar (WRONGPASS, token errado, etc), seguir
+  // adiante deixa o agent sem proteção. Melhor explodir uma vez e investigar.
+  if (!r.ok || data.error) {
+    throw new Error(`Upstash ${r.status}: ${data.error ?? r.statusText}`);
+  }
+
   return data.result;
 }
 

@@ -78,7 +78,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       'EX',
       String(ASKED_TTL_SECONDS),
     ]);
-    notify(
+    await notify(
       `📩 EMAIL CAPTURADO\n` +
         `cid: ${clientId.slice(0, 8)}\n` +
         `email: ${email}\n` +
@@ -138,8 +138,10 @@ export async function POST(req: NextRequest): Promise<Response> {
   await redis('INCR', [capKey]);
   await redis('EXPIRE', [capKey, String(60 * 60 * 26)]);
 
-  // 6) notifica founder em todos os canais configurados (fire-and-forget)
-  notify(
+  // 6) notifica founder em todos os canais configurados.
+  // Awaited (não fire-and-forget) — em Vercel serverless o processo morre
+  // assim que a resposta sai, descartando promises pendentes.
+  await notify(
     `🔥 NOVO DIAGNÓSTICO\n` +
       `cid: ${clientId.slice(0, 8)}\n` +
       `email: ${effectiveEmail ?? '(não fornecido — gate ativa na 2ª pergunta)'}\n` +
@@ -225,9 +227,13 @@ async function callAnthropic(question: string): Promise<string> {
 
 // Fan-out: dispara pra todos os canais configurados em paralelo.
 // Cada canal individual checa suas próprias env vars e skipa se não houver.
-// Fire-and-forget: nenhum canal pode bloquear a resposta pro frontend.
-function notify(text: string): void {
-  void Promise.allSettled([
+//
+// Awaited (não fire-and-forget): em Vercel/serverless, qualquer trabalho
+// pendente depois do `return` é descartado quando a função termina. Isso
+// fazia o Telegram nunca chegar em produção. Adicionar ~500ms na resposta
+// é trade-off aceitável pra garantir que cada lead/diagnóstico notifique.
+async function notify(text: string): Promise<void> {
+  await Promise.allSettled([
     notifyTelegram(text).catch((e) => console.error('[telegram]', (e as Error).message)),
     notifyWhatsApp(text).catch((e) => console.error('[whatsapp]', (e as Error).message)),
   ]);

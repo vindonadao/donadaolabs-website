@@ -9,7 +9,7 @@ export function SectionHeader({ idx, eyebrow, title, sub }: SectionHeaderProps):
   return (
     <div className="px-6 pb-6 pt-20 md:px-10">
       <div className="mb-4.5 flex items-center gap-3">
-        <span className="rounded-[4px] bg-accent px-2 py-[3px] font-mono text-[11px] text-black">
+        <span className="rounded-[4px] bg-purple px-2 py-[3px] font-mono text-[11px] text-offwhite">
           {idx}
         </span>
         <span className="font-mono text-[11px] uppercase tracking-widest text-offwhite/55">

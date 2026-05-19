@@ -19,6 +19,10 @@ const config: Config = {
           deep: '#056B30',
           darker: '#034421',
         },
+        purple: {
+          DEFAULT: '#7B6BFF',
+          deep: '#6E5BFF',
+        },
         stone: {
           950: '#111114',
           900: '#18181b',
@@ -55,6 +59,7 @@ const config: Config = {
         'glow-cursor': '0 0 12px rgba(0, 245, 122, 0.9), 0 0 24px rgba(0, 245, 122, 0.6)',
         card: '0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.4)',
         'card-hover': '0 0 0 1px #00F57A, 0 16px 48px rgba(0, 245, 122, 0.2)',
+        'card-hover-purple': '0 0 0 1px #7B6BFF, 0 16px 48px rgba(123, 107, 255, 0.22)',
       },
       backgroundImage: {
         'gradient-green': 'linear-gradient(135deg, #00F57A 0%, #056B30 100%)',

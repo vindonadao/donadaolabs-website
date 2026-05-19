@@ -1,10 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Sparkline } from '@/components/sparkline';
 import { METRICS, type Metric } from '@/lib/constants';
 
-function useCountUp(target: number, durationMs = 1400): number {
+function useCountUp(target: number, durationMs = 1200): number {
   const [value, setValue] = useState(0);
   useEffect(() => {
     const start = performance.now();
@@ -21,16 +20,11 @@ function useCountUp(target: number, durationMs = 1400): number {
   return value;
 }
 
-interface MetricCardProps {
-  metric: Metric;
-  idx: number;
-}
-
-function MetricCard({ metric, idx }: MetricCardProps): React.ReactElement {
+function MetricCard({ metric }: { metric: Metric }): React.ReactElement {
   const numMatch = metric.value.match(/^(\d+\.?\d*)/);
   const num = numMatch ? parseFloat(numMatch[1]) : 0;
   const rest = numMatch ? metric.value.slice(numMatch[0].length) : metric.value;
-  const animated = useCountUp(num, 1200);
+  const animated = useCountUp(num, 1100);
   const padLen = metric.value.replace(rest, '').length;
   const display = numMatch
     ? (num % 1 === 0 ? Math.round(animated) : animated.toFixed(1))
@@ -39,17 +33,16 @@ function MetricCard({ metric, idx }: MetricCardProps): React.ReactElement {
     : metric.value;
 
   return (
-    <div className="relative p-7">
-      <div className="mb-3.5 flex items-center justify-between gap-3">
-        <div className="font-mono text-[10px] uppercase tracking-widest text-offwhite/55">
-          {String(idx + 1).padStart(2, '0')} · {metric.label}
+    <div className="px-6 py-5 md:px-7 md:py-6">
+      <div className="font-mono text-[10px] uppercase tracking-widest text-offwhite/45">
+        {metric.label}
+      </div>
+      <div className="mt-2 flex items-baseline gap-2.5">
+        <div className="font-mono text-[36px] font-medium leading-none tracking-tight">
+          {display}
         </div>
-        {metric.spark && <Sparkline data={metric.spark} />}
+        <div className="font-mono text-[11px] text-offwhite/55">{metric.sub}</div>
       </div>
-      <div className="font-mono text-[48px] font-medium leading-none tracking-tight">
-        {display}
-      </div>
-      <div className="mt-2 font-mono text-[11px] text-offwhite/55">{metric.sub}</div>
     </div>
   );
 }
@@ -66,7 +59,7 @@ export function Metrics(): React.ReactElement {
               : ''
           }
         >
-          <MetricCard metric={m} idx={i} />
+          <MetricCard metric={m} />
         </div>
       ))}
     </section>

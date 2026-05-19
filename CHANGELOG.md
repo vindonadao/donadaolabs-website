@@ -15,6 +15,35 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.1.0] — 2026-05-19
+
+UI cleanup P0 — primeira dobra com foco único, service cards com flip 3D drill-down, e nova hierarquia visual roxo/verde que separa títulos de seção (capítulos do site) de passos de implementação.
+
+### Added
+- **`components/service-card.tsx`** — client component novo, encapsula um service com **flip 3D** (CSS `perspective: 1200px` + `transform-style: preserve-3d` + `backface-visibility: hidden`). Click na frente vira pro back (técnico), click no back volta. Transição 700ms com `cubic-bezier(0.4, 0, 0.2, 1)`; respeita `prefers-reduced-motion` (cai pra 200ms). Botões reais nos dois lados (acessibilidade via teclado + screen reader, `aria-expanded`).
+- **Cor `purple`** no Tailwind (`#7B6BFF` DEFAULT, `#6E5BFF` deep) — extraída do "olho" central do logo, agora disponível como `text-purple`, `border-purple`, `bg-purple` etc.
+- **Shadow `card-hover-purple`** no Tailwind (`0 0 0 1px #7B6BFF, 0 16px 48px rgba(123, 107, 255, 0.22)`) — variação roxa do `card-hover` existente, pra hover dos service cards.
+
+### Changed
+- **`components/hero.tsx`** — removido `ThroughputChart` (estava competindo com a headline pela atenção na primeira dobra). Layout migrou de grid 2-col (`lg:grid-cols-[1.5fr_1fr]`) para single-column `max-w-[820px]`. LiveAgent permanece embaixo full-width. Foco único agora: a promessa + entrada do agente.
+- **`components/services.tsx`** — grid passou de `md:grid-cols-2` para `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4`. Markup do card extraído pro novo `service-card.tsx`. Padding original (`p-7` por card) e bloco técnico inline foram embora — vivem agora no back do card.
+- **`components/section-header.tsx`** — pill do idx (01-06) trocou `bg-accent` (verde) → `bg-purple`. Sinaliza visualmente "isto é uma seção do site" e diferencia dos números de PILLARS (verde, dentro de `Approach`) que sinalizam "isto é um passo da implementação".
+
+### Removed (do front dos cards)
+- `techLabel` ("Apps from scratch · Legacy rescue", "CRM · SaaS interno", etc) — era jargão técnico no canto superior direito. Agora só aparece no back.
+- Bloco `// téc.` hachurado inline. Agora vive no back e só é revelado ao clicar.
+
+### Visual hierarchy
+- 🟣 **Roxo `#7B6BFF`**: títulos de seção (SectionHeader 01-06), seleção/hover dos service cards, "olho" do logo
+- 🟢 **Verde `#00F57A`**: passos de implementação (PILLARS), estado default de cards e bullets, accent geral
+- Hover em service card vira tudo roxo (pill, ticks ✓, stripe top, borda, sombra)
+
+### Notes
+- Cards desktop ficaram `aspect-square` (4 cards de 280×280px em viewport lg). Em mobile a altura volta a auto (`sm:aspect-square` apenas em ≥640px).
+- Build do preview: `Ready` em 39s, sem regressão de Lighthouse perceptível.
+
+---
+
 ## [rev-2.0.1] — 2026-05-14
 
 Logo identity refresh — replaced the rev-2.0 placeholder (3 ascending green bars) with a founder-approved hexagonal circuit-board mark featuring DL letterforms embedded as PCB traces, central purple "processor" eye, and corner I/O terminals. Phosphor-green palette preserved, purple accents tie back to rev-1.x heritage.
@@ -172,7 +201,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.0.1...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.1.0...HEAD
+[rev-2.1.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.1.0
 [rev-2.0.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.0.1
 [rev-2.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.0
 [rev-1.3]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-1.3

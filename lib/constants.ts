@@ -360,12 +360,6 @@ export const HERO = {
   ctaSecondary: 'Ver os cases',
 } as const;
 
-export const PLAIN_PORTUGUESE = {
-  eyebrow: 'Em português claro',
-  body:
-    'A gente faz o site, o sistema ou a automação que seu negócio precisa. Você fala o problema — mesmo sem saber a solução. A gente entrega tudo pronto, rodando.',
-  bodyMuted: 'Você não precisa entender de tecnologia pra trabalhar com a gente.',
-} as const;
 
 export const SHIP_TOOLTIP = {
   eyebrow: '* ship · /ʃɪp/ · do inglês',

@@ -15,6 +15,24 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.2.0] — 2026-05-19
+
+UI cleanup P2 — corte de redundância textual e refinamento do tom em pontos-chave. Página passa de 12 para 11 seções no flow principal.
+
+### Removed
+- **`components/plain-portuguese.tsx`** — seção entre Hero e Metrics que dizia "A gente faz o site, o sistema ou a automação que seu negócio precisa. Você fala o problema..." Era duplicação quase ipsis litteris do `HERO.sub`. Deletado o componente, o import em [app/page.tsx](app/page.tsx) e a constant `PLAIN_PORTUGUESE` em [lib/constants.ts](lib/constants.ts).
+- Removida a transição visual (gradient `from-charcoal to-ink`) que existia entre Hero e Metrics via PlainPortuguese — agora Metrics começa direto após Hero com seu próprio `bg-charcoal`.
+
+### Changed
+- **`components/changelog.tsx`** — subtítulo "Lab vivo · atualizado toda semana." → **"Registro público das releases. Sem maquiagem."** A versão antiga prometia cadência semanal que não está sendo cumprida (última entry em 2026-05-09, hoje 2026-05-19). A nova é neutra, honesta, e alinhada ao tom "sem promessa furada" do resto do site.
+- **`components/approach.tsx`** — sub da seção "Três passos. Sem teatro." reescrito: "A maioria das soluções AI hoje é demo de tech ou apresentação bonita. Aqui você compra entrega que sobe em produção e gera receita." → **"Quase tudo em AI hoje para no slide ou no demo bonito. Aqui o software vai pro ar e fatura — e poucos entregam isso."** Substituições principais: "demo de tech ou apresentação bonita" (sinônimos quase redundantes) → "slide ou demo bonito" (mais ritmo, contraste mais nítido); "código sobe em produção" (jargão técnico) → "software vai pro ar" (linguagem que cliente leigo entende, ressonância com "site no ar"); adicionado o sinal de raridade "e poucos entregam isso" que reforça o contraste implícito.
+
+### Notes
+- Nova ordem de seções: `Hero → Metrics → Stack → Services → Approach → Cases → Manifesto → Changelog → Founder → Faq → Cta`.
+- Primeira dobra agora vai direto do Hero pra Metrics — sem texto-ponte duplicando a mensagem.
+
+---
+
 ## [rev-2.1.1] — 2026-05-19
 
 UI cleanup P1 — Metrics minimalista e correção do "buraco preto" do Hero em viewports wide.
@@ -215,7 +233,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.1.1...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.2.0...HEAD
+[rev-2.2.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.2.0
 [rev-2.1.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.1.1
 [rev-2.1.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.1.0
 [rev-2.0.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.0.1

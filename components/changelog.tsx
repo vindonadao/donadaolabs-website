@@ -8,7 +8,7 @@ export function Changelog(): React.ReactElement {
         idx="04"
         eyebrow="Changelog público"
         title="O que rodou nas últimas semanas."
-        sub="Lab vivo · atualizado toda semana."
+        sub="Registro público das releases. Sem maquiagem."
       />
       <div className="px-6 pb-4 md:px-10">
         <div className="overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal">

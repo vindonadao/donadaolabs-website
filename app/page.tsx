@@ -9,7 +9,6 @@ import { Hero } from '@/components/hero';
 import { Manifesto } from '@/components/manifesto';
 import { Metrics } from '@/components/metrics';
 import { Nav } from '@/components/nav';
-import { PlainPortuguese } from '@/components/plain-portuguese';
 import { Services } from '@/components/services';
 import { Stack } from '@/components/stack';
 
@@ -19,7 +18,6 @@ export default function HomePage(): React.ReactElement {
       <Nav />
       <main>
         <Hero />
-        <PlainPortuguese />
         <Metrics />
         <Stack />
         <Services />

@@ -8,7 +8,7 @@ export function Approach(): React.ReactElement {
         idx="02"
         eyebrow="Como trabalhamos"
         title="Três passos. Sem teatro."
-        sub="A maioria das soluções AI hoje é demo de tech ou apresentação bonita. Aqui você compra entrega que sobe em produção e gera receita."
+        sub="Quase tudo em AI hoje para no slide ou no demo bonito. Aqui o software vai pro ar e fatura — e poucos entregam isso."
       />
       <div className="grid grid-cols-1 gap-4 px-6 pb-4 md:grid-cols-3 md:px-10">
         {PILLARS.map((p) => (

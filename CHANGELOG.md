@@ -15,6 +15,20 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.1.1] — 2026-05-19
+
+UI cleanup P1 — Metrics minimalista e correção do "buraco preto" do Hero em viewports wide.
+
+### Changed
+- **`components/metrics.tsx`** — sparklines removidas, número de `48px → 36px`, sub-text agora baseline-aligned na mesma linha do número. Removido o prefixo `01 ·  02 ·` do label (numeração duplicada). Padding `p-7 → px-6 py-5`. Count-up animation preservada. Vira uma "stat strip" mais minimalista, sem competir visualmente com Hero e Services.
+- **`components/hero.tsx`** — container externo `max-w-[1280px] → max-w-[960px]` com `mx-auto`. Em viewports `> 1400px` o conteúdo ficava encostado à esquerda (efeito "buraco preto" no lado direito após a remoção do ThroughputChart no rev-2.1.0). Agora o bloco fica centralizado com margens iguais em ambos os lados; LiveAgent acompanha o mesmo container.
+
+### Notes
+- Hero sub-text testado mais curto durante o desenvolvimento e revertido — versão longa lê melhor que punch line de 1 linha (decisão do founder).
+- Bullets dos services já estavam limitados a 3 nos constants — esse item do P1 já estava atendido pelo rev-2.1.0.
+
+---
+
 ## [rev-2.1.0] — 2026-05-19
 
 UI cleanup P0 — primeira dobra com foco único, service cards com flip 3D drill-down, e nova hierarquia visual roxo/verde que separa títulos de seção (capítulos do site) de passos de implementação.
@@ -201,7 +215,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.1.0...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.1.1...HEAD
+[rev-2.1.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.1.1
 [rev-2.1.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.1.0
 [rev-2.0.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.0.1
 [rev-2.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.0

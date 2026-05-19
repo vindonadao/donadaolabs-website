@@ -13,8 +13,8 @@ export function Hero(): React.ReactElement {
         }}
       />
 
-      <div className="mx-auto w-full max-w-[1280px] px-6 md:px-10">
-        <div className="max-w-[820px]">
+      <div className="mx-auto w-full max-w-[960px] px-6 md:px-10">
+        <div>
           <div className="mb-6 font-mono text-[11px] uppercase tracking-widest text-accent">
             {HERO.badge}
           </div>
@@ -27,12 +27,12 @@ export function Hero(): React.ReactElement {
             </Ship>
             <span className="dl-cursor" />
           </h1>
-          <p className="mt-7 max-w-[600px] text-[19px] leading-[1.5] text-offwhite/55">
+          <p className="mt-7 max-w-[640px] text-[19px] leading-[1.5] text-offwhite/55">
             {HERO.sub}
           </p>
         </div>
 
-        <div className="mt-14 max-w-[880px]">
+        <div className="mt-14">
           <LiveAgent />
         </div>
       </div>

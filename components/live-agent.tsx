@@ -104,16 +104,19 @@ function AgentOutput({ raw }: { raw: string }): React.ReactElement {
   return (
     <div className="flex flex-col gap-2">
       {rows.map((r, i) => (
-        <div key={i} className="grid grid-cols-[130px_1fr] gap-3">
+        <div
+          key={i}
+          className="grid grid-cols-1 gap-1 sm:grid-cols-[110px_minmax(0,1fr)] sm:gap-3"
+        >
           {r.k ? (
             <>
               <div className="pt-0.5 font-mono text-[10px] uppercase tracking-widest text-accent">
                 {r.k}
               </div>
-              <div className="text-offwhite">{r.v}</div>
+              <div className="min-w-0 break-words text-offwhite">{r.v}</div>
             </>
           ) : (
-            <div className="col-span-2 text-offwhite/55">{r.v}</div>
+            <div className="break-words text-offwhite/55 sm:col-span-2">{r.v}</div>
           )}
         </div>
       ))}
@@ -207,7 +210,7 @@ export function LiveAgent(): React.ReactElement {
   const inputDisabled = persisted.askedOnce && !persisted.email && needEmail;
 
   return (
-    <div className="relative rounded-brand-lg border border-white/[0.08] bg-charcoal p-[20px_22px] text-offwhite">
+    <div className="relative overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal p-[20px_22px] text-offwhite">
       {/* Header label */}
       <div className="mb-3.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-accent">
         <span
@@ -233,7 +236,7 @@ export function LiveAgent(): React.ReactElement {
             inputDisabled ? '— deixe seu email abaixo pra continuar —' : AGENT.placeholder
           }
           disabled={inputDisabled}
-          className="flex-1 rounded-[8px] border border-white/[0.08] bg-ink px-3.5 py-3 text-[15px] text-offwhite outline-none disabled:opacity-50"
+          className="min-w-0 flex-1 rounded-[8px] border border-white/[0.08] bg-ink px-3.5 py-3 text-[15px] text-offwhite outline-none disabled:opacity-50"
         />
         <button
           type="submit"
@@ -342,7 +345,7 @@ export function LiveAgent(): React.ReactElement {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="seu@email.com"
               autoComplete="email"
-              className="flex-1 rounded-[8px] border border-white/[0.08] bg-ink px-3.5 py-2.5 text-sm text-offwhite outline-none"
+              className="min-w-0 flex-1 rounded-[8px] border border-white/[0.08] bg-ink px-3.5 py-2.5 text-sm text-offwhite outline-none"
             />
             <button
               type="submit"

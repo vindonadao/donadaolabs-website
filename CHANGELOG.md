@@ -24,8 +24,14 @@ Atualização das entries do `Changelog` público (componente do site) — mant�
   - `2026-05-19 shipped: Redesign UI · service cards com flip 3D + hierarquia visual roxo/verde estabelecida.`
   - `2026-05-19 infra: Email do estúdio migrado pro domínio próprio — lead@donadaolabs.com via Resend + catch-all.`
 
+### Fixed
+- **`components/live-agent.tsx`** — LiveAgent vazava da viewport em mobile. 3 causas:
+  - `AgentOutput` usava `grid-cols-[130px_1fr]` com label fixa de 130px e value `1fr` sem `min-width: 0`, forçando a coluna a crescer com textos longos (diagnostico do Anthropic) e empurrando o container além da viewport em devices <400px. Fix: mobile empilha (`grid-cols-1`), desktop usa `sm:grid-cols-[110px_minmax(0,1fr)]` (o `minmax(0,...)` força min-width zero), values ganham `min-w-0 break-words`.
+  - Inputs `flex-1` em forms (prompt input + email gate) sem `min-w-0` — flex padrão é `min-width: auto`, então um button de texto longo ao lado forçava o input a empurrar o container. Fix: adicionado `min-w-0` em ambos os inputs.
+  - Container raiz sem `overflow-hidden` defensivo. Fix: adicionado pra cortar qualquer overflow residual ao border-radius.
+
 ### Notes
-- Total mantido em 5 entries (limite visual da seção `Changelog` no site).
+- Total de entries do `Changelog` público mantido em 5 (limite visual da seção `Changelog` no site).
 - Tags usadas: `shipped` (2x), `infra` (2x), `agent` (1x) — distribuição balanceada do tipo de atividade do lab.
 
 ---

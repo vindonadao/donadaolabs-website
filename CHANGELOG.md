@@ -15,6 +15,29 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.3.0] — 2026-05-21
+
+Implementação do **Path A do audit do Diskat Ops** — resolve o card de case
+que tinha `href="#"` (âncora vazia, affordance de clique falsa). Cases agora
+suportam duas categorias visuais: público (verde, clicável) e interno (roxo,
+sem link). A hierarquia roxo/verde estabelecida na rev-2.1.0 ganha um novo
+sinal: **roxo = restrito/interno**, além do papel anterior de "capítulo do site".
+
+### Added
+- **`lib/constants.ts` — interface `Case`**: novo campo opcional `internal?: boolean` + tipo de `href` ampliado pra `string | null` (permite expressar "sistema interno, sem demo pública" no schema).
+
+### Changed
+- **`components/cases.tsx`**: `CaseCard` agora ramifica em duas variantes:
+  - **Público (`internal !== true`)**: `<a href={c.href}>` com hover lift, selo `● live` verde no canto superior direito, kind label `${client}.app`, pill do número e métrica em verde. Inalterado em relação à rev-2.2.x.
+  - **Interno (`internal === true`)**: `<article>` sem `href`, sem cursor pointer, sem hover lift. Selo `◆ interno` em roxo, kind label `${client} · interno` (sem `.app` que sugeria subdomínio público), pill do número e métrica em roxo. Borda do thumbnail vira roxa sutil no hover.
+- **Diskat Ops entry**: `href: '#'` → `href: null` + `internal: true`. `desc` reescrito conforme audit: "Sistema interno do cliente — sem demo pública, mas o resultado fala. Painel enxuto pra acompanhar vendas, estoque e performance, sem cair no excesso de uma ERP cara."
+
+### Notes
+- **Path B do audit** (página de case completa em `app/cases/diskat-ops/page.tsx` com header, contexto, solução, screenshots anonimizadas, resultado e CTA) fica como rev separada — requer screenshots reais do cliente (com dados anonimizados, princípio LGPD) que ainda não foram fornecidas.
+- A11y: `aria-label` no `<article>` interno explicita "sistema interno, sem link público" pra screen readers.
+
+---
+
 ## [rev-2.2.1] — 2026-05-20
 
 Atualização das entries do `Changelog` público (componente do site) — mantém honrada a promessa "lab vivo" agora que o subtítulo foi neutralizado na rev-2.2.0. Data mais recente passa a ser de ontem (2026-05-19), não mais 10 dias atrás.
@@ -254,7 +277,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.2.1...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.3.0...HEAD
+[rev-2.3.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.3.0
 [rev-2.2.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.2.1
 [rev-2.2.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.2.0
 [rev-2.1.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.1.1

@@ -40,31 +40,39 @@ function CaseLogoLockup({ c }: { c: Case }): React.ReactElement {
   );
 }
 
-function CaseCard({ c }: { c: Case }): React.ReactElement {
-  const isExternal = c.href.startsWith('http');
+function CaseCardContent({ c }: { c: Case }): React.ReactElement {
+  const isInternal = c.internal === true;
   return (
-    <a
-      href={c.href}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noreferrer' : undefined}
-      className="group block rounded-brand-lg border border-white/[0.08] bg-charcoal p-6 text-offwhite no-underline transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-card-hover focus-visible:-translate-y-1 focus-visible:border-accent focus-visible:shadow-card-hover"
-    >
+    <>
       {/* Thumbnail */}
-      <div className="relative mb-4.5 h-[180px] overflow-hidden rounded-[8px] border border-white/[0.08] bg-ink transition-colors duration-200 group-hover:border-accent/40">
+      <div
+        className={`relative mb-4.5 h-[180px] overflow-hidden rounded-[8px] border border-white/[0.08] bg-ink transition-colors duration-200 ${
+          isInternal
+            ? 'group-hover:border-purple/40 group-focus-visible:border-purple/40'
+            : 'group-hover:border-accent/40 group-focus-visible:border-accent/40'
+        }`}
+      >
         <div className="pointer-events-none absolute inset-0 bg-grid-faint opacity-60" />
 
-        {/* status · live (top right) */}
-        <div className="absolute right-3.5 top-3 flex items-center gap-1.5 font-mono text-[10px] text-accent">
-          <span
-            className="h-1.5 w-1.5 animate-dl-pulse rounded-full bg-accent"
-            style={{ boxShadow: '0 0 6px #00F57A' }}
-          />
-          live
-        </div>
+        {/* status: ● live (verde) ou ◆ interno (roxo) */}
+        {isInternal ? (
+          <div className="absolute right-3.5 top-3 flex items-center gap-1.5 font-mono text-[10px] text-purple">
+            <span aria-hidden="true">◆</span>
+            interno
+          </div>
+        ) : (
+          <div className="absolute right-3.5 top-3 flex items-center gap-1.5 font-mono text-[10px] text-accent">
+            <span
+              className="h-1.5 w-1.5 animate-dl-pulse rounded-full bg-accent"
+              style={{ boxShadow: '0 0 6px #00F57A' }}
+            />
+            live
+          </div>
+        )}
 
-        {/* kind label (top left) */}
+        {/* kind label (top left) — sem ".app" quando interno (não há subdomínio público) */}
         <div className="absolute left-3.5 top-3 font-mono text-[10px] uppercase tracking-[0.08em] text-offwhite/55">
-          {c.client.toLowerCase()}.app
+          {isInternal ? `${c.client.toLowerCase()} · interno` : `${c.client.toLowerCase()}.app`}
         </div>
 
         {/* Centered logo lockup */}
@@ -74,14 +82,20 @@ function CaseCard({ c }: { c: Case }): React.ReactElement {
 
         {/* Footer row: metric + sparkline */}
         <div className="absolute inset-x-3.5 bottom-2.5 flex items-end justify-between">
-          <div className="font-mono text-xs text-accent">{c.metric}</div>
+          <div className={`font-mono text-xs ${isInternal ? 'text-purple' : 'text-accent'}`}>
+            {c.metric}
+          </div>
           <Sparkline data={CASE_SPARK} width={84} />
         </div>
       </div>
 
       {/* Body */}
       <div className="mb-2.5 flex items-center justify-between gap-3">
-        <span className="rounded-[4px] bg-accent px-1.5 py-0.5 font-mono text-[10px] text-black">
+        <span
+          className={`rounded-[4px] px-1.5 py-0.5 font-mono text-[10px] ${
+            isInternal ? 'bg-purple text-offwhite' : 'bg-accent text-black'
+          }`}
+        >
           {c.num}
         </span>
         <span className="text-right font-mono text-[10px] uppercase tracking-[0.08em] text-offwhite/55">
@@ -104,6 +118,33 @@ function CaseCard({ c }: { c: Case }): React.ReactElement {
           </span>
         ))}
       </div>
+    </>
+  );
+}
+
+function CaseCard({ c }: { c: Case }): React.ReactElement {
+  // Card interno: sem href, sem affordance de clique, sem hover lift
+  if (c.internal === true || c.href === null) {
+    return (
+      <article
+        className="group block rounded-brand-lg border border-white/[0.08] bg-charcoal p-6 text-offwhite transition-colors duration-200 hover:border-purple/40"
+        aria-label={`${c.title} — sistema interno, sem link público`}
+      >
+        <CaseCardContent c={c} />
+      </article>
+    );
+  }
+
+  // Card público: link clicável com hover lift
+  const isExternal = c.href.startsWith('http');
+  return (
+    <a
+      href={c.href}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noreferrer' : undefined}
+      className="group block rounded-brand-lg border border-white/[0.08] bg-charcoal p-6 text-offwhite no-underline transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-card-hover focus-visible:-translate-y-1 focus-visible:border-accent focus-visible:shadow-card-hover"
+    >
+      <CaseCardContent c={c} />
     </a>
   );
 }

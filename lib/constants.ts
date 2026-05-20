@@ -199,7 +199,10 @@ export interface Case {
   title: string;
   desc: string;
   metric: string;
-  href: string;
+  /** URL pública do case, ou `null` quando é sistema interno (sem demo pública) */
+  href: string | null;
+  /** Quando `true`, renderiza com selo "◆ interno" (roxo) e sem affordance de clique */
+  internal?: boolean;
   stack: readonly string[];
   logo: {
     image: string | null;
@@ -250,9 +253,10 @@ export const CASES: readonly Case[] = [
     kind: 'CRM interno · SaaS',
     meta: 'CRM interno · SaaS',
     title: 'Painel de operação interna',
-    desc: 'Painel enxuto para acompanhar vendas, estoque e performance — sem cair no excesso de uma ERP cara.',
+    desc: 'Sistema interno do cliente — sem demo pública, mas o resultado fala. Painel enxuto pra acompanhar vendas, estoque e performance, sem cair no excesso de uma ERP cara.',
     metric: '12h/semana economizadas',
-    href: '#',
+    href: null,
+    internal: true,
     stack: ['React', 'Node', 'Postgres', 'Redis'],
     logo: {
       image: '/clients/diskat-ops.png',

@@ -302,11 +302,11 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-05-19', tag: 'shipped', text: 'Redesign UI · service cards com flip 3D + hierarquia visual roxo/verde estabelecida.' },
+  { date: '2026-05-19', tag: 'infra',   text: 'Email do estúdio migrado pro domínio próprio — lead@donadaolabs.com via Resend + catch-all.' },
   { date: '2026-05-09', tag: 'shipped', text: 'Diskat Ops · novo módulo de previsão de estoque com forecasting semanal.' },
   { date: '2026-05-02', tag: 'agent',   text: 'Agent de qualificação no WhatsApp em produção — média 38s/lead.' },
   { date: '2026-04-24', tag: 'infra',   text: 'Migração da malha interna pra Cloudflare Tunnel · -41% latência média.' },
-  { date: '2026-04-15', tag: 'shipped', text: 'Gabriel Nabi · agenda integrada com Stripe (pagamento on-hold).' },
-  { date: '2026-04-03', tag: 'rfc',     text: 'RFC interno · padronização de observabilidade pra agents em produção.' },
 ] as const;
 
 export interface FAQEntry {

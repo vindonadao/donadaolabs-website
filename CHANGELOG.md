@@ -15,6 +15,21 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.2.1] — 2026-05-20
+
+Atualização das entries do `Changelog` público (componente do site) — mantém honrada a promessa "lab vivo" agora que o subtítulo foi neutralizado na rev-2.2.0. Data mais recente passa a ser de ontem (2026-05-19), não mais 10 dias atrás.
+
+### Changed
+- **`lib/constants.ts` — array `CHANGELOG`**: substituídas as 2 entries mais antigas (`2026-04-15 shipped: Gabriel Nabi · agenda integrada com Stripe` e `2026-04-03 rfc: RFC interno · padronização de observabilidade pra agents em produção`) por 2 novas baseadas em fatos reais dessa semana:
+  - `2026-05-19 shipped: Redesign UI · service cards com flip 3D + hierarquia visual roxo/verde estabelecida.`
+  - `2026-05-19 infra: Email do estúdio migrado pro domínio próprio — lead@donadaolabs.com via Resend + catch-all.`
+
+### Notes
+- Total mantido em 5 entries (limite visual da seção `Changelog` no site).
+- Tags usadas: `shipped` (2x), `infra` (2x), `agent` (1x) — distribuição balanceada do tipo de atividade do lab.
+
+---
+
 ## [rev-2.2.0] — 2026-05-19
 
 UI cleanup P2 — corte de redundância textual e refinamento do tom em pontos-chave. Página passa de 12 para 11 seções no flow principal.
@@ -233,7 +248,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.2.0...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.2.1...HEAD
+[rev-2.2.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.2.1
 [rev-2.2.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.2.0
 [rev-2.1.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.1.1
 [rev-2.1.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.1.0

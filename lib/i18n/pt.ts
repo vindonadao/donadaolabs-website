@@ -17,7 +17,7 @@ export const pt: Dictionary = {
       { label: 'Atualizações', href: '#changelog' },
       { label: 'Dúvidas', href: '#faq' },
     ],
-    statusPill: 'live · operando · 2 slots jul/26',
+    statusPill: 'no ar · operando · 2 slots jul/26',
     ctaButton: 'Agendar diagnóstico →',
     langSwitchLabel: 'EN',
   },
@@ -116,11 +116,11 @@ export const pt: Dictionary = {
     ],
   },
   cases: {
-    eyebrow: 'Cases · 2025–2026',
-    title: 'Quatro produtos rodando. Sem mockup.',
+    eyebrow: 'Projetos · 2025–2026',
+    title: 'Quatro produtos rodando. Sem firula.',
     sub: 'Software real, no ar, gerando venda.',
     internalLabel: 'interno',
-    liveLabel: 'live',
+    liveLabel: 'no ar',
     internalSuffix: '· interno',
     publicSuffix: '.app',
     internalAria: 'sistema interno, sem link público',
@@ -231,7 +231,7 @@ export const pt: Dictionary = {
   },
   footer: {
     rights: '© 2026 donadão/labs · donadaolabs.com',
-    build: 'build · 2026.05.13 · live',
+    build: 'versão · 2026.05.13 · no ar',
   },
   notFound: {
     badge: '404 · Não encontrado',

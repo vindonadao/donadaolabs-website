@@ -15,6 +15,23 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.6] — 2026-05-23
+
+Cases header + header/footer status — última leva de termos em inglês visíveis no PT (Cases, mockup, live, build).
+
+### Changed
+- **`cases.eyebrow`** PT: `Cases · 2025–2026` → `Projetos · 2025–2026`. Alinha com o nav PT (`Projetos`) — categoria fica consistente em todo o site.
+- **`cases.title`** PT: `Quatro produtos rodando. Sem mockup.` → `Quatro produtos rodando. Sem firula.`. Brand voice direto/brasileiro, casa com `Sem teatro` (approach) e `Sem maquiagem` (changelog) e o "sem promessa furada" do Hero.
+- **`cases.liveLabel`** PT: `live` → `no ar`. Selo nos cards (verde, ● bolinha pulsante).
+- **`nav.statusPill`** PT: `live · operando · 2 slots jul/26` → `no ar · operando · 2 slots jul/26`. Pill verde no canto direito do header.
+- **`footer.build`** PT: `build · 2026.05.13 · live` → `versão · 2026.05.13 · no ar`.
+
+### Notes
+- **Padrão "live" em PT:** `no ar` em contextos técnicos (header, footer, cases). `ao vivo` mantido só no `founder.badge` (mais humano/emocional, casa com "founder · live streaming").
+- **EN intocado** — `live`, `build`, `Cases`, `mockup` continuam naturais em inglês.
+
+---
+
 ## [rev-2.4.5] — 2026-05-23
 
 Changelog tags & entries traduzidas, Founder role no dict, e fix de spacing no CTA pro `*` do Ship não cruzar o subtítulo.

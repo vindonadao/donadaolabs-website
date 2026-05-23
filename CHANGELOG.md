@@ -15,6 +15,21 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.4] — 2026-05-23
+
+Back dos service cards PT — última leva de termos em inglês que ainda vazavam quando o usuário virava o card pra ver o lado técnico.
+
+### Changed
+- **`services.items[0]`** (Apps): `Apps from scratch` → `Apps do zero`, `Legacy rescue` → `Resgate de legado`, body atualizado, bullet `Deploy em 2–6 semanas` → `Entrega em 2–6 semanas`.
+- **`services.items[1]`** (CRM/SaaS): body `Queries em ms, dashboards reais` → `Consultas em ms, painéis reais`. Bullets idem.
+- **`services.items[3]`** (Infra): `Full setup` → `Setup completo`, `Bundled` (techLabel) → `Incluso`, body `monitoramento bundled` → `monitoramento inclusos`.
+
+### Notes
+- **Mantidos em inglês intencionalmente** (jargão tech adotado em PT BR): `Full-stack`, `stack frankenstein`, `Multi-tenant`, `SaaS`, `CRM`, `DNS`, `CI/CD`, `SSL`, `SLA`, `Backups`. Trocar esses faria o copy soar acadêmico/distante do mercado.
+- **`services.items[2]`** (IA agents) já estava 100% PT desde rev-2.4.3.
+
+---
+
 ## [rev-2.4.3] — 2026-05-23
 
 PT vira PT pra valer — substitui todas as ocorrências visíveis de **AI** por **IA** e adiciona tooltip "ship*" também no pillar 02 (Build).

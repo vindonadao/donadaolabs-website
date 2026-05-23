@@ -48,11 +48,11 @@ export const pt: Dictionary = {
         accessibleTitle: 'Software sob medida',
         accessibleBody:
           'Aquele site, sistema ou app que seu negócio precisa, feito do zero pra você — ou consertando algo que parou de funcionar.',
-        technicalTitle: 'Apps from scratch',
+        technicalTitle: 'Apps do zero',
         technicalBody:
-          'Construa apps from scratch ou faça legacy rescue de sistemas que pararam de escalar. Full-stack pragmático, sem stack frankenstein.',
-        techLabel: 'Apps from scratch · Legacy rescue',
-        bullets: ['Full-stack pragmático', 'Sem stack frankenstein', 'Deploy em 2–6 semanas'],
+          'Construa apps do zero ou resgate sistemas legados que pararam de escalar. Full-stack pragmático, sem stack frankenstein.',
+        techLabel: 'Apps do zero · Resgate de legado',
+        bullets: ['Full-stack pragmático', 'Sem stack frankenstein', 'Entrega em 2–6 semanas'],
       },
       {
         accessibleTitle: 'Sistemas de gestão',
@@ -60,9 +60,9 @@ export const pt: Dictionary = {
           'Um painel pra acompanhar vendas, estoque, equipe e clientes em um lugar só — sem mil planilhas espalhadas.',
         technicalTitle: 'CRM & SaaS',
         technicalBody:
-          'CRM, painel interno e SaaS multi-tenant. Queries em ms, dashboards reais, observabilidade quando importa.',
+          'CRM, painel interno e SaaS multi-tenant. Consultas em ms, painéis reais, observabilidade quando importa.',
         techLabel: 'CRM · SaaS interno',
-        bullets: ['Multi-tenant', 'Queries em ms', 'Dashboards reais'],
+        bullets: ['Multi-tenant', 'Consultas em ms', 'Painéis reais'],
       },
       {
         accessibleTitle: 'Automação com IA',
@@ -78,10 +78,10 @@ export const pt: Dictionary = {
         accessibleTitle: 'Infra & deploy',
         accessibleBody:
           'Aquela parte chata por trás: domínio, servidor, atualizações de segurança. A gente cuida. Você só vê rodando.',
-        technicalTitle: 'Full setup',
+        technicalTitle: 'Setup completo',
         technicalBody:
-          'Domínio, DNS, CI/CD, SSL e monitoramento bundled em todo projeto. SLA com resposta < 4h úteis.',
-        techLabel: 'Bundled · Não vendido separado',
+          'Domínio, DNS, CI/CD, SSL e monitoramento inclusos em todo projeto. SLA com resposta < 4h úteis.',
+        techLabel: 'Incluso · Não vendido separado',
         bullets: ['SLA monitorado', 'Backups diários', 'Resposta < 4h úteis'],
       },
     ],

@@ -15,6 +15,25 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.3.2] — 2026-05-23
+
+Refresh editorial da faixa Metrics — remove valores aspiracionais/que vencem no calendário e amarra "Produtos no ar" à fonte de verdade (CASES).
+
+### Added
+- **`Metric.href?: string`** ([lib/constants.ts](lib/constants.ts)) — quando presente, o `MetricCard` é renderizado como `<a>` clicável com hover sutil (bg-white/2%). External link detectado automaticamente (target=_blank + rel=noreferrer).
+
+### Changed
+- **`Produtos no ar`** — não vive mais em `METRICS`. Agora é derivado dinamicamente de `CASES.length` em [components/metrics.tsx](components/metrics.tsx). Nunca drifta quando você adiciona/remove case. Eliminate o risco de "site diz 04 mas tem 5 cases listados".
+- **`Em construção`** — sub `'paralelos · Q2/26'` → `'no laboratório'`. Tira a âncora trimestral (que vencia em julho) e casa com a brand "Donadão Labs".
+- **`Próximo slot`** — value `'JUL'` → `'02'`, sub `'2 vagas · 2026'` → `'vagas abertas · agendar →'`. Card vira **clicável** para `https://cal.com/donadaolabs/diagnostico`. Atemporal (não vence no calendário) e vira micro-CTA.
+- **`Uptime do portfólio · 99.9%`** → **`Zero quedas · 0 incidentes em 2026`**. Métrica era aspiracional (sem monitor real). Substituído por número verificável e fácil de defender. Se algo cair, troca pra `1` e atualiza o ano.
+
+### Notes
+- Total de cards mantido em 4. Layout grid 2x2 (mobile) / 4-col (desktop) inalterado.
+- Animação count-up preservada quando `value` começa com número (`'04'`, `'03'`, `'02'`, `'0'` todos animam).
+
+---
+
 ## [rev-2.3.1] — 2026-05-23
 
 ### Fixed
@@ -285,7 +304,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.3.1...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.3.2...HEAD
+[rev-2.3.2]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.3.2
 [rev-2.3.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.3.1
 [rev-2.3.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.3.0
 [rev-2.2.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.2.1

@@ -50,13 +50,19 @@ export interface Metric {
   value: string;
   sub: string;
   spark?: readonly number[];
+  /** Quando presente, o MetricCard é renderizado como <a> clicável (target external auto-detectado) */
+  href?: string;
 }
 
+/**
+ * Métricas declarativas exibidas na faixa Metrics.
+ * "Produtos no ar" é derivada de CASES.length no componente [components/metrics.tsx]
+ * — nunca drifta quando você adiciona/remove case.
+ */
 export const METRICS: readonly Metric[] = [
-  { label: 'Produtos no ar', value: '04', sub: 'em produção', spark: [2, 2, 3, 3, 3, 4, 4] },
-  { label: 'Em construção', value: '03', sub: 'paralelos · Q2/26', spark: [0, 1, 1, 2, 2, 3, 3] },
-  { label: 'Próximo slot', value: 'JUL', sub: '2 vagas · 2026' },
-  { label: 'Uptime do portfólio', value: '99.9%', sub: 'últimos 90 dias', spark: [99.7, 99.8, 99.9, 99.9, 100, 99.9, 99.9] },
+  { label: 'Em construção', value: '03', sub: 'no laboratório' },
+  { label: 'Próximo slot',  value: '02', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
+  { label: 'Zero quedas',   value: '0',  sub: 'incidentes em 2026' },
 ] as const;
 
 export interface ClientLogo {

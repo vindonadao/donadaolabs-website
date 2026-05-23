@@ -121,6 +121,33 @@ export const pt: Dictionary = {
     liveLabel: 'live',
     internalSuffix: '· interno',
     publicSuffix: '.app',
+    internalAria: 'sistema interno, sem link público',
+    items: [
+      {
+        kind: 'Landing page · Pet Photography',
+        title: 'Landing completa para fotógrafo',
+        desc: 'Site de apresentação do trabalho com captação de contato, agenda e pagamento integrado. Substitui Linktree + WhatsApp + cobrança manual.',
+        metric: '↑ 3.2× contato qualificado',
+      },
+      {
+        kind: 'E-commerce · Impressão 3D',
+        title: 'E-commerce de impressão 3D',
+        desc: 'Loja completa com checkout otimizado e painel de gestão para venda de produtos impressos em 3D. UX premium em categoria commoditizada.',
+        metric: 'Checkout < 90s',
+      },
+      {
+        kind: 'CRM interno · SaaS',
+        title: 'Painel de operação interna',
+        desc: 'Sistema interno do cliente — sem demo pública, mas o resultado fala. Painel enxuto pra acompanhar vendas, estoque e performance, sem cair no excesso de uma ERP cara.',
+        metric: '12h/semana economizadas',
+      },
+      {
+        kind: 'Landing page · Manutenção veicular',
+        title: 'Site institucional para oficina',
+        desc: 'Landing de apresentação dos serviços, captação de contato e canal direto com o cliente. Site real para um negócio que vive offline.',
+        metric: '↑ orçamentos via web',
+      },
+    ],
   },
   manifesto: {
     eyebrow: '◆ princípio',

@@ -67,6 +67,19 @@ export interface Dictionary {
     liveLabel: string;
     internalSuffix: string;
     publicSuffix: string;
+    /** Aria-label do card interno: `${case.title} — ${labels.internalAria}` */
+    internalAria: string;
+    /**
+     * Traduzíveis por case, indexados por posição (mesma ordem que `CASES` em
+     * `lib/constants.ts`). Campos neutros (num, client, href, internal, stack,
+     * logo) permanecem em constants.
+     */
+    items: {
+      kind: string;
+      title: string;
+      desc: string;
+      metric: string;
+    }[];
   };
   manifesto: {
     eyebrow: string;

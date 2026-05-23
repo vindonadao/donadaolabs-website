@@ -121,6 +121,33 @@ export const en: Dictionary = {
     liveLabel: 'live',
     internalSuffix: '· internal',
     publicSuffix: '.app',
+    internalAria: 'internal system, no public link',
+    items: [
+      {
+        kind: 'Landing page · Pet Photography',
+        title: 'Full landing page for a photographer',
+        desc: 'Portfolio site with lead capture, booking and integrated payment. Replaces Linktree + WhatsApp + manual billing.',
+        metric: '↑ 3.2× qualified leads',
+      },
+      {
+        kind: 'E-commerce · 3D Printing',
+        title: '3D-printing e-commerce',
+        desc: 'Full store with optimized checkout and management dashboard for selling 3D-printed products. Premium UX in a commoditized category.',
+        metric: 'Checkout < 90s',
+      },
+      {
+        kind: 'Internal CRM · SaaS',
+        title: 'Internal operations dashboard',
+        desc: 'Client’s internal system — no public demo, but the results speak. Lean dashboard to track sales, inventory and performance without the bloat of a heavy ERP.',
+        metric: '12h/week saved',
+      },
+      {
+        kind: 'Landing page · Auto repair',
+        title: 'Institutional site for an auto shop',
+        desc: 'Landing page presenting services, capturing leads and opening a direct channel with the client. A real site for a business that lives offline.',
+        metric: '↑ web quotes',
+      },
+    ],
   },
   manifesto: {
     eyebrow: '◆ principle',

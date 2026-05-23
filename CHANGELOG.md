@@ -15,6 +15,20 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.1] — 2026-05-23
+
+Cards de Cases ganham tradução EN. Visualmente ficava estranho ter os 4 cards em PT no meio da home internacional.
+
+### Added
+- **`Dictionary['cases'].items[]`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — array indexado por posição com `kind`, `title`, `desc`, `metric` traduzíveis. Campos neutros (num, client, href, internal, stack, logo) permanecem em [lib/constants.ts](lib/constants.ts).
+- **`Dictionary['cases'].internalAria`** — aria-label específico do card interno ("sistema interno, sem link público" / "internal system, no public link"). Antes vinha hardcoded em PT no JSX.
+- **Tradução EN dos 4 cases**: Gabriel Nabi (Pet Photography), Diskat Presentes (3D printing e-commerce), Diskat Ops (internal operations dashboard), Cali Garage (auto repair landing).
+
+### Changed
+- **`components/cases.tsx`** — função `localizeCase(c, item)` funde `CASES[i]` (constants) com `dict.cases.items[i]` (i18n). Mantém ordem e a chave `meta` (legado).
+
+---
+
 ## [rev-2.4.0] — 2026-05-23
 
 Suporte bilíngue PT/EN com rotas dedicadas (`/pt`, `/en`) para atrair interessados internacionais — investidor, cliente gringo, recruiter — sem perder SEO em PT.

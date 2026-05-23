@@ -135,7 +135,7 @@ function CaseCard({ c, labels }: { c: Case; labels: Dictionary['cases'] }): Reac
     return (
       <article
         className="group block rounded-brand-lg border border-white/[0.08] bg-charcoal p-6 text-offwhite transition-colors duration-200 hover:border-purple/40"
-        aria-label={`${c.title} — ${labels.internalLabel}`}
+        aria-label={`${c.title} — ${labels.internalAria}`}
       >
         <CaseCardContent c={c} labels={labels} />
       </article>
@@ -155,7 +155,26 @@ function CaseCard({ c, labels }: { c: Case; labels: Dictionary['cases'] }): Reac
   );
 }
 
+/**
+ * Funde campos neutros de `CASES` (num, client, href, internal, stack, logo)
+ * com campos traduzidos de `dict.cases.items` (kind, title, desc, metric).
+ * `meta` é mantido em paralelo com `kind` por compat (legado do constants).
+ */
+function localizeCase(c: Case, item: Dictionary['cases']['items'][number] | undefined): Case {
+  if (!item) return c;
+  return {
+    ...c,
+    kind: item.kind,
+    meta: item.kind,
+    title: item.title,
+    desc: item.desc,
+    metric: item.metric,
+  };
+}
+
 export function Cases({ dict }: CasesProps): React.ReactElement {
+  const items = CASES.map((c, i) => localizeCase(c, dict.cases.items[i]));
+
   return (
     <section id="cases" className="mt-6 border-t border-white/[0.08]">
       <SectionHeader
@@ -165,7 +184,7 @@ export function Cases({ dict }: CasesProps): React.ReactElement {
         sub={dict.cases.sub}
       />
       <div className="grid grid-cols-1 gap-4 px-6 pb-6 md:grid-cols-2 md:px-10">
-        {CASES.map((c) => (
+        {items.map((c) => (
           <CaseCard key={c.num} c={c} labels={dict.cases} />
         ))}
       </div>

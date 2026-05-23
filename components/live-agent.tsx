@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { AGENT, LINKS } from '@/lib/constants';
+import type { Dictionary, Locale } from '@/lib/i18n';
 
 type BlockKind = '' | 'cap' | 'rate';
 
@@ -14,6 +15,7 @@ interface CallPayload {
   question: string;
   email: string | null;
   clientId: string;
+  lang: Locale;
 }
 
 interface CallResult {
@@ -24,6 +26,11 @@ interface CallResult {
 interface CallError extends Error {
   code?: 'NEED_EMAIL' | 'DAILY_CAP' | 'RATE_LIMIT';
   fallback?: boolean;
+}
+
+interface LiveAgentProps {
+  dict: Dictionary;
+  lang: Locale;
 }
 
 // Stable clientId per browser. The backend keys rate-limit and "asked-once"
@@ -124,7 +131,8 @@ function AgentOutput({ raw }: { raw: string }): React.ReactElement {
   );
 }
 
-export function LiveAgent(): React.ReactElement {
+export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
+  const t = dict.agent;
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -152,7 +160,7 @@ export function LiveAgent(): React.ReactElement {
     if (!q || loading) return;
     if (persisted.askedOnce && !persisted.email) {
       setNeedEmail(true);
-      setBlockMsg(AGENT.blockedMessage);
+      setBlockMsg(t.blockedMessage);
       setBlockKind('');
       return;
     }
@@ -165,6 +173,7 @@ export function LiveAgent(): React.ReactElement {
         question: q,
         email: persisted.email || null,
         clientId: clientId.current,
+        lang,
       });
       setOutput(data.diagnostic ?? '');
       const next: AgentState = { ...persisted, askedOnce: true };
@@ -175,18 +184,16 @@ export function LiveAgent(): React.ReactElement {
       const err = e as CallError;
       if (err.code === 'NEED_EMAIL') {
         setNeedEmail(true);
-        setBlockMsg(AGENT.blockedMessage);
+        setBlockMsg(t.blockedMessage);
         setBlockKind('');
       } else if (err.code === 'DAILY_CAP') {
-        setBlockMsg(AGENT.dailyCapMessage);
+        setBlockMsg(t.dailyCap.message);
         setBlockKind('cap');
       } else if (err.code === 'RATE_LIMIT') {
-        setBlockMsg(AGENT.rateLimitMessage);
+        setBlockMsg(t.rateLimit.message);
         setBlockKind('rate');
       } else {
-        setOutput(
-          'ERRO: agent offline. Tenta de novo em alguns segundos — ou agenda direto no cal.com.',
-        );
+        setOutput(t.errorOffline);
       }
     } finally {
       setLoading(false);
@@ -218,7 +225,7 @@ export function LiveAgent(): React.ReactElement {
           className="h-[7px] w-[7px] animate-dl-pulse rounded-full bg-accent"
           style={{ boxShadow: '0 0 8px #00F57A' }}
         />
-        {AGENT.label}
+        {t.label}
       </div>
 
       {/* Prompt input */}
@@ -234,9 +241,7 @@ export function LiveAgent(): React.ReactElement {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={
-            inputDisabled ? '— deixe seu email abaixo pra continuar —' : AGENT.placeholder
-          }
+          placeholder={inputDisabled ? t.placeholderDisabled : t.placeholder}
           disabled={inputDisabled}
           className="min-w-0 flex-1 rounded-[8px] border border-white/[0.08] bg-ink px-3.5 py-3 text-[15px] text-offwhite outline-none disabled:opacity-50"
         />
@@ -246,14 +251,14 @@ export function LiveAgent(): React.ReactElement {
           className="whitespace-nowrap rounded-[8px] bg-accent px-4.5 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black disabled:cursor-not-allowed disabled:opacity-50"
           style={{ padding: '0 18px' }}
         >
-          {loading ? 'rodando…' : AGENT.btnLabel} →
+          {loading ? t.btnLoading : t.btnLabel} →
         </button>
       </form>
 
       {/* Example prompts (only before first ask) */}
       {!persisted.askedOnce && (
         <div className={`flex flex-wrap gap-1.5 ${output || loading ? 'mb-4' : ''}`}>
-          {AGENT.examples.map((ex, i) => (
+          {t.examples.map((ex, i) => (
             <button
               key={i}
               type="button"
@@ -261,7 +266,7 @@ export function LiveAgent(): React.ReactElement {
                 setInput(ex);
                 inputRef.current?.focus();
               }}
-              aria-label={`Preencher campo com exemplo: ${ex}. Você ainda precisa clicar em rodar diagnóstico para enviar.`}
+              aria-label={t.exampleAriaTemplate.replace('{example}', ex)}
               className="rounded-full border border-dashed border-white/[0.08] px-2.5 py-1.5 font-mono text-[11px] text-offwhite/55 transition-all duration-200 hover:border-solid hover:border-accent hover:text-accent"
             >
               ↳ {ex}
@@ -275,7 +280,8 @@ export function LiveAgent(): React.ReactElement {
         <div className="mb-3 min-h-[90px] whitespace-pre-wrap rounded-[8px] border border-white/[0.08] bg-ink p-[14px_16px] font-mono text-[13px] leading-relaxed text-offwhite">
           {loading && !output && (
             <span className="text-offwhite/55">
-              analisando<span className="dl-dots">…</span>
+              {t.analyzing}
+              <span className="dl-dots">…</span>
             </span>
           )}
           {output && <AgentOutput raw={output} />}
@@ -296,7 +302,7 @@ export function LiveAgent(): React.ReactElement {
               blockKind === 'cap' ? 'text-accent' : 'text-[#FFB85C]'
             }`}
           >
-            ◆ {blockKind === 'cap' ? 'cap diário atingido' : 'aguarde um instante'}
+            ◆ {blockKind === 'cap' ? t.dailyCap.eyebrow : t.rateLimit.eyebrow}
           </div>
           <div className="mb-4 text-sm leading-relaxed text-offwhite">{blockMsg}</div>
 
@@ -308,20 +314,18 @@ export function LiveAgent(): React.ReactElement {
               className="inline-block rounded-[8px] bg-accent font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black"
               style={{ padding: '11px 18px' }}
             >
-              Agendar diagnóstico humano →
+              {t.dailyCap.button}
             </a>
           ) : (
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-[#FFB85C]/25 pt-3.5">
-              <span className="text-[13px] text-offwhite/55">
-                Ou prefere falar direto?
-              </span>
+              <span className="text-[13px] text-offwhite/55">{t.rateLimit.altQuestion}</span>
               <a
                 href={LINKS.cal}
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-[6px] border border-[#FFB85C] px-3 py-1.5 font-mono text-xs text-[#FFB85C]"
               >
-                Agendar diagnóstico →
+                {t.rateLimit.altButton}
               </a>
             </div>
           )}
@@ -332,13 +336,11 @@ export function LiveAgent(): React.ReactElement {
       {needEmail && !emailSuccess && (
         <div className="mt-1 rounded-[10px] border border-accent bg-gradient-to-b from-white/[0.04] to-transparent p-[16px_18px]">
           <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-accent">
-            ◆ {persisted.askedOnce && blockMsg ? 'continue —' : 'plano completo'}
+            ◆ {persisted.askedOnce && blockMsg ? t.emailGate.eyebrowContinue : t.emailGate.eyebrowPlan}
           </div>
-          <div className="mb-1 text-[15px] font-medium text-offwhite">
-            {AGENT.emailGate.title}
-          </div>
+          <div className="mb-1 text-[15px] font-medium text-offwhite">{t.emailGate.title}</div>
           <div className="mb-3.5 text-[13px] leading-relaxed text-offwhite/55">
-            {blockMsg || AGENT.emailGate.sub}
+            {blockMsg || t.emailGate.sub}
           </div>
           <form onSubmit={submitEmail} className="flex gap-2">
             <input
@@ -346,7 +348,7 @@ export function LiveAgent(): React.ReactElement {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="seu@email.com"
+              placeholder={t.emailInputPlaceholder}
               autoComplete="email"
               className="min-w-0 flex-1 rounded-[8px] border border-white/[0.08] bg-ink px-3.5 py-2.5 text-sm text-offwhite outline-none"
             />
@@ -356,23 +358,21 @@ export function LiveAgent(): React.ReactElement {
               className="rounded-[8px] bg-accent font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black disabled:opacity-50"
               style={{ padding: '0 18px' }}
             >
-              {emailLoading ? 'enviando…' : AGENT.emailGate.cta} →
+              {emailLoading ? t.emailGate.ctaLoading : t.emailGate.cta} →
             </button>
           </form>
           <div className="mt-2.5 font-mono text-[10px] leading-relaxed text-offwhite/55">
-            {AGENT.privacy}
+            {t.privacy}
           </div>
           <div className="mt-3.5 flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-white/[0.08] pt-3.5">
-            <span className="text-[13px] text-offwhite/55">
-              Prefere falar comigo direto, sem deixar email?
-            </span>
+            <span className="text-[13px] text-offwhite/55">{t.emailGate.altQuestion}</span>
             <a
               href={LINKS.cal}
               target="_blank"
               rel="noreferrer"
               className="rounded-[6px] border border-accent px-3 py-1.5 font-mono text-xs text-accent"
             >
-              Agendar diagnóstico →
+              {t.emailGate.altButton}
             </a>
           </div>
         </div>
@@ -381,7 +381,7 @@ export function LiveAgent(): React.ReactElement {
       {/* Email success confirmation */}
       {emailSuccess && persisted.email && (
         <div className="flex items-center gap-2 pt-2.5 font-mono text-xs text-accent">
-          <span>✓</span> {AGENT.emailGate.success}
+          <span>✓</span> {t.emailGate.success}
         </div>
       )}
     </div>

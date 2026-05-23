@@ -15,6 +15,40 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.7] — 2026-05-23
+
+Live Agent (diagnóstico via Claude) ganha tradução EN **completa** — UI inteira + system prompt do Claude. Antes vazava 100% em PT na aba EN (UI e resposta).
+
+### Added
+- **`Dictionary['agent']`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — ~25 strings UI consolidadas: `label`, `placeholder`, `placeholderDisabled`, `btnLabel`, `btnLoading`, `analyzing`, `examples[]`, `exampleAriaTemplate`, `emailInputPlaceholder`, `emailGate.{eyebrowPlan, eyebrowContinue, title, sub, cta, ctaLoading, success, altQuestion, altButton}`, `blockedMessage`, `dailyCap.{eyebrow, message, button}`, `rateLimit.{eyebrow, message, altQuestion, altButton}`, `errorOffline`, `privacy`.
+- **EN agent strings** — examples em inglês ("i have a shopify e-commerce…"), email gate ("Want the full plan + roadmap…"), errors ("ERROR: agent offline…"), LGPD privacy nota traduzida.
+- **`exampleAriaTemplate`** — template com placeholder `{example}` (replaced inline). Antes era string interpolada hardcoded em PT no componente.
+
+### Changed
+- **`components/live-agent.tsx`** — recebe `dict: Dictionary` como prop, consome `dict.agent.*` em vez de `AGENT.*` (constants) e strings hardcoded. ~15 strings que estavam dentro do JSX viraram dict-driven.
+- **`components/hero.tsx`** — passa `dict={dict}` pra `<LiveAgent />`.
+- **PT `agent.label`**: `agent diagnóstico` → `agente diagnóstico`.
+- **PT `agent.errorOffline`** / `dailyCap.message`: `agent offline/já rodou` → `agente offline/já rodou`.
+
+### Added (API)
+- **`/api/diagnose` aceita `lang: 'pt' | 'en'`** no payload ([app/api/diagnose/route.ts](app/api/diagnose/route.ts)). Default `pt` (mantém compat).
+- **`buildPrompt(question, lang)`** — split do system prompt do Claude em duas variantes:
+  - PT: `Você é o agente de diagnóstico do Donadão Labs (lab brasileiro de software IA-first)... DIAGNÓSTICO / SOLUÇÃO / STACK SUGERIDA / PRAZO / PRÓXIMO PASSO`
+  - EN: `You are the diagnosis agent for Donadão Labs... DIAGNOSIS / SOLUTION / SUGGESTED STACK / TIMELINE / NEXT STEP`
+- **`normalizeLang(value)`** — sanitiza input do client. Qualquer valor != 'en' vira 'pt'. Defensive contra payload manipulado.
+
+### Changed (API/component)
+- **`components/live-agent.tsx`** — `CallPayload` ganha `lang: Locale`. Passado no POST `/api/diagnose`. UI inteira agora dict-driven (~25 strings UI consolidadas em `dict.agent.*`).
+- **`components/hero.tsx`** — recebe `lang: Locale` como prop, propaga pra `<LiveAgent lang={lang} dict={dict} />`.
+- **`app/[lang]/page.tsx`** — passa `lang={params.lang}` pro `<Hero />` (antes só Nav recebia).
+
+### Notes
+- **Output parser do AgentOutput** (regex `^([A-ZÀ-Ú\s]+):\s*(.+)$`) funciona em ambos idiomas — labels PT (`DIAGNÓSTICO`, `SOLUÇÃO`) com acentos via `À-Ú` range, e EN (`DIAGNOSIS`, `SOLUTION`) ASCII puro.
+- **Notificações pro founder** (Telegram + WhatsApp + Email) seguem em PT — quem recebe é o founder brasileiro, idioma da resposta do Claude não importa pra esse canal.
+- **`AGENT.apiEndpoint`** em `lib/constants.ts` permanece — config técnica idioma-neutra.
+
+---
+
 ## [rev-2.4.6] — 2026-05-23
 
 Cases header + header/footer status — última leva de termos em inglês visíveis no PT (Cases, mockup, live, build).

@@ -218,6 +218,52 @@ export const pt: Dictionary = {
     button: 'Agendar diagnóstico',
     orPrefix: 'ou',
   },
+  agent: {
+    label: '◆ agente diagnóstico · processando ao vivo',
+    placeholder: 'descreva o problema do seu negócio em 1 frase',
+    placeholderDisabled: '— deixe seu email abaixo pra continuar —',
+    btnLabel: 'rodar diagnóstico',
+    btnLoading: 'rodando…',
+    analyzing: 'analisando',
+    examples: [
+      'tenho um e-commerce no shopify e quero automatizar o pós-venda',
+      'minha equipe perde 10h/semana copiando dado entre planilha e WhatsApp',
+      'quero um site de apresentação que capte lead direto pra CRM',
+    ],
+    exampleAriaTemplate:
+      'Preencher campo com exemplo: {example}. Você ainda precisa clicar em rodar diagnóstico para enviar.',
+    emailInputPlaceholder: 'seu@email.com',
+    emailGate: {
+      eyebrowPlan: 'plano completo',
+      eyebrowContinue: 'continue —',
+      title: 'Quer o plano completo + roadmap por email?',
+      sub: 'Deixo um plano detalhado de implementação na sua caixa. Sem spam, sem newsletter chata.',
+      cta: 'Receber plano',
+      ctaLoading: 'enviando…',
+      success: '✓ Enviado! Te chamo no WhatsApp/email em até 24h.',
+      altQuestion: 'Prefere falar comigo direto, sem deixar email?',
+      altButton: 'Agendar diagnóstico →',
+    },
+    blockedMessage:
+      'Pra continuar perguntando, deixe seu email — assim eu te chamo de volta. Se prefere falar comigo direto, agenda o diagnóstico ali embaixo. Os dois caminhos funcionam.',
+    dailyCap: {
+      eyebrow: 'cap diário atingido',
+      message:
+        'O agente já rodou 100 diagnósticos hoje (cap diário pra eu garantir qualidade nas respostas). Você chegou bem perto do limite — vamos conversar direto. Agenda uma call de 30min comigo, sem compromisso.',
+      button: 'Agendar diagnóstico humano →',
+    },
+    rateLimit: {
+      eyebrow: 'aguarde um instante',
+      message:
+        'Calma — só 1 pergunta a cada 10 segundos por visitante. Tenta de novo em alguns instantes.',
+      altQuestion: 'Ou prefere falar direto?',
+      altButton: 'Agendar diagnóstico →',
+    },
+    errorOffline:
+      'ERRO: agente offline. Tenta de novo em alguns segundos — ou agenda direto no cal.com.',
+    privacy:
+      'Ao usar o agente, você concorda que sua pergunta, IP e email (se fornecido) sejam armazenados para contato e melhoria do serviço. Conforme LGPD.',
+  },
   ship: {
     ariaLabel: 'O que significa ship? Clique para ver a tradução.',
     eyebrow: '* ship · /ʃɪp/ · do inglês',

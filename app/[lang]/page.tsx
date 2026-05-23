@@ -26,7 +26,7 @@ export default function HomePage({ params }: HomePageProps): React.ReactElement 
     <>
       <Nav dict={dict} lang={params.lang} />
       <main>
-        <Hero dict={dict} />
+        <Hero dict={dict} lang={params.lang} />
         <Metrics dict={dict} />
         <Stack dict={dict} />
         <Services dict={dict} />

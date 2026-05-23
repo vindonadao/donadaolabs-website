@@ -1,12 +1,13 @@
 import { LiveAgent } from '@/components/live-agent';
 import { Ship } from '@/components/ship';
-import type { Dictionary } from '@/lib/i18n';
+import type { Dictionary, Locale } from '@/lib/i18n';
 
 interface HeroProps {
   dict: Dictionary;
+  lang: Locale;
 }
 
-export function Hero({ dict }: HeroProps): React.ReactElement {
+export function Hero({ dict, lang }: HeroProps): React.ReactElement {
   return (
     <section className="relative isolate overflow-hidden border-b border-white/[0.08] pb-16 pt-[120px] md:pb-20 md:pt-[140px]">
       <div
@@ -37,7 +38,7 @@ export function Hero({ dict }: HeroProps): React.ReactElement {
         </div>
 
         <div className="mt-14">
-          <LiveAgent />
+          <LiveAgent dict={dict} lang={lang} />
         </div>
       </div>
     </section>

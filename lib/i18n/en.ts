@@ -218,6 +218,52 @@ export const en: Dictionary = {
     button: 'Book a diagnosis',
     orPrefix: 'or',
   },
+  agent: {
+    label: '◆ diagnosis agent · processing live',
+    placeholder: 'describe your business problem in 1 sentence',
+    placeholderDisabled: '— drop your email below to continue —',
+    btnLabel: 'run diagnosis',
+    btnLoading: 'running…',
+    analyzing: 'analyzing',
+    examples: [
+      'i have a shopify e-commerce and want to automate post-purchase',
+      'my team wastes 10h/week copying data between spreadsheets and WhatsApp',
+      'i want a landing page that captures leads straight into CRM',
+    ],
+    exampleAriaTemplate:
+      'Fill input with example: {example}. You still need to click run diagnosis to submit.',
+    emailInputPlaceholder: 'you@email.com',
+    emailGate: {
+      eyebrowPlan: 'full plan',
+      eyebrowContinue: 'continue —',
+      title: 'Want the full plan + roadmap by email?',
+      sub: 'I’ll drop a detailed implementation plan in your inbox. No spam, no boring newsletter.',
+      cta: 'Get the plan',
+      ctaLoading: 'sending…',
+      success: '✓ Sent! I’ll reach out via WhatsApp/email within 24h.',
+      altQuestion: 'Prefer to talk directly without leaving an email?',
+      altButton: 'Book a diagnosis →',
+    },
+    blockedMessage:
+      'To keep asking, drop your email — I’ll reach back. If you’d rather talk directly, book the diagnosis below. Both paths work.',
+    dailyCap: {
+      eyebrow: 'daily cap reached',
+      message:
+        'The agent already ran 100 diagnoses today (daily cap to guarantee answer quality). You came close to the limit — let’s talk directly. Book a 30min call with me, no commitment.',
+      button: 'Book a human diagnosis →',
+    },
+    rateLimit: {
+      eyebrow: 'hold on a sec',
+      message:
+        'Easy — only 1 question every 10 seconds per visitor. Try again in a moment.',
+      altQuestion: 'Or prefer to talk directly?',
+      altButton: 'Book a diagnosis →',
+    },
+    errorOffline:
+      'ERROR: agent offline. Try again in a few seconds — or book directly on cal.com.',
+    privacy:
+      'By using the agent, you agree that your question, IP and email (if provided) are stored for contact and service improvement. Per LGPD.',
+  },
   ship: {
     ariaLabel: 'What does ship mean? Click to read the definition.',
     eyebrow: '* ship · /ʃɪp/ · verb',

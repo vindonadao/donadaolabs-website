@@ -128,6 +128,44 @@ export interface Dictionary {
     button: string;
     orPrefix: string;
   };
+  agent: {
+    /** Header pill com bolinha pulsante verde. */
+    label: string;
+    placeholder: string;
+    placeholderDisabled: string;
+    btnLabel: string;
+    btnLoading: string;
+    analyzing: string;
+    examples: string[];
+    /** Template do aria-label dos chips de exemplo (use `{example}` como placeholder). */
+    exampleAriaTemplate: string;
+    emailInputPlaceholder: string;
+    emailGate: {
+      eyebrowPlan: string;
+      eyebrowContinue: string;
+      title: string;
+      sub: string;
+      cta: string;
+      ctaLoading: string;
+      success: string;
+      altQuestion: string;
+      altButton: string;
+    };
+    blockedMessage: string;
+    dailyCap: {
+      eyebrow: string;
+      message: string;
+      button: string;
+    };
+    rateLimit: {
+      eyebrow: string;
+      message: string;
+      altQuestion: string;
+      altButton: string;
+    };
+    errorOffline: string;
+    privacy: string;
+  };
   ship: {
     ariaLabel: string;
     eyebrow: string;

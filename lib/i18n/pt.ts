@@ -11,10 +11,10 @@ export const pt: Dictionary = {
   nav: {
     links: [
       { label: 'Abordagem', href: '#abordagem' },
-      { label: 'Cases', href: '#cases' },
-      { label: 'Founder', href: '#founder' },
-      { label: 'Changelog', href: '#changelog' },
-      { label: 'FAQ', href: '#faq' },
+      { label: 'Projetos', href: '#cases' },
+      { label: 'Fundador', href: '#founder' },
+      { label: 'Atualizações', href: '#changelog' },
+      { label: 'Dúvidas', href: '#faq' },
     ],
     statusPill: 'live · operando · 2 slots jul/26',
     ctaButton: 'Agendar diagnóstico →',

@@ -15,6 +15,18 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.2] — 2026-05-23
+
+Nav PT despinglesa — `Cases / Founder / Changelog / FAQ` viram `Projetos / Fundador / Atualizações / Dúvidas`. Visualmente, o nav PT vinha misturando português e jargão técnico em inglês.
+
+### Changed
+- **`lib/i18n/pt.ts`** — labels do nav PT traduzidos. Âncoras (`#cases`, `#founder`, etc) **não mudam** porque os IDs dos sections continuam neutros (mantém PT e EN apontando pros mesmos anchors).
+
+### Notes
+- Nav EN segue como estava (`Approach · Cases · Founder · Changelog · FAQ`) — palavras já em inglês, sem mudança.
+
+---
+
 ## [rev-2.4.1] — 2026-05-23
 
 Cards de Cases ganham tradução EN. Visualmente ficava estranho ter os 4 cards em PT no meio da home internacional.

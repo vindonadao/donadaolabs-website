@@ -2,6 +2,7 @@ import type { Dictionary } from './types';
 
 export const en: Dictionary = {
   meta: {
+    titleTagline: 'AI software that actually ships.',
     description:
       'AI-first lab building software and AI agents for businesses that need to grow. From diagnosis to deploy, with infrastructure that scales.',
     notFoundTitle: 'Page not found · Donadão Labs',
@@ -103,6 +104,7 @@ export const en: Dictionary = {
         day: 'Day 3–21',
         label: 'Build',
         title: 'Software that ships',
+        titleShipWord: 'ships',
         body: 'Pragmatic full-stack engineering. No Frankenstein stack, no promises. What goes live scales.',
       },
       {
@@ -206,6 +208,11 @@ export const en: Dictionary = {
     eyebrow: '* ship · /ʃɪp/ · verb',
     bold: 'To actually deliver.',
     rest: 'Software live, working, generating sales. Not a demo, not a promise, not a project stuck in the middle.',
+    short: {
+      eyebrow: '* ship · /ʃɪp/',
+      bold: 'To actually deliver.',
+      rest: 'Software live, generating sales.',
+    },
   },
   footer: {
     rights: '© 2026 donadão/labs · donadaolabs.com',

@@ -2,8 +2,9 @@ import type { Dictionary } from './types';
 
 export const pt: Dictionary = {
   meta: {
+    titleTagline: 'Software de IA que ships pra valer.',
     description:
-      'Lab AI-first que constrói software e AI agents para negócios que precisam crescer. Do diagnóstico ao deploy, com infraestrutura que escala.',
+      'Lab IA-first que constrói software e agentes de IA para negócios que precisam crescer. Do diagnóstico ao deploy, com infraestrutura que escala.',
     notFoundTitle: 'Página não encontrada · Donadão Labs',
     notFoundDescription:
       'A página que você procurou não existe — ou foi shipada para outro lugar.',
@@ -21,10 +22,10 @@ export const pt: Dictionary = {
     langSwitchLabel: 'EN',
   },
   hero: {
-    badge: 'AI Software Lab · ao vivo · 2026',
-    headline: 'AI software',
+    badge: 'IA Software Lab · ao vivo · 2026',
+    headline: 'Software de IA',
     headlineEm: 'actually ships',
-    headlineConnector: 'that',
+    headlineConnector: 'que',
     sub: 'Construímos sites, sistemas e automações pro seu negócio crescer. Você fala o problema, a gente entrega rodando — sem promessa furada.',
   },
   metrics: {
@@ -64,13 +65,13 @@ export const pt: Dictionary = {
         bullets: ['Multi-tenant', 'Queries em ms', 'Dashboards reais'],
       },
       {
-        accessibleTitle: 'Automação com AI',
+        accessibleTitle: 'Automação com IA',
         accessibleBody:
           'Um “robô” que atende seu cliente no WhatsApp, faz follow-up e qualifica lead — 24h por dia, sem você precisar estar lá.',
-        technicalTitle: 'AI agents',
+        technicalTitle: 'Agentes de IA',
         technicalBody:
-          'AI agents em cima do software existente. Guardrails, observabilidade e custo controlado por conversa.',
-        techLabel: 'AI agents · WhatsApp · E-mail',
+          'Agentes de IA em cima do software existente. Guardrails, observabilidade e custo controlado por conversa.',
+        techLabel: 'Agentes de IA · WhatsApp · E-mail',
         bullets: ['Guardrails e logs', 'Observabilidade', 'Custo controlado'],
       },
       {
@@ -91,7 +92,7 @@ export const pt: Dictionary = {
   approach: {
     eyebrow: 'Como trabalhamos',
     title: 'Três passos. Sem teatro.',
-    sub: 'Quase tudo em AI hoje para no slide ou no demo bonito. Aqui o software vai pro ar e fatura — e poucos entregam isso.',
+    sub: 'Quase tudo em IA hoje para no slide ou no demo bonito. Aqui o software vai pro ar e fatura — e poucos entregam isso.',
     items: [
       {
         day: 'Dia 0–3',
@@ -103,13 +104,14 @@ export const pt: Dictionary = {
         day: 'Dia 3–21',
         label: 'Build',
         title: 'Software que ships',
+        titleShipWord: 'ships',
         body: 'Engenharia full-stack pragmática. Sem stack frankenstein, sem promessas. O que sobe em produção, escala.',
       },
       {
         day: 'Dia 21+',
         label: 'Automate',
-        title: 'Camada de AI agents',
-        body: 'Em cima do software, agents que automatizam operação: atendimento, follow-up, gestão. AI que tira trabalho chato da sua mesa.',
+        title: 'Camada de agentes de IA',
+        body: 'Em cima do software, agentes que automatizam operação: atendimento, follow-up, gestão. IA que tira trabalho chato da sua mesa.',
       },
     ],
   },
@@ -165,8 +167,8 @@ export const pt: Dictionary = {
     title: 'Pessoa por trás do código.',
     sub: 'Sem agência intermediária. Você fala direto com quem constrói.',
     badge: 'founder · ao vivo',
-    bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo — o de gerar receita.',
-    bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar, três em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+    bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e agentes de IA que resolvem o problema certo — o de gerar receita.',
+    bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar, três em construção e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',
@@ -178,7 +180,7 @@ export const pt: Dictionary = {
       },
       {
         q: 'Quanto tempo demora?',
-        a: 'Landing simples: 2–3 semanas. E-commerce ou painel interno: 4–6 semanas. AI agent layer: depende do volume, mas tipicamente 2–4 semanas em cima de algo já no ar.',
+        a: 'Landing simples: 2–3 semanas. E-commerce ou painel interno: 4–6 semanas. Camada de agentes de IA: depende do volume, mas tipicamente 2–4 semanas em cima de algo já no ar.',
       },
       {
         q: 'Vocês mantêm o sistema depois?',
@@ -206,6 +208,11 @@ export const pt: Dictionary = {
     eyebrow: '* ship · /ʃɪp/ · do inglês',
     bold: 'Entregar pra valer.',
     rest: 'Software no ar, funcionando, gerando venda. Não é demo, não é promessa, não é projeto que trava no meio.',
+    short: {
+      eyebrow: '* ship · /ʃɪp/',
+      bold: 'Entregar pra valer.',
+      rest: 'Software no ar, gerando venda.',
+    },
   },
   footer: {
     rights: '© 2026 donadão/labs · donadaolabs.com',

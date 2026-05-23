@@ -5,6 +5,8 @@
 
 export interface Dictionary {
   meta: {
+    /** Tagline curto exibido no `<title>` da aba. Sai depois do nome do site. */
+    titleTagline: string;
     description: string;
     notFoundTitle: string;
     notFoundDescription: string;
@@ -55,6 +57,8 @@ export interface Dictionary {
       day: string;
       label: string;
       title: string;
+      /** Quando presente, essa palavra DEVE existir em `title` e será envolta em `<Ship variant="short">`. */
+      titleShipWord?: string;
       body: string;
     }[];
   };
@@ -117,6 +121,12 @@ export interface Dictionary {
     eyebrow: string;
     bold: string;
     rest: string;
+    /** Versão resumida usada em contextos secundários (cards, pillars, callouts). */
+    short: {
+      eyebrow: string;
+      bold: string;
+      rest: string;
+    };
   };
   footer: {
     rights: string;

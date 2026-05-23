@@ -66,7 +66,7 @@ interface LangLayoutProps {
 export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
   if (!isLocale(params.lang)) return {};
   const dict = getDictionary(params.lang);
-  const titleDefault = `${SITE.name} — ${SITE.tagline}`;
+  const titleDefault = `${SITE.name} — ${dict.meta.titleTagline}`;
 
   return {
     metadataBase: new URL(SITE.url),

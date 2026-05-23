@@ -1,8 +1,35 @@
+import { Ship } from '@/components/ship';
 import { SectionHeader } from '@/components/section-header';
 import type { Dictionary } from '@/lib/i18n';
 
 interface ApproachProps {
   dict: Dictionary;
+}
+
+/**
+ * Quando `titleShipWord` existir, splita o title naquela palavra e envolve a
+ * palavra em `<Ship variant="short">`. Tooltip resumido aparece on-hover.
+ * Se a palavra não estiver presente no title, faz fallback pra texto puro.
+ */
+function renderPillarTitle(
+  title: string,
+  shipWord: string | undefined,
+  dict: Dictionary,
+): React.ReactNode {
+  if (!shipWord) return title;
+  const idx = title.indexOf(shipWord);
+  if (idx === -1) return title;
+  const before = title.slice(0, idx);
+  const after = title.slice(idx + shipWord.length);
+  return (
+    <>
+      {before}
+      <Ship dict={dict} variant="short">
+        <span className="italic gradient-text">{shipWord}</span>
+      </Ship>
+      {after}
+    </>
+  );
 }
 
 export function Approach({ dict }: ApproachProps): React.ReactElement {
@@ -30,7 +57,7 @@ export function Approach({ dict }: ApproachProps): React.ReactElement {
               {p.label}
             </div>
             <h3 className="m-0 font-display text-[22px] font-semibold tracking-brand-tight">
-              {p.title}
+              {renderPillarTitle(p.title, p.titleShipWord, dict)}
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-offwhite/55">{p.body}</p>
           </article>

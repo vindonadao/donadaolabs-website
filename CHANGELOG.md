@@ -15,6 +15,40 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.3] — 2026-05-23
+
+PT vira PT pra valer — substitui todas as ocorrências visíveis de **AI** por **IA** e adiciona tooltip "ship*" também no pillar 02 (Build).
+
+### Added
+- **`Dictionary['ship'].short`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — variante resumida do tooltip pra contextos secundários (pillars, cards, callouts). Componente `Ship` ganha prop `variant?: 'full' | 'short'` (default `full`).
+- **`Dictionary['approach'].items[].titleShipWord?`** — quando presente, a palavra dentro de `title` vira `<Ship variant="short">{word}</Ship>` (com gradient italic). Habilitado no pillar 02 (`titleShipWord: 'ships'` em PT e EN).
+- **`Dictionary['meta'].titleTagline`** — tagline curto exibido em `<title>`. Antes vinha de `SITE.tagline` (compartilhado). Agora idioma-aware: PT = "Software de IA que ships pra valer.", EN = "AI software that actually ships."
+- **`components/approach.tsx::renderPillarTitle()`** — splita o title na `titleShipWord` e injeta `<Ship variant="short">`. Fallback pra texto puro se a palavra não existir no title.
+
+### Changed
+- **`lib/i18n/pt.ts`** — todas as ocorrências visíveis de **AI** → **IA**:
+  - `hero.badge`: "AI Software Lab" → "IA Software Lab"
+  - `hero.headline`: "AI software" → "Software de IA"
+  - `hero.headlineConnector`: "that" → "que" (gramática casa com "Software de IA que ships")
+  - `meta.description`: "Lab AI-first … AI agents" → "Lab IA-first … agentes de IA"
+  - `services.items[2]` (AI agents card): "Automação com AI" → "Automação com IA", "AI agents" → "Agentes de IA", techBody/techLabel idem
+  - `approach.items[2].title`: "Camada de AI agents" → **"Camada de agentes de IA"**
+  - `approach.items[2].body`: "agents que automatizam … AI que tira trabalho" → "agentes que automatizam … IA que tira trabalho"
+  - `approach.sub`: "Quase tudo em AI hoje" → "Quase tudo em IA hoje"
+  - `founder.bio1`, `founder.bio2`: "AI agents" → "agentes de IA"
+  - `faq.items[1].a`: "AI agent layer" → "Camada de agentes de IA"
+- **`app/[lang]/layout.tsx`** — `<title>` agora usa `dict.meta.titleTagline` em vez de `SITE.tagline`. Pro Google e pra aba do browser, cada idioma vira seu próprio tagline.
+
+### Notes
+- **Pillar 02 "Software que ships"** — agora exibe `ships*` com tooltip (gradient italic, hover/click revela definição resumida). Mesmo tratamento usado no Hero e no CTA, mas com versão curta da explicação.
+- **Tooltip resumido vs completo**: full = "Software no ar, funcionando, gerando venda. Não é demo, não é promessa, não é projeto que trava no meio." / short = "Software no ar, gerando venda."
+- **Mantidos em inglês intencionalmente** (termos de SEO universais, fora do copy visível):
+  - `metadata.keywords` em `app/[lang]/layout.tsx` (AI software, AI agents, AI development)
+  - `JSON-LD knowsAbout` (AI software, AI agents) — schema.org pro Google entender o nicho
+  - **EN dictionary** segue como tá — "AI software / AI agents" são naturalmente em inglês
+
+---
+
 ## [rev-2.4.2] — 2026-05-23
 
 Nav PT despinglesa — `Cases / Founder / Changelog / FAQ` viram `Projetos / Fundador / Atualizações / Dúvidas`. Visualmente, o nav PT vinha misturando português e jargão técnico em inglês.

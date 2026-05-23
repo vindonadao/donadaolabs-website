@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { SHIP_TOOLTIP } from '@/lib/constants';
+import type { Dictionary } from '@/lib/i18n';
 
 interface ShipProps {
   children: React.ReactNode;
+  dict: Dictionary;
 }
 
-export function Ship({ children }: ShipProps): React.ReactElement {
+export function Ship({ children, dict }: ShipProps): React.ReactElement {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLSpanElement>(null);
 
@@ -32,7 +33,7 @@ export function Ship({ children }: ShipProps): React.ReactElement {
       <span
         role="button"
         tabIndex={0}
-        aria-label="O que significa ship? Clique para ver a tradução."
+        aria-label={dict.ship.ariaLabel}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         onClick={(e) => {
@@ -55,10 +56,10 @@ export function Ship({ children }: ShipProps): React.ReactElement {
           style={{ WebkitTextFillColor: '#f0f0f5' }}
         >
           <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-accent">
-            {SHIP_TOOLTIP.eyebrow}
+            {dict.ship.eyebrow}
           </span>
-          <strong className="font-semibold text-offwhite">{SHIP_TOOLTIP.bold}</strong>{' '}
-          <span className="text-offwhite/55">{SHIP_TOOLTIP.rest}</span>
+          <strong className="font-semibold text-offwhite">{dict.ship.bold}</strong>{' '}
+          <span className="text-offwhite/55">{dict.ship.rest}</span>
         </span>
       )}
     </span>

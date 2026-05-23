@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Página não encontrada · Donadão Labs',
-  description: 'A página que você procurou não existe — ou foi shipada para outro lugar.',
-  robots: { index: false, follow: false },
-};
-
+/**
+ * 404 in-segment: aplica quando uma rota /[lang]/algo-invalido é acessada
+ * mas o segmento [lang] existe. Mantém em PT por padrão — o usuário pode
+ * estar perdido em qualquer idioma. Para versão traduzida real, criaríamos
+ * variantes futuras.
+ */
 export default function NotFound(): React.ReactElement {
   return (
     <main className="relative isolate flex min-h-screen items-center overflow-hidden">
@@ -21,31 +20,31 @@ export default function NotFound(): React.ReactElement {
       <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 py-32 md:px-8">
         <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-accent/40 bg-accent/[0.12] px-4 py-2 font-mono text-xs font-medium uppercase tracking-widest text-accent-bright">
           <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_16px_rgba(110,91,255,0.7)]" />
-          404 · Não encontrado
+          404 · Not found
         </div>
 
         <h1 className="mb-6 max-w-[20ch] font-display text-[clamp(3rem,9vw,7rem)] font-extrabold leading-[0.95] tracking-tightest text-balance">
-          Essa página{' '}
-          <em className="not-italic gradient-text">não shipou.</em>
+          This page{' '}
+          <em className="not-italic gradient-text">didn’t ship.</em>
         </h1>
 
         <p className="mb-10 max-w-[60ch] text-lg leading-[1.55] text-stone-300 md:text-xl">
-          O endereço que você procurou não existe — ou foi movido. Sem drama, volta pra home e
-          continua de lá.
+          The address you were looking for doesn’t exist — or it was moved. No drama, head back
+          home and keep going.
         </p>
 
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/"
+            href="/pt"
             className="inline-flex items-center gap-2 rounded-brand-md bg-gradient-purple px-8 py-4 font-display text-base font-semibold text-white shadow-glow transition-all hover:-translate-y-0.5 hover:shadow-glow-strong"
           >
-            <span aria-hidden>←</span> Voltar pra home
+            <span aria-hidden>←</span> Back to home
           </Link>
           <Link
-            href="/#cases"
+            href="/pt#cases"
             className="rounded-brand-md border border-stone-700 px-8 py-4 font-display text-base font-medium text-offwhite transition-all hover:border-accent hover:bg-accent/[0.14]"
           >
-            Ver os cases
+            See the cases
           </Link>
         </div>
       </div>

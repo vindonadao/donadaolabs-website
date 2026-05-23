@@ -1,14 +1,19 @@
 import { SectionHeader } from '@/components/section-header';
 import { CHANGELOG } from '@/lib/constants';
+import type { Dictionary } from '@/lib/i18n';
 
-export function Changelog(): React.ReactElement {
+interface ChangelogProps {
+  dict: Dictionary;
+}
+
+export function Changelog({ dict }: ChangelogProps): React.ReactElement {
   return (
     <section id="changelog" className="border-t border-white/[0.08]">
       <SectionHeader
         idx="04"
-        eyebrow="Changelog público"
-        title="O que rodou nas últimas semanas."
-        sub="Registro público das releases. Sem maquiagem."
+        eyebrow={dict.changelog.eyebrow}
+        title={dict.changelog.title}
+        sub={dict.changelog.sub}
       />
       <div className="px-6 pb-4 md:px-10">
         <div className="overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal">

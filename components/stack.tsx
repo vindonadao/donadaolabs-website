@@ -1,11 +1,16 @@
 import { STACK_CHIPS } from '@/lib/constants';
+import type { Dictionary } from '@/lib/i18n';
 
-export function Stack(): React.ReactElement {
+interface StackProps {
+  dict: Dictionary;
+}
+
+export function Stack({ dict }: StackProps): React.ReactElement {
   return (
     <section className="border-b border-white/[0.08] px-6 py-8 md:px-10">
       <div className="mx-auto flex max-w-[1280px] flex-wrap items-center gap-x-8 gap-y-4">
         <div className="whitespace-nowrap font-mono text-[11px] uppercase tracking-widest text-offwhite/55">
-          Stack em produção
+          {dict.stack.label}
         </div>
         <div className="flex flex-wrap gap-2">
           {STACK_CHIPS.map((chip) => (

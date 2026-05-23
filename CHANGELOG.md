@@ -15,6 +15,31 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.0] — 2026-05-23
+
+Suporte bilíngue PT/EN com rotas dedicadas (`/pt`, `/en`) para atrair interessados internacionais — investidor, cliente gringo, recruiter — sem perder SEO em PT.
+
+### Added
+- **`lib/i18n/`** — nova estrutura de dicionários tipados. `config.ts` (locales + defaults), `types.ts` (contrato `Dictionary`), `pt.ts`, `en.ts`, `index.ts` (loader `getDictionary(lang)`). PT segue como `DEFAULT_LOCALE`.
+- **`app/[lang]/`** — segmento dinâmico vira o ROOT layout do App Router. `[lang]/layout.tsx` define `<html lang>` dinâmico (`pt-BR`/`en-US`), metadata com `alternates.languages` + `openGraph.locale`/`alternateLocale` por idioma. `[lang]/page.tsx` consome o dict server-side e propaga via props.
+- **`middleware.ts`** — redireciona `/` → `/pt` (307). Detecta locale no path, bypass de `/api/*`, `/brand/*`, `/clients/*`, `/sitemap.xml`, `/robots.txt` e static assets.
+- **`components/language-switch.tsx`** — toggle no nav (server-side `<Link>`, sem JS). Em `/pt` mostra "EN", em `/en` mostra "PT". Escondido em mobile (`md:inline-flex`) — voltará via menu mobile em rev-2.4.1 se necessário.
+- **Tradução EN** — todo copy estático: Hero, Metrics labels/subs, Stack label, Services (4 itens × accessible/technical/bullets), Approach (3 pillars), Cases section header + labels live/internal, Manifesto, Changelog header, Founder eyebrow/title/sub/bio1/bio2/badge, FAQ (5 entradas Q&A), CTA, Ship tooltip, Footer, Nav status pill + CTA, 404. Hero `actually ships` permanece intencionalmente em inglês nos dois idiomas (wordplay de marca).
+- **`app/sitemap.ts`** — agora inclui `/pt` (priority 1) e `/en` (priority 0.9), cada um com `alternates.languages` (`pt-BR`, `en-US`, `x-default=pt`) para `<xhtml:link rel="alternate" hreflang="…">` no XML.
+
+### Changed
+- **Todos os componentes consumidores de copy** — passaram a receber `dict: Dictionary` como prop server-side. Componentes afetados: `nav`, `hero`, `metrics`, `stack`, `services`, `service-card`, `approach`, `cases`, `manifesto`, `changelog`, `founder`, `faq`, `cta`, `ship`, `footer`. ServiceCard refatorado para receber `item` + `num` (string formatada) + `labels` (3 strings UI), removendo dependência de `Service.id` que não existia no dict.
+- **`app/[lang]/not-found.tsx`** — substitui `app/not-found.tsx`. Copy traduzido para EN como default (visitor perdido pode estar em qualquer idioma; o 404 vive dentro do segment).
+- **Constants que SOBRARAM em `lib/constants.ts`** (idioma-neutros): `SITE`, `LINKS`, `HEADER`, `THROUGHPUT` (chart), `METRICS` (valores + hrefs; labels/subs vêm do dict), `CLIENT_LOGOS`, `CASES` (mantido em PT por escolha de escopo — Cases não traduzidos nesta rev), `STACK_CHIPS`, `CHANGELOG`, `FOUNDER` (name/role/photo — bio veio pro dict), `AGENT` (Live Agent fica em PT inteiramente nesta rev).
+
+### Notes
+- **Escopo intencional do EN**: copy estático (Hero, Services, FAQ, Manifesto, CTA, etc). Cases (cards), Changelog (entradas históricas), Live Agent (UI + API `/api/diagnose`) ficam em PT — agendado para rev-2.5.x se necessário.
+- **SEO duplo**: Google indexa `/pt` e `/en` separadamente via hreflang. OG card e meta description diferem por idioma. Link direto pra LinkedIn: `donadaolabs.com/en`.
+- **`<html lang>` dinâmico**: o App Router exige que `<html>` esteja num root layout único. A solução foi mover `app/layout.tsx` → `app/[lang]/layout.tsx` (esse vira ROOT) e usar middleware pra redirecionar `/`. Não há mais `app/layout.tsx` na raiz.
+- **Live Agent permanece em PT**: o `/api/diagnose` recebe pergunta em qualquer idioma e o Claude responde em PT. Ajuste por idioma exigiria parâmetro `lang` na API + system prompt bilíngue (fora do escopo desta rev).
+
+---
+
 ## [rev-2.3.2] — 2026-05-23
 
 Refresh editorial da faixa Metrics — remove valores aspiracionais/que vencem no calendário e amarra "Produtos no ar" à fonte de verdade (CASES).

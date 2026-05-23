@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { SectionHeader } from '@/components/section-header';
 import { FOUNDER, LINKS } from '@/lib/constants';
+import type { Dictionary } from '@/lib/i18n';
 
 const SOCIALS = [
   { label: 'LinkedIn', href: LINKS.linkedin },
@@ -8,17 +9,20 @@ const SOCIALS = [
   { label: 'Instagram', href: LINKS.instagram },
 ] as const;
 
-export function Founder(): React.ReactElement {
+interface FounderProps {
+  dict: Dictionary;
+}
+
+export function Founder({ dict }: FounderProps): React.ReactElement {
   return (
     <section id="founder" className="mt-6 border-t border-white/[0.08]">
       <SectionHeader
         idx="05"
-        eyebrow="Quem opera"
-        title="Pessoa por trás do código."
-        sub="Sem agência intermediária. Você fala direto com quem constrói."
+        eyebrow={dict.founder.eyebrow}
+        title={dict.founder.title}
+        sub={dict.founder.sub}
       />
       <div className="grid grid-cols-1 gap-12 px-6 pb-20 md:grid-cols-[260px_1fr] md:px-10">
-        {/* Photo frame */}
         <div className="relative h-[280px] w-[240px] overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal">
           <Image
             src={FOUNDER.photo}
@@ -28,14 +32,12 @@ export function Founder(): React.ReactElement {
             className="object-cover"
             priority
           />
-          {/* Bottom fade-to-bg gradient */}
           <div
             className="pointer-events-none absolute inset-0"
             style={{
               background: 'linear-gradient(180deg, transparent 55%, #070709 100%)',
             }}
           />
-          {/* Founder · live badge */}
           <div
             className="absolute bottom-2.5 left-3 flex items-center gap-1.5 font-mono text-[10px] text-accent"
             style={{ textShadow: '0 1px 4px #070709' }}
@@ -44,11 +46,10 @@ export function Founder(): React.ReactElement {
               className="h-1.5 w-1.5 animate-dl-pulse rounded-full bg-accent"
               style={{ boxShadow: '0 0 6px #00F57A' }}
             />
-            founder · ao vivo
+            {dict.founder.badge}
           </div>
         </div>
 
-        {/* Bio */}
         <div>
           <h3 className="m-0 font-display text-[36px] font-semibold tracking-brand-tight">
             {FOUNDER.name}
@@ -57,10 +58,10 @@ export function Founder(): React.ReactElement {
             {FOUNDER.role}
           </div>
           <p className="mt-5.5 max-w-[680px] text-base leading-[1.6] text-offwhite">
-            {FOUNDER.bio1}
+            {dict.founder.bio1}
           </p>
           <p className="mt-3.5 max-w-[680px] text-base leading-[1.6] text-offwhite/55">
-            {FOUNDER.bio2}
+            {dict.founder.bio2}
           </p>
           <div className="mt-7 flex flex-wrap gap-2.5">
             {SOCIALS.map((s) => (

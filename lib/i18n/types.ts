@@ -95,11 +95,23 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     sub: string;
+    /** Label exibido na pill colorida. `shipped` mantém wordplay de marca em PT (SHIPADO). */
+    tagLabels: {
+      shipped: string;
+      agent: string;
+      infra: string;
+      rfc: string;
+      hotfix: string;
+    };
+    /** Textos traduzíveis indexados por posição (mesma ordem de `CHANGELOG` em constants). */
+    entries: { text: string }[];
   };
   founder: {
     eyebrow: string;
     title: string;
     sub: string;
+    /** Cargo/role exibido abaixo do nome (verde, font-mono). */
+    role: string;
     badge: string;
     bio1: string;
     bio2: string;

@@ -15,6 +15,26 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.5] — 2026-05-23
+
+Changelog tags & entries traduzidas, Founder role no dict, e fix de spacing no CTA pro `*` do Ship não cruzar o subtítulo.
+
+### Added
+- **`Dictionary['changelog'].tagLabels`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — record `{ shipped, agent, infra, rfc, hotfix }` traduzido por idioma. PT mantém wordplay de marca: `shipped → shipado` (vs. literal "entregue"). Outras tags ficam universais.
+- **`Dictionary['changelog'].entries[]`** — array indexado por posição (mesma ordem de `CHANGELOG` em constants) com `text` traduzível. Permite EN ter Changelog 100% inglês sem duplicar `date`/`tag` em constants.
+- **`Dictionary['founder'].role`** — cargo do founder ("Cientista da Computação · Fundador" / "Computer Scientist · Founder"). Antes vinha de `FOUNDER.role` em constants (compartilhado, sempre em EN).
+- **EN Changelog completo** — 5 entries traduzidas pra inglês. Antes ficavam em PT mesmo na aba EN (vazamento de escopo da rev-2.4.0).
+
+### Changed
+- **`founder.badge`** PT: `founder · ao vivo` → `fundador · ao vivo`. EN mantém `founder · live`.
+- **`changelog.entries[2]`** PT: "novo módulo de previsão de estoque com forecasting semanal" → "novo módulo de previsão semanal de estoque" (remove anglicismo + redundância).
+- **`changelog.entries[3]`** PT: "Agent de qualificação" → "Agente de qualificação".
+- **`components/changelog.tsx`** — `c.tag` agora roteia por `dict.changelog.tagLabels[c.tag]`. `c.text` substituído por `dict.changelog.entries[i].text`.
+- **`components/founder.tsx`** — exibe `dict.founder.role` em vez de `FOUNDER.role` (constants).
+- **`components/cta.tsx`** — sub `mt-5.5` → `mt-10`. Aumenta gap entre h2 (com `*` superscript do Ship) e parágrafo, evitando a dotted-underline do "ship?" colidir com a 1ª linha do subtítulo em viewports wide. Universal — funciona em PT ("Pronto para ship?*") e EN ("Ready to ship?*").
+
+---
+
 ## [rev-2.4.4] — 2026-05-23
 
 Back dos service cards PT — última leva de termos em inglês que ainda vazavam quando o usuário virava o card pra ver o lado técnico.

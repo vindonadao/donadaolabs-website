@@ -23,7 +23,7 @@ export function Cta({ dict }: CtaProps): React.ReactElement {
             <span className="italic gradient-text">{dict.cta.headlineEm}</span>
           </Ship>
         </h2>
-        <p className="mx-auto mt-5.5 max-w-[560px] text-[18px] text-offwhite/55">
+        <p className="mx-auto mt-10 max-w-[560px] text-[18px] text-offwhite/55">
           {dict.cta.sub}
         </p>
         <a

@@ -55,7 +55,7 @@ export function Founder({ dict }: FounderProps): React.ReactElement {
             {FOUNDER.name}
           </h3>
           <div className="mt-1.5 font-mono text-xs uppercase tracking-widest text-accent">
-            {FOUNDER.role}
+            {dict.founder.role}
           </div>
           <p className="mt-5.5 max-w-[680px] text-base leading-[1.6] text-offwhite">
             {dict.founder.bio1}

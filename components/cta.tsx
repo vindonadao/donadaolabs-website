@@ -1,7 +1,12 @@
 import { Ship } from '@/components/ship';
-import { CTA_FINAL, LINKS, SITE } from '@/lib/constants';
+import { LINKS, SITE } from '@/lib/constants';
+import type { Dictionary } from '@/lib/i18n';
 
-export function Cta(): React.ReactElement {
+interface CtaProps {
+  dict: Dictionary;
+}
+
+export function Cta({ dict }: CtaProps): React.ReactElement {
   return (
     <section
       id="contact"
@@ -13,13 +18,13 @@ export function Cta(): React.ReactElement {
     >
       <div className="mx-auto max-w-[1280px]">
         <h2 className="m-0 font-display text-[clamp(2.5rem,8vw,5.5rem)] font-semibold leading-[1] tracking-tightest text-pretty">
-          {CTA_FINAL.headline}{' '}
-          <Ship>
-            <span className="italic gradient-text">{CTA_FINAL.headlineEm}</span>
+          {dict.cta.headline}{' '}
+          <Ship dict={dict}>
+            <span className="italic gradient-text">{dict.cta.headlineEm}</span>
           </Ship>
         </h2>
-        <p className="mx-auto mt-5.5 max-w-[560px] text-[18px] text-offwhite/55">
-          {CTA_FINAL.sub}
+        <p className="mx-auto mt-10 max-w-[560px] text-[18px] text-offwhite/55">
+          {dict.cta.sub}
         </p>
         <a
           href={LINKS.cal}
@@ -27,10 +32,10 @@ export function Cta(): React.ReactElement {
           rel="noopener noreferrer"
           className="mt-9 inline-block rounded-[8px] bg-gradient-green px-6 py-3.5 text-[15px] font-semibold text-black shadow-glow transition-all duration-200 hover:-translate-y-1 hover:shadow-glow-strong"
         >
-          {CTA_FINAL.button} →
+          {dict.cta.button} →
         </a>
         <div className="mt-4.5 font-mono text-[11px] text-offwhite/55">
-          ou{' '}
+          {dict.cta.orPrefix}{' '}
           <a href={`mailto:${SITE.email}`} className="text-offwhite/55 underline-offset-2 hover:underline">
             {SITE.email}
           </a>

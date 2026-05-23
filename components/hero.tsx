@@ -1,8 +1,13 @@
 import { LiveAgent } from '@/components/live-agent';
 import { Ship } from '@/components/ship';
-import { HERO } from '@/lib/constants';
+import type { Dictionary, Locale } from '@/lib/i18n';
 
-export function Hero(): React.ReactElement {
+interface HeroProps {
+  dict: Dictionary;
+  lang: Locale;
+}
+
+export function Hero({ dict, lang }: HeroProps): React.ReactElement {
   return (
     <section className="relative isolate overflow-hidden border-b border-white/[0.08] pb-16 pt-[120px] md:pb-20 md:pt-[140px]">
       <div
@@ -16,24 +21,24 @@ export function Hero(): React.ReactElement {
       <div className="mx-auto w-full max-w-[960px] px-6 md:px-10">
         <div>
           <div className="mb-6 font-mono text-[11px] uppercase tracking-widest text-accent">
-            {HERO.badge}
+            {dict.hero.badge}
           </div>
           <h1 className="m-0 font-display text-[clamp(2.75rem,8vw,5.125rem)] font-semibold leading-[0.98] tracking-tightest text-pretty">
-            {HERO.headline}
+            {dict.hero.headline}
             <br />
-            that{' '}
-            <Ship>
-              <span className="italic gradient-text">{HERO.headlineEm}</span>
+            {dict.hero.headlineConnector}{' '}
+            <Ship dict={dict}>
+              <span className="italic gradient-text">{dict.hero.headlineEm}</span>
             </Ship>
             <span className="dl-cursor" />
           </h1>
           <p className="mt-7 max-w-[640px] text-[19px] leading-[1.5] text-offwhite/55">
-            {HERO.sub}
+            {dict.hero.sub}
           </p>
         </div>
 
         <div className="mt-14">
-          <LiveAgent />
+          <LiveAgent dict={dict} lang={lang} />
         </div>
       </div>
     </section>

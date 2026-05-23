@@ -2,22 +2,26 @@
 
 import { useState } from 'react';
 import { SectionHeader } from '@/components/section-header';
-import { FAQ } from '@/lib/constants';
+import type { Dictionary } from '@/lib/i18n';
 
-export function Faq(): React.ReactElement {
+interface FaqProps {
+  dict: Dictionary;
+}
+
+export function Faq({ dict }: FaqProps): React.ReactElement {
   const [open, setOpen] = useState(0);
 
   return (
     <section id="faq" className="border-t border-white/[0.08]">
-      <SectionHeader idx="06" eyebrow="FAQ" title="Perguntas que sempre aparecem." />
+      <SectionHeader idx="06" eyebrow={dict.faq.eyebrow} title={dict.faq.title} />
       <div className="px-6 md:px-10">
         <div className="overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal">
-          {FAQ.map((f, i) => {
+          {dict.faq.items.map((f, i) => {
             const isOpen = open === i;
             return (
               <div
                 key={f.q}
-                className={i < FAQ.length - 1 ? 'border-b border-white/[0.08]' : ''}
+                className={i < dict.faq.items.length - 1 ? 'border-b border-white/[0.08]' : ''}
               >
                 <button
                   type="button"

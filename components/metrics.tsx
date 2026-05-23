@@ -1,7 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CASES, METRICS, type Metric } from '@/lib/constants';
+import { CASES } from '@/lib/constants';
+import { METRICS } from '@/lib/constants';
+import type { Metric } from '@/lib/constants';
+import type { Dictionary } from '@/lib/i18n';
+
+interface MetricsProps {
+  dict: Dictionary;
+}
 
 function useCountUp(target: number, durationMs = 1200): number {
   const [value, setValue] = useState(0);
@@ -69,17 +76,21 @@ function MetricCard({ metric }: { metric: Metric }): React.ReactElement {
 }
 
 /**
- * Faixa de Metrics. "Produtos no ar" é derivada de CASES.length — atualiza
- * automaticamente quando você adiciona/remove case em [lib/constants.ts].
- * Os outros 3 cards vêm de METRICS (manual, edita em constants.ts).
+ * Faixa de Metrics. "Produtos no ar"/"Products live" deriva de CASES.length.
+ * Labels/subs vêm do dict; valores e hrefs vêm de constants.METRICS (idioma-neutros).
  */
-export function Metrics(): React.ReactElement {
+export function Metrics({ dict }: MetricsProps): React.ReactElement {
   const productsLive: Metric = {
-    label: 'Produtos no ar',
+    label: dict.metrics.productsLive.label,
     value: String(CASES.length).padStart(2, '0'),
-    sub: 'em produção',
+    sub: dict.metrics.productsLive.sub,
   };
-  const items: readonly Metric[] = [productsLive, ...METRICS];
+  const localized: readonly Metric[] = METRICS.map((m, i) => ({
+    ...m,
+    label: dict.metrics.cards[i]?.label ?? m.label,
+    sub: dict.metrics.cards[i]?.sub ?? m.sub,
+  }));
+  const items: readonly Metric[] = [productsLive, ...localized];
 
   return (
     <section className="grid grid-cols-2 border-b border-white/[0.08] bg-charcoal md:grid-cols-4">

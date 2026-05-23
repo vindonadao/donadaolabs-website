@@ -37,11 +37,19 @@ const ASKED_TTL_SECONDS = 60 * 60 * 24 * 30; // 30 dias
 
 export const runtime = 'nodejs';
 
+type DiagnoseLang = 'pt' | 'en';
+
 interface DiagnoseBody {
   action?: 'diagnose' | 'register-email';
   question?: string;
   email?: string | null;
   clientId?: string;
+  /** Idioma da resposta do Claude. Default 'pt'. Notificações pro founder seguem em PT. */
+  lang?: DiagnoseLang;
+}
+
+function normalizeLang(value: unknown): DiagnoseLang {
+  return value === 'en' ? 'en' : 'pt';
 }
 
 interface ErrorPayload {
@@ -142,9 +150,10 @@ export async function POST(req: NextRequest): Promise<Response> {
   }
 
   // 4) Anthropic
+  const lang = normalizeLang(body.lang);
   let diagnostic: string;
   try {
-    diagnostic = await callAnthropic(question);
+    diagnostic = await callAnthropic(question, lang);
   } catch (e) {
     const msg = (e as Error).message;
     console.error('[anthropic]', msg);
@@ -219,12 +228,24 @@ interface AnthropicResponse {
   error?: { message: string };
 }
 
-async function callAnthropic(question: string): Promise<string> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) throw new Error('ANTHROPIC_API_KEY missing');
-
-  const prompt = [
-    'Você é o agent de diagnóstico do Donadão Labs (lab brasileiro de software AI-first).',
+function buildPrompt(question: string, lang: DiagnoseLang): string {
+  if (lang === 'en') {
+    return [
+      'You are the diagnosis agent for Donadão Labs (a Brazilian AI-first software lab).',
+      'Reply IN ENGLISH, direct tone, no filler. Return in this EXACT format,',
+      'each block on a short line separated by a single line break:',
+      '',
+      'DIAGNOSIS: <1 sentence, ≤18 words>',
+      'SOLUTION: <1 sentence, ≤18 words>',
+      'SUGGESTED STACK: <3-4 items separated by commas>',
+      'TIMELINE: <range in weeks>',
+      'NEXT STEP: <call to action>',
+      '',
+      'Problem: ' + question,
+    ].join('\n');
+  }
+  return [
+    'Você é o agente de diagnóstico do Donadão Labs (lab brasileiro de software IA-first).',
     'Responda EM PORTUGUÊS, tom direto, sem firula. Devolva NESSE FORMATO EXATO,',
     'cada bloco em uma linha curta separada por quebra de linha simples:',
     '',
@@ -236,6 +257,13 @@ async function callAnthropic(question: string): Promise<string> {
     '',
     'Problema: ' + question,
   ].join('\n');
+}
+
+async function callAnthropic(question: string, lang: DiagnoseLang): Promise<string> {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) throw new Error('ANTHROPIC_API_KEY missing');
+
+  const prompt = buildPrompt(question, lang);
 
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',

@@ -1,20 +1,27 @@
 import Link from 'next/link';
+import { LanguageSwitch } from '@/components/language-switch';
 import { LogoMark } from '@/components/logo-mark';
-import { HEADER, LINKS, NAV_LINKS, SITE } from '@/lib/constants';
+import { LINKS, SITE } from '@/lib/constants';
+import type { Dictionary, Locale } from '@/lib/i18n';
 
-export function Nav(): React.ReactElement {
+interface NavProps {
+  dict: Dictionary;
+  lang: Locale;
+}
+
+export function Nav({ dict, lang }: NavProps): React.ReactElement {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.08] bg-ink/85 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 py-3.5 md:px-10">
         <div className="flex items-center gap-7">
-          <Link href="/" className="flex items-center gap-2.5" aria-label={SITE.name}>
+          <Link href={`/${lang}`} className="flex items-center gap-2.5" aria-label={SITE.name}>
             <LogoMark />
             <span className="font-display text-base font-semibold tracking-brand-normal">
               donadão<span className="text-accent">/</span>labs
             </span>
           </Link>
           <div className="hidden items-center gap-5 md:flex">
-            {NAV_LINKS.map((link) => (
+            {dict.nav.links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -36,15 +43,16 @@ export function Nav(): React.ReactElement {
               className="h-1.5 w-1.5 animate-dl-pulse rounded-full bg-accent"
               style={{ boxShadow: '0 0 8px #00F57A' }}
             />
-            {HEADER.status}
+            {dict.nav.statusPill}
           </div>
+          <LanguageSwitch lang={lang} label={dict.nav.langSwitchLabel} />
           <a
             href={LINKS.cal}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-[6px] bg-gradient-green px-3.5 py-2 text-[13px] font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow"
           >
-            Agendar diagnóstico →
+            {dict.nav.ctaButton}
           </a>
         </div>
       </div>

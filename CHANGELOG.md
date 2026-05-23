@@ -15,6 +15,177 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.4.7] — 2026-05-23
+
+Live Agent (diagnóstico via Claude) ganha tradução EN **completa** — UI inteira + system prompt do Claude. Antes vazava 100% em PT na aba EN (UI e resposta).
+
+### Added
+- **`Dictionary['agent']`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — ~25 strings UI consolidadas: `label`, `placeholder`, `placeholderDisabled`, `btnLabel`, `btnLoading`, `analyzing`, `examples[]`, `exampleAriaTemplate`, `emailInputPlaceholder`, `emailGate.{eyebrowPlan, eyebrowContinue, title, sub, cta, ctaLoading, success, altQuestion, altButton}`, `blockedMessage`, `dailyCap.{eyebrow, message, button}`, `rateLimit.{eyebrow, message, altQuestion, altButton}`, `errorOffline`, `privacy`.
+- **EN agent strings** — examples em inglês ("i have a shopify e-commerce…"), email gate ("Want the full plan + roadmap…"), errors ("ERROR: agent offline…"), LGPD privacy nota traduzida.
+- **`exampleAriaTemplate`** — template com placeholder `{example}` (replaced inline). Antes era string interpolada hardcoded em PT no componente.
+
+### Changed
+- **`components/live-agent.tsx`** — recebe `dict: Dictionary` como prop, consome `dict.agent.*` em vez de `AGENT.*` (constants) e strings hardcoded. ~15 strings que estavam dentro do JSX viraram dict-driven.
+- **`components/hero.tsx`** — passa `dict={dict}` pra `<LiveAgent />`.
+- **PT `agent.label`**: `agent diagnóstico` → `agente diagnóstico`.
+- **PT `agent.errorOffline`** / `dailyCap.message`: `agent offline/já rodou` → `agente offline/já rodou`.
+
+### Added (API)
+- **`/api/diagnose` aceita `lang: 'pt' | 'en'`** no payload ([app/api/diagnose/route.ts](app/api/diagnose/route.ts)). Default `pt` (mantém compat).
+- **`buildPrompt(question, lang)`** — split do system prompt do Claude em duas variantes:
+  - PT: `Você é o agente de diagnóstico do Donadão Labs (lab brasileiro de software IA-first)... DIAGNÓSTICO / SOLUÇÃO / STACK SUGERIDA / PRAZO / PRÓXIMO PASSO`
+  - EN: `You are the diagnosis agent for Donadão Labs... DIAGNOSIS / SOLUTION / SUGGESTED STACK / TIMELINE / NEXT STEP`
+- **`normalizeLang(value)`** — sanitiza input do client. Qualquer valor != 'en' vira 'pt'. Defensive contra payload manipulado.
+
+### Changed (API/component)
+- **`components/live-agent.tsx`** — `CallPayload` ganha `lang: Locale`. Passado no POST `/api/diagnose`. UI inteira agora dict-driven (~25 strings UI consolidadas em `dict.agent.*`).
+- **`components/hero.tsx`** — recebe `lang: Locale` como prop, propaga pra `<LiveAgent lang={lang} dict={dict} />`.
+- **`app/[lang]/page.tsx`** — passa `lang={params.lang}` pro `<Hero />` (antes só Nav recebia).
+
+### Notes
+- **Output parser do AgentOutput** (regex `^([A-ZÀ-Ú\s]+):\s*(.+)$`) funciona em ambos idiomas — labels PT (`DIAGNÓSTICO`, `SOLUÇÃO`) com acentos via `À-Ú` range, e EN (`DIAGNOSIS`, `SOLUTION`) ASCII puro.
+- **Notificações pro founder** (Telegram + WhatsApp + Email) seguem em PT — quem recebe é o founder brasileiro, idioma da resposta do Claude não importa pra esse canal.
+- **`AGENT.apiEndpoint`** em `lib/constants.ts` permanece — config técnica idioma-neutra.
+
+---
+
+## [rev-2.4.6] — 2026-05-23
+
+Cases header + header/footer status — última leva de termos em inglês visíveis no PT (Cases, mockup, live, build).
+
+### Changed
+- **`cases.eyebrow`** PT: `Cases · 2025–2026` → `Projetos · 2025–2026`. Alinha com o nav PT (`Projetos`) — categoria fica consistente em todo o site.
+- **`cases.title`** PT: `Quatro produtos rodando. Sem mockup.` → `Quatro produtos rodando. Sem firula.`. Brand voice direto/brasileiro, casa com `Sem teatro` (approach) e `Sem maquiagem` (changelog) e o "sem promessa furada" do Hero.
+- **`cases.liveLabel`** PT: `live` → `no ar`. Selo nos cards (verde, ● bolinha pulsante).
+- **`nav.statusPill`** PT: `live · operando · 2 slots jul/26` → `no ar · operando · 2 slots jul/26`. Pill verde no canto direito do header.
+- **`footer.build`** PT: `build · 2026.05.13 · live` → `versão · 2026.05.13 · no ar`.
+
+### Notes
+- **Padrão "live" em PT:** `no ar` em contextos técnicos (header, footer, cases). `ao vivo` mantido só no `founder.badge` (mais humano/emocional, casa com "founder · live streaming").
+- **EN intocado** — `live`, `build`, `Cases`, `mockup` continuam naturais em inglês.
+
+---
+
+## [rev-2.4.5] — 2026-05-23
+
+Changelog tags & entries traduzidas, Founder role no dict, e fix de spacing no CTA pro `*` do Ship não cruzar o subtítulo.
+
+### Added
+- **`Dictionary['changelog'].tagLabels`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — record `{ shipped, agent, infra, rfc, hotfix }` traduzido por idioma. PT mantém wordplay de marca: `shipped → shipado` (vs. literal "entregue"). Outras tags ficam universais.
+- **`Dictionary['changelog'].entries[]`** — array indexado por posição (mesma ordem de `CHANGELOG` em constants) com `text` traduzível. Permite EN ter Changelog 100% inglês sem duplicar `date`/`tag` em constants.
+- **`Dictionary['founder'].role`** — cargo do founder ("Cientista da Computação · Fundador" / "Computer Scientist · Founder"). Antes vinha de `FOUNDER.role` em constants (compartilhado, sempre em EN).
+- **EN Changelog completo** — 5 entries traduzidas pra inglês. Antes ficavam em PT mesmo na aba EN (vazamento de escopo da rev-2.4.0).
+
+### Changed
+- **`founder.badge`** PT: `founder · ao vivo` → `fundador · ao vivo`. EN mantém `founder · live`.
+- **`changelog.entries[2]`** PT: "novo módulo de previsão de estoque com forecasting semanal" → "novo módulo de previsão semanal de estoque" (remove anglicismo + redundância).
+- **`changelog.entries[3]`** PT: "Agent de qualificação" → "Agente de qualificação".
+- **`components/changelog.tsx`** — `c.tag` agora roteia por `dict.changelog.tagLabels[c.tag]`. `c.text` substituído por `dict.changelog.entries[i].text`.
+- **`components/founder.tsx`** — exibe `dict.founder.role` em vez de `FOUNDER.role` (constants).
+- **`components/cta.tsx`** — sub `mt-5.5` → `mt-10`. Aumenta gap entre h2 (com `*` superscript do Ship) e parágrafo, evitando a dotted-underline do "ship?" colidir com a 1ª linha do subtítulo em viewports wide. Universal — funciona em PT ("Pronto para ship?*") e EN ("Ready to ship?*").
+
+---
+
+## [rev-2.4.4] — 2026-05-23
+
+Back dos service cards PT — última leva de termos em inglês que ainda vazavam quando o usuário virava o card pra ver o lado técnico.
+
+### Changed
+- **`services.items[0]`** (Apps): `Apps from scratch` → `Apps do zero`, `Legacy rescue` → `Resgate de legado`, body atualizado, bullet `Deploy em 2–6 semanas` → `Entrega em 2–6 semanas`.
+- **`services.items[1]`** (CRM/SaaS): body `Queries em ms, dashboards reais` → `Consultas em ms, painéis reais`. Bullets idem.
+- **`services.items[3]`** (Infra): `Full setup` → `Setup completo`, `Bundled` (techLabel) → `Incluso`, body `monitoramento bundled` → `monitoramento inclusos`.
+
+### Notes
+- **Mantidos em inglês intencionalmente** (jargão tech adotado em PT BR): `Full-stack`, `stack frankenstein`, `Multi-tenant`, `SaaS`, `CRM`, `DNS`, `CI/CD`, `SSL`, `SLA`, `Backups`. Trocar esses faria o copy soar acadêmico/distante do mercado.
+- **`services.items[2]`** (IA agents) já estava 100% PT desde rev-2.4.3.
+
+---
+
+## [rev-2.4.3] — 2026-05-23
+
+PT vira PT pra valer — substitui todas as ocorrências visíveis de **AI** por **IA** e adiciona tooltip "ship*" também no pillar 02 (Build).
+
+### Added
+- **`Dictionary['ship'].short`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — variante resumida do tooltip pra contextos secundários (pillars, cards, callouts). Componente `Ship` ganha prop `variant?: 'full' | 'short'` (default `full`).
+- **`Dictionary['approach'].items[].titleShipWord?`** — quando presente, a palavra dentro de `title` vira `<Ship variant="short">{word}</Ship>` (com gradient italic). Habilitado no pillar 02 (`titleShipWord: 'ships'` em PT e EN).
+- **`Dictionary['meta'].titleTagline`** — tagline curto exibido em `<title>`. Antes vinha de `SITE.tagline` (compartilhado). Agora idioma-aware: PT = "Software de IA que ships pra valer.", EN = "AI software that actually ships."
+- **`components/approach.tsx::renderPillarTitle()`** — splita o title na `titleShipWord` e injeta `<Ship variant="short">`. Fallback pra texto puro se a palavra não existir no title.
+
+### Changed
+- **`lib/i18n/pt.ts`** — todas as ocorrências visíveis de **AI** → **IA**:
+  - `hero.badge`: "AI Software Lab" → "IA Software Lab"
+  - `hero.headline`: "AI software" → "Software de IA"
+  - `hero.headlineConnector`: "that" → "que" (gramática casa com "Software de IA que ships")
+  - `meta.description`: "Lab AI-first … AI agents" → "Lab IA-first … agentes de IA"
+  - `services.items[2]` (AI agents card): "Automação com AI" → "Automação com IA", "AI agents" → "Agentes de IA", techBody/techLabel idem
+  - `approach.items[2].title`: "Camada de AI agents" → **"Camada de agentes de IA"**
+  - `approach.items[2].body`: "agents que automatizam … AI que tira trabalho" → "agentes que automatizam … IA que tira trabalho"
+  - `approach.sub`: "Quase tudo em AI hoje" → "Quase tudo em IA hoje"
+  - `founder.bio1`, `founder.bio2`: "AI agents" → "agentes de IA"
+  - `faq.items[1].a`: "AI agent layer" → "Camada de agentes de IA"
+- **`app/[lang]/layout.tsx`** — `<title>` agora usa `dict.meta.titleTagline` em vez de `SITE.tagline`. Pro Google e pra aba do browser, cada idioma vira seu próprio tagline.
+
+### Notes
+- **Pillar 02 "Software que ships"** — agora exibe `ships*` com tooltip (gradient italic, hover/click revela definição resumida). Mesmo tratamento usado no Hero e no CTA, mas com versão curta da explicação.
+- **Tooltip resumido vs completo**: full = "Software no ar, funcionando, gerando venda. Não é demo, não é promessa, não é projeto que trava no meio." / short = "Software no ar, gerando venda."
+- **Mantidos em inglês intencionalmente** (termos de SEO universais, fora do copy visível):
+  - `metadata.keywords` em `app/[lang]/layout.tsx` (AI software, AI agents, AI development)
+  - `JSON-LD knowsAbout` (AI software, AI agents) — schema.org pro Google entender o nicho
+  - **EN dictionary** segue como tá — "AI software / AI agents" são naturalmente em inglês
+
+---
+
+## [rev-2.4.2] — 2026-05-23
+
+Nav PT despinglesa — `Cases / Founder / Changelog / FAQ` viram `Projetos / Fundador / Atualizações / Dúvidas`. Visualmente, o nav PT vinha misturando português e jargão técnico em inglês.
+
+### Changed
+- **`lib/i18n/pt.ts`** — labels do nav PT traduzidos. Âncoras (`#cases`, `#founder`, etc) **não mudam** porque os IDs dos sections continuam neutros (mantém PT e EN apontando pros mesmos anchors).
+
+### Notes
+- Nav EN segue como estava (`Approach · Cases · Founder · Changelog · FAQ`) — palavras já em inglês, sem mudança.
+
+---
+
+## [rev-2.4.1] — 2026-05-23
+
+Cards de Cases ganham tradução EN. Visualmente ficava estranho ter os 4 cards em PT no meio da home internacional.
+
+### Added
+- **`Dictionary['cases'].items[]`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — array indexado por posição com `kind`, `title`, `desc`, `metric` traduzíveis. Campos neutros (num, client, href, internal, stack, logo) permanecem em [lib/constants.ts](lib/constants.ts).
+- **`Dictionary['cases'].internalAria`** — aria-label específico do card interno ("sistema interno, sem link público" / "internal system, no public link"). Antes vinha hardcoded em PT no JSX.
+- **Tradução EN dos 4 cases**: Gabriel Nabi (Pet Photography), Diskat Presentes (3D printing e-commerce), Diskat Ops (internal operations dashboard), Cali Garage (auto repair landing).
+
+### Changed
+- **`components/cases.tsx`** — função `localizeCase(c, item)` funde `CASES[i]` (constants) com `dict.cases.items[i]` (i18n). Mantém ordem e a chave `meta` (legado).
+
+---
+
+## [rev-2.4.0] — 2026-05-23
+
+Suporte bilíngue PT/EN com rotas dedicadas (`/pt`, `/en`) para atrair interessados internacionais — investidor, cliente gringo, recruiter — sem perder SEO em PT.
+
+### Added
+- **`lib/i18n/`** — nova estrutura de dicionários tipados. `config.ts` (locales + defaults), `types.ts` (contrato `Dictionary`), `pt.ts`, `en.ts`, `index.ts` (loader `getDictionary(lang)`). PT segue como `DEFAULT_LOCALE`.
+- **`app/[lang]/`** — segmento dinâmico vira o ROOT layout do App Router. `[lang]/layout.tsx` define `<html lang>` dinâmico (`pt-BR`/`en-US`), metadata com `alternates.languages` + `openGraph.locale`/`alternateLocale` por idioma. `[lang]/page.tsx` consome o dict server-side e propaga via props.
+- **`middleware.ts`** — redireciona `/` → `/pt` (307). Detecta locale no path, bypass de `/api/*`, `/brand/*`, `/clients/*`, `/sitemap.xml`, `/robots.txt` e static assets.
+- **`components/language-switch.tsx`** — toggle no nav (server-side `<Link>`, sem JS). Em `/pt` mostra "EN", em `/en` mostra "PT". Escondido em mobile (`md:inline-flex`) — voltará via menu mobile em rev-2.4.1 se necessário.
+- **Tradução EN** — todo copy estático: Hero, Metrics labels/subs, Stack label, Services (4 itens × accessible/technical/bullets), Approach (3 pillars), Cases section header + labels live/internal, Manifesto, Changelog header, Founder eyebrow/title/sub/bio1/bio2/badge, FAQ (5 entradas Q&A), CTA, Ship tooltip, Footer, Nav status pill + CTA, 404. Hero `actually ships` permanece intencionalmente em inglês nos dois idiomas (wordplay de marca).
+- **`app/sitemap.ts`** — agora inclui `/pt` (priority 1) e `/en` (priority 0.9), cada um com `alternates.languages` (`pt-BR`, `en-US`, `x-default=pt`) para `<xhtml:link rel="alternate" hreflang="…">` no XML.
+
+### Changed
+- **Todos os componentes consumidores de copy** — passaram a receber `dict: Dictionary` como prop server-side. Componentes afetados: `nav`, `hero`, `metrics`, `stack`, `services`, `service-card`, `approach`, `cases`, `manifesto`, `changelog`, `founder`, `faq`, `cta`, `ship`, `footer`. ServiceCard refatorado para receber `item` + `num` (string formatada) + `labels` (3 strings UI), removendo dependência de `Service.id` que não existia no dict.
+- **`app/[lang]/not-found.tsx`** — substitui `app/not-found.tsx`. Copy traduzido para EN como default (visitor perdido pode estar em qualquer idioma; o 404 vive dentro do segment).
+- **Constants que SOBRARAM em `lib/constants.ts`** (idioma-neutros): `SITE`, `LINKS`, `HEADER`, `THROUGHPUT` (chart), `METRICS` (valores + hrefs; labels/subs vêm do dict), `CLIENT_LOGOS`, `CASES` (mantido em PT por escolha de escopo — Cases não traduzidos nesta rev), `STACK_CHIPS`, `CHANGELOG`, `FOUNDER` (name/role/photo — bio veio pro dict), `AGENT` (Live Agent fica em PT inteiramente nesta rev).
+
+### Notes
+- **Escopo intencional do EN**: copy estático (Hero, Services, FAQ, Manifesto, CTA, etc). Cases (cards), Changelog (entradas históricas), Live Agent (UI + API `/api/diagnose`) ficam em PT — agendado para rev-2.5.x se necessário.
+- **SEO duplo**: Google indexa `/pt` e `/en` separadamente via hreflang. OG card e meta description diferem por idioma. Link direto pra LinkedIn: `donadaolabs.com/en`.
+- **`<html lang>` dinâmico**: o App Router exige que `<html>` esteja num root layout único. A solução foi mover `app/layout.tsx` → `app/[lang]/layout.tsx` (esse vira ROOT) e usar middleware pra redirecionar `/`. Não há mais `app/layout.tsx` na raiz.
+- **Live Agent permanece em PT**: o `/api/diagnose` recebe pergunta em qualquer idioma e o Claude responde em PT. Ajuste por idioma exigiria parâmetro `lang` na API + system prompt bilíngue (fora do escopo desta rev).
+
+---
+
 ## [rev-2.3.2] — 2026-05-23
 
 Refresh editorial da faixa Metrics — remove valores aspiracionais/que vencem no calendário e amarra "Produtos no ar" à fonte de verdade (CASES).

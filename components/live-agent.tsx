@@ -136,6 +136,7 @@ export function LiveAgent(): React.ReactElement {
   const [emailLoading, setEmailLoading] = useState(false);
   const [emailSuccess, setEmailSuccess] = useState(false);
   const clientId = useRef('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     clientId.current = getClientId();
@@ -229,6 +230,7 @@ export function LiveAgent(): React.ReactElement {
         className="mb-3 flex gap-2"
       >
         <input
+          ref={inputRef}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -257,8 +259,9 @@ export function LiveAgent(): React.ReactElement {
               type="button"
               onClick={() => {
                 setInput(ex);
-                void run(ex);
+                inputRef.current?.focus();
               }}
+              aria-label={`Preencher campo com exemplo: ${ex}. Você ainda precisa clicar em rodar diagnóstico para enviar.`}
               className="rounded-full border border-dashed border-white/[0.08] px-2.5 py-1.5 font-mono text-[11px] text-offwhite/55 transition-all duration-200 hover:border-solid hover:border-accent hover:text-accent"
             >
               ↳ {ex}

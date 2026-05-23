@@ -15,6 +15,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.3.1] — 2026-05-23
+
+### Fixed
+- **`components/live-agent.tsx`** — Click nos chips de exemplo (`↳ tenho um e-commerce…` etc) disparava o agent imediatamente via `void run(ex)` no `onClick`. Resultado: clique acidental queimava a cota do IP/clientId sem o visitante ter chance de revisar ou editar o texto. Fix: removida a chamada `run(ex)`; agora o click apenas `setInput(ex)` + foca o input via `inputRef.current?.focus()`. Visitante precisa clicar explicitamente em **RODAR DIAGNÓSTICO** para enviar.
+- Adicionado `aria-label` descritivo nos chips deixando claro pra screen-readers que clicar apenas preenche, não envia.
+
+---
+
 ## [rev-2.3.0] — 2026-05-21
 
 Implementação do **Path A do audit do Diskat Ops** — resolve o card de case
@@ -277,7 +285,8 @@ First public release of donadaolabs.com.
 ### Story
 - `docs/stories/1.1.landing-v1.story.md` (Done)
 
-[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.3.0...HEAD
+[Unreleased]: https://github.com/vindonadao/donadaolabs-website/compare/rev-2.3.1...HEAD
+[rev-2.3.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.3.1
 [rev-2.3.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.3.0
 [rev-2.2.1]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.2.1
 [rev-2.2.0]: https://github.com/vindonadao/donadaolabs-website/releases/tag/rev-2.2.0

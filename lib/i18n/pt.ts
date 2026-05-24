@@ -24,8 +24,8 @@ export const pt: Dictionary = {
   hero: {
     badge: 'IA Software Lab · ao vivo · 2026',
     headline: 'Software de IA',
-    headlineEm: 'ships',
-    headlineConnector: 'que realmente',
+    headlineEm: 'realmente ships',
+    headlineConnector: 'que',
     sub: 'Construímos sites, sistemas e automações pro seu negócio crescer. Você fala o problema, a gente entrega rodando — sem promessa furada.',
   },
   metrics: {

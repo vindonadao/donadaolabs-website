@@ -17,15 +17,15 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [rev-2.5.1] — 2026-05-24
 
-Hero PT: `actually` → `realmente` (split com `ships` preservando a marca).
+Hero PT: `actually` → `realmente`. Mantém padrão EN — todo o "realmente ships" com gradient verde + tooltip (igual EN tem "actually ships" assinado).
 
 ### Changed
-- **`hero.headlineConnector`** PT: `que` → `que realmente`. Conector ganha o advérbio.
-- **`hero.headlineEm`** PT: `actually ships` → `ships`. Só a palavra-marca fica com `<Ship>` (gradient italic + tooltip).
-- Resultado visual: "Software de IA / que realmente **ships***" — "realmente" em texto normal, `ships*` mantém destaque de marca.
+- **`hero.headlineEm`** PT: `actually ships` → `realmente ships`. Toda a expressão segue dentro do `<Ship>` (gradient italic + tooltip).
+- **`hero.headlineConnector`** PT: mantém `que` (símétrico com EN `that`).
+- Resultado visual: "Software de IA / que **realmente ships***" — `realmente ships` inteiro com cor verde gradient da assinatura + tooltip ao hover/click.
 
 ### Notes
-- **EN intocado** — segue `headlineEm: 'actually ships'` (puro inglês, sem split necessário).
+- **EN intocado** — segue `headlineEm: 'actually ships'`. Padrão simétrico entre os dois idiomas.
 - **Title `<title>` PT** continua `Software de IA que ships pra valer.` — não perfeitamente alinhado com headline ("realmente" vs "pra valer"), mas ambos puxam a mesma ideia. Unificar fica como decisão editorial futura se necessário.
 
 ---

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { AGENT, LINKS } from '@/lib/constants';
+import { event as gaEvent } from '@/lib/gtag';
 import type { Dictionary, Locale } from '@/lib/i18n';
 
 type BlockKind = '' | 'cap' | 'rate';
@@ -176,6 +177,7 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
         lang,
       });
       setOutput(data.diagnostic ?? '');
+      gaEvent('agent_run', { lang, has_email: Boolean(persisted.email) });
       const next: AgentState = { ...persisted, askedOnce: true };
       setPersisted(next);
       saveState(next);

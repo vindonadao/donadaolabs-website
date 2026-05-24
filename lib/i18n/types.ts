@@ -190,4 +190,9 @@ export interface Dictionary {
     ctaHome: string;
     ctaCases: string;
   };
+  consent: {
+    message: string;
+    accept: string;
+    reject: string;
+  };
 }

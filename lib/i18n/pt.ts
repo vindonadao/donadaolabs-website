@@ -287,4 +287,10 @@ export const pt: Dictionary = {
     ctaHome: 'Voltar pra home',
     ctaCases: 'Ver os cases',
   },
+  consent: {
+    message:
+      'Usamos cookies pra entender o uso do site e melhorar a experiência. Conforme LGPD.',
+    accept: 'Aceitar',
+    reject: 'Recusar',
+  },
 };

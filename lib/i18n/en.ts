@@ -169,11 +169,11 @@ export const en: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
-      { text: 'UI redesign · service cards with 3D flip + purple/green visual hierarchy established.' },
-      { text: 'Studio email migrated to its own domain — lead@donadaolabs.com via Resend + catch-all.' },
-      { text: 'Diskat Ops · new weekly inventory forecasting module.' },
+      { text: 'GA4 + Consent Mode v2 + LGPD banner set up — ready for paid traffic.' },
+      { text: 'Bilingual site — /pt and /en routes live with dual SEO. Live Agent replies in visitor’s language.' },
+      { text: 'Quituteria da Fafá · new client · MVP e-commerce + WhatsApp checkout live.' },
+      { text: 'Diskat Presentes · Cowork security audit completed · RLS lockdown + LGPD + GA4 with checkout tracking.' },
       { text: 'WhatsApp qualification agent live in production — 38s/lead average.' },
-      { text: 'Internal mesh migrated to Cloudflare Tunnel · -41% average latency.' },
     ],
   },
   founder: {

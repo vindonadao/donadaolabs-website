@@ -312,11 +312,11 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
-  { date: '2026-05-19', tag: 'shipped', text: 'Redesign UI · service cards com flip 3D + hierarquia visual roxo/verde estabelecida.' },
-  { date: '2026-05-19', tag: 'infra',   text: 'Email do estúdio migrado pro domínio próprio — lead@donadaolabs.com via Resend + catch-all.' },
-  { date: '2026-05-09', tag: 'shipped', text: 'Diskat Ops · novo módulo de previsão de estoque com forecasting semanal.' },
-  { date: '2026-05-02', tag: 'agent',   text: 'Agent de qualificação no WhatsApp em produção — média 38s/lead.' },
-  { date: '2026-04-24', tag: 'infra',   text: 'Migração da malha interna pra Cloudflare Tunnel · -41% latência média.' },
+  { date: '2026-05-24', tag: 'infra',   text: 'GA4 + Consent Mode v2 + banner LGPD configurados — pronto pra tráfego pago.' },
+  { date: '2026-05-23', tag: 'shipped', text: 'Site bilíngue — rotas /pt e /en ao vivo com SEO duplo. Live Agent responde no idioma do visitante.' },
+  { date: '2026-05-22', tag: 'shipped', text: 'Quituteria da Fafá · novo cliente · MVP e-commerce + checkout WhatsApp ao vivo.' },
+  { date: '2026-05-21', tag: 'infra',   text: 'Diskat Presentes · auditoria Cowork concluída · RLS lockdown + LGPD + GA4 com tracking de checkout.' },
+  { date: '2026-05-02', tag: 'agent',   text: 'Agente de qualificação no WhatsApp em produção — média 38s/lead.' },
 ] as const;
 
 export interface FAQEntry {

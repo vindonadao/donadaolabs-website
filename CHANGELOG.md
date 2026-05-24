@@ -17,16 +17,23 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [rev-2.5.1] — 2026-05-24
 
-Hero PT: `actually` → `realmente`. Mantém padrão EN — todo o "realmente ships" com gradient verde + tooltip (igual EN tem "actually ships" assinado).
+Hero PT (`actually` → `realmente`) + Changelog público refrescado com trabalhos dos últimos dias (novo cliente + auditorias + i18n + analytics).
 
 ### Changed
-- **`hero.headlineEm`** PT: `actually ships` → `realmente ships`. Toda a expressão segue dentro do `<Ship>` (gradient italic + tooltip).
-- **`hero.headlineConnector`** PT: mantém `que` (símétrico com EN `that`).
-- Resultado visual: "Software de IA / que **realmente ships***" — `realmente ships` inteiro com cor verde gradient da assinatura + tooltip ao hover/click.
+- **`hero.headlineEm`** PT: `actually ships` → `realmente ships`. Toda a expressão segue dentro do `<Ship>` (gradient italic + tooltip). Padrão simétrico com EN `actually ships`.
+- **`hero.headlineConnector`** PT: mantém `que` (simétrico com EN `that`).
+- **Changelog público (5 entries)** — atualizado pra refletir movimento recente do estúdio:
+  1. `2026-05-24` infra · GA4 + Consent Mode v2 + banner LGPD (donadaolabs.com)
+  2. `2026-05-23` shipped · Site bilíngue PT/EN com SEO duplo + Live Agent em 2 idiomas
+  3. `2026-05-22` shipped · **Quituteria da Fafá** (novo cliente · MVP e-commerce + checkout WhatsApp)
+  4. `2026-05-21` infra · **Diskat Presentes** (auditoria Cowork · RLS + LGPD + GA4)
+  5. `2026-05-02` agent · Agente WhatsApp em produção (38s/lead) — mantida da rev anterior, vende o produto principal
+- **Removidas:** Redesign UI rev-2.1.0 (2026-05-19), email setup (2026-05-19), Diskat Ops forecasting (2026-05-09), Cloudflare Tunnel (2026-04-24). 4 entries antigas saem pra dar espaço pras novas, mantendo padrão de 5 totais (rev-2.2.1).
+- **EN dictionary** também recebeu as 5 entries traduzidas — simétrico com PT.
 
 ### Notes
-- **EN intocado** — segue `headlineEm: 'actually ships'`. Padrão simétrico entre os dois idiomas.
-- **Title `<title>` PT** continua `Software de IA que ships pra valer.` — não perfeitamente alinhado com headline ("realmente" vs "pra valer"), mas ambos puxam a mesma ideia. Unificar fica como decisão editorial futura se necessário.
+- **Datas estimadas** pra entries 3 e 4 (Quituteria + Diskat audit) — user pode ajustar via PR direto em `lib/constants.ts` se necessário.
+- **Changelog vira vitrine** do estúdio, não só do donadaolabs.com. Mostra clientes reais sendo movimentados, não só features internas.
 
 ---
 

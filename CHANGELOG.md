@@ -15,6 +15,35 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.5.0] — 2026-05-24
+
+GA4 + Consent Mode v2 + banner LGPD — wiring de analytics pronto pra tráfego pago (Google Ads/LinkedIn/Meta). Sem `NEXT_PUBLIC_GA_MEASUREMENT_ID` o código fica inerte (zero impact até ligar).
+
+### Added
+- **`lib/gtag.ts`** — wrapper tipado pro `window.gtag`. Funções: `pageview(url)`, `event(name, params)`, `setConsent(granted)`. Guard `isGAEnabled()` baseado em `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+- **`components/google-analytics.tsx`** ([components/google-analytics.tsx](components/google-analytics.tsx)) — injeta gtag.js + bootstrap Consent Mode v2 (default `denied` em todos os 4 storage types: ad_storage, ad_user_data, ad_personalization, analytics_storage). Pageview tracker via `usePathname` + `useSearchParams` (App Router não tem `router.events`).
+- **`components/consent-banner.tsx`** — banner LGPD bottom-left, dismissible, persiste decisão em `localStorage['dl_consent_v1']`. Não renderiza se GA não configurado. Estados: `null` → mostra banner; `'granted'` → atualiza consent no mount; `'denied'` → mantém default denied.
+- **`Dictionary['consent']`** ([lib/i18n/types.ts](lib/i18n/types.ts)) — `{ message, accept, reject }` traduzidos. PT: "Usamos cookies pra entender o uso do site e melhorar a experiência. Conforme LGPD." EN: "We use cookies to understand site usage and improve experience. Per LGPD/GDPR."
+- **Evento custom `agent_run`** — disparado em [components/live-agent.tsx](components/live-agent.tsx) após resposta do Claude voltar com sucesso. Params: `{ lang: 'pt' | 'en', has_email: boolean }`. Permite filtrar quem rodou diagnóstico (mid-funnel) — futura conversão pra Google Ads.
+
+### Changed
+- **`app/[lang]/layout.tsx`** — `<GoogleAnalytics />` + `<ConsentBanner dict={...} />` adicionados ao `<body>` (depois dos `children`, antes do Vercel Analytics). Mantém Vercel Analytics + Speed Insights operando em paralelo.
+
+### Configuration (action needed)
+1. **Criar propriedade GA4** em [analytics.google.com](https://analytics.google.com) na conta `donadaolabs@gmail.com`.
+2. **Pegar Measurement ID** (formato `G-XXXXXXXXXX`) em Admin → Data Streams → Web.
+3. **Adicionar `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX`** em:
+   - `.env.local` (dev)
+   - Vercel env vars (Production + Preview + Development)
+4. Redeploy. Sem o env var, `<GoogleAnalytics />` retorna `null` e `<ConsentBanner />` não mostra banner — zero impacto.
+
+### Notes
+- **Privacy stance:** Consent Mode v2 default denied = LGPD compliance. Visitantes que **recusam** ainda contribuem pra agregados via "consent pings" cookieless (modelagem GA4), mas sem identificação individual ou remarketing.
+- **Não conflita com Vercel Analytics** — os dois rodam lado a lado. Vercel = pageviews privacy-first; GA4 = funnel + atribuição + Ads integration.
+- **Tráfego pago next steps**: depois do baseline de 2-4 semanas, ligar Google Ads + criar conversion event `agent_run` no GA4 (Admin → Events → Mark as conversion). Eventos adicionais recomendados pra expansão futura: `click_cta_cal` (botões de cal.com), `agent_email_captured` (email gate), `switch_language` (toggle PT/EN).
+
+---
+
 ## [rev-2.4.7] — 2026-05-23
 
 Live Agent (diagnóstico via Claude) ganha tradução EN **completa** — UI inteira + system prompt do Claude. Antes vazava 100% em PT na aba EN (UI e resposta).

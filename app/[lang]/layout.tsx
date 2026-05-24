@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Inter, Inter_Tight, JetBrains_Mono } from 'next/font/google';
+import { ConsentBanner } from '@/components/consent-banner';
+import { GoogleAnalytics } from '@/components/google-analytics';
 import { LINKS, SITE } from '@/lib/constants';
 import {
   HTML_LANG,
@@ -153,6 +155,8 @@ export default function LangLayout({ children, params }: LangLayoutProps): React
       </head>
       <body className="bg-ink text-offwhite antialiased">
         {children}
+        <GoogleAnalytics />
+        <ConsentBanner dict={getDictionary(params.lang as Locale)} />
         <Analytics />
         <SpeedInsights />
       </body>

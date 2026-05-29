@@ -16,6 +16,7 @@ export const en: Dictionary = {
       { label: 'Founder', href: '#founder' },
       { label: 'Changelog', href: '#changelog' },
       { label: 'FAQ', href: '#faq' },
+      { label: 'Brand', href: '/brand' },
     ],
     statusPill: 'live · operating · 2 slots jul/26',
     ctaButton: 'Book a diagnosis →',

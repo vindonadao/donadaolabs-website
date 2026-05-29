@@ -15,6 +15,23 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.6.0] — 2026-05-29
+
+Nova rota pública `/brand` publica o brand book v2 (`rev-0.2`) como página dedicada — header + preview em `<iframe>` + download direto. O PDF fica acessível por uma URL estável (`/brand/latest.pdf`) que aponta sempre para a revisão canônica atual, então ao subir uma `rev-0.3` basta trocar o destino no rewrite. OG card próprio (`article`, 1200×630) pra compartilhamento. Link **Brand** entra no nav PT/EN.
+
+### Added
+- **`app/brand/page.tsx`** — página da rota `/brand`: apresentação do brand book v2, preview embed do PDF e download.
+- **`app/brand/layout.tsx`** — metadata da rota: `og:type` `article`, OG card dedicado (`/brand/og.png`, 1200×630), título/descrição próprios.
+- **`public/brand/brand-book-rev-0.2.pdf`** — brand book v2 (`rev-0.2`), 1.3 MB. Versão canônica atual servida em `/brand/latest.pdf`.
+- **`public/brand/og.png`** — OG card da rota `/brand` (1200×630).
+- **Rewrite `/brand/latest.pdf` → `/brand/brand-book-rev-0.2.pdf`** em `next.config.mjs` — URL pública estável e independente da revisão. Próxima rev só troca o destino.
+- **Link `Brand` no nav** (PT e EN) — aponta para `/brand`.
+
+### Changed
+- **`X-Frame-Options`** `DENY` → `SAMEORIGIN` em `next.config.mjs` — permite o preview do brand book em `<iframe>` na própria origem. Embeds de terceiros continuam bloqueados (proteção contra clickjacking mantida).
+
+---
+
 ## [rev-2.5.1] — 2026-05-24
 
 Hero PT (`actually` → `realmente`) + Changelog público refrescado com trabalhos dos últimos dias (novo cliente + auditorias + i18n + analytics).

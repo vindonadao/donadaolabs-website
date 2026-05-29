@@ -16,6 +16,7 @@ export const pt: Dictionary = {
       { label: 'Fundador', href: '#founder' },
       { label: 'Atualizações', href: '#changelog' },
       { label: 'Dúvidas', href: '#faq' },
+      { label: 'Brand', href: '/brand' },
     ],
     statusPill: 'no ar · operando · 2 slots jul/26',
     ctaButton: 'Agendar diagnóstico →',

@@ -15,6 +15,23 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.6.1] — 2026-05-30
+
+O preview de compartilhamento da home (`/pt`, `/en`) passa a usar a imagem oficial do brand book v2 (`/brand/og.png`, verde) em vez do card gerado dinamicamente por `/api/og` (visual antigo roxo). Alinha o OG da home ao da rota `/brand`, que já usava a peça nova. Remove a rota dinâmica e as fontes que só ela consumia.
+
+### Changed
+- **`app/[lang]/layout.tsx`** — `openGraph.images` e `twitter.images` agora apontam para `/brand/og.png` (1200×630) em vez de `/api/og`.
+
+### Removed
+- **`app/api/og/route.tsx`** — rota de OG dinâmico aposentada (substituída pela imagem estática).
+- **`public/fonts/InterTight-600.ttf`**, **`public/fonts/InterTight-800.ttf`** — fontes consumidas exclusivamente pela rota `/api/og` removida.
+- **`public/brand/monogram-dd-accent.svg`** — asset sem referências no código.
+
+### Note
+- Os scrapers (LinkedIn, WhatsApp, Meta) mantêm cache do preview por URL. Após o deploy, forçar re-scrape via LinkedIn Post Inspector / Meta Sharing Debugger.
+
+---
+
 ## [rev-2.6.0] — 2026-05-29
 
 Nova rota pública `/brand` publica o brand book v2 (`rev-0.2`) como página dedicada — header + preview em `<iframe>` + download direto. O PDF fica acessível por uma URL estável (`/brand/latest.pdf`) que aponta sempre para a revisão canônica atual, então ao subir uma `rev-0.3` basta trocar o destino no rewrite. OG card próprio (`article`, 1200×630) pra compartilhamento. Link **Brand** entra no nav PT/EN.

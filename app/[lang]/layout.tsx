@@ -112,7 +112,7 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
       description: dict.meta.description,
       images: [
         {
-          url: '/api/og',
+          url: '/brand/og.png',
           width: 1200,
           height: 630,
           alt: titleDefault,
@@ -124,7 +124,7 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
       title: titleDefault,
       description: dict.meta.description,
       creator: '@donadaolabs',
-      images: ['/api/og'],
+      images: ['/brand/og.png'],
     },
     robots: {
       index: true,

@@ -30,11 +30,12 @@ function buildCsp(nonce: string): string {
   ].join('; ');
 }
 
-// TAREFA 4 (após validar Report-Only sem violação de recurso próprio): trocar
-// este nome p/ 'Content-Security-Policy' (enforce). O header da REQUEST abaixo
-// permanece 'Content-Security-Policy' — é dele que o Next 14 extrai o nonce p/
-// injetar nos próprios <script>; esse header é interno e nunca chega ao browser.
-const RESPONSE_CSP_HEADER = 'Content-Security-Policy-Report-Only';
+// ENFORCE (rev-2.9.0, TAREFA 4) — promovido após Report-Only limpo em produção.
+// O header da REQUEST permanece 'Content-Security-Policy' — é dele que o Next 14
+// extrai o nonce p/ injetar nos próprios <script>; esse header é interno e nunca
+// chega ao browser. Pra voltar a Report-Only (rollback), troque o valor abaixo
+// p/ 'Content-Security-Policy-Report-Only'.
+const RESPONSE_CSP_HEADER = 'Content-Security-Policy';
 
 export function middleware(request: NextRequest): NextResponse | undefined {
   const { pathname } = request.nextUrl;

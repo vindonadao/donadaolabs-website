@@ -107,8 +107,11 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
     creator: 'Vinicius Donadão',
     publisher: 'Donadão Labs',
     icons: {
-      icon: [{ url: '/brand/favicon.svg', type: 'image/svg+xml' }],
-      shortcut: '/brand/favicon.svg',
+      // `?v=2` força os browsers a re-buscar o favicon (o Chrome cacheia o
+      // favicon por URL, de forma agressiva — sem o version bump ele segue
+      // mostrando a versão antiga rasterizada mesmo após o SVG ser atualizado).
+      icon: [{ url: '/brand/favicon.svg?v=2', type: 'image/svg+xml' }],
+      shortcut: '/brand/favicon.svg?v=2',
     },
     alternates: {
       canonical: `/${params.lang}`,

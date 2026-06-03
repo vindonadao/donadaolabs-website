@@ -304,23 +304,31 @@ export const pt: Dictionary = {
     sections: [
       {
         title: 'Dados que coletamos',
-        body: 'Coletamos apenas dados de navegação anônimos via Google Analytics 4 (GA4) — e somente depois do seu consentimento. Se você usar o agente de diagnóstico, armazenamos a pergunta enviada, seu IP e, quando fornecido, seu email, para retorno de contato e melhoria do serviço. Não coletamos dados pessoais sensíveis sem base legal.',
+        body: 'Coletamos dados de navegação via Google Analytics 4 (GA4) — somente após o seu consentimento. Se você usar o agente de diagnóstico, armazenamos a pergunta enviada, seu IP e, quando fornecido, seu e-mail, para retorno de contato e melhoria do serviço. Ao rodarmos campanhas, podemos usar cookies de publicidade (Google Ads) para medir conversões e remarketing — também apenas mediante consentimento. Não coletamos dados pessoais sensíveis.',
       },
       {
-        title: 'Cookies e consentimento',
-        body: 'A análise (GA4) só é ativada após o aceite no banner de cookies, via Consent Mode v2. Enquanto você não aceita, nenhum cookie de análise é gravado. Você pode recusar ou revogar o consentimento a qualquer momento limpando os dados do site no navegador.',
+        title: 'Base legal (LGPD / RGPD)',
+        body: 'Tratamos seus dados com base no CONSENTIMENTO (Art. 7º, I da LGPD · Art. 6(1)(a) do RGPD): análise (GA4), cookies de publicidade/remarketing e o uso do agente de diagnóstico só ocorrem após você aceitar. Os dados de contato enviados ao agente também podem ser tratados para execução de medidas pré-contratuais a seu pedido. Você pode revogar o consentimento a qualquer momento.',
       },
       {
-        title: 'Seus direitos (LGPD)',
-        body: 'Você tem direito de acessar, corrigir, portar e excluir seus dados, além de revogar o consentimento. Para exercer qualquer um desses direitos, escreva para contato@donadaolabs.com — respondemos no prazo legal.',
+        title: 'Cookies, consentimento e anúncios',
+        body: 'Usamos Consent Mode v2: por padrão, análise (analytics_storage) e publicidade (ad_storage, ad_user_data, ad_personalization) ficam DESATIVADAS (denied). Nada é gravado até você aceitar no banner. Os cookies de publicidade (Google Ads) só são ativados após o aceite e servem para medir conversões e remarketing. Você pode recusar ou revogar a qualquer momento limpando os dados do site no navegador.',
       },
       {
-        title: 'Compartilhamento e retenção',
-        body: 'Não vendemos seus dados. Dados de análise são processados pelo Google (GA4) conforme os termos da plataforma. Dados de contato do agente são retidos apenas pelo tempo necessário ao atendimento e melhoria do serviço.',
+        title: 'Compartilhamento e transferência internacional',
+        body: 'Não vendemos seus dados. A análise e os anúncios são processados pelo Google (GA4 e Google Ads), o que envolve transferência de dados para servidores fora do Brasil/UE (ex.: Estados Unidos). O Google opera essas transferências sob salvaguardas reconhecidas (Cláusulas Contratuais-Padrão e o EU-US Data Privacy Framework). Não compartilhamos seus dados com terceiros além dos provedores necessários à operação.',
+      },
+      {
+        title: 'Retenção',
+        body: 'Dados de análise no GA4 seguem o prazo de retenção configurado na propriedade (atualmente 14 meses). Dados de contato enviados ao agente de diagnóstico são retidos por até 24 meses após o último contato, salvo se você pedir a exclusão antes. Após esses prazos, os dados são anonimizados ou eliminados.',
+      },
+      {
+        title: 'Seus direitos',
+        body: 'Você pode acessar, corrigir, portar e excluir seus dados, além de revogar o consentimento. Visitantes na União Europeia têm os direitos equivalentes do RGPD, incluindo oposição e limitação do tratamento. Para exercê-los, escreva para contato@donadaolabs.com (Encarregado de Dados / DPO) — respondemos no prazo legal. Você também pode reclamar à autoridade competente: ANPD (Brasil) ou CNPD (Portugal).',
       },
     ],
     legalNote:
-      'Este documento é informativo e será revisado quanto a base legal, prazo de retenção e indicação de encarregado (DPO) conforme a operação evoluir.',
+      'Documento informativo, em conformidade com LGPD e RGPD. Será revisado conforme a operação evoluir; para dúvidas sobre tratamento de dados, fale com o Encarregado em contato@donadaolabs.com.',
   },
   brand: {
     topPill: '001 · Brand Book',

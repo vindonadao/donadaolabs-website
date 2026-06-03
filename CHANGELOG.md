@@ -17,10 +17,12 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 - `app/[lang]/layout.tsx` passa a usar `export const dynamic = 'force-dynamic'` — pré-requisito da CSP com nonce (o nonce do HTML precisa casar com o do header, gerado por request). Custo: `/pt` e `/en` renderizam por request (sem cache estático). Demais security headers (HSTS, X-Frame-Options, etc.) preservados no `next.config.mjs`.
 
+- **Política de privacidade reforçada (P0+P1, pré-tráfego pago)** — `lib/i18n/{pt,en}.ts`: novas seções **Base legal** (consentimento, Art. 7º I LGPD / 6(1)(a) RGPD), **Cookies/consentimento/anúncios** (declara ad_storage/ad_user_data/ad_personalization + remarketing Google Ads), **Transferência internacional** (Google EUA · SCC + EU-US DPF), **Retenção** concreta (GA4 14m · contatos 24m), **Direitos** (LGPD + RGPD + ANPD/CNPD) e DPO via contato@donadaolabs.com.
+
 ### Pendente (não nesta entrega)
 
-- **GA4** (TAREFA 5): marcar `generate_lead` como evento-chave no painel.
-- `/[lang]/privacidade`: revisar base legal/retenção antes de tráfego pago.
+- **GA4** (TAREFA 5): marcar `generate_lead` como evento-chave no painel (a tabela de Eventos popula em ~24h).
+- Revisão jurídica final da política de privacidade (texto reforçado, mas convém validação de advogado antes de campanha).
 
 ### Fixed
 

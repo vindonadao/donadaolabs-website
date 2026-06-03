@@ -304,23 +304,31 @@ export const en: Dictionary = {
     sections: [
       {
         title: 'Data we collect',
-        body: 'We collect only anonymous navigation data via Google Analytics 4 (GA4) — and only after your consent. If you use the diagnostic agent, we store the question you send, your IP and, when provided, your email, to follow up and improve the service. We do not collect sensitive personal data without a legal basis.',
+        body: 'We collect navigation data via Google Analytics 4 (GA4) — only after your consent. If you use the diagnostic agent, we store the question you send, your IP and, when provided, your email, to follow up and improve the service. When we run campaigns, we may use advertising cookies (Google Ads) to measure conversions and for remarketing — also only with your consent. We do not collect sensitive personal data.',
       },
       {
-        title: 'Cookies and consent',
-        body: 'Analytics (GA4) is only activated after you accept the cookie banner, via Consent Mode v2. Until you accept, no analytics cookie is stored. You can decline or revoke consent at any time by clearing the site data in your browser.',
+        title: 'Legal basis (LGPD / GDPR)',
+        body: 'We process your data based on CONSENT (Art. 7, I of the LGPD · Art. 6(1)(a) of the GDPR): analytics (GA4), advertising/remarketing cookies and use of the diagnostic agent only happen after you accept. Contact data sent to the agent may also be processed to take steps at your request prior to entering into a contract. You can revoke consent at any time.',
       },
       {
-        title: 'Your rights (LGPD/GDPR)',
-        body: 'You have the right to access, correct, port and delete your data, as well as revoke consent. To exercise any of these rights, write to contato@donadaolabs.com — we reply within the legal timeframe.',
+        title: 'Cookies, consent and advertising',
+        body: 'We use Consent Mode v2: by default, analytics (analytics_storage) and advertising (ad_storage, ad_user_data, ad_personalization) are DISABLED (denied). Nothing is stored until you accept the banner. Advertising cookies (Google Ads) are only activated after acceptance and are used to measure conversions and for remarketing. You can decline or revoke at any time by clearing the site data in your browser.',
       },
       {
-        title: 'Sharing and retention',
-        body: 'We do not sell your data. Analytics data is processed by Google (GA4) under the platform terms. Contact data from the agent is retained only as long as needed to respond and improve the service.',
+        title: 'Sharing and international transfer',
+        body: 'We do not sell your data. Analytics and ads are processed by Google (GA4 and Google Ads), which involves transferring data to servers outside Brazil/the EU (e.g. the United States). Google operates these transfers under recognised safeguards (Standard Contractual Clauses and the EU-US Data Privacy Framework). We do not share your data with third parties beyond the providers necessary to run the service.',
+      },
+      {
+        title: 'Retention',
+        body: 'GA4 analytics data follows the retention period configured on the property (currently 14 months). Contact data sent to the diagnostic agent is retained for up to 24 months after the last contact, unless you request deletion sooner. After these periods, data is anonymised or deleted.',
+      },
+      {
+        title: 'Your rights',
+        body: 'You can access, correct, port and delete your data, as well as revoke consent. Visitors in the European Union have the equivalent GDPR rights, including objection and restriction of processing. To exercise them, write to contato@donadaolabs.com (Data Protection Officer / DPO) — we reply within the legal timeframe. You may also lodge a complaint with the competent authority: ANPD (Brazil) or CNPD (Portugal).',
       },
     ],
     legalNote:
-      'This document is informational and will be reviewed for legal basis, retention period and data protection officer (DPO) designation as the operation evolves.',
+      'Informational document, compliant with the LGPD and GDPR. It will be reviewed as the operation evolves; for questions about data processing, contact the DPO at contato@donadaolabs.com.',
   },
   brand: {
     topPill: '001 · Brand Book',

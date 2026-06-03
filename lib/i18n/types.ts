@@ -201,6 +201,27 @@ export interface Dictionary {
     accept: string;
     reject: string;
   };
+  /** Página /[lang]/brand — wrapper do brand book (textos da UI, não do PDF). */
+  brand: {
+    topPill: string;
+    revLine: string;
+    title: string;
+    description: string;
+    downloadBtn: string;
+    viewBtn: string;
+    previewTitle: string;
+    previewFallback: string;
+    previewFallbackLink: string;
+    /** Label do toggle de idioma (idioma OPOSTO ao atual). */
+    langSwitch: string;
+    cards: {
+      archetypeLabel: string;
+      archetypeValue: string;
+      sloganLabel: string;
+      layersLabel: string;
+      layersValue: string;
+    };
+  };
   /** Página /[lang]/privacidade — Política de Privacidade (LGPD). */
   privacy: {
     title: string;

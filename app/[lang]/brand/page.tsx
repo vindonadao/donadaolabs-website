@@ -1,6 +1,54 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { LINKS, SITE } from '@/lib/constants';
+import { LOCALES, OG_LOCALE, getDictionary, isLocale, type Locale } from '@/lib/i18n';
 
 const PDF_LATEST = '/brand/latest.pdf';
+
+interface BrandPageProps {
+  params: { lang: string };
+}
+
+export function generateStaticParams(): { lang: Locale }[] {
+  return LOCALES.map((lang) => ({ lang }));
+}
+
+export function generateMetadata({ params }: BrandPageProps): Metadata {
+  if (!isLocale(params.lang)) return {};
+  const dict = getDictionary(params.lang);
+  const title = `Brand Book · ${SITE.name} (rev-0.2)`;
+  const description = dict.brand.description;
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/${params.lang}/brand`,
+      languages: {
+        'pt-BR': '/pt/brand',
+        'en-US': '/en/brand',
+        'x-default': '/pt/brand',
+      },
+    },
+    openGraph: {
+      type: 'article',
+      locale: OG_LOCALE[params.lang],
+      url: `${SITE.url}/${params.lang}/brand`,
+      siteName: SITE.name,
+      title,
+      description,
+      images: [{ url: '/brand/og.png', width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      creator: '@donadaolabs',
+      images: ['/brand/og.png'],
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 /** Corner brackets brutalistas — 4 cantos, verde (accent) ou roxo (purple). */
 interface CornerBracketsProps {
@@ -39,10 +87,7 @@ interface HighlightCardProps {
 }
 
 function HighlightCard({ num, label, color, children }: HighlightCardProps): React.ReactElement {
-  const pill =
-    color === 'purple'
-      ? 'bg-purple text-offwhite'
-      : 'bg-accent text-black';
+  const pill = color === 'purple' ? 'bg-purple text-offwhite' : 'bg-accent text-black';
   const labelColor = color === 'purple' ? 'text-purple' : 'text-accent';
   return (
     <div className="relative flex min-h-[200px] flex-col justify-between rounded-brand-lg border border-white/[0.08] bg-charcoal p-6">
@@ -58,7 +103,12 @@ function HighlightCard({ num, label, color, children }: HighlightCardProps): Rea
   );
 }
 
-export default function BrandPage(): React.ReactElement {
+export default function BrandPage({ params }: BrandPageProps): React.ReactElement {
+  if (!isLocale(params.lang)) notFound();
+  const lang = params.lang;
+  const t = getDictionary(lang).brand;
+  const other: Locale = lang === 'pt' ? 'en' : 'pt';
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-ink">
       <div
@@ -70,28 +120,36 @@ export default function BrandPage(): React.ReactElement {
       />
 
       <div className="mx-auto w-full max-w-[1120px] px-6 py-8 md:px-10 md:py-12">
-        {/* Top bar brutalista: pill numerada + wordmark */}
+        {/* Top bar brutalista: pill numerada + toggle idioma + wordmark */}
         <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-widest">
           <span className="rounded-[4px] border border-accent/60 px-2.5 py-1 text-accent">
-            001 · Brand Book
+            {t.topPill}
           </span>
-          <a href="/" className="text-offwhite/55 transition-colors hover:text-offwhite">
-            donadão<span className="text-accent">/</span>labs · 2026
-          </a>
+          <div className="flex items-center gap-3">
+            <Link
+              href={`/${other}/brand`}
+              aria-label={`Switch language to ${other.toUpperCase()}`}
+              className="rounded-[4px] border border-white/[0.08] px-2 py-1 text-offwhite/55 transition-colors hover:border-accent/60 hover:text-accent"
+            >
+              {t.langSwitch}
+            </Link>
+            <Link href={`/${lang}`} className="text-offwhite/55 transition-colors hover:text-offwhite">
+              donadão<span className="text-accent">/</span>labs · 2026
+            </Link>
+          </div>
         </div>
 
         {/* HERO compacto */}
         <section className="relative mt-14 border-t border-white/[0.08] pt-12">
           <CornerBrackets color="accent" />
           <div className="mb-5 font-mono text-[11px] uppercase tracking-widest text-accent">
-            REV-0.2 · 2026-05-29
+            {t.revLine}
           </div>
           <h1 className="m-0 font-display text-[clamp(2.75rem,8vw,5.125rem)] font-semibold leading-[0.98] tracking-tightest">
-            Brand Book.
+            {t.title}
           </h1>
           <p className="mt-6 max-w-[640px] text-[19px] leading-[1.5] text-offwhite/55">
-            Foundation, sistema verbal, identidade visual, canais e ativação da Donadão Labs em uma
-            peça única. 24 páginas.
+            {t.description}
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -100,7 +158,7 @@ export default function BrandPage(): React.ReactElement {
               download="donadao-labs-brand-book-rev-0.2.pdf"
               className="rounded-[6px] bg-gradient-green px-5 py-2.5 text-[14px] font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow"
             >
-              ↓ Baixar PDF
+              ↓ {t.downloadBtn}
             </a>
             <a
               href={`${PDF_LATEST}#toolbar=1`}
@@ -108,7 +166,7 @@ export default function BrandPage(): React.ReactElement {
               rel="noopener noreferrer"
               className="rounded-[6px] border border-white/[0.18] px-5 py-2.5 text-[14px] font-semibold text-offwhite/85 transition-colors duration-200 hover:border-accent hover:text-offwhite"
             >
-              Ver no navegador
+              {t.viewBtn}
             </a>
           </div>
         </section>
@@ -118,18 +176,18 @@ export default function BrandPage(): React.ReactElement {
           <div className="relative rounded-brand-lg border-2 border-accent/40 bg-charcoal p-1.5">
             <iframe
               src={`${PDF_LATEST}#toolbar=1&navpanes=1`}
-              title="Brand Book Donadão Labs — preview (rev-0.2)"
+              title={t.previewTitle}
               className="h-[720px] w-full rounded-[8px] bg-ink"
             />
           </div>
           <p className="mt-3 font-mono text-[11px] text-offwhite/40">
-            Preview não carregou?{' '}
+            {t.previewFallback}{' '}
             <a
               href={PDF_LATEST}
               download="donadao-labs-brand-book-rev-0.2.pdf"
               className="text-accent underline-offset-2 hover:underline"
             >
-              Baixar o PDF (1.3 MB · 24 páginas)
+              {t.previewFallbackLink}
             </a>
             .
           </p>
@@ -137,22 +195,22 @@ export default function BrandPage(): React.ReactElement {
 
         {/* GRID de destaques */}
         <section className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <HighlightCard num="001" label="Arquétipo" color="accent">
+          <HighlightCard num="001" label={t.cards.archetypeLabel} color="accent">
             <h2 className="font-display text-[26px] font-semibold leading-tight tracking-brand-tight text-accent">
-              Pragmatic Builder
+              {t.cards.archetypeValue}
             </h2>
           </HighlightCard>
 
-          <HighlightCard num="002" label="Bordão bilíngue" color="accent">
+          <HighlightCard num="002" label={t.cards.sloganLabel} color="accent">
             <h2 className="font-display text-[32px] font-semibold leading-tight tracking-brand-tight">
               <span className="text-accent">ships</span>
               <span className="text-purple">*</span>
             </h2>
           </HighlightCard>
 
-          <HighlightCard num="003" label="3 Layers" color="purple">
+          <HighlightCard num="003" label={t.cards.layersLabel} color="purple">
             <h2 className="font-display text-[22px] font-semibold leading-tight tracking-brand-tight text-purple">
-              Person · Lab · Products
+              {t.cards.layersValue}
             </h2>
           </HighlightCard>
         </section>
@@ -165,9 +223,9 @@ export default function BrandPage(): React.ReactElement {
           <span aria-hidden className="hidden md:inline">·</span>
           <span>{SITE.tagline}</span>
           <span aria-hidden className="hidden md:inline">·</span>
-          <a href="/" className="transition-colors hover:text-offwhite">
+          <Link href={`/${lang}`} className="transition-colors hover:text-offwhite">
             donadaolabs.com
-          </a>
+          </Link>
           <span aria-hidden className="hidden md:inline">·</span>
           <a
             href={LINKS.instagram}

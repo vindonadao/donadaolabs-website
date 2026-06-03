@@ -15,6 +15,24 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.8.0] — 2026-06-03
+
+A página do brand book passa a respeitar o idioma selecionado no site. Antes, `/brand` era uma rota raiz estática fora do segmento `[lang]`, com texto hardcoded em português e `lang="pt-BR"` fixo — então selecionar EN não tinha efeito. Agora a página é localizada em `/[lang]/brand` (PT/EN), com toggle de idioma próprio. O PDF e os assets em `/brand/*` não mudam; a URL curta `/brand` redireciona para o idioma padrão.
+
+### Added
+- **`app/[lang]/brand/page.tsx`** — página do brand book localizada (PT/EN), com `generateStaticParams` + `generateMetadata` (canonical/OG por locale) e toggle de idioma no topbar.
+- **Bloco `brand`** em `lib/i18n/{types,pt,en}.ts` — todos os textos da UI da página (hero, botões, preview, cards).
+- **Redirect `/brand` → `/pt/brand`** em `next.config.mjs` (espelha `/` → `/pt`). Assets `/brand/*.*` não são afetados (match exato).
+- Rotas `/pt/brand` e `/en/brand` no `app/sitemap.ts`.
+
+### Changed
+- **`components/nav.tsx`** — links de rota no nav agora recebem o prefixo de locale (`/{lang}/brand`); âncoras (`#secao`) seguem inalteradas.
+
+### Removed
+- **`app/brand/page.tsx`** e **`app/brand/layout.tsx`** — substituídos pela versão localizada. `app/brand/README.md` e os assets em `public/brand/` permanecem.
+
+---
+
 ## [rev-2.7.0] — 2026-06-03
 
 Implementação da **Auditoria 2.0** (segurança, LGPD, SEO técnico, conversão e acessibilidade). Parte da auditoria já estava no ar desde a `rev-2.5.0` (Consent Mode v2 default + banner LGPD) — esta release fecha os gaps restantes. CSP entra em **Report-Only** (observação por ~1 semana antes de virar enforce).

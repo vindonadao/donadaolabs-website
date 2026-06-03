@@ -28,6 +28,20 @@ const nextConfig = {
   compress: true,
   reactStrictMode: true,
 
+  // A página do brand book agora é localizada em /[lang]/brand. A URL curta
+  // /brand (sem locale) redireciona para o idioma padrão — espelha o
+  // comportamento de `/` → `/pt`. Os assets /brand/*.* (PDF, og.png, logos)
+  // têm extensão e não são capturados por este redirect (match exato de /brand).
+  async redirects() {
+    return [
+      {
+        source: '/brand',
+        destination: '/pt/brand',
+        permanent: false,
+      },
+    ];
+  },
+
   // /brand/latest.pdf é uma URL estável que aponta sempre para a revisão
   // canônica atual do brand book. Ao publicar uma nova revisão, troque apenas
   // o destino aqui (ex.: brand-book-rev-0.3.pdf) — a URL pública não muda.

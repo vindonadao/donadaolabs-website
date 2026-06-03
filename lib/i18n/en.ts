@@ -322,4 +322,24 @@ export const en: Dictionary = {
     legalNote:
       'This document is informational and will be reviewed for legal basis, retention period and data protection officer (DPO) designation as the operation evolves.',
   },
+  brand: {
+    topPill: '001 · Brand Book',
+    revLine: 'REV-0.2 · 2026-05-29',
+    title: 'Brand Book.',
+    description:
+      'Foundation, verbal system, visual identity, channels and activation of Donadão Labs in a single piece. 24 pages.',
+    downloadBtn: 'Download PDF',
+    viewBtn: 'View in browser',
+    previewTitle: 'Donadão Labs Brand Book — preview (rev-0.2)',
+    previewFallback: "Preview didn't load?",
+    previewFallbackLink: 'Download the PDF (1.3 MB · 24 pages)',
+    langSwitch: 'PT',
+    cards: {
+      archetypeLabel: 'Archetype',
+      archetypeValue: 'Pragmatic Builder',
+      sloganLabel: 'Bilingual tagline',
+      layersLabel: '3 Layers',
+      layersValue: 'Person · Lab · Products',
+    },
+  },
 };

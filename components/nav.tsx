@@ -25,7 +25,9 @@ export function Nav({ dict, lang }: NavProps): React.ReactElement {
             {dict.nav.links.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                // Âncoras (#secao) ficam como estão; rotas internas ganham o
+                // prefixo de locale para preservar o idioma ao navegar.
+                href={link.href.startsWith('#') ? link.href : `/${lang}${link.href}`}
                 className="group relative text-[13px] text-offwhite/55 transition-colors hover:text-offwhite"
               >
                 {link.label}

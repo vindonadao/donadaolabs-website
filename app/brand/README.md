@@ -1,10 +1,14 @@
-# Rota `/brand` — Brand Book
+# Rota `/[lang]/brand` — Brand Book
 
 Página pública que publica o **brand book da Donadão Labs** em PDF, com preview embed e card social (Open Graph).
 
-- **No ar:** https://donadaolabs.com/brand
-- **Versão atual:** brand book **rev-0.2** (site rev-2.6.0 · 2026-05-29)
+- **No ar:** https://donadaolabs.com/pt/brand e https://donadaolabs.com/en/brand *(a URL curta `/brand` redireciona pra `/pt/brand`)*
+- **Versão atual:** brand book **rev-0.2** (página localizada desde o site rev-2.8.0 · 2026-06-03)
 - **URL estável do PDF:** https://donadaolabs.com/brand/latest.pdf *(nunca muda — sempre aponta pra revisão atual)*
+
+> ℹ️ Esta pasta (`app/brand/`) guarda **apenas este README**. A página em si vive em
+> [`app/[lang]/brand/page.tsx`](../%5Blang%5D/brand/page.tsx) — localizada (PT/EN) e
+> usando o `app/[lang]/layout.tsx`. Não há mais `page.tsx`/`layout.tsx` aqui.
 
 ---
 
@@ -12,13 +16,16 @@ Página pública que publica o **brand book da Donadão Labs** em PDF, com previ
 
 | Peça | Arquivo | O que faz |
 |------|---------|-----------|
-| Página | [`page.tsx`](./page.tsx) | Hero, preview do PDF (iframe), grid de destaques, footer |
-| Layout | [`layout.tsx`](./layout.tsx) | Fontes + meta tags Open Graph (card social) |
+| Página | `app/[lang]/brand/page.tsx` | Hero, preview do PDF (iframe), grid de destaques, footer, toggle PT/EN |
+| Textos PT/EN | `lib/i18n/{pt,en}.ts` → bloco `brand` | Todas as strings da UI da página |
+| Metadata/OG | `generateMetadata` na própria `page.tsx` | Título, descrição e card social por locale |
 | PDF | `public/brand/brand-book-rev-0.2.pdf` | O brand book em si |
 | Imagem do card | `public/brand/og.png` | Capa renderizada (1200×630) que aparece no WhatsApp/LinkedIn/X |
 | URL estável | `next.config.mjs` → `rewrites()` | `/brand/latest.pdf` → arquivo da revisão atual |
+| Redirect curto | `next.config.mjs` → `redirects()` | `/brand` → `/pt/brand` (assets `/brand/*.*` não são afetados) |
 
-> A rota vive **fora** de `app/[lang]/` (sem PT/EN). O `middleware.ts` já exclui `/brand` do redirect de idioma.
+> A página é localizada (`/pt/brand`, `/en/brand`). O `middleware.ts` exclui `/brand`
+> (sem locale) do redirect de idioma — quem cuida dele é o `redirects()` do `next.config.mjs`.
 
 ---
 
@@ -52,16 +59,19 @@ sips --padToHeightWidth 630 1200 --padColor 070709 /tmp/og-fit.png --out public/
 ```
 Confere o resultado: deve ser **1200×630**, fundo `#070709`.
 
-### 4. Atualizar o texto da versão na página
-- Em [`layout.tsx`](./layout.tsx): `BRAND_TITLE` e `BRAND_DESCRIPTION` (`rev-0.3`)
-- Em [`page.tsx`](./page.tsx): o eyebrow `REV-0.3 · AAAA-MM-DD`, o `download="..."` e o "(1.3 MB · 24 páginas)" se mudou
+### 4. Atualizar o texto da versão (em PT **e** EN)
+No bloco `brand` de [`../../lib/i18n/pt.ts`](../../lib/i18n/pt.ts) e [`../../lib/i18n/en.ts`](../../lib/i18n/en.ts):
+- `revLine` → `REV-0.3 · AAAA-MM-DD`
+- `previewTitle` e `previewFallbackLink` → ajustar se mudou o tamanho/nº de páginas
+
+E em [`app/[lang]/brand/page.tsx`](../%5Blang%5D/brand/page.tsx): o `download="..."` dos botões e o `PDF_LATEST` (se o nome do arquivo de download mudar).
 
 ### 5. Validar localmente
 ```bash
 npm run typecheck && npm run lint && npm run build
-npm run dev   # abre http://localhost:3000/brand
+npm run dev   # abre http://localhost:3000/pt/brand e /en/brand
 ```
-Confirme: a página abre, o PDF aparece no preview (iframe), o botão "Baixar PDF" baixa o arquivo certo.
+Confirme: as duas línguas abrem, o PDF aparece no preview (iframe), o toggle PT/EN troca, o botão "Baixar PDF / Download PDF" baixa o arquivo certo, e `/brand` redireciona pra `/pt/brand`.
 
 ### 6. Publicar (via @devops)
 Versionamento do projeto: **rev-X.Y + entrada no CHANGELOG.md + tag git**.
@@ -70,7 +80,7 @@ O **@devops** faz o commit, push, PR/merge e tag — o deploy na Vercel é autom
 > **Não faça `git push` direto.** Peça pro @devops (regra do projeto: só ele publica).
 
 ### 7. Conferir o card social (opcional)
-Depois do deploy, cole `https://donadaolabs.com/brand` em:
+Depois do deploy, cole `https://donadaolabs.com/pt/brand` em:
 - https://www.opengraph.xyz/ — mostra como o card aparece no Facebook/LinkedIn/X
 - Ou manda o link pra você mesmo no WhatsApp e vê o preview
 

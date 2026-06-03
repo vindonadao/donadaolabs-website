@@ -1,5 +1,7 @@
 import { LiveAgent } from '@/components/live-agent';
 import { Ship } from '@/components/ship';
+import { TrackedCalLink } from '@/components/tracked-cal-link';
+import { LINKS } from '@/lib/constants';
 import type { Dictionary, Locale } from '@/lib/i18n';
 
 interface HeroProps {
@@ -39,6 +41,16 @@ export function Hero({ dict, lang }: HeroProps): React.ReactElement {
 
         <div className="mt-14">
           <LiveAgent dict={dict} lang={lang} />
+          {/* Fallback SSR: caminho de conversão sobrevive mesmo se o JS do agente falhar. */}
+          <div className="mt-3.5 font-mono text-[12px] text-offwhite/40">
+            <TrackedCalLink
+              href={LINKS.cal}
+              location="hero_fallback"
+              className="underline-offset-2 transition-colors hover:text-accent hover:underline"
+            >
+              {dict.hero.scheduleCta} →
+            </TrackedCalLink>
+          </div>
         </div>
       </div>
     </section>

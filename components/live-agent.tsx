@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { TrackedCalLink } from '@/components/tracked-cal-link';
 import { AGENT, LINKS } from '@/lib/constants';
 import { event as gaEvent } from '@/lib/gtag';
 import type { Dictionary, Locale } from '@/lib/i18n';
@@ -169,6 +170,7 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
     setOutput('');
     setBlockMsg('');
     setBlockKind('');
+    gaEvent('diagnostic_start', { lang });
     try {
       const data = await callAgent({
         question: q,
@@ -244,6 +246,7 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder={inputDisabled ? t.placeholderDisabled : t.placeholder}
+          aria-label={t.inputAria}
           disabled={inputDisabled}
           className="min-w-0 flex-1 rounded-[8px] border border-white/[0.08] bg-ink px-3.5 py-3 text-[15px] text-offwhite outline-none disabled:opacity-50"
         />
@@ -309,26 +312,23 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
           <div className="mb-4 text-sm leading-relaxed text-offwhite">{blockMsg}</div>
 
           {blockKind === 'cap' ? (
-            <a
+            <TrackedCalLink
               href={LINKS.cal}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block rounded-[8px] bg-accent font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black"
-              style={{ padding: '11px 18px' }}
+              location="agent_daily_cap"
+              className="inline-block rounded-[8px] bg-accent px-[18px] py-[11px] font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black"
             >
               {t.dailyCap.button}
-            </a>
+            </TrackedCalLink>
           ) : (
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-[#FFB85C]/25 pt-3.5">
               <span className="text-[13px] text-offwhite/55">{t.rateLimit.altQuestion}</span>
-              <a
+              <TrackedCalLink
                 href={LINKS.cal}
-                target="_blank"
-                rel="noreferrer"
+                location="agent_rate_limit"
                 className="rounded-[6px] border border-[#FFB85C] px-3 py-1.5 font-mono text-xs text-[#FFB85C]"
               >
                 {t.rateLimit.altButton}
-              </a>
+              </TrackedCalLink>
             </div>
           )}
         </div>
@@ -368,14 +368,13 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
           </div>
           <div className="mt-3.5 flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-white/[0.08] pt-3.5">
             <span className="text-[13px] text-offwhite/55">{t.emailGate.altQuestion}</span>
-            <a
+            <TrackedCalLink
               href={LINKS.cal}
-              target="_blank"
-              rel="noreferrer"
+              location="agent_email_gate"
               className="rounded-[6px] border border-accent px-3 py-1.5 font-mono text-xs text-accent"
             >
               {t.emailGate.altButton}
-            </a>
+            </TrackedCalLink>
           </div>
         </div>
       )}

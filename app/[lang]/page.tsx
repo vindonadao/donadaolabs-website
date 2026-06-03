@@ -22,8 +22,24 @@ export default function HomePage({ params }: HomePageProps): React.ReactElement 
   if (!isLocale(params.lang)) notFound();
   const dict = getDictionary(params.lang);
 
+  // FAQPage JSON-LD montado a partir das perguntas visíveis na seção FAQ
+  // (requisito do rich result: o texto da resposta tem que existir na página).
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: dict.faq.items.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Nav dict={dict} lang={params.lang} />
       <main>
         <Hero dict={dict} lang={params.lang} />
@@ -38,7 +54,7 @@ export default function HomePage({ params }: HomePageProps): React.ReactElement 
         <Faq dict={dict} />
         <Cta dict={dict} />
       </main>
-      <Footer dict={dict} />
+      <Footer dict={dict} lang={params.lang} />
     </>
   );
 }

@@ -61,7 +61,7 @@ function MetricCard({ metric }: { metric: Metric }): React.ReactElement {
       <a
         href={metric.href}
         target={isExternal ? '_blank' : undefined}
-        rel={isExternal ? 'noreferrer' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
         className="block px-6 py-5 text-offwhite no-underline transition-colors duration-200 hover:bg-white/[0.02] md:px-7 md:py-6"
       >
         <MetricCardInner metric={metric} />

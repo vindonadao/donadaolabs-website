@@ -15,6 +15,44 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.7.0] — 2026-06-03
+
+Implementação da **Auditoria 2.0** (segurança, LGPD, SEO técnico, conversão e acessibilidade). Parte da auditoria já estava no ar desde a `rev-2.5.0` (Consent Mode v2 default + banner LGPD) — esta release fecha os gaps restantes. CSP entra em **Report-Only** (observação por ~1 semana antes de virar enforce).
+
+### Added
+- **CSP `Content-Security-Policy-Report-Only`** em `next.config.mjs` — política adaptada ao stack real (GA4, Vercel Analytics/Speed Insights, iframe do brand book, form do agente). Não bloqueia nada ainda; só registra violações.
+- **Página `/[lang]/privacidade`** (`app/[lang]/privacidade/page.tsx`) — Política de Privacidade bilíngue (PT/EN) com design system, `generateStaticParams` + `generateMetadata` + `hreflang`. Conteúdo i18n em `lib/i18n/{pt,en}.ts` (`privacy`).
+- **Link "Política de Privacidade"** no rodapé (`components/footer.tsx`), apontando para `/{lang}/privacidade`.
+- **JSON-LD `WebSite`** (global, em `app/[lang]/layout.tsx`) e **`FAQPage`** (na home, gerado a partir das respostas reais visíveis em `dict.faq.items`). O `Organization` já existia.
+- **Componente `TrackedCalLink`** (`components/tracked-cal-link.tsx`) — link de agendamento que dispara o evento de conversão `generate_lead` no GA4 (`cta_location`).
+- **Link estático de agendamento no herói** (SSR) como fallback de conversão caso o JS do agente falhe (`hero.scheduleCta`).
+- **Evento `diagnostic_start`** no agente ao rodar um diagnóstico.
+- Rotas `/pt/privacidade` e `/en/privacidade` no `app/sitemap.ts` (prioridade 0.2).
+
+### Changed
+- CTAs cal.com do nav, CTA final e blocos do agente (cap diário, rate limit, email gate) agora usam `TrackedCalLink` — rastreiam conversão e ganham `rel="noopener noreferrer"`.
+
+### Fixed
+- **a11y:** input principal do agente ganha `aria-label` (`agent.inputAria`) — não tinha `<label>` visível.
+- **Segurança de links:** `rel="noreferrer"` → `rel="noopener noreferrer"` nos links externos de `cases.tsx`, `metrics.tsx` e `live-agent.tsx`.
+
+### Note
+- A CSP está em **Report-Only**. Após ~1 semana sem violações legítimas no console, trocar a chave para `Content-Security-Policy` (enforce) em `next.config.mjs`.
+- A página de privacidade é informativa — revisar base legal, retenção e indicação de DPO antes de tratar como parecer jurídico (nota já visível na própria página).
+
+---
+
+## [rev-2.6.2] — 2026-06-03
+
+Changelog público (seção `#changelog` da home) refrescado pra refletir o movimento recente do estúdio. As 5 entries antigas (até 24/05) dão lugar aos marcos das últimas duas semanas, com rotação natural — as mais velhas (site bilíngue, Quituteria da Fafá, Diskat, agente WhatsApp) saem da vitrine pública. Label `shipped` mantida (vem de "realmente *ships*", carro-chefe do branding). Datas editoriais/aproximadas.
+
+### Changed
+- **`lib/constants.ts`** (`CHANGELOG`) — 5 entries substituídas (`date` + `tag`): OPS (`rfc`), A Vegana (`shipped`), Brand book v2 (`shipped`), Gabriel Nabi (`shipped`), GA4/LGPD (`infra`).
+- **`lib/i18n/pt.ts`** (`changelog.entries`) — textos PT alinhados às novas entries.
+- **`lib/i18n/en.ts`** (`changelog.entries`) — textos EN alinhados às novas entries.
+
+---
+
 ## [rev-2.6.1] — 2026-05-30
 
 O preview de compartilhamento da home (`/pt`, `/en`) passa a usar a imagem oficial do brand book v2 (`/brand/og.png`, verde) em vez do card gerado dinamicamente por `/api/og` (visual antigo roxo). Alinha o OG da home ao da rota `/brand`, que já usava a peça nova. Remove a rota dinâmica e as fontes que só ela consumia.

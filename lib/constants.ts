@@ -312,11 +312,11 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-06-02', tag: 'rfc',     text: 'Donadão Labs OPS · CRM interno em construção — clientes, propostas e entregas orquestrados num só lugar.' },
+  { date: '2026-06-01', tag: 'shipped', text: 'A Vegana · novo cliente · blog editorial vegano no ar (Next.js 16 + MDX + newsletter Brevo).' },
+  { date: '2026-05-30', tag: 'shipped', text: 'Brand book v2 publicado em /brand — identidade completa, URL estável /brand/latest.pdf e OG oficial.' },
+  { date: '2026-05-27', tag: 'shipped', text: 'Gabriel Nabi · novo cliente · site do fotógrafo pet no ar (Vite + Supabase).' },
   { date: '2026-05-24', tag: 'infra',   text: 'GA4 + Consent Mode v2 + banner LGPD configurados — pronto pra tráfego pago.' },
-  { date: '2026-05-23', tag: 'shipped', text: 'Site bilíngue — rotas /pt e /en ao vivo com SEO duplo. Live Agent responde no idioma do visitante.' },
-  { date: '2026-05-22', tag: 'shipped', text: 'Quituteria da Fafá · novo cliente · MVP e-commerce + checkout WhatsApp ao vivo.' },
-  { date: '2026-05-21', tag: 'infra',   text: 'Diskat Presentes · auditoria Cowork concluída · RLS lockdown + LGPD + GA4 com tracking de checkout.' },
-  { date: '2026-05-02', tag: 'agent',   text: 'Agente de qualificação no WhatsApp em produção — média 38s/lead.' },
 ] as const;
 
 export interface FAQEntry {

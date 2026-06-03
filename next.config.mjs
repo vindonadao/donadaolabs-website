@@ -1,3 +1,27 @@
+// Content-Security-Policy em modo Report-Only: NÃO bloqueia nada, apenas
+// registra violações no console do navegador. Adaptada ao stack real do site:
+//   - Google Analytics 4 (googletagmanager + google-analytics)
+//   - Vercel Analytics / Speed Insights (vercel-insights + vercel-scripts)
+//   - iframe do brand book PDF (frame-src 'self', mesma origem)
+//   - form do agente de diagnóstico (form-action 'self' → /api/diagnose)
+// 'unsafe-inline' em script/style é necessário enquanto não há nonce no GA/Next.
+// Após ~1 semana sem violações legítimas, trocar a chave para
+// 'Content-Security-Policy' (enforce).
+const ContentSecurityPolicy = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.vercel-insights.com https://va.vercel-scripts.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com",
+  "font-src 'self' data:",
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://region1.google-analytics.com https://*.vercel-insights.com",
+  "frame-src 'self'",
+  "worker-src 'self' blob:",
+  "frame-ancestors 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join('; ');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
@@ -43,6 +67,10 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+          {
+            key: 'Content-Security-Policy-Report-Only',
+            value: ContentSecurityPolicy,
           },
         ],
       },

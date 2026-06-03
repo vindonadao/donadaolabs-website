@@ -147,7 +147,7 @@ function CaseCard({ c, labels }: { c: Case; labels: Dictionary['cases'] }): Reac
     <a
       href={c.href}
       target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noreferrer' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
       className="group block rounded-brand-lg border border-white/[0.08] bg-charcoal p-6 text-offwhite no-underline transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-card-hover focus-visible:-translate-y-1 focus-visible:border-accent focus-visible:shadow-card-hover"
     >
       <CaseCardContent c={c} labels={labels} />

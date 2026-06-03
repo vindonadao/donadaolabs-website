@@ -1,4 +1,5 @@
 import { Ship } from '@/components/ship';
+import { TrackedCalLink } from '@/components/tracked-cal-link';
 import { LINKS, SITE } from '@/lib/constants';
 import type { Dictionary } from '@/lib/i18n';
 
@@ -26,14 +27,13 @@ export function Cta({ dict }: CtaProps): React.ReactElement {
         <p className="mx-auto mt-10 max-w-[560px] text-[18px] text-offwhite/55">
           {dict.cta.sub}
         </p>
-        <a
+        <TrackedCalLink
           href={LINKS.cal}
-          target="_blank"
-          rel="noopener noreferrer"
+          location="cta_final"
           className="mt-9 inline-block rounded-[8px] bg-gradient-green px-6 py-3.5 text-[15px] font-semibold text-black shadow-glow transition-all duration-200 hover:-translate-y-1 hover:shadow-glow-strong"
         >
           {dict.cta.button} →
-        </a>
+        </TrackedCalLink>
         <div className="mt-4.5 font-mono text-[11px] text-offwhite/55">
           {dict.cta.orPrefix}{' '}
           <a href={`mailto:${SITE.email}`} className="text-offwhite/55 underline-offset-2 hover:underline">

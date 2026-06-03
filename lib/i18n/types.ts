@@ -24,6 +24,8 @@ export interface Dictionary {
     /** Conector entre headline e ship — em PT é "that", em EN também "that". Permite tradução total. */
     headlineConnector: string;
     sub: string;
+    /** Link estático de agendamento (fallback SSR caso o JS do agente falhe). */
+    scheduleCta: string;
   };
   metrics: {
     productsLive: { label: string; sub: string };
@@ -133,6 +135,8 @@ export interface Dictionary {
     label: string;
     placeholder: string;
     placeholderDisabled: string;
+    /** aria-label do input principal do agente (input sem `<label>` visível). */
+    inputAria: string;
     btnLabel: string;
     btnLoading: string;
     analyzing: string;
@@ -181,6 +185,8 @@ export interface Dictionary {
   footer: {
     rights: string;
     build: string;
+    /** Label do link para a Política de Privacidade. */
+    privacy: string;
   };
   notFound: {
     badge: string;
@@ -194,5 +200,18 @@ export interface Dictionary {
     message: string;
     accept: string;
     reject: string;
+  };
+  /** Página /[lang]/privacidade — Política de Privacidade (LGPD). */
+  privacy: {
+    title: string;
+    /** Linha de identificação do controlador. */
+    controller: string;
+    updated: string;
+    sections: {
+      title: string;
+      body: string;
+    }[];
+    /** Nota de revisão jurídica (não exibida como seção formal). */
+    legalNote: string;
   };
 }

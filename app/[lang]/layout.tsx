@@ -35,6 +35,15 @@ const ORGANIZATION_JSONLD = {
   knowsAbout: ['AI software', 'AI agents', 'SaaS', 'Next.js', 'TypeScript', 'Postgres'],
 } as const;
 
+const WEBSITE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  inLanguage: ['pt-BR', 'en-US'],
+  publisher: { '@type': 'Organization', name: SITE.name },
+} as const;
+
 const interTight = Inter_Tight({
   subsets: ['latin'],
   variable: '--font-inter-tight',
@@ -151,6 +160,10 @@ export default function LangLayout({ children, params }: LangLayoutProps): React
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSONLD) }}
         />
       </head>
       <body className="bg-ink text-offwhite antialiased">

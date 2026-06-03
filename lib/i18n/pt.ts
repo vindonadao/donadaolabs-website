@@ -28,6 +28,7 @@ export const pt: Dictionary = {
     headlineEm: 'realmente ships',
     headlineConnector: 'que',
     sub: 'Construímos sites, sistemas e automações pro seu negócio crescer. Você fala o problema, a gente entrega rodando — sem promessa furada.',
+    scheduleCta: 'Ou agende o diagnóstico direto',
   },
   metrics: {
     productsLive: { label: 'Produtos no ar', sub: 'em produção' },
@@ -170,11 +171,11 @@ export const pt: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: 'Donadão Labs OPS · CRM interno em construção — clientes, propostas e entregas orquestrados num só lugar.' },
+      { text: 'A Vegana · novo cliente · blog editorial vegano no ar (Next.js 16 + MDX + newsletter Brevo).' },
+      { text: 'Brand book v2 publicado em /brand — identidade completa, URL estável /brand/latest.pdf e OG oficial.' },
+      { text: 'Gabriel Nabi · novo cliente · site do fotógrafo pet no ar (Vite + Supabase).' },
       { text: 'GA4 + Consent Mode v2 + banner LGPD configurados — pronto pra tráfego pago.' },
-      { text: 'Site bilíngue — rotas /pt e /en ao vivo com SEO duplo. Live Agent responde no idioma do visitante.' },
-      { text: 'Quituteria da Fafá · novo cliente · MVP e-commerce + checkout WhatsApp ao vivo.' },
-      { text: 'Diskat Presentes · auditoria Cowork concluída · RLS lockdown + LGPD + GA4 com tracking de checkout.' },
-      { text: 'Agente de qualificação no WhatsApp em produção — média 38s/lead.' },
     ],
   },
   founder: {
@@ -223,6 +224,7 @@ export const pt: Dictionary = {
     label: '◆ agente diagnóstico · processando ao vivo',
     placeholder: 'descreva o problema do seu negócio em 1 frase',
     placeholderDisabled: '— deixe seu email abaixo pra continuar —',
+    inputAria: 'Descreva o problema do seu negócio em uma frase',
     btnLabel: 'rodar diagnóstico',
     btnLoading: 'rodando…',
     analyzing: 'analisando',
@@ -279,6 +281,7 @@ export const pt: Dictionary = {
   footer: {
     rights: '© 2026 donadão/labs · donadaolabs.com',
     build: 'versão · 2026.05.13 · no ar',
+    privacy: 'Política de Privacidade',
   },
   notFound: {
     badge: '404 · Não encontrado',
@@ -293,5 +296,30 @@ export const pt: Dictionary = {
       'Usamos cookies pra entender o uso do site e melhorar a experiência. Conforme LGPD.',
     accept: 'Aceitar',
     reject: 'Recusar',
+  },
+  privacy: {
+    title: 'Política de Privacidade',
+    controller: 'Controlador: Donadão Labs · contato@donadaolabs.com',
+    updated: 'Última atualização: junho de 2026',
+    sections: [
+      {
+        title: 'Dados que coletamos',
+        body: 'Coletamos apenas dados de navegação anônimos via Google Analytics 4 (GA4) — e somente depois do seu consentimento. Se você usar o agente de diagnóstico, armazenamos a pergunta enviada, seu IP e, quando fornecido, seu email, para retorno de contato e melhoria do serviço. Não coletamos dados pessoais sensíveis sem base legal.',
+      },
+      {
+        title: 'Cookies e consentimento',
+        body: 'A análise (GA4) só é ativada após o aceite no banner de cookies, via Consent Mode v2. Enquanto você não aceita, nenhum cookie de análise é gravado. Você pode recusar ou revogar o consentimento a qualquer momento limpando os dados do site no navegador.',
+      },
+      {
+        title: 'Seus direitos (LGPD)',
+        body: 'Você tem direito de acessar, corrigir, portar e excluir seus dados, além de revogar o consentimento. Para exercer qualquer um desses direitos, escreva para contato@donadaolabs.com — respondemos no prazo legal.',
+      },
+      {
+        title: 'Compartilhamento e retenção',
+        body: 'Não vendemos seus dados. Dados de análise são processados pelo Google (GA4) conforme os termos da plataforma. Dados de contato do agente são retidos apenas pelo tempo necessário ao atendimento e melhoria do serviço.',
+      },
+    ],
+    legalNote:
+      'Este documento é informativo e será revisado quanto a base legal, prazo de retenção e indicação de encarregado (DPO) conforme a operação evoluir.',
   },
 };

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -68,6 +69,12 @@ const jetbrainsMono = JetBrains_Mono({
 export function generateStaticParams(): { lang: Locale }[] {
   return LOCALES.map((lang) => ({ lang }));
 }
+
+// CSP estrita com nonce exige render por REQUEST: o nonce do HTML precisa bater
+// com o nonce do header CSP (gerado no middleware a cada request). Em SSG o HTML
+// sai com nonce fixo do build → não casa → enforce bloquearia os scripts.
+// `force-dynamic` garante o casamento. Custo: SSR por request (sem cache estático).
+export const dynamic = 'force-dynamic';
 
 interface LangLayoutProps {
   children: React.ReactNode;
@@ -151,6 +158,10 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
 export default function LangLayout({ children, params }: LangLayoutProps): React.ReactElement {
   if (!isLocale(params.lang)) notFound();
 
+  // Nonce gerado pelo middleware por request (CSP estrita). Propaga p/ os
+  // scripts inline (JSON-LD) e o GA. `headers()` é síncrono no Next 14.
+  const nonce = headers().get('x-nonce') ?? undefined;
+
   return (
     <html
       lang={HTML_LANG[params.lang]}
@@ -159,16 +170,18 @@ export default function LangLayout({ children, params }: LangLayoutProps): React
       <head>
         <script
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
         />
         <script
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSONLD) }}
         />
       </head>
       <body className="bg-ink text-offwhite antialiased">
         {children}
-        <GoogleAnalytics />
+        <GoogleAnalytics nonce={nonce} />
         <ConsentBanner dict={getDictionary(params.lang as Locale)} />
         <Analytics />
         <SpeedInsights />

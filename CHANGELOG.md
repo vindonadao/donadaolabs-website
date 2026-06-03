@@ -9,7 +9,17 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ### Added
 
+- **CSP estrita com nonce (Report-Only)** — `middleware.ts` gera um nonce por request, injeta em `x-nonce` (request) + `Content-Security-Policy` (request, p/ o Next 14 propagar o nonce aos próprios `<script>`) e devolve a policy estrita (`script-src 'self' 'nonce-…' 'strict-dynamic' https:`, sem `'unsafe-inline'` em script) como `Content-Security-Policy-Report-Only` na response. Layout (`app/[lang]/layout.tsx`) lê o nonce via `headers()` e propaga aos scripts JSON-LD e ao `<GoogleAnalytics>`; o componente GA repassa aos `<Script>` (gtag + bootstrap). Validado local (Chrome headless): **zero violação de CSP de recurso próprio** — GA e Vercel Analytics OK sob `strict-dynamic`.
+
 ### Changed
+
+- `app/[lang]/layout.tsx` passa a usar `export const dynamic = 'force-dynamic'` — pré-requisito da CSP com nonce (o nonce do HTML precisa casar com o do header, gerado por request). Custo: `/pt` e `/en` renderizam por request (sem cache estático). Demais security headers (HSTS, X-Frame-Options, etc.) preservados no `next.config.mjs`.
+
+### Pendente (não nesta entrega)
+
+- **Enforce** (TAREFA 4): após validar Report-Only em produção, trocar no middleware `Content-Security-Policy-Report-Only` → `Content-Security-Policy` e remover a CSP loose (Report-Only) do `next.config.mjs`.
+- **GA4** (TAREFA 5): marcar `generate_lead` como evento-chave no painel.
+- `/[lang]/privacidade`: revisar base legal/retenção antes de tráfego pago.
 
 ### Fixed
 

@@ -29,16 +29,22 @@ function PageviewTracker(): null {
  * Default consent = todos denied (LGPD compliance). ConsentBanner atualiza
  * pra granted quando o visitante aceita.
  */
-export function GoogleAnalytics(): React.ReactElement | null {
+interface GoogleAnalyticsProps {
+  /** Nonce da CSP estrita (gerado no middleware, lido no layout). */
+  nonce?: string;
+}
+
+export function GoogleAnalytics({ nonce }: GoogleAnalyticsProps): React.ReactElement | null {
   if (!isGAEnabled()) return null;
 
   return (
     <>
       <Script
         strategy="afterInteractive"
+        nonce={nonce}
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
-      <Script id="ga-bootstrap" strategy="afterInteractive">
+      <Script id="ga-bootstrap" strategy="afterInteractive" nonce={nonce}>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}

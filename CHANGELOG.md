@@ -7,6 +7,10 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [Unreleased]
 
+### Changed
+
+- **Notificação de lead migrada pra caixa do Workspace** — com o domínio `donadaolabs.com` agora no Google Workspace, os e-mails de lead capturado (rota `app/api/diagnose/route.ts`, fluxo `register-email`) passam a usar `contato@donadaolabs.com` tanto como remetente (`NOTIFICATION_FROM`) quanto como destino (`NOTIFICATION_EMAIL`), substituindo o esquema antigo `lead@donadaolabs.com` → `donadaolabs@gmail.com`. Envs atualizadas na Vercel (Production + Development; Preview pendente de ajuste manual via painel). Sem mudança de código — a rota já era env-driven. `.env.example` atualizado. O canal Telegram/push de lead segue inalterado e independente.
+
 ### Added
 
 - **CSP estrita com nonce (Report-Only)** — `middleware.ts` gera um nonce por request, injeta em `x-nonce` (request) + `Content-Security-Policy` (request, p/ o Next 14 propagar o nonce aos próprios `<script>`) e devolve a policy estrita (`script-src 'self' 'nonce-…' 'strict-dynamic' https:`, sem `'unsafe-inline'` em script) como `Content-Security-Policy-Report-Only` na response. Layout (`app/[lang]/layout.tsx`) lê o nonce via `headers()` e propaga aos scripts JSON-LD e ao `<GoogleAnalytics>`; o componente GA repassa aos `<Script>` (gtag + bootstrap). Validado local (Chrome headless): **zero violação de CSP de recurso próprio** — GA e Vercel Analytics OK sob `strict-dynamic`.

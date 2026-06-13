@@ -286,6 +286,7 @@ export const pt: Dictionary = {
     rights: '© 2026 donadão/labs · donadaolabs.com',
     build: 'versão · 2026.05.13 · no ar',
     privacy: 'Política de Privacidade',
+    games: 'Jogos',
   },
   notFound: {
     badge: '404 · Não encontrado',

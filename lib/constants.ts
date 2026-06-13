@@ -290,6 +290,20 @@ export const CASES: readonly Case[] = [
   },
 ] as const;
 
+/**
+ * Produtos próprios no ar (jogos do Lab). Renderizados como links no footer —
+ * funcionam como backlinks site-wide para os domínios próprios (SEO).
+ */
+export interface LabGame {
+  name: string;
+  href: string;
+}
+
+export const LAB_GAMES: readonly LabGame[] = [
+  { name: 'ZONA75', href: 'https://zona75.com' },
+  { name: 'Naipe', href: 'https://naipe.donadaolabs.com' },
+] as const;
+
 export interface StackChip {
   label: string;
 }

@@ -187,6 +187,8 @@ export interface Dictionary {
     build: string;
     /** Label do link para a Política de Privacidade. */
     privacy: string;
+    /** Rótulo do grupo de links para os jogos próprios (Lab). */
+    games: string;
   };
   notFound: {
     badge: string;

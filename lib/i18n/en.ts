@@ -171,6 +171,10 @@ export const en: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: 'Quituteria da Fafá · client migrated to its own domain quituteriadafafa.com.br.' },
+      { text: 'PregApp · public-tender SaaS over PNCP (in-house product) · demo live with search + deadline alerts.' },
+      { text: 'ZONA75 · web game (JezzBall remake) live at zona75.com — online ranking + Anchor Mode.' },
+      { text: 'Naipe · solitaire suite (Spider/Klondike/FreeCell) live with online ranking · naipe.donadaolabs.com.' },
       { text: 'Donadão Labs OPS · internal CRM in the works — clients, proposals and delivery orchestrated in one place.' },
       { text: 'A Vegana · new client · vegan editorial blog live (Next.js 16 + MDX + Brevo newsletter).' },
       { text: 'Brand book v2 published at /brand — full identity, stable /brand/latest.pdf URL and official OG.' },

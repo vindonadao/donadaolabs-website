@@ -19,11 +19,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 - **Favicon não atualizava no Chrome** — `app/[lang]/layout.tsx` ganhou `?v=2` nas URLs do favicon (`icons.icon`/`icons.shortcut`) para furar o cache agressivo do Chrome. (Já incluído na rev-2.9.0; mantido aqui como referência.)
 
+### Resolvido (config de painel)
+
+- **GA4 — `generate_lead` marcado como evento-chave** no painel (Exibição de dados → Eventos). A conversão passa a contar a partir da marcação (não-retroativo); falta apenas importá-la como meta no Google Ads quando a campanha for criada.
+- **Env de Preview na Vercel — concluída.** `NOTIFICATION_EMAIL` e `RESEND_API_KEY` já estavam em *All Environments*; `NOTIFICATION_FROM` passou a cobrir Production + Preview (Development segue com entrada própria — remetente sandbox do Resend). Redeploy de produção `READY`. A env de Preview entra automaticamente no próximo deploy de preview.
+
 ### Pendente (acompanhamento)
 
 - **Política de privacidade — aval jurídico:** a revisão de conformidade técnica está feita (texto fiel à coleta real), mas **falta validação final de um advogado** antes de campanha paga — sobretudo identificação do controlador (hoje sem CNPJ) e enquadramento das bases legais.
-- **GA4** (TAREFA 5): marcar `generate_lead` como evento-chave no painel.
-- **Env de Preview na Vercel:** ajustar `NOTIFICATION_FROM`/`NOTIFICATION_EMAIL` manualmente (Production + Development já feitos).
 
 ---
 

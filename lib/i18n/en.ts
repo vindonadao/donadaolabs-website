@@ -308,7 +308,7 @@ export const en: Dictionary = {
     sections: [
       {
         title: 'Data we collect',
-        body: 'We collect navigation data via Google Analytics 4 (GA4) — only after your consent. If you use the diagnostic agent, we store the question you send, your IP and, when provided, your email, to follow up and improve the service. When we run campaigns, we may use advertising cookies (Google Ads) to measure conversions and for remarketing — also only with your consent. We do not collect sensitive personal data.',
+        body: 'We collect navigation data via Google Analytics 4 (GA4) — only after your consent — and aggregated usage and performance metrics via Vercel (no cookies, without identifying you personally). If you use the diagnostic agent, we process the question you send, your IP address, your browser identifier (user-agent) and, when provided, your email — to generate the answer, follow up and improve the service. When we run campaigns, we may use advertising cookies (Google Ads) to measure conversions and for remarketing — also only with your consent. We do not collect sensitive personal data.',
       },
       {
         title: 'Legal basis (LGPD / GDPR)',
@@ -316,19 +316,19 @@ export const en: Dictionary = {
       },
       {
         title: 'Cookies, consent and advertising',
-        body: 'We use Consent Mode v2: by default, analytics (analytics_storage) and advertising (ad_storage, ad_user_data, ad_personalization) are DISABLED (denied). Nothing is stored until you accept the banner. Advertising cookies (Google Ads) are only activated after acceptance and are used to measure conversions and for remarketing. You can decline or revoke at any time by clearing the site data in your browser.',
+        body: 'We use Consent Mode v2: by default, analytics (analytics_storage) and advertising (ad_storage, ad_user_data, ad_personalization) are DISABLED (denied). Nothing is stored until you accept the banner. Advertising cookies (Google Ads) are only activated after acceptance and are used to measure conversions and for remarketing. Vercel metrics are aggregated and use no cookies. You can decline or revoke at any time by clearing the site data in your browser.',
       },
       {
         title: 'Sharing and international transfer',
-        body: 'We do not sell your data. Analytics and ads are processed by Google (GA4 and Google Ads), which involves transferring data to servers outside Brazil/the EU (e.g. the United States). Google operates these transfers under recognised safeguards (Standard Contractual Clauses and the EU-US Data Privacy Framework). We do not share your data with third parties beyond the providers necessary to run the service.',
+        body: 'We do not sell your data. To run the site, we rely on providers that may process data on servers outside Brazil/the EU (e.g. the United States): Google (GA4 and Google Ads), Vercel (hosting and usage metrics), Anthropic (the artificial intelligence provider that processes the questions sent to the diagnostic agent to generate the answer), Resend (sending the new-contact notification emails) and Telegram (internal notification of new contacts). These transfers occur under recognised safeguards (Standard Contractual Clauses and the EU-US Data Privacy Framework). We do not share your data with third parties beyond the providers necessary to run the service.',
       },
       {
         title: 'Retention',
-        body: 'GA4 analytics data follows the retention period configured on the property (currently 14 months). Contact data sent to the diagnostic agent is retained for up to 24 months after the last contact, unless you request deletion sooner. After these periods, data is anonymised or deleted.',
+        body: 'GA4 analytics data follows the retention period configured on the property (currently 14 months). The questions and contact data sent to the agent are not stored in a database of our own — they reach us through the new-contact notifications (email in our Google Workspace inbox and Telegram), where they are retained for up to 24 months after the last contact, unless you request deletion sooner. After these periods, data is anonymised or deleted.',
       },
       {
         title: 'Your rights',
-        body: 'You can access, correct, port and delete your data, as well as revoke consent. Visitors in the European Union have the equivalent GDPR rights, including objection and restriction of processing. To exercise them, write to contato@donadaolabs.com (Data Protection Officer / DPO) — we reply within the legal timeframe. You may also lodge a complaint with the competent authority: ANPD (Brazil) or CNPD (Portugal).',
+        body: 'You can access, correct, port and delete your data, as well as revoke consent. Visitors in the European Union have the equivalent GDPR rights, including objection and restriction of processing. To exercise them, write to the Data Protection Officer (DPO), Vinicius Donadão, at contato@donadaolabs.com — we reply within the legal timeframe. You may also lodge a complaint with the competent authority: ANPD (Brazil) or CNPD (Portugal).',
       },
     ],
     legalNote:

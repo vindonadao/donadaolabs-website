@@ -308,7 +308,7 @@ export const pt: Dictionary = {
     sections: [
       {
         title: 'Dados que coletamos',
-        body: 'Coletamos dados de navegação via Google Analytics 4 (GA4) — somente após o seu consentimento. Se você usar o agente de diagnóstico, armazenamos a pergunta enviada, seu IP e, quando fornecido, seu e-mail, para retorno de contato e melhoria do serviço. Ao rodarmos campanhas, podemos usar cookies de publicidade (Google Ads) para medir conversões e remarketing — também apenas mediante consentimento. Não coletamos dados pessoais sensíveis.',
+        body: 'Coletamos dados de navegação via Google Analytics 4 (GA4) — somente após o seu consentimento — e métricas agregadas de uso e desempenho via Vercel (sem cookies, sem identificar você pessoalmente). Se você usar o agente de diagnóstico, processamos a pergunta enviada, seu endereço IP, o identificador do seu navegador (user-agent) e, quando fornecido, seu e-mail — para gerar a resposta, retornar contato e melhorar o serviço. Ao rodarmos campanhas, podemos usar cookies de publicidade (Google Ads) para medir conversões e remarketing — também apenas mediante consentimento. Não coletamos dados pessoais sensíveis.',
       },
       {
         title: 'Base legal (LGPD / RGPD)',
@@ -316,19 +316,19 @@ export const pt: Dictionary = {
       },
       {
         title: 'Cookies, consentimento e anúncios',
-        body: 'Usamos Consent Mode v2: por padrão, análise (analytics_storage) e publicidade (ad_storage, ad_user_data, ad_personalization) ficam DESATIVADAS (denied). Nada é gravado até você aceitar no banner. Os cookies de publicidade (Google Ads) só são ativados após o aceite e servem para medir conversões e remarketing. Você pode recusar ou revogar a qualquer momento limpando os dados do site no navegador.',
+        body: 'Usamos Consent Mode v2: por padrão, análise (analytics_storage) e publicidade (ad_storage, ad_user_data, ad_personalization) ficam DESATIVADAS (denied). Nada é gravado até você aceitar no banner. Os cookies de publicidade (Google Ads) só são ativados após o aceite e servem para medir conversões e remarketing. As métricas da Vercel são agregadas e não usam cookies. Você pode recusar ou revogar a qualquer momento limpando os dados do site no navegador.',
       },
       {
         title: 'Compartilhamento e transferência internacional',
-        body: 'Não vendemos seus dados. A análise e os anúncios são processados pelo Google (GA4 e Google Ads), o que envolve transferência de dados para servidores fora do Brasil/UE (ex.: Estados Unidos). O Google opera essas transferências sob salvaguardas reconhecidas (Cláusulas Contratuais-Padrão e o EU-US Data Privacy Framework). Não compartilhamos seus dados com terceiros além dos provedores necessários à operação.',
+        body: 'Não vendemos seus dados. Para operar o site, contamos com provedores que podem tratar dados em servidores fora do Brasil/UE (ex.: Estados Unidos): Google (GA4 e Google Ads), Vercel (hospedagem e métricas de uso), Anthropic (o provedor de inteligência artificial que processa as perguntas enviadas ao agente de diagnóstico para gerar a resposta), Resend (envio dos e-mails de notificação de novos contatos) e Telegram (notificação interna de novos contatos). Essas transferências ocorrem sob salvaguardas reconhecidas (Cláusulas Contratuais-Padrão e o EU-US Data Privacy Framework). Não compartilhamos seus dados com terceiros além dos provedores necessários à operação.',
       },
       {
         title: 'Retenção',
-        body: 'Dados de análise no GA4 seguem o prazo de retenção configurado na propriedade (atualmente 14 meses). Dados de contato enviados ao agente de diagnóstico são retidos por até 24 meses após o último contato, salvo se você pedir a exclusão antes. Após esses prazos, os dados são anonimizados ou eliminados.',
+        body: 'Dados de análise no GA4 seguem o prazo de retenção configurado na propriedade (atualmente 14 meses). As perguntas e os dados de contato enviados ao agente não são gravados em banco de dados próprio — eles chegam até nós pelas notificações de novo contato (e-mail na nossa caixa do Google Workspace e Telegram), onde ficam retidos por até 24 meses após o último contato, salvo se você pedir a exclusão antes. Após esses prazos, os dados são anonimizados ou eliminados.',
       },
       {
         title: 'Seus direitos',
-        body: 'Você pode acessar, corrigir, portar e excluir seus dados, além de revogar o consentimento. Visitantes na União Europeia têm os direitos equivalentes do RGPD, incluindo oposição e limitação do tratamento. Para exercê-los, escreva para contato@donadaolabs.com (Encarregado de Dados / DPO) — respondemos no prazo legal. Você também pode reclamar à autoridade competente: ANPD (Brasil) ou CNPD (Portugal).',
+        body: 'Você pode acessar, corrigir, portar e excluir seus dados, além de revogar o consentimento. Visitantes na União Europeia têm os direitos equivalentes do RGPD, incluindo oposição e limitação do tratamento. Para exercê-los, escreva para o Encarregado de Dados (DPO), Vinicius Donadão, em contato@donadaolabs.com — respondemos no prazo legal. Você também pode reclamar à autoridade competente: ANPD (Brasil) ou CNPD (Portugal).',
       },
     ],
     legalNote:

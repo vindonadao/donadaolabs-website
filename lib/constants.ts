@@ -312,6 +312,10 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-06-12', tag: 'shipped', text: 'Quituteria da Fafá · cliente migrado pro domínio próprio quituteriadafafa.com.br.' },
+  { date: '2026-06-10', tag: 'rfc',     text: 'PregApp · SaaS de licitações PNCP (produto próprio) · demo no ar com busca + alertas de prazo.' },
+  { date: '2026-06-07', tag: 'shipped', text: 'ZONA75 · jogo web (remake do JezzBall) no ar em zona75.com — ranking online + Modo Âncora.' },
+  { date: '2026-06-04', tag: 'shipped', text: 'Naipe · suíte de paciência (Spider/Klondike/FreeCell) no ar com ranking online · naipe.donadaolabs.com.' },
   { date: '2026-06-02', tag: 'rfc',     text: 'Donadão Labs OPS · CRM interno em construção — clientes, propostas e entregas orquestrados num só lugar.' },
   { date: '2026-06-01', tag: 'shipped', text: 'A Vegana · novo cliente · blog editorial vegano no ar (Next.js 16 + MDX + newsletter Brevo).' },
   { date: '2026-05-30', tag: 'shipped', text: 'Brand book v2 publicado em /brand — identidade completa, URL estável /brand/latest.pdf e OG oficial.' },

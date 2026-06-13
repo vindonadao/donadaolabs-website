@@ -7,6 +7,24 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [Unreleased]
 
+### Changed
+
+- **Política de privacidade alinhada aos subprocessadores reais** — revisão de conformidade (LGPD/RGPD) que aproximou o texto da coleta efetiva do site, em `lib/i18n/{pt,en}.ts` (bloco `privacy.sections`). Passou a declarar **todos os subprocessadores ativos** (antes só Google): **Vercel** (hospedagem + métricas de uso agregadas, sem cookies), **Anthropic** (provedor de IA que processa as perguntas do agente de diagnóstico), **Resend** (envio dos e-mails de notificação de lead) e **Telegram** (notificação interna). Também: declara coleta de **user-agent** (antes só IP); corrige a seção de **retenção** (perguntas/contatos não vão pra banco próprio — ficam na caixa do Google Workspace + Telegram, 24m); e **nomeia o Encarregado/DPO** (Vinicius Donadão). WhatsApp/Z-API e Upstash Redis não foram declarados por não estarem ativos em produção.
+
+### Changelog público (home)
+
+- **4 entradas novas** no array curado (`lib/constants.ts` + textos i18n em `lib/i18n/{pt,en}.ts`): Quituteria da Fafá (domínio próprio), PregApp (demo), ZONA75 e Naipe. Correção do alinhamento por índice entre datas/tags (`constants.ts`) e textos (i18n) — os três arrays precisam ter a mesma contagem/ordem.
+
+### Fixed
+
+- **Favicon não atualizava no Chrome** — `app/[lang]/layout.tsx` ganhou `?v=2` nas URLs do favicon (`icons.icon`/`icons.shortcut`) para furar o cache agressivo do Chrome. (Já incluído na rev-2.9.0; mantido aqui como referência.)
+
+### Pendente (acompanhamento)
+
+- **Política de privacidade — aval jurídico:** a revisão de conformidade técnica está feita (texto fiel à coleta real), mas **falta validação final de um advogado** antes de campanha paga — sobretudo identificação do controlador (hoje sem CNPJ) e enquadramento das bases legais.
+- **GA4** (TAREFA 5): marcar `generate_lead` como evento-chave no painel.
+- **Env de Preview na Vercel:** ajustar `NOTIFICATION_FROM`/`NOTIFICATION_EMAIL` manualmente (Production + Development já feitos).
+
 ---
 
 ## [rev-2.9.0] — 2026-06-13

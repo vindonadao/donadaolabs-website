@@ -7,12 +7,19 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [Unreleased]
 
+---
+
+## [rev-2.10.0] — 2026-06-21
+
+Atualização do **changelog público (home)**: +4 entradas reais posteriores a 12/06 (Starck Representações, ORIGEM, Diskat OPS, backlinks dos jogos no footer), todas com versão PT/EN casada por índice. Inclui o alinhamento prévio da política de privacidade aos subprocessadores reais.
+
 ### Changed
 
 - **Política de privacidade alinhada aos subprocessadores reais** — revisão de conformidade (LGPD/RGPD) que aproximou o texto da coleta efetiva do site, em `lib/i18n/{pt,en}.ts` (bloco `privacy.sections`). Passou a declarar **todos os subprocessadores ativos** (antes só Google): **Vercel** (hospedagem + métricas de uso agregadas, sem cookies), **Anthropic** (provedor de IA que processa as perguntas do agente de diagnóstico), **Resend** (envio dos e-mails de notificação de lead) e **Telegram** (notificação interna). Também: declara coleta de **user-agent** (antes só IP); corrige a seção de **retenção** (perguntas/contatos não vão pra banco próprio — ficam na caixa do Google Workspace + Telegram, 24m); e **nomeia o Encarregado/DPO** (Vinicius Donadão). WhatsApp/Z-API e Upstash Redis não foram declarados por não estarem ativos em produção.
 
 ### Changelog público (home)
 
+- **+4 entradas novas** no array curado (`lib/constants.ts` + textos i18n em `lib/i18n/{pt,en}.ts`), todas posteriores a 12/06 e em ordem decrescente no topo: **Starck Representações** (novo cliente · sistema de catálogo B2B, em construção · `rfc` · 2026-06-19), **ORIGEM** (novo produto próprio · app mobile de quiz em construção · `rfc` · 2026-06-17), **Diskat OPS** (atualização no painel interno do cliente · `shipped` · 2026-06-15) e **backlinks dos jogos próprios no footer** (Naipe/ZONA75 · SEO site-wide · `infra` · 2026-06-13). Alinhamento por índice mantido entre datas/tags (`constants.ts`) e textos (i18n) — os três arrays têm a mesma contagem/ordem.
 - **4 entradas novas** no array curado (`lib/constants.ts` + textos i18n em `lib/i18n/{pt,en}.ts`): Quituteria da Fafá (domínio próprio), PregApp (demo), ZONA75 e Naipe. Correção do alinhamento por índice entre datas/tags (`constants.ts`) e textos (i18n) — os três arrays precisam ter a mesma contagem/ordem.
 
 ### Fixed

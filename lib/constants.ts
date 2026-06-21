@@ -326,6 +326,10 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-06-19', tag: 'rfc',     text: 'Starck Representações · novo cliente · sistema de catálogo B2B (em construção).' },
+  { date: '2026-06-17', tag: 'rfc',     text: 'ORIGEM · novo produto próprio · app mobile de quiz em construção (Expo + Supabase + IA).' },
+  { date: '2026-06-15', tag: 'shipped', text: 'Diskat OPS · atualização no painel interno do cliente (ops.diskatpresentes.com.br).' },
+  { date: '2026-06-13', tag: 'infra',   text: 'Site · backlinks pros jogos próprios (Naipe, ZONA75) no footer — SEO site-wide.' },
   { date: '2026-06-12', tag: 'shipped', text: 'Quituteria da Fafá · cliente migrado pro domínio próprio quituteriadafafa.com.br.' },
   { date: '2026-06-10', tag: 'rfc',     text: 'PregApp · SaaS de licitações PNCP (produto próprio) · demo no ar com busca + alertas de prazo.' },
   { date: '2026-06-07', tag: 'shipped', text: 'ZONA75 · jogo web (remake do JezzBall) no ar em zona75.com — ranking online + Modo Âncora.' },

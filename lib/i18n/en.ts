@@ -171,6 +171,10 @@ export const en: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: 'Starck Representações · new client · B2B catalog system (in the works).' },
+      { text: 'ORIGEM · new in-house product · mobile quiz app in the works (Expo + Supabase + AI).' },
+      { text: 'Diskat OPS · update to the client internal panel (ops.diskatpresentes.com.br).' },
+      { text: 'Site · backlinks to our own games (Naipe, ZONA75) in the footer — site-wide SEO.' },
       { text: 'Quituteria da Fafá · client migrated to its own domain quituteriadafafa.com.br.' },
       { text: 'PregApp · public-tender SaaS over PNCP (in-house product) · demo live with search + deadline alerts.' },
       { text: 'ZONA75 · web game (JezzBall remake) live at zona75.com — online ranking + Anchor Mode.' },

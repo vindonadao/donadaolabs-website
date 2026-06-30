@@ -9,6 +9,16 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.10.1] — 2026-06-30
+
+Troca da **foto do fundador** (seção `05 / Fundador`) pela revisão 2.
+
+### Changed
+
+- **`public/founder.jpg` atualizada para a rev2** — nova foto do fundador (blazer preto / camisa branca, ambiente de trabalho), com tratamento fino leve (contraste suave, saturação +3%, nitidez sutil via `unsharp`), sem retoque artificial. Mantida a proporção 1086×1448 (idêntica à anterior), compatível com o quadro `240×280 object-cover` em `components/founder.tsx`. Revisões arquivadas em `public/_founder-revisions/` (`founder-rev1.jpg` = versão anterior, `founder-rev2.jpg` = atual).
+
+---
+
 ## [rev-2.10.0] — 2026-06-21
 
 Atualização do **changelog público (home)**: +4 entradas reais posteriores a 12/06 (Starck Representações, ORIGEM, Diskat OPS, backlinks dos jogos no footer), todas com versão PT/EN casada por índice. Inclui o alinhamento prévio da política de privacidade aos subprocessadores reais.

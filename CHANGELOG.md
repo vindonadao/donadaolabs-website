@@ -9,6 +9,25 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.11.0] — 2026-07-11
+
+Ampliação da **seção de Projetos (cases)** de 4 → 6, com **A Vegana** e **Quituteria da Fafá** (logos reais extraídos dos repositórios de marca), **+4 entradas** no changelog público e atualização da **bio do fundador**.
+
+### Added
+
+- **Dois novos cases com logo real** — `A Vegana` (`avegana.com.br`, blog editorial + newsletter Brevo) e `Quituteria da Fafá` (`quituteriadafafa.com.br`, e-commerce com fechamento de pedido no WhatsApp) entram em `CASES` (`lib/constants.ts`), com textos PT/EN casados por índice em `lib/i18n/{pt,en}.ts`. Logos no padrão dos demais (PNG transparente, cor da marca sobre card escuro) em `public/clients/a-vegana.png` e `public/clients/quituteria-da-fafa.png` — extraídos de `~/projetos/avegana` (SVG oficial, fundo creme removido via `-transparent`) e do logo original do cliente da Quituteria (wordmark recortado dos azulejos, branco removido, azul clareado para `#6E9AD6` para contraste no card `#070709`).
+
+### Changed
+
+- **Contagem de produtos** — título da seção `Quatro → Seis produtos rodando` (PT) / `Four → Six products running` (EN); a métrica "Produtos no ar" deriva de `CASES.length` e passou de `04 → 06` automaticamente.
+- **Bio do fundador** (`founder.bio2`, PT/EN) — de "quatro produtos no ar, três em construção" para "seis produtos no ar".
+
+### Changelog público (home)
+
+- **+4 entradas** (PT/EN casadas por índice, `lib/constants.ts` + `lib/i18n/{pt,en}.ts`, mais recentes no topo): `Donadão Labs OPS` no ar / feature-complete (corrige o status que ainda constava "em construção"), `PregApp` pronto (`pregapp.com.br`), `Starck Representações` concluído (novo cliente) e a própria ampliação dos cases com A Vegana + Quituteria.
+
+---
+
 ## [rev-2.10.1] — 2026-06-30
 
 Troca da **foto do fundador** (seção `05 / Fundador`) pela revisão 2.

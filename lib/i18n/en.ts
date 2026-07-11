@@ -119,7 +119,7 @@ export const en: Dictionary = {
   },
   cases: {
     eyebrow: 'Cases · 2025–2026',
-    title: 'Four products running. No mockups.',
+    title: 'Six products running. No mockups.',
     sub: 'Real software, live, generating sales.',
     internalLabel: 'internal',
     liveLabel: 'live',
@@ -151,6 +151,18 @@ export const en: Dictionary = {
         desc: 'Landing page presenting services, capturing leads and opening a direct channel with the client. A real site for a business that lives offline.',
         metric: '↑ web quotes',
       },
+      {
+        kind: 'Editorial blog · Vegan',
+        title: 'Editorial blog with its own newsletter',
+        desc: 'Vegan content blog in MDX — categories, recipes with structured SEO and an owned newsletter. Live on its own domain, publishing weekly.',
+        metric: '28 posts live',
+      },
+      {
+        kind: 'E-commerce · WhatsApp checkout',
+        title: 'Homemade-goods shop with WhatsApp checkout',
+        desc: 'Catalog of homemade sweets and savories with cart and order closing straight on WhatsApp. Live on its own domain.',
+        metric: 'Order straight on WhatsApp',
+      },
     ],
   },
   manifesto: {
@@ -171,6 +183,10 @@ export const en: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: 'Site · projects section expanded — A Vegana and Quituteria da Fafá now in the cases.' },
+      { text: 'Starck Representações · new client · B2B catalog + lead-capture platform completed.' },
+      { text: 'PregApp · PNCP public-tender SaaS (in-house product) ready — PNCP search + deadline email alerts · pregapp.com.br.' },
+      { text: 'Donadão Labs OPS · internal CRM live, feature-complete — clients, proposals, invoices and deliveries in one place.' },
       { text: 'Starck Representações · new client · B2B catalog system (in the works).' },
       { text: 'ORIGEM · new in-house product · mobile quiz app in the works (Expo + Supabase + AI).' },
       { text: 'Diskat OPS · update to the client internal panel (ops.diskatpresentes.com.br).' },
@@ -193,7 +209,7 @@ export const en: Dictionary = {
     role: 'Computer Scientist · Founder',
     badge: 'founder · live',
     bio1: 'Computer scientist with a background in critical industrial automation. I build software and AI agents that solve the right problem — generating revenue.',
-    bio2: 'Donadão Labs is the operation I run: four products live, three in the lab and current focus on AI agents for businesses already earning, but still operating on WhatsApp.',
+    bio2: 'Donadão Labs is the operation I run: six products live and current focus on AI agents for businesses already earning, but still operating on WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',

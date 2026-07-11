@@ -119,7 +119,7 @@ export const pt: Dictionary = {
   },
   cases: {
     eyebrow: 'Projetos · 2025–2026',
-    title: 'Quatro produtos rodando. Sem firula.',
+    title: 'Seis produtos rodando. Sem firula.',
     sub: 'Software real, no ar, gerando venda.',
     internalLabel: 'interno',
     liveLabel: 'no ar',
@@ -151,6 +151,18 @@ export const pt: Dictionary = {
         desc: 'Landing de apresentação dos serviços, captação de contato e canal direto com o cliente. Site real para um negócio que vive offline.',
         metric: '↑ orçamentos via web',
       },
+      {
+        kind: 'Blog editorial · Vegano',
+        title: 'Blog editorial com newsletter própria',
+        desc: 'Blog de conteúdo vegano em MDX, com categorias, receitas com SEO estruturado e newsletter própria. Domínio no ar, publicando toda semana.',
+        metric: '28 posts no ar',
+      },
+      {
+        kind: 'E-commerce · Checkout WhatsApp',
+        title: 'Loja de quitutes com pedido no WhatsApp',
+        desc: 'Catálogo de doces e salgados caseiros com carrinho e fechamento de pedido direto no WhatsApp. Domínio próprio no ar.',
+        metric: 'Pedido direto no WhatsApp',
+      },
     ],
   },
   manifesto: {
@@ -171,6 +183,10 @@ export const pt: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: 'Site · seção de projetos ampliada — A Vegana e Quituteria da Fafá agora nos cases.' },
+      { text: 'Starck Representações · novo cliente · plataforma B2B de catálogo + captação de leads concluída.' },
+      { text: 'PregApp · SaaS de licitações PNCP (produto próprio) pronto — busca no PNCP + alertas de prazo por e-mail · pregapp.com.br.' },
+      { text: 'Donadão Labs OPS · CRM interno no ar, feature-complete — clientes, propostas, faturas e entregas num só lugar.' },
       { text: 'Starck Representações · novo cliente · sistema de catálogo B2B (em construção).' },
       { text: 'ORIGEM · novo produto próprio · app mobile de quiz em construção (Expo + Supabase + IA).' },
       { text: 'Diskat OPS · atualização no painel interno do cliente (ops.diskatpresentes.com.br).' },
@@ -193,7 +209,7 @@ export const pt: Dictionary = {
     role: 'Cientista da Computação · Fundador',
     badge: 'fundador · ao vivo',
     bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e agentes de IA que resolvem o problema certo — o de gerar receita.',
-    bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar, três em construção e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
+    bio2: 'Donadão Labs é a operação que rodo: seis produtos no ar e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',

@@ -288,6 +288,40 @@ export const CASES: readonly Case[] = [
       style: 'sans-condensed',
     },
   },
+  {
+    num: '05',
+    client: 'A Vegana',
+    kind: 'Blog editorial · Vegano',
+    meta: 'Blog editorial · Vegano',
+    title: 'Blog editorial com newsletter própria',
+    desc: 'Blog de conteúdo vegano em MDX, com categorias, receitas com SEO estruturado e newsletter própria. Domínio no ar, publicando toda semana.',
+    metric: '28 posts no ar',
+    href: 'https://avegana.com.br',
+    stack: ['Next.js', 'MDX', 'Brevo', 'Vercel'],
+    logo: {
+      image: '/clients/a-vegana.png',
+      shape: 'aperture',
+      display: 'a vegana',
+      style: 'serif',
+    },
+  },
+  {
+    num: '06',
+    client: 'Quituteria da Fafá',
+    kind: 'E-commerce · Checkout WhatsApp',
+    meta: 'E-commerce · Checkout WhatsApp',
+    title: 'Loja de quitutes com pedido no WhatsApp',
+    desc: 'Catálogo de doces e salgados caseiros com carrinho e fechamento de pedido direto no WhatsApp. Domínio próprio no ar.',
+    metric: 'Pedido direto no WhatsApp',
+    href: 'https://quituteriadafafa.com.br',
+    stack: ['Next.js', 'TypeScript', 'Vercel'],
+    logo: {
+      image: '/clients/quituteria-da-fafa.png',
+      shape: 'layers',
+      display: 'quituteria',
+      style: 'sans-bold',
+    },
+  },
 ] as const;
 
 /**
@@ -326,6 +360,10 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-07-11', tag: 'shipped', text: 'Site · seção de projetos ampliada — A Vegana e Quituteria da Fafá agora nos cases.' },
+  { date: '2026-07-10', tag: 'shipped', text: 'Starck Representações · novo cliente · plataforma B2B de catálogo + captação de leads concluída.' },
+  { date: '2026-07-08', tag: 'shipped', text: 'PregApp · SaaS de licitações PNCP (produto próprio) pronto — busca no PNCP + alertas de prazo por e-mail · pregapp.com.br.' },
+  { date: '2026-06-24', tag: 'shipped', text: 'Donadão Labs OPS · CRM interno no ar, feature-complete — clientes, propostas, faturas e entregas num só lugar.' },
   { date: '2026-06-19', tag: 'rfc',     text: 'Starck Representações · novo cliente · sistema de catálogo B2B (em construção).' },
   { date: '2026-06-17', tag: 'rfc',     text: 'ORIGEM · novo produto próprio · app mobile de quiz em construção (Expo + Supabase + IA).' },
   { date: '2026-06-15', tag: 'shipped', text: 'Diskat OPS · atualização no painel interno do cliente (ops.diskatpresentes.com.br).' },

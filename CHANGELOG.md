@@ -9,6 +9,17 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.11.1] — 2026-07-12
+
+Correções de **responsividade no mobile** na dobra de apresentação: o balão de definição do `*ship` deixava de caber na tela e o botão do nav quebrava em duas linhas.
+
+### Fixed
+
+- **Tooltip do `*ship` cortado no mobile** (`components/ship.tsx`) — o balão era ancorado com `left-0` e largura fixa de `340px`, então vazava a borda direita da viewport e cortava o texto (medido: hero 51px, card 133px, CTA final 193px cortados a 390px). Reescrito para `position: fixed` com posição **medida e travada dentro da viewport** (centraliza sob a palavra, com margem mínima das bordas, recalculando em `scroll`/`resize`). Como agora é `fixed`, o balão também escapa do `overflow-hidden` das seções. Comportamento no desktop inalterado.
+- **Botão do nav quebrando em 2 linhas no mobile** (`components/nav.tsx`, `lib/i18n/{types,pt,en}.ts`) — "Agendar diagnóstico →" quebrava em duas linhas e colava no logo em toda largura mobile. Novo rótulo curto (`nav.ctaButtonShort`: `Agendar →` / `Book →`) exibido em telas estreitas via `md:hidden`, mantendo o texto completo no desktop; botão com `whitespace-nowrap`.
+
+---
+
 ## [rev-2.11.0] — 2026-07-11
 
 Ampliação da **seção de Projetos (cases)** de 4 → 6, com **A Vegana** e **Quituteria da Fafá** (logos reais extraídos dos repositórios de marca), **+4 entradas** no changelog público e atualização da **bio do fundador**.

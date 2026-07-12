@@ -15,6 +15,8 @@ export interface Dictionary {
     links: { label: string; href: string }[];
     statusPill: string;
     ctaButton: string;
+    /** Rótulo curto do CTA para telas estreitas (evita o botão quebrar em 2 linhas no mobile). */
+    ctaButtonShort: string;
     langSwitchLabel: string;
   };
   hero: {

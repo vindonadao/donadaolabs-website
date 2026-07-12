@@ -20,6 +20,7 @@ export const en: Dictionary = {
     ],
     statusPill: 'live · operating · 2 slots jul/26',
     ctaButton: 'Book a diagnosis →',
+    ctaButtonShort: 'Book →',
     langSwitchLabel: 'PT',
   },
   hero: {

@@ -166,6 +166,25 @@ export const pt: Dictionary = {
       },
     ],
   },
+  products: {
+    eyebrow: '◆ produtos próprios',
+    title: 'Construído pra nós, no ar pra todo mundo.',
+    sub: 'Produtos que o Lab constrói, opera e mantém no ar — com a mesma stack que entregamos pra cliente.',
+    liveLabel: 'no ar',
+    buildingLabel: 'em construção',
+    playgroundEyebrow: '◆ playground',
+    playgroundSub:
+      'O que a gente constrói quando não está faturando pro cliente. Mesma stack, mesmo rigor: ranking online, tempo real, zero queda. Joga aí e testa a engenharia você mesmo.',
+    items: [
+      {
+        tag: 'SaaS · Licitações públicas',
+        title: 'Busca no PNCP com alerta de prazo',
+        body: 'Produto próprio do Lab: busca em licitações do PNCP com alertas de prazo por e-mail. Construído, operado e vendido por nós — do banco ao boleto.',
+      },
+      { body: 'Remake do JezzBall. Capture 75% da arena, suba no ranking.' },
+      { body: 'Spider, Klondike e FreeCell com ranking global.' },
+    ],
+  },
   manifesto: {
     eyebrow: '◆ princípio',
     quote: 'Software não é arte.',
@@ -184,6 +203,7 @@ export const pt: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: 'Site · seção Produtos próprios no ar — PregApp, ZONA75 e Naipe saem do rodapé e ganham vitrine. Layer Products do brand book, agora no site.' },
       { text: 'Site · seção de projetos ampliada — A Vegana e Quituteria da Fafá agora nos cases.' },
       { text: 'Starck Representações · novo cliente · plataforma B2B de catálogo + captação de leads concluída.' },
       { text: 'PregApp · SaaS de licitações PNCP (produto próprio) pronto — busca no PNCP + alertas de prazo por e-mail · pregapp.com.br.' },

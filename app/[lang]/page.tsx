@@ -10,8 +10,10 @@ import { Hero } from '@/components/hero';
 import { Manifesto } from '@/components/manifesto';
 import { Metrics } from '@/components/metrics';
 import { Nav } from '@/components/nav';
+import { Products } from '@/components/products';
 import { Services } from '@/components/services';
 import { Stack } from '@/components/stack';
+import { PRODUCTS, SITE } from '@/lib/constants';
 import { getDictionary, isLocale } from '@/lib/i18n';
 
 interface HomePageProps {
@@ -34,11 +36,29 @@ export default function HomePage({ params }: HomePageProps): React.ReactElement 
     })),
   };
 
+  // ItemList dos produtos próprios (PregApp, ZONA75, Naipe) — sinaliza pro
+  // Google que o Lab opera produtos próprios, apontando pros domínios reais.
+  const productsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${SITE.name} — ${dict.products.eyebrow.replace(/^◆\s*/, '')}`,
+    itemListElement: PRODUCTS.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: p.url,
+      name: p.name,
+    })),
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productsJsonLd) }}
       />
       <Nav dict={dict} lang={params.lang} />
       <main>
@@ -51,6 +71,7 @@ export default function HomePage({ params }: HomePageProps): React.ReactElement 
         <Manifesto dict={dict} />
         <Changelog dict={dict} />
         <Founder dict={dict} />
+        <Products dict={dict} />
         <Faq dict={dict} />
         <Cta dict={dict} />
       </main>

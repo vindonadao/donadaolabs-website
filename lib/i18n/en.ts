@@ -166,6 +166,25 @@ export const en: Dictionary = {
       },
     ],
   },
+  products: {
+    eyebrow: '◆ own products',
+    title: 'Built for us, live for everyone.',
+    sub: 'Products the Lab builds, runs and keeps live — on the same stack we ship to clients.',
+    liveLabel: 'live',
+    buildingLabel: 'in progress',
+    playgroundEyebrow: '◆ playground',
+    playgroundSub:
+      "What we build when we're not billing a client. Same stack, same rigor: online ranking, realtime, zero downtime. Play it and test the engineering yourself.",
+    items: [
+      {
+        tag: 'SaaS · Public procurement',
+        title: 'PNCP search with deadline alerts',
+        body: "Lab's own SaaS: public-procurement search on Brazil's PNCP with deadline alerts by email. Built, run and sold by us — from database to billing.",
+      },
+      { body: 'A JezzBall remake. Capture 75% of the arena, climb the ranking.' },
+      { body: 'Spider, Klondike and FreeCell with a global ranking.' },
+    ],
+  },
   manifesto: {
     eyebrow: '◆ principle',
     quote: 'Software is not art.',
@@ -184,6 +203,7 @@ export const en: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: "Site · Own Products section live — PregApp, ZONA75 and Naipe move out of the footer into a proper showcase. The brand book's Products layer, now on the site." },
       { text: 'Site · projects section expanded — A Vegana and Quituteria da Fafá now in the cases.' },
       { text: 'Starck Representações · new client · B2B catalog + lead-capture platform completed.' },
       { text: 'PregApp · PNCP public-tender SaaS (in-house product) ready — PNCP search + deadline email alerts · pregapp.com.br.' },

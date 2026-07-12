@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { LogoMark } from '@/components/logo-mark';
-import { LAB_GAMES } from '@/lib/constants';
+import { PLAYGROUND_PRODUCTS } from '@/lib/constants';
 import type { Dictionary, Locale } from '@/lib/i18n';
 
 interface FooterProps {
@@ -18,10 +18,10 @@ export function Footer({ dict, lang }: FooterProps): React.ReactElement {
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <span className="flex items-center gap-2">
           <span className="text-offwhite/40">{dict.footer.games}:</span>
-          {LAB_GAMES.map((g) => (
+          {PLAYGROUND_PRODUCTS.map((g) => (
             <a
-              key={g.href}
-              href={g.href}
+              key={g.url}
+              href={g.url}
               target="_blank"
               rel="noopener"
               className="underline-offset-2 transition-colors hover:text-offwhite hover:underline"

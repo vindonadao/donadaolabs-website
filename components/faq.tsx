@@ -13,7 +13,7 @@ export function Faq({ dict }: FaqProps): React.ReactElement {
 
   return (
     <section id="faq" className="border-t border-white/[0.08]">
-      <SectionHeader idx="06" eyebrow={dict.faq.eyebrow} title={dict.faq.title} />
+      <SectionHeader idx="07" eyebrow={dict.faq.eyebrow} title={dict.faq.title} />
       <div className="px-6 md:px-10">
         <div className="overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal">
           {dict.faq.items.map((f, i) => {

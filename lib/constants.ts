@@ -325,18 +325,49 @@ export const CASES: readonly Case[] = [
 ] as const;
 
 /**
- * Produtos próprios no ar (jogos do Lab). Renderizados como links no footer —
- * funcionam como backlinks site-wide para os domínios próprios (SEO).
+ * Produtos próprios do Lab (fonte única).
+ *
+ * Duas trilhas:
+ *  - `product`    → produto próprio com peso de case (ex.: PregApp). Card cheio, roxo.
+ *  - `playground` → demos de engenharia usáveis (jogos). Faixa compacta, badge ◆.
+ *
+ * Campos NEUTROS (slug, name, tier, url, status, stack) vivem aqui; os textos
+ * traduzíveis (tag, title, body) ficam em `dict.products.items`, casados por
+ * índice — mesmo padrão de CASES/CHANGELOG. ORIGEM entra aqui ao lançar
+ * (`tier: 'product'`, `status: 'building'`) sem refactor.
+ *
+ * O footer deriva os jogos daqui (`tier === 'playground'`) — os backlinks
+ * site-wide para os domínios próprios (SEO) continuam saindo de uma fonte só.
  */
-export interface LabGame {
+export type ProductTier = 'product' | 'playground';
+
+export interface Product {
+  slug: string;
+  /** Nome próprio — não traduz. */
   name: string;
-  href: string;
+  tier: ProductTier;
+  url: string;
+  status: 'live' | 'building';
+  stack?: readonly string[];
 }
 
-export const LAB_GAMES: readonly LabGame[] = [
-  { name: 'ZONA75', href: 'https://zona75.com' },
-  { name: 'Naipe', href: 'https://naipe.donadaolabs.com' },
+export const PRODUCTS: readonly Product[] = [
+  {
+    slug: 'pregapp',
+    name: 'PregApp',
+    tier: 'product',
+    url: 'https://pregapp.com.br',
+    status: 'live',
+    stack: ['Next.js', 'Postgres', 'Supabase', 'Resend'],
+  },
+  { slug: 'zona75', name: 'ZONA75', tier: 'playground', url: 'https://zona75.com', status: 'live' },
+  { slug: 'naipe', name: 'Naipe', tier: 'playground', url: 'https://naipe.donadaolabs.com', status: 'live' },
 ] as const;
+
+/** Jogos do Lab, derivados de PRODUCTS — usados como backlinks no footer. */
+export const PLAYGROUND_PRODUCTS: readonly Product[] = PRODUCTS.filter(
+  (p) => p.tier === 'playground',
+);
 
 export interface StackChip {
   label: string;
@@ -360,6 +391,7 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-07-12', tag: 'shipped', text: 'Site · seção Produtos próprios no ar — PregApp, ZONA75 e Naipe saem do rodapé e ganham vitrine. Layer Products do brand book, agora no site.' },
   { date: '2026-07-11', tag: 'shipped', text: 'Site · seção de projetos ampliada — A Vegana e Quituteria da Fafá agora nos cases.' },
   { date: '2026-07-10', tag: 'shipped', text: 'Starck Representações · novo cliente · plataforma B2B de catálogo + captação de leads concluída.' },
   { date: '2026-07-08', tag: 'shipped', text: 'PregApp · SaaS de licitações PNCP (produto próprio) pronto — busca no PNCP + alertas de prazo por e-mail · pregapp.com.br.' },

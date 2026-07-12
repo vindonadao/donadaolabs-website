@@ -9,6 +9,24 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.12.0] — 2026-07-12
+
+Nova seção **`06 · Produtos próprios`** entre Founder e FAQ (FAQ passa a `07`), materializando o layer Products do brand book: **PregApp** (produto próprio, card cheio) e **ZONA75 + Naipe** (faixa playground) saem do rodapé e ganham vitrine própria — em **roxo**, sem competir com os cases de cliente.
+
+### Added
+
+- **Seção Produtos próprios** (`components/products.tsx`, `id="produtos"`) — duas trilhas: card cheio roxo pro PregApp (peso de case) e faixa compacta `◆ playground` pros jogos. Renderiza em `/pt` e `/en` a partir do mesmo array. Cor do layer Products (`#7B6BFF`); nunca mistura verde e roxo no mesmo elemento.
+- **`PRODUCTS`** como fonte única (`lib/constants.ts`) — campos neutros (`slug`, `name`, `tier`, `url`, `status`, `stack`); textos traduzíveis em `dict.products.items` casados por índice (`lib/i18n/{types,pt,en}.ts`). ORIGEM entra ao lançar (`tier: 'product'`, `status: 'building'`) sem refactor.
+- **Tracking GA4** (`components/tracked-product-link.tsx`) — `select_content` com `content_type: own_product | playground` e `item_id: slug` no clique de cada produto (critério de reversão da seção).
+- **JSON-LD `ItemList`** dos produtos próprios na home (`app/[lang]/page.tsx`).
+
+### Changed
+
+- **Footer** deriva os jogos de `PRODUCTS` (`tier === 'playground'`) — `LAB_GAMES` aposentado, backlinks de SEO agora saem de uma fonte só.
+- **FAQ** renumerado de `06` para `07` (âncora `#faq` inalterada).
+
+---
+
 ## [rev-2.11.1] — 2026-07-12
 
 Correções de **responsividade no mobile** na dobra de apresentação: o balão de definição do `*ship` deixava de caber na tela e o botão do nav quebrava em duas linhas.

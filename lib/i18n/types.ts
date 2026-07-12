@@ -89,6 +89,23 @@ export interface Dictionary {
       metric: string;
     }[];
   };
+  products: {
+    eyebrow: string;
+    title: string;
+    sub: string;
+    /** Selos de status dos produtos (◆). */
+    liveLabel: string;
+    buildingLabel: string;
+    /** Faixa playground (jogos). */
+    playgroundEyebrow: string;
+    playgroundSub: string;
+    /**
+     * Traduzíveis por produto, indexados por posição (mesma ordem de `PRODUCTS`
+     * em `lib/constants.ts`). Campos neutros (slug, name, tier, url, status,
+     * stack) permanecem em constants. `tag`/`title` só existem no tier product.
+     */
+    items: { tag?: string; title?: string; body: string }[];
+  };
   manifesto: {
     eyebrow: string;
     quote: string;

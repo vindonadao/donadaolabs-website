@@ -349,6 +349,8 @@ export interface Product {
   url: string;
   status: 'live' | 'building';
   stack?: readonly string[];
+  /** Símbolo da marca (PNG transparente) exibido no lockup do card, quando houver. */
+  logo?: string;
 }
 
 export const PRODUCTS: readonly Product[] = [
@@ -359,6 +361,7 @@ export const PRODUCTS: readonly Product[] = [
     url: 'https://pregapp.com.br',
     status: 'live',
     stack: ['Next.js', 'Postgres', 'Supabase', 'Resend'],
+    logo: '/products/pregapp.png',
   },
   { slug: 'zona75', name: 'ZONA75', tier: 'playground', url: 'https://zona75.com', status: 'live' },
   { slug: 'naipe', name: 'Naipe', tier: 'playground', url: 'https://naipe.donadaolabs.com', status: 'live' },

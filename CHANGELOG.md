@@ -9,6 +9,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.12.1] — 2026-07-13
+
+### Changed
+
+- **Logo real do PregApp no card** (`components/products.tsx`, `lib/constants.ts`) — o card do PregApp na seção Produtos passa a usar o símbolo da marca (falcão-P, `/products/pregapp.png`, copiado do repo do produto) no lugar do `CaseMark` genérico. `Product` ganhou o campo opcional `logo`; sem ele, o card mantém o `CaseMark` como fallback.
+
+---
+
 ## [rev-2.12.0] — 2026-07-12
 
 Nova seção **`06 · Produtos próprios`** entre Founder e FAQ (FAQ passa a `07`), materializando o layer Products do brand book: **PregApp** (produto próprio, card cheio) e **ZONA75 + Naipe** (faixa playground) saem do rodapé e ganham vitrine própria — em **roxo**, sem competir com os cases de cliente.

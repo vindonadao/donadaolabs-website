@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CaseMark } from '@/components/case-mark';
 import { SectionHeader } from '@/components/section-header';
 import { TrackedProductLink } from '@/components/tracked-product-link';
@@ -42,9 +43,19 @@ function ProductCard({ p, item, labels }: { p: Product; item?: ProductItem; labe
       </div>
 
       <div className="mb-4 flex items-center gap-3">
-        <span className="flex shrink-0 text-purple">
-          <CaseMark shape="grid" />
-        </span>
+        {p.logo ? (
+          <Image
+            src={p.logo}
+            alt={p.name}
+            width={40}
+            height={40}
+            className="h-10 w-10 shrink-0 object-contain"
+          />
+        ) : (
+          <span className="flex shrink-0 text-purple">
+            <CaseMark shape="grid" />
+          </span>
+        )}
         <span className="font-display text-[26px] font-bold leading-none tracking-brand-tight text-offwhite">
           {p.name}
         </span>

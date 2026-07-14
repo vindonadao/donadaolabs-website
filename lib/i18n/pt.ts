@@ -168,21 +168,22 @@ export const pt: Dictionary = {
   },
   products: {
     eyebrow: '◆ produtos próprios',
-    title: 'Construído pra nós, no ar pra todo mundo.',
-    sub: 'Produtos que o Lab constrói, opera e mantém no ar — com a mesma stack que entregamos pra cliente.',
+    title: 'Não é só projeto de cliente.',
+    sub: 'A gente também cria, opera e vende as próprias ideias — do SaaS que fatura ao jogo com ranking. Mesma stack, mesmo rigor que entregamos pra você.',
     liveLabel: 'no ar',
     buildingLabel: 'em construção',
-    playgroundEyebrow: '◆ playground',
+    playgroundEyebrow: 'playground',
     playgroundSub:
-      'O que a gente constrói quando não está faturando pro cliente. Mesma stack, mesmo rigor: ranking online, tempo real, zero queda. Joga aí e testa a engenharia você mesmo.',
+      'Engenharia que a gente testa em público: ranking online, tempo real, zero queda. Entra e joga — a prova de conceito é jogável.',
+    playCta: 'jogar',
     items: [
       {
         tag: 'SaaS · Licitações públicas',
-        title: 'Busca no PNCP com alerta de prazo',
-        body: 'Produto próprio do Lab: busca em licitações do PNCP com alertas de prazo por e-mail. Construído, operado e vendido por nós — do banco ao boleto.',
+        title: 'Controle de pregões no PNCP',
+        body: 'Software próprio pra acompanhar pregões e licitações no portal do PNCP: busca, filtros e alerta de prazo por e-mail. Construído, operado e vendido por nós — do banco ao boleto.',
       },
-      { body: 'Remake do JezzBall. Capture 75% da arena, suba no ranking.' },
-      { body: 'Spider, Klondike e FreeCell com ranking global.' },
+      { body: 'Remake do JezzBall: capture 75% da arena e suba no ranking.' },
+      { body: 'Spider, Klondike e FreeCell num só lugar, com ranking global.' },
     ],
   },
   manifesto: {

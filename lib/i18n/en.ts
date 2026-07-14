@@ -168,21 +168,22 @@ export const en: Dictionary = {
   },
   products: {
     eyebrow: '◆ own products',
-    title: 'Built for us, live for everyone.',
-    sub: 'Products the Lab builds, runs and keeps live — on the same stack we ship to clients.',
+    title: "It's not just client work.",
+    sub: 'We also build, run and sell our own ideas — from a revenue-generating SaaS to a game with an online ranking. Same stack, same rigor we ship to you.',
     liveLabel: 'live',
     buildingLabel: 'in progress',
-    playgroundEyebrow: '◆ playground',
+    playgroundEyebrow: 'playground',
     playgroundSub:
-      "What we build when we're not billing a client. Same stack, same rigor: online ranking, realtime, zero downtime. Play it and test the engineering yourself.",
+      'Engineering we test in public: online ranking, realtime, zero downtime. Jump in and play — the proof of concept is playable.',
+    playCta: 'play',
     items: [
       {
         tag: 'SaaS · Public procurement',
-        title: 'PNCP search with deadline alerts',
-        body: "Lab's own SaaS: public-procurement search on Brazil's PNCP with deadline alerts by email. Built, run and sold by us — from database to billing.",
+        title: 'Public-tender tracking on PNCP',
+        body: "Our own software to track public tenders on Brazil's PNCP portal: search, filters and deadline alerts by email. Built, run and sold by us — from database to billing.",
       },
-      { body: 'A JezzBall remake. Capture 75% of the arena, climb the ranking.' },
-      { body: 'Spider, Klondike and FreeCell with a global ranking.' },
+      { body: 'A JezzBall remake: capture 75% of the arena and climb the ranking.' },
+      { body: 'Spider, Klondike and FreeCell in one place, with a global ranking.' },
     ],
   },
   manifesto: {

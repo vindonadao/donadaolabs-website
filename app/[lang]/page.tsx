@@ -68,10 +68,10 @@ export default function HomePage({ params }: HomePageProps): React.ReactElement 
         <Services dict={dict} />
         <Approach dict={dict} />
         <Cases dict={dict} />
+        <Products dict={dict} />
         <Manifesto dict={dict} />
         <Changelog dict={dict} />
         <Founder dict={dict} />
-        <Products dict={dict} />
         <Faq dict={dict} />
         <Cta dict={dict} />
       </main>

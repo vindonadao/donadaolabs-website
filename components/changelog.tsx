@@ -10,7 +10,7 @@ export function Changelog({ dict }: ChangelogProps): React.ReactElement {
   return (
     <section id="changelog" className="border-t border-white/[0.08]">
       <SectionHeader
-        idx="04"
+        idx="05"
         eyebrow={dict.changelog.eyebrow}
         title={dict.changelog.title}
         sub={dict.changelog.sub}

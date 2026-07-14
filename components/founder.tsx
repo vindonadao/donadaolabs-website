@@ -17,7 +17,7 @@ export function Founder({ dict }: FounderProps): React.ReactElement {
   return (
     <section id="founder" className="mt-6 border-t border-white/[0.08]">
       <SectionHeader
-        idx="05"
+        idx="06"
         eyebrow={dict.founder.eyebrow}
         title={dict.founder.title}
         sub={dict.founder.sub}

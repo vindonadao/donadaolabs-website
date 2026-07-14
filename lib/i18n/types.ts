@@ -99,6 +99,8 @@ export interface Dictionary {
     /** Faixa playground (jogos). */
     playgroundEyebrow: string;
     playgroundSub: string;
+    /** CTA no rodapé do card de jogo (ex.: "jogar"). */
+    playCta: string;
     /**
      * Traduzíveis por produto, indexados por posição (mesma ordem de `PRODUCTS`
      * em `lib/constants.ts`). Campos neutros (slug, name, tier, url, status,

@@ -351,6 +351,8 @@ export interface Product {
   stack?: readonly string[];
   /** Símbolo da marca (PNG transparente) exibido no lockup do card, quando houver. */
   logo?: string;
+  /** Screenshot do produto/jogo (16:9) exibido no topo do card — a "fotografia". */
+  shot?: string;
 }
 
 export const PRODUCTS: readonly Product[] = [
@@ -363,8 +365,22 @@ export const PRODUCTS: readonly Product[] = [
     stack: ['Next.js', 'Postgres', 'Supabase', 'Resend'],
     logo: '/products/pregapp.png',
   },
-  { slug: 'zona75', name: 'ZONA75', tier: 'playground', url: 'https://zona75.com', status: 'live' },
-  { slug: 'naipe', name: 'Naipe', tier: 'playground', url: 'https://naipe.donadaolabs.com', status: 'live' },
+  {
+    slug: 'zona75',
+    name: 'ZONA75',
+    tier: 'playground',
+    url: 'https://zona75.com',
+    status: 'live',
+    shot: '/products/zona75.png',
+  },
+  {
+    slug: 'naipe',
+    name: 'Naipe',
+    tier: 'playground',
+    url: 'https://naipe.donadaolabs.com',
+    status: 'live',
+    shot: '/products/naipe.png',
+  },
 ] as const;
 
 /** Jogos do Lab, derivados de PRODUCTS — usados como backlinks no footer. */

@@ -9,6 +9,23 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.13.0] — 2026-07-14
+
+Reposiciona e destaca a seção de **produtos próprios**: deixa de ficar escondida entre Founder e FAQ e passa a vir **logo após os projetos de cliente** (Cases), com **fotografia dos jogos** e ênfase de que o Lab não vive só de projeto de cliente.
+
+### Changed
+
+- **Ordem das seções** (`app/[lang]/page.tsx`) — `Products` movido para logo após `Cases`. Renumeração: Products `06 → 04`, Changelog `04 → 05`, Founder `05 → 06` (FAQ segue `07`). Âncoras (`#produtos`, `#changelog`, `#founder`) inalteradas.
+- **Ênfase da copy** (`lib/i18n/{pt,en}.ts`) — título passa a "Não é só projeto de cliente." e o sub reforça que criamos/operamos/vendemos as próprias ideias. PregApp descrito como **controle de pregões/licitações no portal PNCP** (antes "busca no PNCP").
+- **Playground com fotografia** (`components/products.tsx`) — os jogos (ZONA75, Naipe) saem da faixa de texto e viram **cards com screenshot do jogo** (16:9): arena das esferas do ZONA75 e tabuleiro do Naipe. Novo `GameCard`; PregApp mantém o card-destaque roxo.
+
+### Added
+
+- **Campo `shot`** em `Product` (`lib/constants.ts`) — screenshot 16:9 do produto/jogo. `public/products/{zona75,naipe}.png` (capturados dos jogos no ar, ~200–450 KB).
+- **`products.playCta`** (`lib/i18n/{types,pt,en}.ts`) — CTA "jogar" / "play" no rodapé do card de jogo.
+
+---
+
 ## [rev-2.12.3] — 2026-07-14
 
 ### Changed

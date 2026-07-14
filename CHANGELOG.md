@@ -9,6 +9,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.13.3] — 2026-07-14
+
+### Changed
+
+- **Card do PregApp com lockup de marca** (`components/products.tsx`, `lib/i18n/{types,pt,en}.ts`) — o preview do PregApp deixa de ser o screenshot da landing (que cortava o texto e ficava ruim) e passa a mostrar, dentro da mesma moldura de janela, uma composição de marca: **logo falcão-P + "PregApp" + a tagline "Este edital vale a pena?"** (serif itálico, com glow verde sutil). Os jogos (ZONA75, Naipe) seguem com screenshot — o preview agora é condicional por `tier`. Novo campo opcional `tagline` nos items de produto.
+
+---
+
 ## [rev-2.13.2] — 2026-07-14
 
 ### Fixed

@@ -106,7 +106,7 @@ export interface Dictionary {
      * em `lib/constants.ts`). Campos neutros (slug, name, tier, url, status,
      * stack) permanecem em constants. `tag`/`title` só existem no tier product.
      */
-    items: { tag?: string; title?: string; body: string }[];
+    items: { tag?: string; title?: string; body: string; tagline?: string }[];
   };
   manifesto: {
     eyebrow: string;

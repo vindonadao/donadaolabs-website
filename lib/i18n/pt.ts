@@ -180,6 +180,7 @@ export const pt: Dictionary = {
       {
         tag: 'SaaS · Licitações públicas',
         title: 'Controle de pregões no PNCP',
+        tagline: 'Este edital vale a pena?',
         body: 'Software próprio pra acompanhar pregões e licitações no portal do PNCP: busca, filtros e alerta de prazo por e-mail. Construído, operado e vendido por nós — do banco ao boleto.',
       },
       { body: 'Remake do JezzBall: capture 75% da arena e suba no ranking.' },

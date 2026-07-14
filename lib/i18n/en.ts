@@ -180,6 +180,7 @@ export const en: Dictionary = {
       {
         tag: 'SaaS · Public procurement',
         title: 'Public-tender tracking on PNCP',
+        tagline: 'Is this tender worth it?',
         body: "Our own software to track public tenders on Brazil's PNCP portal: search, filters and deadline alerts by email. Built, run and sold by us — from database to billing.",
       },
       { body: 'A JezzBall remake: capture 75% of the arena and climb the ranking.' },

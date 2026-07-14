@@ -52,16 +52,39 @@ function ProductCard({ p, item, labels }: { p: Product; item?: ProductItem; labe
               {hostname(p.url)}
             </span>
           </div>
-          {/* Preview */}
+          {/* Preview: produto = lockup de marca (logo + tagline); jogo = screenshot */}
           <div className="relative flex-1 overflow-hidden bg-ink">
-            {p.shot && (
-              <Image
-                src={p.shot}
-                alt={`${p.name} — captura de tela`}
-                fill
-                sizes="(min-width: 768px) 45vw, 100vw"
-                className="object-cover object-top"
-              />
+            {p.tier === 'product' ? (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 px-4 text-center">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_135%,rgba(0,245,122,0.12),transparent_55%)]" />
+                {p.logo && (
+                  <Image
+                    src={p.logo}
+                    alt={p.name}
+                    width={44}
+                    height={44}
+                    className="relative h-11 w-11 object-contain"
+                  />
+                )}
+                <span className="relative font-display text-[20px] font-bold leading-none tracking-brand-tight text-offwhite">
+                  {p.name}
+                </span>
+                {item?.tagline && (
+                  <span className="relative font-['Instrument_Serif',Georgia,serif] text-[15px] italic leading-tight text-offwhite/70">
+                    {item.tagline}
+                  </span>
+                )}
+              </div>
+            ) : (
+              p.shot && (
+                <Image
+                  src={p.shot}
+                  alt={`${p.name} — captura de tela`}
+                  fill
+                  sizes="(min-width: 768px) 45vw, 100vw"
+                  className="object-cover object-top"
+                />
+              )
             )}
           </div>
         </div>

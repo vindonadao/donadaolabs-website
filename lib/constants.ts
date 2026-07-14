@@ -364,6 +364,7 @@ export const PRODUCTS: readonly Product[] = [
     status: 'live',
     stack: ['Next.js', 'Postgres', 'Supabase', 'Resend'],
     logo: '/products/pregapp.png',
+    shot: '/products/pregapp-shot.png',
   },
   {
     slug: 'zona75',
@@ -371,6 +372,7 @@ export const PRODUCTS: readonly Product[] = [
     tier: 'playground',
     url: 'https://zona75.com',
     status: 'live',
+    stack: ['Next.js', 'Supabase'],
     shot: '/products/zona75.png',
   },
   {
@@ -379,6 +381,7 @@ export const PRODUCTS: readonly Product[] = [
     tier: 'playground',
     url: 'https://naipe.donadaolabs.com',
     status: 'live',
+    stack: ['HTML', 'Supabase'],
     shot: '/products/naipe.png',
   },
 ] as const;

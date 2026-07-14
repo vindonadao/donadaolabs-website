@@ -9,6 +9,19 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.13.1] — 2026-07-14
+
+### Changed
+
+- **Cards de produtos próprios uniformizados** (`components/products.tsx`) — PregApp, ZONA75 e Naipe passam a usar o **mesmo card/tamanho dos cards de Cases**: thumbnail fixo de 180px (com a fotografia do produto/jogo), status, domínio, título, descrição e stack, num grid `md:grid-cols-2`. Sai o card-destaque full-width do PregApp e a faixa de texto do playground; entra um card único e consistente para os três.
+
+### Added
+
+- **Screenshot do PregApp** (`public/products/pregapp-shot.png`) — captura da landing (`pregapp.com.br`) usada como thumbnail do card, no lugar do lockup de logo.
+- **Stack dos jogos** (`lib/constants.ts`) — ZONA75 (`Next.js`, `Supabase`) e Naipe (`HTML`, `Supabase`) ganham `stack`, pareando os cards com o do PregApp.
+
+---
+
 ## [rev-2.13.0] — 2026-07-14
 
 Reposiciona e destaca a seção de **produtos próprios**: deixa de ficar escondida entre Founder e FAQ e passa a vir **logo após os projetos de cliente** (Cases), com **fotografia dos jogos** e ênfase de que o Lab não vive só de projeto de cliente.

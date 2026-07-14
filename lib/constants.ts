@@ -16,7 +16,7 @@ export const SITE = {
 
 export const LINKS = {
   cal: 'https://cal.com/donadaolabs/diagnostico',
-  linkedin: 'https://linkedin.com/in/viniciusdonadao',
+  linkedin: 'https://www.linkedin.com/in/vindonadao/',
   github: 'https://github.com/vindonadao',
   instagram: 'https://instagram.com/donadaolabs',
 } as const;

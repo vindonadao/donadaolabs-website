@@ -9,6 +9,18 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.13.2] — 2026-07-14
+
+### Fixed
+
+- **Link do LinkedIn quebrado** (`lib/constants.ts`) — `LINKS.linkedin` apontava para o slug errado (`/in/viniciusdonadao`), que abria uma página inexistente. Corrigido para `https://www.linkedin.com/in/vindonadao/`. Propaga pro link no rodapé do Fundador e pro JSON-LD (`sameAs`, `founder.url`).
+
+### Changed
+
+- **Preview dos cards de produtos em "janela de navegador"** (`components/products.tsx`) — o thumbnail deixa de ser o screenshot achatado ocupando o retângulo inteiro e passa a mostrar o print **dentro de uma moldura de janela** (barra com 3 pontos + domínio na URL), com respiro e fundo de grid — um "retângulo dentro do retângulo" que dá o efeito de o site/jogo rodando numa tela. O domínio sai da linha de meta (agora só o status ◆) e vai pra barra da janela.
+
+---
+
 ## [rev-2.13.1] — 2026-07-14
 
 ### Changed

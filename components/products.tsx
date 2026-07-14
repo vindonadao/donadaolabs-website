@@ -36,26 +36,43 @@ function ProductCard({ p, item, labels }: { p: Product; item?: ProductItem; labe
       ariaLabel={`${p.name} — ${item?.title ?? item?.body ?? ''}`}
       className="group block rounded-brand-lg border border-white/[0.08] bg-charcoal p-6 text-offwhite no-underline transition-all duration-200 hover:-translate-y-1 hover:border-purple hover:shadow-card-hover-purple focus-visible:-translate-y-1 focus-visible:border-purple focus-visible:shadow-card-hover-purple"
     >
-      {/* Thumbnail — a fotografia do produto/jogo (mesma altura dos cards de Cases) */}
+      {/* Thumbnail — preview numa "janela de navegador" sobre um fundo com grid:
+          um retângulo (a telinha) dentro do retângulo (o thumb), com respiro. */}
       <div className="relative mb-4.5 h-[180px] overflow-hidden rounded-[8px] border border-white/[0.08] bg-ink transition-colors duration-200 group-hover:border-purple/40 group-focus-visible:border-purple/40">
-        {p.shot && (
-          <Image
-            src={p.shot}
-            alt={`${p.name} — captura de tela`}
-            fill
-            sizes="(min-width: 768px) 45vw, 100vw"
-            className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-          />
-        )}
+        <div className="pointer-events-none absolute inset-0 bg-grid-faint opacity-50" />
+        <div className="absolute inset-3.5 flex flex-col overflow-hidden rounded-[6px] border border-white/[0.12] bg-charcoal shadow-[0_8px_24px_rgba(0,0,0,0.45)] transition-transform duration-300 group-hover:-translate-y-0.5">
+          {/* Barra da janela */}
+          <div className="flex items-center gap-2 border-b border-white/[0.08] bg-ink/70 px-2.5 py-1.5">
+            <span className="flex gap-1" aria-hidden="true">
+              <span className="h-2 w-2 rounded-full bg-white/15" />
+              <span className="h-2 w-2 rounded-full bg-white/15" />
+              <span className="h-2 w-2 rounded-full bg-white/15" />
+            </span>
+            <span className="ml-1 flex-1 truncate font-mono text-[9px] text-offwhite/35">
+              {hostname(p.url)}
+            </span>
+          </div>
+          {/* Preview */}
+          <div className="relative flex-1 overflow-hidden bg-ink">
+            {p.shot && (
+              <Image
+                src={p.shot}
+                alt={`${p.name} — captura de tela`}
+                fill
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className="object-cover object-top"
+              />
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* Meta: status (roxo) + domínio */}
-      <div className="mb-2.5 flex items-center justify-between gap-3">
+      {/* Meta: status (roxo). O domínio fica na barra da janela do preview. */}
+      <div className="mb-2.5 flex items-center gap-3">
         <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-purple">
           <span aria-hidden="true">◆</span>
           {statusLabel}
         </span>
-        <span className="font-mono text-[10px] text-offwhite/40">{hostname(p.url)}</span>
       </div>
 
       <h3 className="m-0 font-display text-[22px] font-semibold tracking-brand-tight">

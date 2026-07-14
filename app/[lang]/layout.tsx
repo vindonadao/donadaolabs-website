@@ -131,7 +131,9 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
       description: dict.meta.description,
       images: [
         {
-          url: '/brand/og.png',
+          // Preview da HOME = render do hero do site (não a capa do brand book,
+          // que segue só em /brand). Ver app/[lang]/brand/page.tsx.
+          url: '/brand/og-home.png',
           width: 1200,
           height: 630,
           alt: titleDefault,
@@ -143,7 +145,7 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
       title: titleDefault,
       description: dict.meta.description,
       creator: '@donadaolabs',
-      images: ['/brand/og.png'],
+      images: ['/brand/og-home.png'],
     },
     robots: {
       index: true,

@@ -9,6 +9,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.12.3] — 2026-07-14
+
+### Changed
+
+- **Preview/OG da home** (`app/[lang]/layout.tsx`, `public/brand/og-home.png`) — o card de compartilhamento da home (WhatsApp/LinkedIn/X) passa a mostrar um render do **hero do site** (headline "Software de IA que realmente ships*" + agente diagnóstico ao vivo) no lugar da capa do brand book. A capa do brand book (`og.png`) segue **exclusiva da página `/brand`** (`app/[lang]/brand/page.tsx` inalterado). `og-home.png`: 1200×630, ~222 KB.
+
+---
+
 ## [rev-2.12.2] — 2026-07-14
 
 ### Changed

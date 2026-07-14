@@ -36,7 +36,6 @@ export function Footer({ dict, lang }: FooterProps): React.ReactElement {
         >
           {dict.footer.privacy}
         </Link>
-        <span>{dict.footer.build}</span>
       </div>
     </footer>
   );

@@ -394,24 +394,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
-  { date: '2026-07-12', tag: 'shipped', text: 'Site · seção Produtos próprios no ar — PregApp, ZONA75 e Naipe saem do rodapé e ganham vitrine. Layer Products do brand book, agora no site.' },
-  { date: '2026-07-11', tag: 'shipped', text: 'Site · seção de projetos ampliada — A Vegana e Quituteria da Fafá agora nos cases.' },
-  { date: '2026-07-10', tag: 'shipped', text: 'Starck Representações · novo cliente · plataforma B2B de catálogo + captação de leads concluída.' },
-  { date: '2026-07-08', tag: 'shipped', text: 'PregApp · SaaS de licitações PNCP (produto próprio) pronto — busca no PNCP + alertas de prazo por e-mail · pregapp.com.br.' },
-  { date: '2026-06-24', tag: 'shipped', text: 'Donadão Labs OPS · CRM interno no ar, feature-complete — clientes, propostas, faturas e entregas num só lugar.' },
-  { date: '2026-06-19', tag: 'rfc',     text: 'Starck Representações · novo cliente · sistema de catálogo B2B (em construção).' },
-  { date: '2026-06-17', tag: 'rfc',     text: 'ORIGEM · novo produto próprio · app mobile de quiz em construção (Expo + Supabase + IA).' },
-  { date: '2026-06-15', tag: 'shipped', text: 'Diskat OPS · atualização no painel interno do cliente (ops.diskatpresentes.com.br).' },
-  { date: '2026-06-13', tag: 'infra',   text: 'Site · backlinks pros jogos próprios (Naipe, ZONA75) no footer — SEO site-wide.' },
-  { date: '2026-06-12', tag: 'shipped', text: 'Quituteria da Fafá · cliente migrado pro domínio próprio quituteriadafafa.com.br.' },
-  { date: '2026-06-10', tag: 'rfc',     text: 'PregApp · SaaS de licitações PNCP (produto próprio) · demo no ar com busca + alertas de prazo.' },
-  { date: '2026-06-07', tag: 'shipped', text: 'ZONA75 · jogo web (remake do JezzBall) no ar em zona75.com — ranking online + Modo Âncora.' },
-  { date: '2026-06-04', tag: 'shipped', text: 'Naipe · suíte de paciência (Spider/Klondike/FreeCell) no ar com ranking online · naipe.donadaolabs.com.' },
-  { date: '2026-06-02', tag: 'rfc',     text: 'Donadão Labs OPS · CRM interno em construção — clientes, propostas e entregas orquestrados num só lugar.' },
-  { date: '2026-06-01', tag: 'shipped', text: 'A Vegana · novo cliente · blog editorial vegano no ar (Next.js 16 + MDX + newsletter Brevo).' },
-  { date: '2026-05-30', tag: 'shipped', text: 'Brand book v2 publicado em /brand — identidade completa, URL estável /brand/latest.pdf e OG oficial.' },
-  { date: '2026-05-27', tag: 'shipped', text: 'Gabriel Nabi · novo cliente · site do fotógrafo pet no ar (Vite + Supabase).' },
-  { date: '2026-05-24', tag: 'infra',   text: 'GA4 + Consent Mode v2 + banner LGPD configurados — pronto pra tráfego pago.' },
+  { date: '2026-07-12', tag: 'shipped', text: 'Site · seção Produtos próprios no ar.' },
+  { date: '2026-07-11', tag: 'shipped', text: 'Cases · A Vegana e Quituteria da Fafá entram na vitrine.' },
+  { date: '2026-07-10', tag: 'shipped', text: 'Starck Representações · plataforma B2B de catálogo entregue.' },
+  { date: '2026-07-08', tag: 'shipped', text: 'PregApp · SaaS de licitações PNCP no ar.' },
+  { date: '2026-06-24', tag: 'shipped', text: 'Donadão Labs OPS · CRM interno feature-complete.' },
+  { date: '2026-06-17', tag: 'rfc',     text: 'ORIGEM · app mobile de quiz em construção.' },
 ] as const;
 
 export interface FAQEntry {

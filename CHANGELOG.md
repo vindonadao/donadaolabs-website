@@ -9,6 +9,18 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.12.2] — 2026-07-14
+
+### Changed
+
+- **Changelog público enxugado** (`lib/constants.ts`, `lib/i18n/{pt,en}.ts`) — a seção `04 · Changelog` passa de 18 entradas verbosas para **6 entradas de uma linha**, reduzindo a altura da seção no site e deixando-a escaneável. Curadoria: as 6 mais recentes trariam **Starck** duas vezes (entregue em 10/07 + "em construção" em 19/06); a duplicata deu lugar à **ORIGEM** (17/06), mantendo variedade e ordem cronológica.
+
+### Removed
+
+- **Selo de versão no rodapé** (`components/footer.tsx`, `lib/i18n/{types,pt,en}.ts`) — removido o item `versão · 2026.05.13 · no ar` do footer (render + tipo `footer.build` + traduções PT/EN). Data fixa desatualizada, sem valor pro visitante.
+
+---
+
 ## [rev-2.12.1] — 2026-07-13
 
 ### Changed

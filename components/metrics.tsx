@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CASES } from '@/lib/constants';
-import { METRICS } from '@/lib/constants';
+import { METRICS, PRODUCTS_LIVE_COUNT } from '@/lib/constants';
 import type { Metric } from '@/lib/constants';
 import type { Dictionary } from '@/lib/i18n';
 
@@ -76,13 +75,14 @@ function MetricCard({ metric }: { metric: Metric }): React.ReactElement {
 }
 
 /**
- * Faixa de Metrics. "Produtos no ar"/"Products live" deriva de CASES.length.
+ * Faixa de Metrics. "Produtos no ar"/"Products live" usa PRODUCTS_LIVE_COUNT
+ * (software real rodando: cases + produtos próprios + internos).
  * Labels/subs vêm do dict; valores e hrefs vêm de constants.METRICS (idioma-neutros).
  */
 export function Metrics({ dict }: MetricsProps): React.ReactElement {
   const productsLive: Metric = {
     label: dict.metrics.productsLive.label,
-    value: String(CASES.length).padStart(2, '0'),
+    value: String(PRODUCTS_LIVE_COUNT).padStart(2, '0'),
     sub: dict.metrics.productsLive.sub,
   };
   const localized: readonly Metric[] = METRICS.map((m, i) => ({

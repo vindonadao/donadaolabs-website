@@ -9,6 +9,22 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.15.0] — 2026-07-18
+
+### Added
+
+- **Starck Representações entra na vitrine como 7º case** (`lib/constants.ts`, `lib/i18n/{pt,en}.ts`, `public/clients/starck.png`) — novo item `num: '07'` em `CASES` (`client: 'Starck Representações'`, `href: 'https://starckrepresentacoes.com.br'`, stack `Next.js · Supabase · Resend · Vercel`). Card público (selo `● no ar`), kind "Catálogo B2B · Representação comercial", métrica "Orçamento direto no WhatsApp". O changelog público já registrava a entrega ("plataforma B2B de catálogo entregue", 2026-07-10) — agora o case existe de fato. Logo recolorido do lockup lateral do cliente (marinho `#2C4774` → offwhite `#f0f0f5`, mantendo a onda ciano e o alpha) para ler no card escuro (`bg-ink`), via [[feedback_logo_recolor_pipeline]].
+
+### Changed
+
+- **Métrica "Produtos no ar" deixa de derivar de `CASES.length`** (`lib/constants.ts`, `components/metrics.tsx`) — nova constante `PRODUCTS_LIVE_COUNT = 12`, contagem manual do software realmente rodando: **7 cases de cliente** (Gabriel Nabi, Diskat Presentes, Diskat Ops interno, Cali Garage, A Vegana, Quituteria, Starck) + **5 produtos próprios** (PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS interno). Antes o número mostrava 06 (só os cases), subcontando os produtos próprios que já têm seção própria no site.
+- **Métrica "Em construção" 03 → 02** (`lib/constants.ts`) — passa a refletir os 2 projetos em criação. Os projetos em desenvolvimento não são nomeados no site.
+- **Jogo renomeado "Faltas Mágicas" → "Pixel FC"** (`lib/constants.ts`, `lib/i18n/{pt,en}.ts`) — `name` neutro (footer), `title` da vitrine e entradas do changelog público passam a exibir só "Pixel FC". Domínio segue `pixelfc.donadaolabs.com`.
+- **Título da seção de cases sem número fixo** (`lib/i18n/{pt,en}.ts`) — "Seis produtos rodando." → "Entregas rodando." / "Six products running." → "Delivered and running." — para não driftar a cada case novo nem conflitar com a métrica (12) vs. o grid (7 cards).
+- **Bio do fundador alinhada à contagem** (`lib/i18n/{pt,en}.ts`) — "seis produtos no ar" → "mais de dez produtos no ar" / "over ten products live".
+
+---
+
 ## [rev-2.14.0] — 2026-07-18
 
 ### Added

@@ -120,7 +120,7 @@ export const en: Dictionary = {
   },
   cases: {
     eyebrow: 'Cases · 2025–2026',
-    title: 'Six products running. No mockups.',
+    title: 'Delivered and running. No mockups.',
     sub: 'Real software, live, generating sales.',
     internalLabel: 'internal',
     liveLabel: 'live',
@@ -164,6 +164,12 @@ export const en: Dictionary = {
         desc: 'Catalog of homemade sweets and savories with cart and order closing straight on WhatsApp. Live on its own domain.',
         metric: 'Order straight on WhatsApp',
       },
+      {
+        kind: 'B2B catalog · Sales representation',
+        title: 'B2B catalog with WhatsApp quoting',
+        desc: 'Institutional site + B2B catalog of packaging and disposables, with quote building that closes straight on WhatsApp. Showcase of the represented brands and two-sided capture: buyer and manufacturer.',
+        metric: 'Quote straight on WhatsApp',
+      },
     ],
   },
   products: {
@@ -186,7 +192,7 @@ export const en: Dictionary = {
       { body: 'A JezzBall remake: capture 75% of the arena and climb the ranking.' },
       { body: 'Spider, Klondike and FreeCell in one place, with a global ranking.' },
       {
-        title: 'Pixel FC-Faltas Mágicas',
+        title: 'Pixel FC',
         body: 'Pixel-art free kicks: bend it past the wall, beat the keeper and climb the ranking.',
       },
     ],
@@ -209,7 +215,7 @@ export const en: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
-      { text: 'Site · Pixel FC-Faltas Mágicas added to the showcase.' },
+      { text: 'Site · Pixel FC added to the showcase.' },
       { text: 'Site · Own Products section live.' },
       { text: 'Cases · A Vegana and Quituteria da Fafá added.' },
       { text: 'Starck Representações · B2B catalog platform delivered.' },
@@ -225,7 +231,7 @@ export const en: Dictionary = {
     role: 'Computer Scientist · Founder',
     badge: 'founder · live',
     bio1: 'Computer scientist with a background in critical industrial automation. I build software and AI agents that solve the right problem — generating revenue.',
-    bio2: 'Donadão Labs is the operation I run: six products live and current focus on AI agents for businesses already earning, but still operating on WhatsApp.',
+    bio2: 'Donadão Labs is the operation I run: over ten products live and current focus on AI agents for businesses already earning, but still operating on WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',

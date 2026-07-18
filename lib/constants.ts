@@ -56,14 +56,27 @@ export interface Metric {
 
 /**
  * Métricas declarativas exibidas na faixa Metrics.
- * "Produtos no ar" é derivada de CASES.length no componente [components/metrics.tsx]
- * — nunca drifta quando você adiciona/remove case.
+ * "Produtos no ar" usa PRODUCTS_LIVE_COUNT (abaixo) — contagem manual do software
+ * realmente rodando, que NÃO cabe em CASES.length (inclui produtos próprios e
+ * sistemas internos que não são cases de cliente).
  */
 export const METRICS: readonly Metric[] = [
-  { label: 'Em construção', value: '03', sub: 'no laboratório' },
+  { label: 'Em construção', value: '02', sub: 'no laboratório' },
   { label: 'Próximo slot',  value: '02', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
   { label: 'Zero quedas',   value: '0',  sub: 'incidentes em 2026' },
 ] as const;
+
+/**
+ * "Produtos no ar" — total de software real rodando, contado à mão.
+ * Composição (2026-07-18) = 12:
+ *  - 7 cases de cliente: Gabriel Nabi, Diskat Presentes, Diskat Ops (interno),
+ *    Cali Garage, A Vegana, Quituteria da Fafá, Starck Representações
+ *  - 5 produtos próprios: PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS (interno)
+ * Ao ligar/desligar algo do ar, ajuste este número e a bio do founder juntos.
+ * "Em construção" (2) vive em METRICS acima — os projetos em criação NÃO são
+ * nomeados no site (decisão do Vinicius).
+ */
+export const PRODUCTS_LIVE_COUNT = 12;
 
 export interface ClientLogo {
   name: string;
@@ -322,6 +335,23 @@ export const CASES: readonly Case[] = [
       style: 'sans-bold',
     },
   },
+  {
+    num: '07',
+    client: 'Starck Representações',
+    kind: 'Catálogo B2B · Representação comercial',
+    meta: 'Catálogo B2B · Representação comercial',
+    title: 'Catálogo B2B com orçamento no WhatsApp',
+    desc: 'Site institucional + catálogo B2B de embalagens e descartáveis, com montagem de orçamento que fecha direto no WhatsApp. Vitrine das representadas e captação dos dois lados: comprador e fabricante.',
+    metric: 'Orçamento direto no WhatsApp',
+    href: 'https://starckrepresentacoes.com.br',
+    stack: ['Next.js', 'Supabase', 'Resend', 'Vercel'],
+    logo: {
+      image: '/clients/starck.png',
+      shape: 'hex',
+      display: 'STARCK',
+      style: 'sans-condensed',
+    },
+  },
 ] as const;
 
 /**
@@ -386,7 +416,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     slug: 'pixelfc',
-    name: 'Faltas Mágicas',
+    name: 'Pixel FC',
     tier: 'playground',
     url: 'https://pixelfc.donadaolabs.com',
     status: 'live',
@@ -422,7 +452,7 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
-  { date: '2026-07-18', tag: 'shipped', text: 'Site · Pixel FC-Faltas Mágicas entra na vitrine.' },
+  { date: '2026-07-18', tag: 'shipped', text: 'Site · Pixel FC entra na vitrine.' },
   { date: '2026-07-12', tag: 'shipped', text: 'Site · seção Produtos próprios no ar.' },
   { date: '2026-07-11', tag: 'shipped', text: 'Cases · A Vegana e Quituteria da Fafá entram na vitrine.' },
   { date: '2026-07-10', tag: 'shipped', text: 'Starck Representações · plataforma B2B de catálogo entregue.' },

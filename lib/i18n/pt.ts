@@ -120,7 +120,7 @@ export const pt: Dictionary = {
   },
   cases: {
     eyebrow: 'Projetos · 2025–2026',
-    title: 'Seis produtos rodando. Sem firula.',
+    title: 'Entregas rodando. Sem firula.',
     sub: 'Software real, no ar, gerando venda.',
     internalLabel: 'interno',
     liveLabel: 'no ar',
@@ -164,6 +164,12 @@ export const pt: Dictionary = {
         desc: 'Catálogo de doces e salgados caseiros com carrinho e fechamento de pedido direto no WhatsApp. Domínio próprio no ar.',
         metric: 'Pedido direto no WhatsApp',
       },
+      {
+        kind: 'Catálogo B2B · Representação comercial',
+        title: 'Catálogo B2B com orçamento no WhatsApp',
+        desc: 'Site institucional + catálogo B2B de embalagens e descartáveis, com montagem de orçamento que fecha direto no WhatsApp. Vitrine das representadas e captação dos dois lados: comprador e fabricante.',
+        metric: 'Orçamento direto no WhatsApp',
+      },
     ],
   },
   products: {
@@ -186,7 +192,7 @@ export const pt: Dictionary = {
       { body: 'Remake do JezzBall: capture 75% da arena e suba no ranking.' },
       { body: 'Spider, Klondike e FreeCell num só lugar, com ranking global.' },
       {
-        title: 'Pixel FC-Faltas Mágicas',
+        title: 'Pixel FC',
         body: 'Faltas em pixel art: mire na curva certa, vença a barreira e o goleiro pra subir no ranking.',
       },
     ],
@@ -209,7 +215,7 @@ export const pt: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
-      { text: 'Site · Pixel FC-Faltas Mágicas entra na vitrine.' },
+      { text: 'Site · Pixel FC entra na vitrine.' },
       { text: 'Site · seção Produtos próprios no ar.' },
       { text: 'Cases · A Vegana e Quituteria da Fafá entram na vitrine.' },
       { text: 'Starck Representações · plataforma B2B de catálogo entregue.' },
@@ -225,7 +231,7 @@ export const pt: Dictionary = {
     role: 'Cientista da Computação · Fundador',
     badge: 'fundador · ao vivo',
     bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e agentes de IA que resolvem o problema certo — o de gerar receita.',
-    bio2: 'Donadão Labs é a operação que rodo: seis produtos no ar e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
+    bio2: 'Donadão Labs é a operação que rodo: mais de dez produtos no ar e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',

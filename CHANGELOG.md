@@ -9,6 +9,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.15.2] — 2026-07-18
+
+### Fixed
+
+- **Meta-título com tagline errada** (`lib/i18n/pt.ts`) — `meta.titleTagline` estava "Software de IA que ships pra valer." (variante antiga/inexistente), que aparecia no `<title>` da aba e no título de OG/preview de link. Corrigido para a frase de branding oficial **"Software de IA que realmente ships\*"** (com asterisco), casando com o hero visível. EN já estava correto ("AI software that actually ships.").
+
+---
+
 ## [rev-2.15.1] — 2026-07-18
 
 ### Fixed

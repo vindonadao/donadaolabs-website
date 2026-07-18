@@ -2,7 +2,7 @@ import type { Dictionary } from './types';
 
 export const pt: Dictionary = {
   meta: {
-    titleTagline: 'Software de IA que ships pra valer.',
+    titleTagline: 'Software de IA que realmente ships*',
     description:
       'Lab IA-first que constrói software e agentes de IA para negócios que precisam crescer. Do diagnóstico ao deploy, com infraestrutura que escala.',
     notFoundTitle: 'Página não encontrada · Donadão Labs',

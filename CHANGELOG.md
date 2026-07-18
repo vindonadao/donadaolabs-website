@@ -9,6 +9,29 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.16.0] — 2026-07-18
+
+Auditoria externa (Fable) → correções cirúrgicas. Falsos positivos verificados e
+descartados: banner de consentimento (existe, `consent-banner.tsx`), GrowthBook
+(não existe no código), GA "dbg=1 duplicado" (extensão do navegador do auditor).
+
+### Changed
+
+- **Agente: mitigação de CGNAT no email gate** (`app/api/diagnose/route.ts`) — o gate por IP era booleano (`dl:ip:${ip}:asked`, 1 e pronto, TTL 30 dias), o que quebrava redes compartilhadas: em CGNAT de operadora (Vivo/Claro/TIM) e escritórios, centenas de pessoas dividem o mesmo IP público, então o 1º visitante "queimava" o IP e todo o resto caía no gate na primeira visita — vendo um agente que parecia encenação. Agora é contador `dl:ip:${ip}:count` com folga **3/IP em janela de 24h** (fixa na 1ª contagem). O gate por navegador (clientId) segue **1 grátis por navegador**. Controle de custo de LLM preservado.
+- **Agente: estado explícito do limite** (`route.ts`, `components/live-agent.tsx`, `lib/i18n/*`) — o 403 `NEED_EMAIL` agora carrega `reason` (`'client'` = este navegador já rodou · `'ip'` = a rede estourou a cota). A UI mostra mensagem honesta de acordo (novo `agent.blockedNetworkMessage`) e o header deixa de dizer "processando ao vivo" no estado de gate (novo `agent.labelGated` + bolinha sem pulso). Elimina a experiência de "agente falso" apontada na auditoria.
+- **Agente: prompt refinado** (`route.ts`, pt+en) — PRAZO marca "(escopo base)" (não ancora negociação); PRÓXIMO PASSO empurra pro agendamento/e-mail em vez de fazer pergunta que o widget não aceita; STACK enviesada pra stack de produção (Next.js/TypeScript/Postgres-Supabase/Vercel) em vez de sugerir SaaS de terceiros que a casa já cobre. Validado ao vivo.
+
+### Fixed
+
+- **Métrica "00" no primeiro paint** (`components/metrics.tsx`) — o `useCountUp` começava em 0, então o HTML do servidor (e o crawler do Google, e conexões lentas) mostrava "PRODUTOS NO AR 00". O componente virou server component e renderiza o número real direto no SSR (verificado: `>12<`, `>02<` no HTML cru). Sem count-up a partir do zero.
+
+### Notas (sem mudança de código)
+
+- **`style-src 'unsafe-inline'`**: real, mas tirar exige nonce em todo estilo inline do Next — trabalhoso e arriscado, ROI baixo. Mantido conscientemente.
+- **GA 503** (`region1.google-analytics.com`): não é bloqueio de CSP (`region1` está no `connect-src`). Transitório/lado-Google — verificar no GA4 Realtime.
+
+---
+
 ## [rev-2.15.2] — 2026-07-18
 
 ### Fixed

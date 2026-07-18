@@ -268,6 +268,7 @@ export const pt: Dictionary = {
   },
   agent: {
     label: '◆ agente diagnóstico · processando ao vivo',
+    labelGated: '◆ agente diagnóstico · diagnóstico grátis usado',
     placeholder: 'descreva o problema do seu negócio em 1 frase',
     placeholderDisabled: '— deixe seu email abaixo pra continuar —',
     inputAria: 'Descreva o problema do seu negócio em uma frase',
@@ -295,6 +296,8 @@ export const pt: Dictionary = {
     },
     blockedMessage:
       'Pra continuar perguntando, deixe seu email — assim eu te chamo de volta. Se prefere falar comigo direto, agenda o diagnóstico ali embaixo. Os dois caminhos funcionam.',
+    blockedNetworkMessage:
+      'Os diagnósticos grátis desta rede já foram usados hoje — em rede compartilhada (operadora, escritório) várias pessoas dividem o mesmo IP. Deixa seu email que eu te mando o plano completo do seu caso, ou agenda o diagnóstico ali embaixo.',
     dailyCap: {
       eyebrow: 'cap diário atingido',
       message:

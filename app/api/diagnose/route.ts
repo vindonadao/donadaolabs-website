@@ -34,6 +34,8 @@ const RATE_LIMIT_SECONDS = 10;
 const MODEL = 'claude-haiku-4-5';
 const MAX_TOKENS = 500;
 const ASKED_TTL_SECONDS = 60 * 60 * 24 * 30; // 30 dias
+const IP_FREE_LIMIT = 3; // diagnósticos grátis por IP antes do email gate (folga p/ CGNAT)
+const IP_WINDOW_SECONDS = 60 * 60 * 24; // janela de 24h do contador por IP
 
 export const runtime = 'nodejs';
 
@@ -54,6 +56,8 @@ function normalizeLang(value: unknown): DiagnoseLang {
 
 interface ErrorPayload {
   code?: 'NEED_EMAIL' | 'DAILY_CAP' | 'RATE_LIMIT';
+  /** Só no NEED_EMAIL: 'client' = este navegador já rodou · 'ip' = a rede (IP) estourou a cota. */
+  reason?: 'client' | 'ip';
   message: string;
   detail?: string;
 }
@@ -127,26 +131,40 @@ export async function POST(req: NextRequest): Promise<Response> {
   }
   await redis('SET', [rlKey, '1', 'EX', String(RATE_LIMIT_SECONDS)]);
 
-  // 3) email gate — dupla camada: clientId (localStorage) + IP (rede).
-  // ClientId sozinho falha quando navegador apaga localStorage (modo anônimo,
-  // limpeza manual, refresh em algumas configs). O IP gate é a rede de
-  // proteção: mesmo abrindo aba anônima e refresh, o IP delata.
-  // OR-lógica: se *qualquer um* dos dois já perguntou e não tem email, bloqueia.
+  // 3) email gate — dupla camada: clientId (navegador) + IP (rede).
+  //   - clientId: 1 diagnóstico grátis por navegador (localStorage).
+  //   - IP: até IP_FREE_LIMIT grátis por 24h. Antes o IP era booleano (1 e
+  //     pronto), o que quebrava CGNAT: operadoras (Vivo/Claro/TIM) e escritórios
+  //     colocam centenas de pessoas atrás do MESMO IP público — o primeiro
+  //     visitante "queimava" o IP e todo o resto caía no gate na 1ª visita.
+  //     Contador com folga (3/24h) preserva o controle de custo sem punir a rede.
+  // `reason` distingue os dois casos p/ a UI mostrar a mensagem honesta certa.
   const askedKey = `dl:cid:${clientId}:asked`;
   const emailKey = `dl:cid:${clientId}:email`;
-  const ipAskedKey = `dl:ip:${ip}:asked`;
+  const ipCountKey = `dl:ip:${ip}:count`;
   const ipEmailKey = `dl:ip:${ip}:email`;
-  const [askedBefore, storedEmail, ipAsked, ipStoredEmail] = await Promise.all([
+  const [askedBefore, storedEmail, ipCountRaw, ipStoredEmail] = await Promise.all([
     redis('GET', [askedKey]) as Promise<string | null>,
     redis('GET', [emailKey]) as Promise<string | null>,
-    redis('GET', [ipAskedKey]) as Promise<string | null>,
+    redis('GET', [ipCountKey]) as Promise<string | null>,
     redis('GET', [ipEmailKey]) as Promise<string | null>,
   ]);
   const effectiveEmail =
     (isEmail(email) ? email! : null) ?? storedEmail ?? ipStoredEmail ?? null;
-  const anyAsked = askedBefore || ipAsked;
-  if (anyAsked && !effectiveEmail) {
-    return json({ code: 'NEED_EMAIL', message: 'email required to continue' }, 403);
+  const ipCount = parseInt(ipCountRaw ?? '0', 10);
+  if (!effectiveEmail) {
+    if (askedBefore) {
+      return json(
+        { code: 'NEED_EMAIL', reason: 'client', message: 'email required to continue' },
+        403,
+      );
+    }
+    if (ipCount >= IP_FREE_LIMIT) {
+      return json(
+        { code: 'NEED_EMAIL', reason: 'ip', message: 'network free quota reached' },
+        403,
+      );
+    }
   }
 
   // 4) Anthropic
@@ -160,11 +178,13 @@ export async function POST(req: NextRequest): Promise<Response> {
     return json({ message: 'AI provider error', detail: msg }, 502);
   }
 
-  // 5) persiste estado nos DOIS gates + incrementa cap
-  await Promise.all([
-    redis('SET', [askedKey, '1', 'EX', String(ASKED_TTL_SECONDS)]),
-    redis('SET', [ipAskedKey, '1', 'EX', String(ASKED_TTL_SECONDS)]),
-  ]);
+  // 5) persiste estado nos DOIS gates + incrementa cap.
+  // clientId: marca "já rodou" (1 grátis por navegador).
+  // IP: incrementa o contador; na 1ª contagem fixa a janela de 24h (window fixo,
+  // reseta diariamente — não fica deslizando e prendendo IP de rede movimentada).
+  await redis('SET', [askedKey, '1', 'EX', String(ASKED_TTL_SECONDS)]);
+  const ipBumped = (await redis('INCR', [ipCountKey])) as number;
+  if (ipBumped === 1) await redis('EXPIRE', [ipCountKey, String(IP_WINDOW_SECONDS)]);
   if (effectiveEmail) {
     const promises: Array<Promise<unknown>> = [];
     if (!storedEmail) {
@@ -238,8 +258,13 @@ function buildPrompt(question: string, lang: DiagnoseLang): string {
       'DIAGNOSIS: <1 sentence, ≤18 words>',
       'SOLUTION: <1 sentence, ≤18 words>',
       'SUGGESTED STACK: <3-4 items separated by commas>',
-      'TIMELINE: <range in weeks>',
-      'NEXT STEP: <call to action>',
+      'TIMELINE: <range in weeks> (base scope)',
+      'NEXT STEP: <invite to book the diagnosis call or leave the email — never a question that needs answering here>',
+      '',
+      'RULES:',
+      "- Prefer Donadão Labs' production stack when it fits the case: Next.js, TypeScript, Postgres/Supabase, Vercel. Only suggest third-party SaaS (Contentful, Strapi, etc.) when the in-house stack genuinely does not cover it.",
+      '- TIMELINE is always a base-scope estimate — keep the "(base scope)".',
+      '- NEXT STEP pushes to booking or email: the visitor does not continue the conversation here.',
       '',
       'Problem: ' + question,
     ].join('\n');
@@ -252,8 +277,13 @@ function buildPrompt(question: string, lang: DiagnoseLang): string {
     'DIAGNÓSTICO: <1 frase, ≤18 palavras>',
     'SOLUÇÃO: <1 frase, ≤18 palavras>',
     'STACK SUGERIDA: <3-4 itens separados por vírgula>',
-    'PRAZO: <faixa em semanas>',
-    'PRÓXIMO PASSO: <call to action>',
+    'PRAZO: <faixa em semanas> (escopo base)',
+    'PRÓXIMO PASSO: <convite pra agendar o diagnóstico ou deixar o e-mail — nunca uma pergunta que exija resposta aqui>',
+    '',
+    'REGRAS:',
+    '- Prefira a stack de produção do Donadão Labs quando ela resolve o caso: Next.js, TypeScript, Postgres/Supabase, Vercel. Só sugira SaaS de terceiros (Contentful, Strapi, etc.) se a stack própria realmente não cobrir.',
+    '- O PRAZO é sempre estimativa de escopo base — mantenha o "(escopo base)".',
+    '- O PRÓXIMO PASSO empurra pro agendamento ou pro e-mail: o visitante não continua a conversa aqui.',
     '',
     'Problema: ' + question,
   ].join('\n');

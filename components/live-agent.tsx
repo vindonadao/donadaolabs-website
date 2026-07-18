@@ -27,6 +27,8 @@ interface CallResult {
 
 interface CallError extends Error {
   code?: 'NEED_EMAIL' | 'DAILY_CAP' | 'RATE_LIMIT';
+  /** No NEED_EMAIL: 'client' = este navegador já rodou · 'ip' = a rede estourou a cota. */
+  reason?: 'client' | 'ip';
   fallback?: boolean;
 }
 
@@ -82,9 +84,16 @@ async function callAgent(payload: CallPayload): Promise<CallResult> {
   if (!ct.includes('application/json')) {
     throw Object.assign(new Error('not-deployed'), { fallback: true } satisfies Partial<CallError>);
   }
-  const data = (await res.json()) as CallResult & { message?: string; code?: CallError['code'] };
+  const data = (await res.json()) as CallResult & {
+    message?: string;
+    code?: CallError['code'];
+    reason?: CallError['reason'];
+  };
   if (!res.ok) {
-    throw Object.assign(new Error(data.message ?? 'Erro'), { code: data.code });
+    throw Object.assign(new Error(data.message ?? 'Erro'), {
+      code: data.code,
+      reason: data.reason,
+    });
   }
   return data;
 }
@@ -188,7 +197,9 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
       const err = e as CallError;
       if (err.code === 'NEED_EMAIL') {
         setNeedEmail(true);
-        setBlockMsg(t.blockedMessage);
+        // 'ip' = a rede (IP compartilhado/CGNAT) estourou a cota, não este visitante
+        // — mensagem honesta pra não parecer que o agente é encenação.
+        setBlockMsg(err.reason === 'ip' ? t.blockedNetworkMessage : t.blockedMessage);
         setBlockKind('');
       } else if (err.code === 'DAILY_CAP') {
         setBlockMsg(t.dailyCap.message);
@@ -220,16 +231,20 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
   };
 
   const inputDisabled = persisted.askedOnce && !persisted.email && needEmail;
+  // Estado de gate: email pedido, nenhum diagnóstico na tela e nada rodando.
+  // Aqui o rótulo NÃO pode dizer "processando ao vivo" (era o que fazia o
+  // visitante achar que o agente é encenação) — vira label honesto de limite.
+  const gated = needEmail && !output && !loading;
 
   return (
     <div className="relative overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal p-[20px_22px] text-offwhite">
       {/* Header label */}
       <div className="mb-3.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-accent">
         <span
-          className="h-[7px] w-[7px] animate-dl-pulse rounded-full bg-accent"
-          style={{ boxShadow: '0 0 8px #00F57A' }}
+          className={`h-[7px] w-[7px] rounded-full bg-accent ${gated ? 'opacity-40' : 'animate-dl-pulse'}`}
+          style={gated ? undefined : { boxShadow: '0 0 8px #00F57A' }}
         />
-        {t.label}
+        {gated ? t.labelGated : t.label}
       </div>
 
       {/* Prompt input */}

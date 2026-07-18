@@ -268,6 +268,7 @@ export const en: Dictionary = {
   },
   agent: {
     label: '◆ diagnosis agent · processing live',
+    labelGated: '◆ diagnosis agent · free run used',
     placeholder: 'describe your business problem in 1 sentence',
     placeholderDisabled: '— drop your email below to continue —',
     inputAria: 'Describe your business problem in one sentence',
@@ -295,6 +296,8 @@ export const en: Dictionary = {
     },
     blockedMessage:
       'To keep asking, drop your email — I’ll reach back. If you’d rather talk directly, book the diagnosis below. Both paths work.',
+    blockedNetworkMessage:
+      'The free diagnoses for this network were already used today — on shared networks (mobile carrier, office) many people share the same IP. Drop your email and I’ll send you the full plan for your case, or book the diagnosis below.',
     dailyCap: {
       eyebrow: 'daily cap reached',
       message:

@@ -1,6 +1,3 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import { METRICS, PRODUCTS_LIVE_COUNT } from '@/lib/constants';
 import type { Metric } from '@/lib/constants';
 import type { Dictionary } from '@/lib/i18n';
@@ -9,35 +6,13 @@ interface MetricsProps {
   dict: Dictionary;
 }
 
-function useCountUp(target: number, durationMs = 1200): number {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    const start = performance.now();
-    let raf = 0;
-    const tick = (t: number): void => {
-      const p = Math.min(1, (t - start) / durationMs);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setValue(target * eased);
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return (): void => cancelAnimationFrame(raf);
-  }, [target, durationMs]);
-  return value;
-}
-
+/**
+ * Card de métrica. Renderiza o valor REAL direto (SSR) — sem count-up a partir
+ * de zero. O count-up antigo fazia o primeiro paint (e o crawler do Google, e
+ * conexões lentas) verem "PRODUTOS NO AR 00", a pior impressão possível pra um
+ * lab que se vende por resultado. O número certo agora vem no HTML do servidor.
+ */
 function MetricCardInner({ metric }: { metric: Metric }): React.ReactElement {
-  const numMatch = metric.value.match(/^(\d+\.?\d*)/);
-  const num = numMatch ? parseFloat(numMatch[1]) : 0;
-  const rest = numMatch ? metric.value.slice(numMatch[0].length) : metric.value;
-  const animated = useCountUp(num, 1100);
-  const padLen = metric.value.replace(rest, '').length;
-  const display = numMatch
-    ? (num % 1 === 0 ? Math.round(animated) : animated.toFixed(1))
-        .toString()
-        .padStart(padLen, '0') + rest
-    : metric.value;
-
   return (
     <>
       <div className="font-mono text-[10px] uppercase tracking-widest text-offwhite/45">
@@ -45,7 +20,7 @@ function MetricCardInner({ metric }: { metric: Metric }): React.ReactElement {
       </div>
       <div className="mt-2 flex items-baseline gap-2.5">
         <div className="font-mono text-[36px] font-medium leading-none tracking-tight">
-          {display}
+          {metric.value}
         </div>
         <div className="font-mono text-[11px] text-offwhite/55">{metric.sub}</div>
       </div>

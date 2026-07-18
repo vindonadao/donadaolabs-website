@@ -154,6 +154,8 @@ export interface Dictionary {
   agent: {
     /** Header pill com bolinha pulsante verde. */
     label: string;
+    /** Header pill quando o agente está no estado de gate (não "processando"). */
+    labelGated: string;
     placeholder: string;
     placeholderDisabled: string;
     /** aria-label do input principal do agente (input sem `<label>` visível). */
@@ -177,6 +179,8 @@ export interface Dictionary {
       altButton: string;
     };
     blockedMessage: string;
+    /** Estado de limite atingido pela REDE (IP compartilhado/CGNAT), não pelo visitante. */
+    blockedNetworkMessage: string;
     dailyCap: {
       eyebrow: string;
       message: string;

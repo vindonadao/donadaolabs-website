@@ -346,7 +346,7 @@ export const CASES: readonly Case[] = [
     href: 'https://starckrepresentacoes.com.br',
     stack: ['Next.js', 'Supabase', 'Resend', 'Vercel'],
     logo: {
-      image: '/clients/starck.png',
+      image: '/clients/starck-2.png',
       shape: 'hex',
       display: 'STARCK',
       style: 'sans-condensed',

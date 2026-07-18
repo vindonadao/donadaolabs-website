@@ -9,6 +9,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.15.1] — 2026-07-18
+
+### Fixed
+
+- **Logo do Starck no card estava lavado/branco** (`lib/constants.ts`, `public/clients/starck-2.png`) — a primeira recolorização jogava TODO o marinho `#2C4774` para offwhite, apagando a identidade da marca (o padrão dos outros cards é a cor real da marca, ex.: A Vegana em verde). Corrigido para a variante fiel: a **onda mantém o navy+ciano originais**, e só o wordmark "STARCK" é clareado para ciano `#98D6EB` (o suficiente para ler no `bg-ink`). Asset versionado (`starck.png` → `starck-2.png`) para bustar o cache do otimizador de imagem da Vercel.
+
+---
+
 ## [rev-2.15.0] — 2026-07-18
 
 ### Added

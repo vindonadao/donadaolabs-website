@@ -9,6 +9,14 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.14.0] — 2026-07-18
+
+### Added
+
+- **Jogo Pixel FC-Faltas Mágicas na vitrine e no footer** (`lib/constants.ts`, `lib/i18n/{pt,en}.ts`, `public/products/pixelfc.png`) — novo item `pixelfc` em `PRODUCTS` (`tier: playground`, `https://pixelfc.donadaolabs.com`, stack `HTML · Canvas · Supabase`, `status: live`). Entra como 4º card da seção **Produtos próprios**, logo abaixo do Naipe, no mesmo padrão dos jogos: moldura de janela com o domínio, screenshot de gameplay 16:9 (capturado do jogo rodando), selo `◆ NO AR` e chips de stack. O título do card é **"Pixel FC-Faltas Mágicas"** (via `item.title`), enquanto o `name` neutro segue **"Faltas Mágicas"** — usado no footer, onde o jogo passa a ser mais um backlink site-wide de SEO (`PLAYGROUND_PRODUCTS`) ao lado de ZONA75 e Naipe. Entrada correspondente no changelog público (seção Atualizações).
+
+---
+
 ## [rev-2.13.3] — 2026-07-14
 
 ### Changed

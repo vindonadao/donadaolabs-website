@@ -185,6 +185,10 @@ export const pt: Dictionary = {
       },
       { body: 'Remake do JezzBall: capture 75% da arena e suba no ranking.' },
       { body: 'Spider, Klondike e FreeCell num só lugar, com ranking global.' },
+      {
+        title: 'Pixel FC-Faltas Mágicas',
+        body: 'Faltas em pixel art: mire na curva certa, vença a barreira e o goleiro pra subir no ranking.',
+      },
     ],
   },
   manifesto: {
@@ -205,6 +209,7 @@ export const pt: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: 'Site · Pixel FC-Faltas Mágicas entra na vitrine.' },
       { text: 'Site · seção Produtos próprios no ar.' },
       { text: 'Cases · A Vegana e Quituteria da Fafá entram na vitrine.' },
       { text: 'Starck Representações · plataforma B2B de catálogo entregue.' },

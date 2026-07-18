@@ -384,6 +384,15 @@ export const PRODUCTS: readonly Product[] = [
     stack: ['HTML', 'Supabase'],
     shot: '/products/naipe.png',
   },
+  {
+    slug: 'pixelfc',
+    name: 'Faltas Mágicas',
+    tier: 'playground',
+    url: 'https://pixelfc.donadaolabs.com',
+    status: 'live',
+    stack: ['HTML', 'Canvas', 'Supabase'],
+    shot: '/products/pixelfc.png',
+  },
 ] as const;
 
 /** Jogos do Lab, derivados de PRODUCTS — usados como backlinks no footer. */
@@ -413,6 +422,7 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-07-18', tag: 'shipped', text: 'Site · Pixel FC-Faltas Mágicas entra na vitrine.' },
   { date: '2026-07-12', tag: 'shipped', text: 'Site · seção Produtos próprios no ar.' },
   { date: '2026-07-11', tag: 'shipped', text: 'Cases · A Vegana e Quituteria da Fafá entram na vitrine.' },
   { date: '2026-07-10', tag: 'shipped', text: 'Starck Representações · plataforma B2B de catálogo entregue.' },

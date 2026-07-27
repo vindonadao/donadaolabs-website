@@ -9,6 +9,18 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.16.1] — 2026-07-27
+
+Correção de divergência de números institucionais entre a faixa de métricas, a bio do founder e o Post 19 (marco de julho no LinkedIn). Alinhamento factual: 12 no ar, 4 em construção.
+
+### Fixed
+
+- **Métrica "Em construção" 02 → 04** (`lib/constants.ts`) — reflete os 4 projetos em desenvolvimento (jul/2026), um deles ferramenta interna com RAG + LangChain. O site mostrava 2.
+- **Bio do founder alinhada** (`lib/constants.ts`, `lib/i18n/en.ts`) — dizia "quatro produtos no ar, três em construção" (PT) e "over ten products live" (EN); agora "doze no ar, quatro em construção" / "twelve products live, four in progress", batendo com `PRODUCTS_LIVE_COUNT = 12` e a métrica.
+- **Travessões removidos das bios** (PT e EN) — pontuação simples, sem em dash no meio da frase (regra de copy).
+
+---
+
 ## [rev-2.16.0] — 2026-07-18
 
 Auditoria externa (Fable) → correções cirúrgicas. Falsos positivos verificados e

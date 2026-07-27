@@ -61,7 +61,7 @@ export interface Metric {
  * sistemas internos que não são cases de cliente).
  */
 export const METRICS: readonly Metric[] = [
-  { label: 'Em construção', value: '02', sub: 'no laboratório' },
+  { label: 'Em construção', value: '04', sub: 'no laboratório' },
   { label: 'Próximo slot',  value: '02', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
   { label: 'Zero quedas',   value: '0',  sub: 'incidentes em 2026' },
 ] as const;
@@ -73,8 +73,9 @@ export const METRICS: readonly Metric[] = [
  *    Cali Garage, A Vegana, Quituteria da Fafá, Starck Representações
  *  - 5 produtos próprios: PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS (interno)
  * Ao ligar/desligar algo do ar, ajuste este número e a bio do founder juntos.
- * "Em construção" (2) vive em METRICS acima — os projetos em criação NÃO são
- * nomeados no site (decisão do Vinicius).
+ * "Em construção" (4) vive em METRICS acima — os projetos em criação NÃO são
+ * nomeados no site (decisão do Vinicius). Atualizado 2026-07-27 (era 2): 4 em
+ * desenvolvimento, um deles ferramenta interna com RAG+LangChain.
  */
 export const PRODUCTS_LIVE_COUNT = 12;
 
@@ -492,8 +493,8 @@ export const FAQ: readonly FAQEntry[] = [
 export const FOUNDER = {
   name: 'Vinicius Donadão',
   role: 'Computer Scientist · Founder',
-  bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo — o de gerar receita.',
-  bio2: 'Donadão Labs é a operação que rodo: quatro produtos no ar, três em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+  bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo, o de gerar receita.',
+  bio2: 'Donadão Labs é a operação que rodo: doze produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
   photo: '/founder.jpg',
 } as const;
 

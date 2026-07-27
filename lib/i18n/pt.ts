@@ -230,8 +230,8 @@ export const pt: Dictionary = {
     sub: 'Sem agência intermediária. Você fala direto com quem constrói.',
     role: 'Cientista da Computação · Fundador',
     badge: 'fundador · ao vivo',
-    bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e agentes de IA que resolvem o problema certo — o de gerar receita.',
-    bio2: 'Donadão Labs é a operação que rodo: mais de dez produtos no ar e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
+    bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e agentes de IA que resolvem o problema certo, o de gerar receita.',
+    bio2: 'Donadão Labs é a operação que rodo: doze produtos no ar, quatro em construção e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',

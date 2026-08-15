@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# env (o .env.example é o único que entra no repo)
+.env*
+!.env.example

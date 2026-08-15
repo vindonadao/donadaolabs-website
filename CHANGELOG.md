@@ -9,6 +9,31 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.19.0] — 2026-08-15
+
+O gtag sai do caminho crítico e o stack da vitrine passa a ter lastro. Continuação da rev-2.18.0: matado o redirect, sobrou uma instabilidade de LCP que valia investigar.
+
+### Changed
+
+- **gtag.js passa de `afterInteractive` para `lazyOnload`** (`components/google-analytics.tsx`) — o script do GA tem **~166KB e era o maior download da página inteira**, maior que o bundle do app (54KB) e as duas fontes (48KB + 44KB) somadas. Em rede móvel ele disputava banda com exatamente o que pinta a tela. Agora carrega depois do `window load`.
+- **O bootstrap do Consent Mode continua em `afterInteractive`, de propósito** — são poucos bytes inline e ele precisa rodar *antes* do gtag.js chegar, para que o `consent default: denied` já esteja na fila do `dataLayer` quando o script pesado subir. É o que mantém a conformidade LGPD com carregamento adiado.
+- **Stack em produção: entram Python e Supabase, sai Stripe** (`lib/constants.ts`) — a lista é vitrine e cada chip precisa de lastro. Conferido no dia: **Supabase em 16 repositórios** e não estava lá; **Python** no Fonte (FastAPI + LangChain); **Stripe em zero projetos**, nenhum gateway de pagamento em uso até aqui. Mantidos com lastro verificado: Anthropic (3 repos), OpenAI (embeddings do Fonte), Cloudflare (DNS do PregApp e do ZONA75).
+
+### Medição — o gtag era a causa da instabilidade
+
+Lighthouse mobile, throttling simulado, mesma máquina, comparando a página normal com a página medida bloqueando `googletagmanager.com` e `google-analytics.com`:
+
+| | performance | FCP | LCP | variação do LCP entre runs |
+|---|---|---|---|---|
+| com GA (6 runs) | 81 | 2,91s | 4,05s | 2.428ms a 4.789ms |
+| sem GA (4 runs) | **90** | **1,74s** | **3,39s** | **3.376ms a 3.402ms** |
+
+Sem o gtag a série vira determinística: **26ms de variação de LCP entre quatro runs**, contra 2,4 segundos com ele. Isso explica por que a mesma URL dava ora 97, ora 76 — e por que nenhuma das duas leituras estava errada, só instável.
+
+**O mecanismo não é CPU, é banda.** O TBT nunca passou de 23ms e o audit de terceiros reportou **0ms de blocking e 0ms de main thread** em todas as medições. Com a thread livre, o que restava era a rede: 166KB no caminho crítico atrasavam fontes e JS do app, e por isso o **FCP** variava junto com o LCP em vez de ficar estável.
+
+---
+
 ## [rev-2.18.0] — 2026-08-15
 
 A raiz do site deixa de redirecionar. Motivo: uma peça de marketing alegava "LCP 1,5s, Lighthouse 98+ medido em donadaolabs.com" e a conferência antes de publicar não bateu — o que levou a medir o site a sério.

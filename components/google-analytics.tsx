@@ -39,11 +39,27 @@ export function GoogleAnalytics({ nonce }: GoogleAnalyticsProps): React.ReactEle
 
   return (
     <>
+      {/*
+        lazyOnload (não afterInteractive): o gtag.js tem ~166KB e era o MAIOR
+        download da página, maior que o bundle do app e as duas fontes somadas.
+        Em rede móvel ele roubava banda de quem pinta a tela. Medido com o
+        Lighthouse bloqueando o domínio: FCP 2,91s → 1,74s, LCP 4,05s → 3,39s,
+        e a variação entre runs caía de 2,4s para 26ms. Não era CPU (o TBT
+        nunca passou de 23ms), era banda no caminho crítico. Agora ele carrega
+        depois do window load, fora da disputa.
+      */}
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         nonce={nonce}
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
+      {/*
+        O bootstrap continua em afterInteractive, e isso é de propósito: são
+        poucos bytes inline e ele PRECISA rodar antes do gtag.js chegar, para
+        que o consent default 'denied' já esteja na fila do dataLayer quando o
+        script pesado subir. É assim que o Consent Mode v2 se mantém em pé com
+        o carregamento adiado (LGPD).
+      */}
       <Script id="ga-bootstrap" strategy="afterInteractive" nonce={nonce}>
         {`
           window.dataLayer = window.dataLayer || [];

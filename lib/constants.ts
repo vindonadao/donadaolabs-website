@@ -441,13 +441,21 @@ export interface StackChip {
   label: string;
 }
 
+/**
+ * Stack em produção. Cada chip precisa ter lastro em projeto real — é vitrine,
+ * não lista de desejos. Conferido em 2026-08-15: Supabase aparece em 16 repos,
+ * Python no Fonte (FastAPI + LangChain), Anthropic em 3, OpenAI no Fonte
+ * (embeddings), Cloudflare no DNS do PregApp e do ZONA75. Stripe saiu: zero
+ * projetos, nenhum gateway de pagamento em uso até aqui.
+ */
 export const STACK_CHIPS: readonly StackChip[] = [
   { label: 'Next.js' },
   { label: 'TypeScript' },
+  { label: 'Python' },
   { label: 'Postgres' },
-  { label: 'Stripe' },
-  { label: 'OpenAI' },
+  { label: 'Supabase' },
   { label: 'Anthropic' },
+  { label: 'OpenAI' },
   { label: 'Vercel' },
   { label: 'Cloudflare' },
 ] as const;

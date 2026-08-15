@@ -9,6 +9,29 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.18.0] — 2026-08-15
+
+A raiz do site deixa de redirecionar. Motivo: uma peça de marketing alegava "LCP 1,5s, Lighthouse 98+ medido em donadaolabs.com" e a conferência antes de publicar não bateu — o que levou a medir o site a sério.
+
+### Changed
+
+- **`/` serve o idioma padrão por rewrite, não por redirect** (`middleware.ts`) — o `NextResponse.redirect` para `/pt` custava um round-trip inteiro antes do primeiro byte. O próprio Lighthouse cobrava **936ms a 1021ms** no audit "Avoid multiple page redirects" (perfil móvel, throttling simulado), e é o mesmo hop que já tinha atrapalhado o GA. Agora a raiz responde **200 direto**: a URL continua `/`, o HTML é o de `/pt`, e o `canonical` do layout segue apontando para `https://donadaolabs.com/pt` porque deriva de `params.lang`. **Nada muda de indexação** — `/pt` e `/en` continuam sendo as URLs do sitemap.
+- **Demais rotas sem locale seguem redirecionando** (ex.: `/privacidade` → `/pt/privacidade`, 307). A mudança é cirúrgica na raiz, que é a URL que as pessoas digitam e que a marca divulga.
+
+### Verificado antes do deploy
+
+- `/` → 200, zero redirects, conteúdo PT, `<html lang="pt-BR">`, canonical `https://donadaolabs.com/pt`.
+- **Nonce da CSP bate** entre header e HTML na mesma requisição, tanto em `/` quanto em `/pt` (a CSP é enforce; se divergisse, todo script seria bloqueado). Browser real (iPhone 12 emulado): h1 visível, changelog com as 7 linhas, zero violação de CSP própria. As duas violações que aparecem em localhost são os scripts `_vercel/insights` e `_vercel/speed-insights`, que só existem servidos pela Vercel — aparecem idênticas em `/pt`, que não foi tocada.
+
+### Notas de medição (sem mudança de código)
+
+- **A alegação da peça não se sustenta**: em 12 medições Lighthouse mobile, nenhuma chegou a 98+ nem perto de LCP 1,5s (melhor LCP observado: 2,43s). A peça foi segurada, corretamente.
+- **Medição local não é confiável neste laptop**: a mesma URL variou de 72 a 97 de performance e de 2,45s a 5,03s de LCP entre runs consecutivos, com degradação progressiva típica de contenção de CPU. Um run isolado não prova número nenhum, em qualquer direção.
+- **Estável em todas as medições**: TBT entre 45ms e 110ms e CLS zero. Não é excesso de JavaScript nem layout instável.
+- **O número que conta para ranqueamento é o de campo (CrUX), não o de laboratório.** Não deu para puxar por aqui: a quota da API pública do PageSpeed está esgotada e o Web Analytics não está habilitado no projeto Vercel. A fonte de verdade é o relatório Core Web Vitals do Search Console, onde donadaolabs.com já está verificado por DNS.
+
+---
+
 ## [rev-2.17.0] — 2026-08-15
 
 Changelog público reabastecido (última entrada era de 18/07) e contagem de produtos no ar corrigida: a Agenharia entrou no ar em 19/07 e não estava na conta.

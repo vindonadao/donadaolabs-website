@@ -54,17 +54,26 @@ export function middleware(request: NextRequest): NextResponse | undefined {
     return undefined;
   }
 
-  // Sem locale → redirect pro idioma padrão (é só um redirect, não precisa nonce).
   const hasLocale = LOCALES.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
-  if (!hasLocale) {
+
+  // A raiz é a URL que as pessoas digitam e que a marca divulga. Redirecionar
+  // ela pro idioma padrão custava um round-trip inteiro antes do primeiro byte
+  // (o Lighthouse cobrava ~1s no perfil móvel com rede lenta, e o GA já tinha
+  // apanhado do mesmo hop). Agora a raiz SERVE o idioma padrão sem sair do
+  // lugar: a URL continua "/", o HTML é o de /pt e o canonical do layout segue
+  // apontando pra /pt, que é a URL do sitemap. Nada muda de indexação.
+  const isBareRoot = pathname === '/';
+
+  // Demais rotas sem locale (ex.: /privacidade) → redirect, como sempre foi.
+  if (!hasLocale && !isBareRoot) {
     const url = request.nextUrl.clone();
-    url.pathname = `/${DEFAULT_LOCALE}${pathname === '/' ? '' : pathname}`;
+    url.pathname = `/${DEFAULT_LOCALE}${pathname}`;
     return NextResponse.redirect(url);
   }
 
-  // Página com locale → gera nonce por request.
+  // Página com locale (ou a raiz reescrita) → gera nonce por request.
   const nonce = btoa(crypto.randomUUID());
   const csp = buildCsp(nonce);
 
@@ -76,7 +85,12 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   requestHeaders.set('Content-Security-Policy', csp);
 
   // RESPONSE: CSP em Report-Only → o browser só REPORTA violações (não bloqueia).
-  const response = NextResponse.next({ request: { headers: requestHeaders } });
+  const rootRewriteUrl = request.nextUrl.clone();
+  rootRewriteUrl.pathname = `/${DEFAULT_LOCALE}`;
+
+  const response = isBareRoot
+    ? NextResponse.rewrite(rootRewriteUrl, { request: { headers: requestHeaders } })
+    : NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set(RESPONSE_CSP_HEADER, csp);
   return response;
 }

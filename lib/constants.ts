@@ -31,7 +31,7 @@ export const NAV_LINKS = [
 
 // Status pill shown at top-right of the nav. Update when slots change.
 export const HEADER = {
-  status: 'live · operando · 2 slots jul/26',
+  status: 'live · operando · 3 slots ago/26',
 } as const;
 
 // 7-day throughput chart in the hero (right side, sticky).
@@ -62,22 +62,28 @@ export interface Metric {
  */
 export const METRICS: readonly Metric[] = [
   { label: 'Em construção', value: '04', sub: 'no laboratório' },
-  { label: 'Próximo slot',  value: '02', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
+  { label: 'Próximo slot',  value: '03', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
   { label: 'Zero quedas',   value: '0',  sub: 'incidentes em 2026' },
 ] as const;
 
 /**
  * "Produtos no ar" — total de software real rodando, contado à mão.
- * Composição (2026-07-18) = 12:
+ * Composição (2026-08-07) = 13:
  *  - 7 cases de cliente: Gabriel Nabi, Diskat Presentes, Diskat Ops (interno),
  *    Cali Garage, A Vegana, Quituteria da Fafá, Starck Representações
- *  - 5 produtos próprios: PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS (interno)
- * Ao ligar/desligar algo do ar, ajuste este número e a bio do founder juntos.
+ *  - 6 produtos próprios: PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS
+ *    (interno), Agenharia (painel interno)
+ * O próprio donadaolabs.com NÃO se conta.
+ * Ao ligar/desligar algo do ar, ajuste este número e a bio do founder juntos
+ * (a bio vive em lib/i18n/pt.ts e en.ts, não aqui).
  * "Em construção" (4) vive em METRICS acima — os projetos em criação NÃO são
- * nomeados no site (decisão do Vinicius). Atualizado 2026-07-27 (era 2): 4 em
- * desenvolvimento, um deles ferramenta interna com RAG+LangChain.
+ * nomeados no site (decisão do Vinicius). Composição atualizada 2026-08-07:
+ * os 3 do mesmo cliente em Portimão + 1 portal editorial próprio. O RAG
+ * documental saiu da conta ao ser concluído: repositório público com demo
+ * gravada, sem endpoint em produção, então não entra em "no ar" nem em
+ * "em construção".
  */
-export const PRODUCTS_LIVE_COUNT = 12;
+export const PRODUCTS_LIVE_COUNT = 13;
 
 export interface ClientLogo {
   name: string;
@@ -453,13 +459,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-08-05', tag: 'agent',   text: 'Fonte · RAG documental com citação de fonte, código aberto.' },
+  { date: '2026-07-28', tag: 'shipped', text: 'VODGOS · site institucional e área do conselho no ar.' },
+  { date: '2026-07-19', tag: 'shipped', text: 'Agenharia · painel interno da operação por agentes no ar.' },
   { date: '2026-07-18', tag: 'shipped', text: 'Site · Pixel FC entra na vitrine.' },
   { date: '2026-07-12', tag: 'shipped', text: 'Site · seção Produtos próprios no ar.' },
   { date: '2026-07-11', tag: 'shipped', text: 'Cases · A Vegana e Quituteria da Fafá entram na vitrine.' },
   { date: '2026-07-10', tag: 'shipped', text: 'Starck Representações · plataforma B2B de catálogo entregue.' },
-  { date: '2026-07-08', tag: 'shipped', text: 'PregApp · SaaS de licitações PNCP no ar.' },
-  { date: '2026-06-24', tag: 'shipped', text: 'Donadão Labs OPS · CRM interno feature-complete.' },
-  { date: '2026-06-17', tag: 'rfc',     text: 'ORIGEM · app mobile de quiz em construção.' },
 ] as const;
 
 export interface FAQEntry {
@@ -494,7 +500,7 @@ export const FOUNDER = {
   name: 'Vinicius Donadão',
   role: 'Computer Scientist · Founder',
   bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo, o de gerar receita.',
-  bio2: 'Donadão Labs é a operação que rodo: doze produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+  bio2: 'Donadão Labs é a operação que rodo: treze produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
   photo: '/founder.jpg',
 } as const;
 

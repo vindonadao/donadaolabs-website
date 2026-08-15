@@ -9,6 +9,33 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.17.0] — 2026-08-15
+
+Changelog público reabastecido (última entrada era de 18/07) e contagem de produtos no ar corrigida: a Agenharia entrou no ar em 19/07 e não estava na conta.
+
+### Added
+
+- **Três entradas novas no changelog público** (`lib/constants.ts`, `lib/i18n/pt.ts`, `lib/i18n/en.ts`) — datas conferidas nos repositórios, não estimadas:
+  - `2026-08-05` · **Fonte** (tag `agent`) — RAG documental com citação de fonte, repositório público (`vindonadao/fonte-rag`, rev-1.2). Entrada honesta: fala em código aberto, não em "no ar", porque não existe endpoint em produção, só demo gravada.
+  - `2026-07-28` · **VODGOS** (tag `shipped`) — site institucional + área do conselho no ar (rev-0.12 do repo `vodgos`).
+  - `2026-07-19` · **Agenharia** (tag `shipped`) — painel interno da operação por agentes no ar (rev-0.5 do repo `agenharia`).
+- Os três arrays seguem casados por índice (`CHANGELOG[i]` fornece data e tag, `dict.changelog.entries[i]` fornece o texto — ver `components/changelog.tsx`).
+
+### Changed
+
+- **`PRODUCTS_LIVE_COUNT` 12 → 13** (`lib/constants.ts`) — a **Agenharia** (painel interno) entrou na conta. Composição: 7 cases de cliente + 6 produtos próprios. O próprio `donadaolabs.com` não se conta.
+- **Bio do founder: "doze" → "treze" produtos no ar** (`lib/constants.ts`, `lib/i18n/pt.ts`, `lib/i18n/en.ts`) — os três lugares alinhados na mesma passada, como manda a nota no topo de `PRODUCTS_LIVE_COUNT`.
+- **Changelog público cortado de volta para 7 linhas** — saíram as três entradas mais antigas (PregApp 08/07, Donadão Labs OPS 24/06, ORIGEM 17/06). O PregApp continua visível na seção Produtos próprios, então não some do site. Mantém a promessa do subtítulo ("o que rodou nas últimas semanas") verdadeira.
+- **Pílula de status: "2 slots jul/26" → "3 slots ago/26"** (`lib/constants.ts`, `lib/i18n/pt.ts`, `lib/i18n/en.ts`) — estava vencida havia duas semanas, anunciando um mês que já passou. EN usa "aug/26".
+- **Métrica "Próximo slot" 02 → 03** (`lib/constants.ts`) — alinhada à pílula na mesma passada. Os dois números falam da mesma coisa em lugares diferentes da página, então divergir aqui é a mesma classe de bug da rev-2.16.1.
+
+### Notas (sem mudança de código)
+
+- **"Em construção" segue em 04** — a composição mudou (3 do mesmo cliente em Portimão + 1 portal editorial próprio), o número não. O RAG documental saiu da conta ao ser concluído: não entra em "no ar" nem em "em construção".
+- **Pílula de status vencida**: `statusPill` ainda diz "2 slots jul/26" (`lib/i18n/pt.ts`, `en.ts`, `lib/constants.ts:34`) e estamos em agosto. Fora do escopo desta rev, precisa da decisão comercial de quantos slots abrir.
+
+---
+
 ## [rev-2.16.1] — 2026-07-27
 
 Correção de divergência de números institucionais entre a faixa de métricas, a bio do founder e o Post 19 (marco de julho no LinkedIn). Alinhamento factual: 12 no ar, 4 em construção.

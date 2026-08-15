@@ -9,6 +9,15 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.19.1] — 2026-08-15
+
+### Fixed
+
+- **Stripe volta ao stack** (`lib/constants.ts`) — a rev-2.19.0 tirou o chip porque o grep não achou Stripe em nenhum repositório de `~/projetos`. O Vinicius confirmou que usa em cobrança de cliente, e a palavra dele sobre o próprio negócio vale mais que o levantamento local. **Python e Supabase continuam** — não eram alternativa ao Stripe, são camadas diferentes.
+- **Fica registrado o que o levantamento achou de fato**, porque continua valendo como pergunta em aberto: os cases **Gabriel Nabi** e **Diskat Presentes** declaram `Stripe` no campo `stack`, mas os repositórios mostram **PIX** (`Pacotes.tsx`: "Pagamento via PIX · Sinal de 20%") e **pedido por WhatsApp** (`ProductModal.tsx`), e ambos rodam React + Vite + Supabase, não `React/Node` nem `Next.js`. Não foi alterado nada nos cases — é fato de cliente, decisão do Vinicius.
+
+---
+
 ## [rev-2.19.0] — 2026-08-15
 
 O gtag sai do caminho crítico e o stack da vitrine passa a ter lastro. Continuação da rev-2.18.0: matado o redirect, sobrou uma instabilidade de LCP que valia investigar.

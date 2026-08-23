@@ -7,6 +7,10 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [Unreleased]
 
+### Changed
+
+- **`cases.title` PT: `Sem firula.` → `Sem rodeios.`** (`lib/i18n/pt.ts`) — troca de uma palavra a pedido do Vinicius. Mesmo registro direto, expressão mais corrente. O EN não tem equivalente da palavra e ficou como estava.
+
 ---
 
 ## [rev-2.19.1] — 2026-08-15

@@ -120,7 +120,7 @@ export const pt: Dictionary = {
   },
   cases: {
     eyebrow: 'Projetos · 2025–2026',
-    title: 'Entregas rodando. Sem firula.',
+    title: 'Entregas rodando. Sem rodeios.',
     sub: 'Software real, no ar, gerando venda.',
     internalLabel: 'interno',
     liveLabel: 'no ar',

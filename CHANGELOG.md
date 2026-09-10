@@ -9,6 +9,21 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.20.2] — 2026-09-10
+
+Corrige o efeito colateral da rev-2.20.0/2.20.1: tirar o Gabriel Nabi da vitrine não deveria ter tirado a entrega da contagem. **Contagem e vitrine são coisas diferentes** — a contagem mede software entregue e rodando, a vitrine é escolha de posicionamento.
+
+### Changed
+
+- **`PRODUCTS_LIVE_COUNT`: 15 → 16** (`lib/constants.ts`, `lib/i18n/pt.ts`, `lib/i18n/en.ts`). O Gabriel Nabi volta à composição (10 de cliente + 6 produtos próprios); a bio do founder acompanha nos dois idiomas (`quinze` → `dezesseis`, `fifteen` → `sixteen`).
+- **O critério ficou escrito em caixa alta no comentário de `PRODUCTS_LIVE_COUNT`**, para não se perder de novo: contar não é exibir. Gabriel Nabi conta sem ter case; Evogest, Prazer Ardente e Cali Garage Ops também contam sem virar case nem logo.
+
+### Notas
+
+- **O projeto continua fora do portfólio**, como na rev-2.20.1: sem case, sem logo, sem asset, sem link.
+
+---
+
 ## [rev-2.20.1] — 2026-09-10
 
 O case do Gabriel Nabi sai do portfólio. A rev-2.20.0 tinha tirado só o link, mantendo a citação; o Vinicius decidiu remover de vez. Mesmo motivo: o cliente assumiu o site, quebrou partes dele e removeu a assinatura da Donadão Labs, então a página não representa mais nosso trabalho.

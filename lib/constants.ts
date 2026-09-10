@@ -68,19 +68,17 @@ export const METRICS: readonly Metric[] = [
 
 /**
  * "Produtos no ar" — total de software real rodando, contado à mão.
- * Composição (2026-09-10) = 15:
- *  - 9 de cliente: Diskat Presentes, Diskat Ops (interno), Cali Garage,
- *    A Vegana, Quituteria da Fafá, Starck Representações, Evogest,
- *    Prazer Ardente, Cali Garage Ops (interno do mesmo cliente)
- *  - Gabriel Nabi SAIU da conta e do portfólio (rev-2.20.1): o cliente passou
- *    a editar o site sozinho, quebrou partes dele e tirou a assinatura da
- *    Donadão Labs. Software que não está mais sob nosso controle não conta
- *    como nosso no ar, e site que não representa nosso trabalho não fica
- *    na vitrine.
+ * Composição (2026-09-10) = 16:
+ *  - 10 de cliente: Gabriel Nabi, Diskat Presentes, Diskat Ops (interno),
+ *    Cali Garage, A Vegana, Quituteria da Fafá, Starck Representações,
+ *    Evogest, Prazer Ardente, Cali Garage Ops (interno do mesmo cliente)
  *  - 6 produtos próprios: PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS
  *    (interno), Agenharia (painel interno)
- * Os 3 novos entram só na contagem: não viram case nem logo no site, por
- * decisão do Vinicius (nem todo software no ar precisa de vitrine).
+ * CONTAGEM E VITRINE SÃO COISAS DIFERENTES. A contagem mede entrega feita e
+ * rodando; a vitrine é escolha de posicionamento. Por isso o Gabriel Nabi
+ * conta aqui mas NÃO tem case (o cliente assumiu o site, quebrou partes dele
+ * e tirou a assinatura da Donadão Labs — rev-2.20.1), e Evogest, Prazer
+ * Ardente e Cali Garage Ops contam sem virar case nem logo.
  * O próprio donadaolabs.com NÃO se conta.
  * Ao ligar/desligar algo do ar, ajuste este número e a bio do founder juntos
  * (a bio vive em lib/i18n/pt.ts e en.ts, não aqui).
@@ -93,7 +91,7 @@ export const METRICS: readonly Metric[] = [
  * gravada, sem endpoint em produção, então não entra em "no ar" nem em
  * "em construção".
  */
-export const PRODUCTS_LIVE_COUNT = 15;
+export const PRODUCTS_LIVE_COUNT = 16;
 
 export interface ClientLogo {
   name: string;
@@ -497,7 +495,7 @@ export const FOUNDER = {
   name: 'Vinicius Donadão',
   role: 'Computer Scientist · Founder',
   bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo, o de gerar receita.',
-  bio2: 'Donadão Labs é a operação que rodo: quinze produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+  bio2: 'Donadão Labs é a operação que rodo: dezesseis produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
   photo: '/founder.jpg',
 } as const;
 

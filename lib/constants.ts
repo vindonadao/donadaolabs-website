@@ -72,9 +72,11 @@ export const METRICS: readonly Metric[] = [
  *  - 9 de cliente: Diskat Presentes, Diskat Ops (interno), Cali Garage,
  *    A Vegana, Quituteria da Fafá, Starck Representações, Evogest,
  *    Prazer Ardente, Cali Garage Ops (interno do mesmo cliente)
- *  - Gabriel Nabi SAIU da conta: o cliente passou a editar o site sozinho,
- *    quebrou partes dele e tirou a assinatura da Donadão Labs. Software que
- *    não está mais sob nosso controle não conta como nosso no ar.
+ *  - Gabriel Nabi SAIU da conta e do portfólio (rev-2.20.1): o cliente passou
+ *    a editar o site sozinho, quebrou partes dele e tirou a assinatura da
+ *    Donadão Labs. Software que não está mais sob nosso controle não conta
+ *    como nosso no ar, e site que não representa nosso trabalho não fica
+ *    na vitrine.
  *  - 6 produtos próprios: PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS
  *    (interno), Agenharia (painel interno)
  * Os 3 novos entram só na contagem: não viram case nem logo no site, por
@@ -102,11 +104,6 @@ export interface ClientLogo {
 }
 
 export const CLIENT_LOGOS: readonly ClientLogo[] = [
-  {
-    name: 'Gabriel Nabi',
-    src: '/clients/gabriel-nabi.png',
-    alt: 'Gabriel Nabi Pet Photography',
-  },
   {
     name: 'Diskat Presentes',
     src: '/clients/diskat-presentes.png',
@@ -248,27 +245,6 @@ export interface Case {
 export const CASES: readonly Case[] = [
   {
     num: '01',
-    client: 'Gabriel Nabi',
-    kind: 'Landing page · Pet Photography',
-    meta: 'Landing page · Pet Photography',
-    title: 'Landing completa para fotógrafo',
-    desc: 'Site de apresentação do trabalho com captação de contato, agenda e pagamento integrado. Substitui Linktree + WhatsApp + cobrança manual.',
-    metric: '↑ 3.2× contato qualificado',
-    // O cliente passou a editar o site por conta própria, quebrou partes dele e
-    // removeu a assinatura da Donadão Labs. O trabalho segue citado como case,
-    // mas sem link: não mandamos visitante para uma página fora do nosso
-    // controle. Pelo mesmo motivo saiu de PRODUCTS_LIVE_COUNT.
-    href: null,
-    stack: ['React', 'Node', 'Stripe', 'Postgres'],
-    logo: {
-      image: '/clients/gabriel-nabi.png',
-      shape: 'aperture',
-      display: 'gabriel nabi',
-      style: 'serif',
-    },
-  },
-  {
-    num: '02',
     client: 'Diskat Presentes',
     kind: 'E-commerce · Impressão 3D',
     meta: 'E-commerce · Impressão 3D',
@@ -285,7 +261,7 @@ export const CASES: readonly Case[] = [
     },
   },
   {
-    num: '03',
+    num: '02',
     client: 'Diskat Ops',
     kind: 'CRM interno · SaaS',
     meta: 'CRM interno · SaaS',
@@ -303,7 +279,7 @@ export const CASES: readonly Case[] = [
     },
   },
   {
-    num: '04',
+    num: '03',
     client: 'Cali Garage',
     kind: 'Landing page · Manutenção veicular',
     meta: 'Landing page · Manutenção veicular',
@@ -320,7 +296,7 @@ export const CASES: readonly Case[] = [
     },
   },
   {
-    num: '05',
+    num: '04',
     client: 'A Vegana',
     kind: 'Blog editorial · Vegano',
     meta: 'Blog editorial · Vegano',
@@ -337,7 +313,7 @@ export const CASES: readonly Case[] = [
     },
   },
   {
-    num: '06',
+    num: '05',
     client: 'Quituteria da Fafá',
     kind: 'E-commerce · Checkout WhatsApp',
     meta: 'E-commerce · Checkout WhatsApp',
@@ -354,7 +330,7 @@ export const CASES: readonly Case[] = [
     },
   },
   {
-    num: '07',
+    num: '06',
     client: 'Starck Representações',
     kind: 'Catálogo B2B · Representação comercial',
     meta: 'Catálogo B2B · Representação comercial',

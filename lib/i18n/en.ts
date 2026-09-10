@@ -127,14 +127,7 @@ export const en: Dictionary = {
     internalSuffix: '· internal',
     publicSuffix: '.app',
     internalAria: 'internal system, no public link',
-    noLinkAria: 'client case, no public link',
     items: [
-      {
-        kind: 'Landing page · Pet Photography',
-        title: 'Full landing page for a photographer',
-        desc: 'Portfolio site with lead capture, booking and integrated payment. Replaces Linktree + WhatsApp + manual billing.',
-        metric: '↑ 3.2× qualified leads',
-      },
       {
         kind: 'E-commerce · 3D Printing',
         title: '3D-printing e-commerce',

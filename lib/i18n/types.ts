@@ -77,8 +77,6 @@ export interface Dictionary {
     publicSuffix: string;
     /** Aria-label do card interno: `${case.title} — ${labels.internalAria}` */
     internalAria: string;
-    /** Aria-label do case de cliente sem link (`href: null` e não interno) */
-    noLinkAria: string;
     /**
      * Traduzíveis por case, indexados por posição (mesma ordem que `CASES` em
      * `lib/constants.ts`). Campos neutros (num, client, href, internal, stack,

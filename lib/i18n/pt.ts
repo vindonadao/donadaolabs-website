@@ -127,14 +127,7 @@ export const pt: Dictionary = {
     internalSuffix: '· interno',
     publicSuffix: '.app',
     internalAria: 'sistema interno, sem link público',
-    noLinkAria: 'case de cliente, sem link público',
     items: [
-      {
-        kind: 'Landing page · Pet Photography',
-        title: 'Landing completa para fotógrafo',
-        desc: 'Site de apresentação do trabalho com captação de contato, agenda e pagamento integrado. Substitui Linktree + WhatsApp + cobrança manual.',
-        metric: '↑ 3.2× contato qualificado',
-      },
       {
         kind: 'E-commerce · Impressão 3D',
         title: 'E-commerce de impressão 3D',

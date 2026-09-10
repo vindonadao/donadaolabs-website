@@ -9,6 +9,24 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.20.1] — 2026-09-10
+
+O case do Gabriel Nabi sai do portfólio. A rev-2.20.0 tinha tirado só o link, mantendo a citação; o Vinicius decidiu remover de vez. Mesmo motivo: o cliente assumiu o site, quebrou partes dele e removeu a assinatura da Donadão Labs, então a página não representa mais nosso trabalho.
+
+### Removed
+
+- **Case do Gabriel Nabi** (`lib/constants.ts` `CASES`, `lib/i18n/pt.ts` e `lib/i18n/en.ts` `cases.items`). Os dois arrays continuam casados por índice: seis cases, seis textos em cada idioma.
+- **Cases renumerados de `01` a `06`** para não deixar buraco na sequência: Diskat Presentes, Diskat Ops (interno), Cali Garage, A Vegana, Quituteria da Fafá, Starck Representações.
+- **Logo do Gabriel Nabi** de `CLIENT_LOGOS` e o arquivo `public/clients/gabriel-nabi.png`. Não fazia sentido continuar servindo a marca do cliente no nosso domínio.
+- **`cases.noLinkAria`** (`lib/i18n/types.ts`, `pt.ts`, `en.ts`) e o ramo correspondente em `components/cases.tsx`, revertidos. Foram criados na rev-2.20.0 para o card sem link; sem esse card, viravam código sem consumidor. O ramo `href === null` volta a ser exclusivo do case interno, como era antes.
+
+### Notas
+
+- **`PRODUCTS_LIVE_COUNT` não muda**: segue **15**, porque o Gabriel Nabi já tinha saído da conta na rev-2.20.0.
+- O critério fica registrado no comentário de `PRODUCTS_LIVE_COUNT`: software fora do nosso controle não conta como nosso no ar, e site que não representa nosso trabalho não fica na vitrine.
+
+---
+
 ## [rev-2.20.0] — 2026-09-10
 
 O case do Gabriel Nabi deixa de linkar e sai da contagem de produtos no ar. Decisão do Vinicius, com motivo: o cliente passou a editar o site por conta própria, quebrou partes dele e removeu a assinatura da Donadão Labs. O trabalho continua citado, mas o site não recebe mais tráfego nosso nem entra na conta do que está sob nossa responsabilidade.

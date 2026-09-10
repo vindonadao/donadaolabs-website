@@ -127,6 +127,7 @@ export const en: Dictionary = {
     internalSuffix: '· internal',
     publicSuffix: '.app',
     internalAria: 'internal system, no public link',
+    noLinkAria: 'client case, no public link',
     items: [
       {
         kind: 'Landing page · Pet Photography',
@@ -231,7 +232,7 @@ export const en: Dictionary = {
     role: 'Computer Scientist · Founder',
     badge: 'founder · live',
     bio1: 'Computer scientist with a background in critical industrial automation. I build software and AI agents that solve the right problem: generating revenue.',
-    bio2: 'Donadão Labs is the operation I run: sixteen products live, four in progress, and current focus on AI agents for businesses already earning, but still operating on WhatsApp.',
+    bio2: 'Donadão Labs is the operation I run: fifteen products live, four in progress, and current focus on AI agents for businesses already earning, but still operating on WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',

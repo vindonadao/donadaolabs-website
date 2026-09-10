@@ -132,10 +132,15 @@ function CaseCardContent({ c, labels }: CaseCardContentProps): React.ReactElemen
 
 function CaseCard({ c, labels }: { c: Case; labels: Dictionary['cases'] }): React.ReactElement {
   if (c.internal === true || c.href === null) {
+    // Interno usa roxo (a cor de "sem demo pública"). Case de cliente sem link
+    // é outra coisa: o software é público, só não mandamos tráfego pra ele.
+    const isInternal = c.internal === true;
     return (
       <article
-        className="group block rounded-brand-lg border border-white/[0.08] bg-charcoal p-6 text-offwhite transition-colors duration-200 hover:border-purple/40"
-        aria-label={`${c.title} — ${labels.internalAria}`}
+        className={`group block rounded-brand-lg border border-white/[0.08] bg-charcoal p-6 text-offwhite transition-colors duration-200 ${
+          isInternal ? 'hover:border-purple/40' : 'hover:border-white/20'
+        }`}
+        aria-label={`${c.title} — ${isInternal ? labels.internalAria : labels.noLinkAria}`}
       >
         <CaseCardContent c={c} labels={labels} />
       </article>

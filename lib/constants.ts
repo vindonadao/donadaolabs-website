@@ -68,10 +68,13 @@ export const METRICS: readonly Metric[] = [
 
 /**
  * "Produtos no ar" — total de software real rodando, contado à mão.
- * Composição (2026-09-09) = 16:
- *  - 10 de cliente: Gabriel Nabi, Diskat Presentes, Diskat Ops (interno),
- *    Cali Garage, A Vegana, Quituteria da Fafá, Starck Representações,
- *    Evogest, Prazer Ardente, Cali Garage Ops (interno do mesmo cliente)
+ * Composição (2026-09-10) = 15:
+ *  - 9 de cliente: Diskat Presentes, Diskat Ops (interno), Cali Garage,
+ *    A Vegana, Quituteria da Fafá, Starck Representações, Evogest,
+ *    Prazer Ardente, Cali Garage Ops (interno do mesmo cliente)
+ *  - Gabriel Nabi SAIU da conta: o cliente passou a editar o site sozinho,
+ *    quebrou partes dele e tirou a assinatura da Donadão Labs. Software que
+ *    não está mais sob nosso controle não conta como nosso no ar.
  *  - 6 produtos próprios: PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS
  *    (interno), Agenharia (painel interno)
  * Os 3 novos entram só na contagem: não viram case nem logo no site, por
@@ -88,7 +91,7 @@ export const METRICS: readonly Metric[] = [
  * gravada, sem endpoint em produção, então não entra em "no ar" nem em
  * "em construção".
  */
-export const PRODUCTS_LIVE_COUNT = 16;
+export const PRODUCTS_LIVE_COUNT = 15;
 
 export interface ClientLogo {
   name: string;
@@ -103,7 +106,6 @@ export const CLIENT_LOGOS: readonly ClientLogo[] = [
     name: 'Gabriel Nabi',
     src: '/clients/gabriel-nabi.png',
     alt: 'Gabriel Nabi Pet Photography',
-    url: 'https://gabrielnabi.com.br',
   },
   {
     name: 'Diskat Presentes',
@@ -252,7 +254,11 @@ export const CASES: readonly Case[] = [
     title: 'Landing completa para fotógrafo',
     desc: 'Site de apresentação do trabalho com captação de contato, agenda e pagamento integrado. Substitui Linktree + WhatsApp + cobrança manual.',
     metric: '↑ 3.2× contato qualificado',
-    href: 'https://gabrielnabi.com.br',
+    // O cliente passou a editar o site por conta própria, quebrou partes dele e
+    // removeu a assinatura da Donadão Labs. O trabalho segue citado como case,
+    // mas sem link: não mandamos visitante para uma página fora do nosso
+    // controle. Pelo mesmo motivo saiu de PRODUCTS_LIVE_COUNT.
+    href: null,
     stack: ['React', 'Node', 'Stripe', 'Postgres'],
     logo: {
       image: '/clients/gabriel-nabi.png',
@@ -515,7 +521,7 @@ export const FOUNDER = {
   name: 'Vinicius Donadão',
   role: 'Computer Scientist · Founder',
   bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo, o de gerar receita.',
-  bio2: 'Donadão Labs é a operação que rodo: dezesseis produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+  bio2: 'Donadão Labs é a operação que rodo: quinze produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
   photo: '/founder.jpg',
 } as const;
 

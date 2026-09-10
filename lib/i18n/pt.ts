@@ -127,6 +127,7 @@ export const pt: Dictionary = {
     internalSuffix: '· interno',
     publicSuffix: '.app',
     internalAria: 'sistema interno, sem link público',
+    noLinkAria: 'case de cliente, sem link público',
     items: [
       {
         kind: 'Landing page · Pet Photography',
@@ -231,7 +232,7 @@ export const pt: Dictionary = {
     role: 'Cientista da Computação · Fundador',
     badge: 'fundador · ao vivo',
     bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e agentes de IA que resolvem o problema certo, o de gerar receita.',
-    bio2: 'Donadão Labs é a operação que rodo: dezesseis produtos no ar, quatro em construção e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
+    bio2: 'Donadão Labs é a operação que rodo: quinze produtos no ar, quatro em construção e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',

@@ -9,6 +9,22 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.20.0] — 2026-09-10
+
+O case do Gabriel Nabi deixa de linkar e sai da contagem de produtos no ar. Decisão do Vinicius, com motivo: o cliente passou a editar o site por conta própria, quebrou partes dele e removeu a assinatura da Donadão Labs. O trabalho continua citado, mas o site não recebe mais tráfego nosso nem entra na conta do que está sob nossa responsabilidade.
+
+### Changed
+
+- **Case 01 vira card sem link** (`lib/constants.ts`): `href` passa de `https://gabrielnabi.com.br` para `null`. O card segue na vitrine com logo, stack e descrição, só não é mais clicável.
+- **Logo do Gabriel Nabi perde o `url`** em `CLIENT_LOGOS` (`lib/constants.ts`). Nota: **`CLIENT_LOGOS` está órfão** hoje, nenhum componente o consome, então a mudança é de coerência do dado, não visual.
+- **`PRODUCTS_LIVE_COUNT`: 16 → 15** (`lib/constants.ts`, `lib/i18n/pt.ts`, `lib/i18n/en.ts`). Composição: 9 de cliente + 6 produtos próprios. Bio do founder alinhada nos dois idiomas (`dezesseis` → `quinze`, `sixteen` → `fifteen`). O critério registrado no comentário: software que não está mais sob nosso controle não conta como nosso no ar.
+
+### Added
+
+- **`cases.noLinkAria`** (`lib/i18n/types.ts`, `pt.ts`, `en.ts`) e o ramo correspondente em `components/cases.tsx`. Um case com `href: null` que **não** é interno passa a anunciar "case de cliente, sem link público", e não mais "sistema interno, sem link público", que era falso. O hover roxo continua reservado ao card interno; o case de cliente sem link usa borda neutra. Vale para qualquer case futuro que a gente decida não linkar, não só este.
+
+---
+
 ## [rev-2.19.3] — 2026-09-09
 
 Conserta um link quebrado no ar e põe a contagem de produtos em dia. Os clientes que ganharam domínio próprio deixam de ser apontados pelo subdomínio da agência, e três softwares que já rodam entram na métrica.

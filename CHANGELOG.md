@@ -9,6 +9,30 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.19.2] — 2026-08-23
+
+Fecha as duas duplicatas de host que sobraram e ajusta uma palavra da vitrine. Investigação disparada por um aviso do Search Console ("Novo motivo que impede a indexação: Página alternativa com tag canônica adequada").
+
+### O aviso do Search Console não era um erro
+
+`Página alternativa com tag canônica adequada` é status **informativo**: o Google rastreou uma URL, viu que ela declara `canonical` para outra, respeitou e indexou a canônica. É o comportamento desejado.
+
+Ele apareceu agora por causa da **rev-2.18.0**: até então `https://donadaolabs.com/` respondia `307 → /pt` e caía na categoria "Página com redirecionamento". Desde que a raiz passou a responder **200** servindo o HTML de `/pt` (com `canonical` para `https://donadaolabs.com/pt`), a mesma página mudou de categoria no relatório. Nada a corrigir aí.
+
+Auditoria feita em produção no mesmo dia, sem achados contra: `robots.txt` (200, `Allow: /`, sitemap declarado), `sitemap.xml` (200, 6 URLs com hreflang correto), `/pt`, `/en`, `/pt/brand`, `/en/brand` e `/pt/privacidade` todas com `index, follow` e `canonical` próprio, `hreflang` + `x-default` consistentes. Nenhuma página do sitemap está sendo suprimida.
+
+### Fixed
+
+- **`www.donadaolabs.com` para de servir o site** (`next.config.mjs`) — o domínio está apontado pro projeto na Vercel **sem redirect**, então respondia `200` e entregava o site inteiro; só o `canonical` absoluto segurava a duplicata. Agora responde **308 pro apex**, preservando caminho e query. O redirect usa `has: [{ type: 'host' }]` e vive no `next.config`, não no middleware, porque redirect de config roda **antes** do middleware e cobre inclusive as rotas que o `matcher` ignora (`/brand/*`, `/clients/*`, `/api`).
+- **Hosts `*.vercel.app` respondem `X-Robots-Tag: noindex, nofollow`** (`next.config.mjs`) — `donadaolabs-website.vercel.app` servia o site completo com `index, follow` no HTML. O `canonical` absoluto apontava pro domínio oficial e provavelmente evitava a indexação, mas o certo é não convidar o rastreamento. Cobre também as URLs de preview.
+
+### Changed
+
+- **`cases.title` PT: `Entregas rodando. Sem firula.` → `Entregas rodando. Sem rodeios.`** (`lib/i18n/pt.ts`). O EN (`Delivered and running. No mockups.`) não muda.
+- **Prompt do agente de diagnóstico** (`app/api/diagnose/route.ts`): `tom direto, sem firula` → `tom direto, sem rodeios`, pela mesma razão. Instrução interna, não aparece pro visitante.
+
+---
+
 ## [rev-2.19.1] — 2026-08-15
 
 ### Fixed

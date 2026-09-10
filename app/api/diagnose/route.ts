@@ -271,7 +271,7 @@ function buildPrompt(question: string, lang: DiagnoseLang): string {
   }
   return [
     'Você é o agente de diagnóstico do Donadão Labs (lab brasileiro de software IA-first).',
-    'Responda EM PORTUGUÊS, tom direto, sem firula. Devolva NESSE FORMATO EXATO,',
+    'Responda EM PORTUGUÊS, tom direto, sem rodeios. Devolva NESSE FORMATO EXATO,',
     'cada bloco em uma linha curta separada por quebra de linha simples:',
     '',
     'DIAGNÓSTICO: <1 frase, ≤18 palavras>',

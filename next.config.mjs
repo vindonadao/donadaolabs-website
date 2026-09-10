@@ -21,6 +21,17 @@ const nextConfig = {
         destination: '/pt/brand',
         permanent: false,
       },
+      // www servia o site inteiro com 200 (o domínio está apontado pro projeto
+      // na Vercel, sem redirect). Só o canonical absoluto segurava a duplicata.
+      // Agora www responde 308 pro apex, preservando o caminho e a query.
+      // Redirect de next.config roda ANTES do middleware, então cobre inclusive
+      // as rotas que o matcher do middleware ignora (/brand/*, /clients/*, api).
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.donadaolabs.com' }],
+        destination: 'https://donadaolabs.com/:path*',
+        permanent: true,
+      },
     ];
   },
 
@@ -63,6 +74,20 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
+      {
+        // O domínio automático da Vercel (donadaolabs-website.vercel.app) e as
+        // URLs de preview serviam o site com `index, follow`. O canonical
+        // absoluto aponta pro domínio oficial, mas o certo é não convidar o
+        // rastreamento: qualquer host *.vercel.app responde noindex.
+        source: '/:path*',
+        has: [{ type: 'host', value: '.*\\.vercel\\.app' }],
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
           },
         ],
       },

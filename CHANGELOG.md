@@ -9,6 +9,33 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.19.3] — 2026-09-09
+
+Conserta um link quebrado no ar e põe a contagem de produtos em dia. Os clientes que ganharam domínio próprio deixam de ser apontados pelo subdomínio da agência, e três softwares que já rodam entram na métrica.
+
+### Fixed
+
+- **Cali Garage aponta para `caligarage.com.br`** (`lib/constants.ts`, logo do trust wall e case 04). O antigo `caligarage.donadaolabs.com` responde **404** em produção desde que o site do cliente migrou para a conta Vercel dele com domínio próprio. O link estava quebrado para o visitante.
+- **Gabriel Nabi aponta para `gabrielnabi.com.br`** (`lib/constants.ts`, logo do trust wall e case 01). O `gabrielnabi.donadaolabs.com` ainda responde, mas com `308` para o domínio próprio. Apontar direto tira o salto e evita expor subdomínio da agência em site de cliente.
+
+Conferido no mesmo dia, todos os links externos do site respondem: `caligarage.com.br` 200, `gabrielnabi.com.br` 308 para www, `diskatpresentes.com.br` 307 para www, `avegana.com.br`, `quituteriadafafa.com.br`, `starckrepresentacoes.com.br`, `pregapp.com.br`, `zona75.com`, `naipe.donadaolabs.com` e `pixelfc.donadaolabs.com` todos 200.
+
+### Changed
+
+- **`PRODUCTS_LIVE_COUNT`: 13 → 16** (`lib/constants.ts`, `lib/i18n/pt.ts`, `lib/i18n/en.ts`). Entram na contagem três softwares de cliente que já rodam e não estavam somados: **Evogest** (`evogest.pt`), **Prazer Ardente** (`prazerardente.com`) e **Cali Garage Ops** (`ops.caligarage.com.br`, interno do mesmo cliente do case 04). Composição nova: 10 de cliente + 6 produtos próprios. Os três **entram só no número**: não viram case nem logo na parede, por decisão do Vinicius. Bio do founder atualizada junto nos dois idiomas (`treze` → `dezesseis`, `thirteen` → `sixteen`), que é onde ela de fato renderiza.
+- **"Em construção" segue em `04`** (`METRICS`, sem alteração de código). Evogest e Prazer Ardente saíram para "no ar" e outros dois entraram no lugar, entre eles a landing de encomendas de Portimão, que serve pela URL da Vercel mas ainda não tem domínio próprio nem o conteúdo real da cliente. Os projetos em criação continuam sem ser nomeados no site.
+- **Pílula de status: `3 slots ago/26` → `3 slots set/26`** (`lib/constants.ts`, `lib/i18n/pt.ts`, `lib/i18n/en.ts`; EN usa `sep/26`). Estava anunciando um mês já vencido havia mais de uma semana. O número de slots (3) não mudou, só o mês.
+
+### Added
+
+- **Duas entradas no changelog público** (`lib/constants.ts`, `lib/i18n/pt.ts`, `lib/i18n/en.ts`), com datas conferidas no `git log` dos repositórios, não estimadas:
+  - `2026-09-05` · **Cali Garage Ops** (tag `shipped`): gestão da oficina no ar para o cliente (rev-0.49 registrada em produção nessa data, repo `cali-garage-ops`).
+  - `2026-08-13` · **Evogest** (tag `shipped`): site da gestora de condomínios entregue e no ar (commit que fecha a rev-1.0, repo `evogest`).
+- Os três arrays seguem casados por índice. A lista voltou a ser cortada em **7 linhas**, como na rev-2.17.0: saíram as duas mais antigas (Starck 10/07 e "Cases · A Vegana e Quituteria" 11/07). O Starck continua visível como case próprio, então não some do site.
+- **Prazer Ardente ficou de fora do changelog público**, embora conte na métrica: é marca adulta e a vitrine é decisão de posicionamento, não de contagem.
+
+---
+
 ## [rev-2.19.2] — 2026-08-23
 
 Fecha as duas duplicatas de host que sobraram e ajusta uma palavra da vitrine. Investigação disparada por um aviso do Search Console ("Novo motivo que impede a indexação: Página alternativa com tag canônica adequada").

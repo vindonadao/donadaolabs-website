@@ -18,7 +18,7 @@ export const pt: Dictionary = {
       { label: 'Dúvidas', href: '#faq' },
       { label: 'Brand', href: '/brand' },
     ],
-    statusPill: 'no ar · operando · 3 slots ago/26',
+    statusPill: 'no ar · operando · 3 slots set/26',
     ctaButton: 'Agendar diagnóstico →',
     ctaButtonShort: 'Agendar →',
     langSwitchLabel: 'EN',
@@ -215,13 +215,13 @@ export const pt: Dictionary = {
       hotfix: 'hotfix',
     },
     entries: [
+      { text: 'Cali Garage Ops · gestão da oficina no ar para o cliente.' },
+      { text: 'Evogest · site da gestora de condomínios entregue e no ar.' },
       { text: 'Fonte · RAG documental com citação de fonte, código aberto.' },
       { text: 'VODGOS · site institucional e área do conselho no ar.' },
       { text: 'Agenharia · painel interno da operação por agentes no ar.' },
       { text: 'Site · Pixel FC entra na vitrine.' },
       { text: 'Site · seção Produtos próprios no ar.' },
-      { text: 'Cases · A Vegana e Quituteria da Fafá entram na vitrine.' },
-      { text: 'Starck Representações · plataforma B2B de catálogo entregue.' },
     ],
   },
   founder: {
@@ -231,7 +231,7 @@ export const pt: Dictionary = {
     role: 'Cientista da Computação · Fundador',
     badge: 'fundador · ao vivo',
     bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e agentes de IA que resolvem o problema certo, o de gerar receita.',
-    bio2: 'Donadão Labs é a operação que rodo: treze produtos no ar, quatro em construção e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
+    bio2: 'Donadão Labs é a operação que rodo: dezesseis produtos no ar, quatro em construção e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
   },
   faq: {
     eyebrow: 'FAQ',

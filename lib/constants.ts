@@ -31,7 +31,7 @@ export const NAV_LINKS = [
 
 // Status pill shown at top-right of the nav. Update when slots change.
 export const HEADER = {
-  status: 'live · operando · 3 slots ago/26',
+  status: 'live · operando · 3 slots set/26',
 } as const;
 
 // 7-day throughput chart in the hero (right side, sticky).
@@ -68,22 +68,27 @@ export const METRICS: readonly Metric[] = [
 
 /**
  * "Produtos no ar" — total de software real rodando, contado à mão.
- * Composição (2026-08-07) = 13:
- *  - 7 cases de cliente: Gabriel Nabi, Diskat Presentes, Diskat Ops (interno),
- *    Cali Garage, A Vegana, Quituteria da Fafá, Starck Representações
+ * Composição (2026-09-09) = 16:
+ *  - 10 de cliente: Gabriel Nabi, Diskat Presentes, Diskat Ops (interno),
+ *    Cali Garage, A Vegana, Quituteria da Fafá, Starck Representações,
+ *    Evogest, Prazer Ardente, Cali Garage Ops (interno do mesmo cliente)
  *  - 6 produtos próprios: PregApp, ZONA75, Naipe, Pixel FC, Donadão Labs OPS
  *    (interno), Agenharia (painel interno)
+ * Os 3 novos entram só na contagem: não viram case nem logo no site, por
+ * decisão do Vinicius (nem todo software no ar precisa de vitrine).
  * O próprio donadaolabs.com NÃO se conta.
  * Ao ligar/desligar algo do ar, ajuste este número e a bio do founder juntos
  * (a bio vive em lib/i18n/pt.ts e en.ts, não aqui).
  * "Em construção" (4) vive em METRICS acima — os projetos em criação NÃO são
- * nomeados no site (decisão do Vinicius). Composição atualizada 2026-08-07:
- * os 3 do mesmo cliente em Portimão + 1 portal editorial próprio. O RAG
+ * nomeados no site (decisão do Vinicius). Segue em 4 em 2026-09-09: Evogest e
+ * Prazer Ardente saíram para "no ar", e outros dois entraram no lugar, entre
+ * eles a landing de encomendas de Portimão (serve pela URL da Vercel, mas
+ * ainda sem domínio próprio e sem o conteúdo real da cliente). O RAG
  * documental saiu da conta ao ser concluído: repositório público com demo
  * gravada, sem endpoint em produção, então não entra em "no ar" nem em
  * "em construção".
  */
-export const PRODUCTS_LIVE_COUNT = 13;
+export const PRODUCTS_LIVE_COUNT = 16;
 
 export interface ClientLogo {
   name: string;
@@ -98,7 +103,7 @@ export const CLIENT_LOGOS: readonly ClientLogo[] = [
     name: 'Gabriel Nabi',
     src: '/clients/gabriel-nabi.png',
     alt: 'Gabriel Nabi Pet Photography',
-    url: 'https://gabrielnabi.donadaolabs.com',
+    url: 'https://gabrielnabi.com.br',
   },
   {
     name: 'Diskat Presentes',
@@ -116,7 +121,7 @@ export const CLIENT_LOGOS: readonly ClientLogo[] = [
     name: 'Cali Garage',
     src: '/clients/cali-garage.png',
     alt: 'Cali Garage — Reparos Automotivos',
-    url: 'https://caligarage.donadaolabs.com',
+    url: 'https://caligarage.com.br',
   },
 ] as const;
 
@@ -247,7 +252,7 @@ export const CASES: readonly Case[] = [
     title: 'Landing completa para fotógrafo',
     desc: 'Site de apresentação do trabalho com captação de contato, agenda e pagamento integrado. Substitui Linktree + WhatsApp + cobrança manual.',
     metric: '↑ 3.2× contato qualificado',
-    href: 'https://gabrielnabi.donadaolabs.com',
+    href: 'https://gabrielnabi.com.br',
     stack: ['React', 'Node', 'Stripe', 'Postgres'],
     logo: {
       image: '/clients/gabriel-nabi.png',
@@ -299,7 +304,7 @@ export const CASES: readonly Case[] = [
     title: 'Site institucional para oficina',
     desc: 'Landing de apresentação dos serviços, captação de contato e canal direto com o cliente. Site real para um negócio que vive offline.',
     metric: '↑ orçamentos via web',
-    href: 'https://caligarage.donadaolabs.com',
+    href: 'https://caligarage.com.br',
     stack: ['Next.js', 'TypeScript', 'Tailwind', 'Vercel'],
     logo: {
       image: '/clients/cali-garage.png',
@@ -469,13 +474,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
+  { date: '2026-09-05', tag: 'shipped', text: 'Cali Garage Ops · gestão da oficina no ar para o cliente.' },
+  { date: '2026-08-13', tag: 'shipped', text: 'Evogest · site da gestora de condomínios entregue e no ar.' },
   { date: '2026-08-05', tag: 'agent',   text: 'Fonte · RAG documental com citação de fonte, código aberto.' },
   { date: '2026-07-28', tag: 'shipped', text: 'VODGOS · site institucional e área do conselho no ar.' },
   { date: '2026-07-19', tag: 'shipped', text: 'Agenharia · painel interno da operação por agentes no ar.' },
   { date: '2026-07-18', tag: 'shipped', text: 'Site · Pixel FC entra na vitrine.' },
   { date: '2026-07-12', tag: 'shipped', text: 'Site · seção Produtos próprios no ar.' },
-  { date: '2026-07-11', tag: 'shipped', text: 'Cases · A Vegana e Quituteria da Fafá entram na vitrine.' },
-  { date: '2026-07-10', tag: 'shipped', text: 'Starck Representações · plataforma B2B de catálogo entregue.' },
 ] as const;
 
 export interface FAQEntry {
@@ -510,7 +515,7 @@ export const FOUNDER = {
   name: 'Vinicius Donadão',
   role: 'Computer Scientist · Founder',
   bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo, o de gerar receita.',
-  bio2: 'Donadão Labs é a operação que rodo: treze produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+  bio2: 'Donadão Labs é a operação que rodo: dezesseis produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
   photo: '/founder.jpg',
 } as const;
 

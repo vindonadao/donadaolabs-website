@@ -9,6 +9,21 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ---
 
+## [rev-2.20.3] — 2026-10-02
+
+Virada do mês na disponibilidade.
+
+### Changed
+
+- **Pílula de status: `3 slots set/26` → `4 slots out/26`** (`oct/26` no EN) em `lib/constants.ts`, `lib/i18n/pt.ts` e `lib/i18n/en.ts`.
+- **Métrica "Próximo slot": 03 → 04** (`lib/constants.ts`), alinhada com a pílula.
+
+### Notas
+
+- `PRODUCTS_LIVE_COUNT` segue **16** e "Em construção" segue **04**.
+
+---
+
 ## [rev-2.20.2] — 2026-09-10
 
 Corrige o efeito colateral da rev-2.20.0/2.20.1: tirar o Gabriel Nabi da vitrine não deveria ter tirado a entrega da contagem. **Contagem e vitrine são coisas diferentes** — a contagem mede software entregue e rodando, a vitrine é escolha de posicionamento.

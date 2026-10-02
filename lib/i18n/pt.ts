@@ -18,7 +18,7 @@ export const pt: Dictionary = {
       { label: 'Dúvidas', href: '#faq' },
       { label: 'Brand', href: '/brand' },
     ],
-    statusPill: 'no ar · operando · 3 slots set/26',
+    statusPill: 'no ar · operando · 4 slots out/26',
     ctaButton: 'Agendar diagnóstico →',
     ctaButtonShort: 'Agendar →',
     langSwitchLabel: 'EN',

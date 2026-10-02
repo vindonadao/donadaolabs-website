@@ -18,7 +18,7 @@ export const en: Dictionary = {
       { label: 'FAQ', href: '#faq' },
       { label: 'Brand', href: '/brand' },
     ],
-    statusPill: 'live · operating · 3 slots sep/26',
+    statusPill: 'live · operating · 4 slots oct/26',
     ctaButton: 'Book a diagnosis →',
     ctaButtonShort: 'Book →',
     langSwitchLabel: 'PT',

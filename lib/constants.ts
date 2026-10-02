@@ -31,7 +31,7 @@ export const NAV_LINKS = [
 
 // Status pill shown at top-right of the nav. Update when slots change.
 export const HEADER = {
-  status: 'live · operando · 3 slots set/26',
+  status: 'live · operando · 4 slots out/26',
 } as const;
 
 // 7-day throughput chart in the hero (right side, sticky).
@@ -62,7 +62,7 @@ export interface Metric {
  */
 export const METRICS: readonly Metric[] = [
   { label: 'Em construção', value: '04', sub: 'no laboratório' },
-  { label: 'Próximo slot',  value: '03', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
+  { label: 'Próximo slot',  value: '04', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
   { label: 'Zero quedas',   value: '0',  sub: 'incidentes em 2026' },
 ] as const;
 

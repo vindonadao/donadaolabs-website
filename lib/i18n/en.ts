@@ -7,7 +7,7 @@ export const en: Dictionary = {
       'AI-first lab building software and AI agents for businesses that need to grow. From diagnosis to deploy, with infrastructure that scales.',
     notFoundTitle: 'Page not found · Donadão Labs',
     notFoundDescription:
-      'The page you were looking for does not exist — or it shipped somewhere else.',
+      'The page you were looking for does not exist, or it shipped somewhere else.',
   },
   nav: {
     links: [
@@ -28,7 +28,7 @@ export const en: Dictionary = {
     headline: 'AI software',
     headlineEm: 'actually ships',
     headlineConnector: 'that',
-    sub: 'We build sites, systems and automations to grow your business. You bring the problem, we ship it running — no empty promises.',
+    sub: 'We build sites, systems and automations to grow your business. You bring the problem, we ship it running, no empty promises.',
     scheduleCta: 'Or book the diagnostic directly',
   },
   metrics: {
@@ -50,17 +50,17 @@ export const en: Dictionary = {
       {
         accessibleTitle: 'Custom software',
         accessibleBody:
-          'That site, system or app your business needs, built from scratch for you — or fixing something that stopped working.',
+          'That site, system or app your business needs, built from scratch for you, or fixing something that stopped working.',
         technicalTitle: 'Apps from scratch',
         technicalBody:
           'Build apps from scratch or legacy-rescue systems that stopped scaling. Pragmatic full-stack, no Frankenstein stack.',
         techLabel: 'Apps from scratch · Legacy rescue',
-        bullets: ['Pragmatic full-stack', 'No Frankenstein stack', 'Deploy in 2–6 weeks'],
+        bullets: ['Pragmatic full-stack', 'No Frankenstein stack', 'Deploy in 2 to 6 weeks'],
       },
       {
         accessibleTitle: 'Management systems',
         accessibleBody:
-          'A dashboard to track sales, inventory, team and clients in one place — no more scattered spreadsheets.',
+          'A dashboard to track sales, inventory, team and clients in one place, no more scattered spreadsheets.',
         technicalTitle: 'CRM & SaaS',
         technicalBody:
           'CRM, internal dashboard and multi-tenant SaaS. Queries in ms, real dashboards, observability when it matters.',
@@ -70,7 +70,7 @@ export const en: Dictionary = {
       {
         accessibleTitle: 'AI automation',
         accessibleBody:
-          'A “bot” that talks to your client on WhatsApp, follows up and qualifies leads — 24/7, without you having to be there.',
+          'A “bot” that talks to your client on WhatsApp, follows up and qualifies leads 24/7, without you having to be there.',
         technicalTitle: 'AI agents',
         technicalBody:
           'AI agents on top of existing software. Guardrails, observability and cost controlled per conversation.',
@@ -95,16 +95,16 @@ export const en: Dictionary = {
   approach: {
     eyebrow: 'How we work',
     title: 'Three steps. No theatre.',
-    sub: 'Most of AI today stops at the slide or the pretty demo. Here software goes live and earns — and few actually deliver that.',
+    sub: 'A lot of AI work still stops at the slide or the pretty demo. Here software goes live and earns.',
     items: [
       {
-        day: 'Day 0–3',
+        day: 'Day 0-3',
         label: 'Diagnose',
         title: 'Understand the business problem',
         body: 'Before a line of code: where your revenue leaks, what process you run manually and what tech can actually move.',
       },
       {
-        day: 'Day 3–21',
+        day: 'Day 3-21',
         label: 'Build',
         title: 'Software that ships',
         titleShipWord: 'ships',
@@ -119,7 +119,7 @@ export const en: Dictionary = {
     ],
   },
   cases: {
-    eyebrow: 'Cases · 2025–2026',
+    eyebrow: 'Cases · 2025-2026',
     title: 'Delivered and running. No mockups.',
     sub: 'Real software, live, generating sales.',
     internalLabel: 'internal',
@@ -137,7 +137,7 @@ export const en: Dictionary = {
       {
         kind: 'Internal CRM · SaaS',
         title: 'Internal operations dashboard',
-        desc: 'Client’s internal system — no public demo, but the results speak. Lean dashboard to track sales, inventory and performance without the bloat of a heavy ERP.',
+        desc: 'Client’s internal system, no public demo, but the results speak. Lean dashboard to track sales, inventory and performance without the bloat of a heavy ERP.',
         metric: '12h/week saved',
       },
       {
@@ -149,7 +149,7 @@ export const en: Dictionary = {
       {
         kind: 'Editorial blog · Vegan',
         title: 'Editorial blog with its own newsletter',
-        desc: 'Vegan content blog in MDX — categories, recipes with structured SEO and an owned newsletter. Live on its own domain, publishing weekly.',
+        desc: 'Vegan content blog in MDX, with categories, recipes with structured SEO and an owned newsletter. Live on its own domain, publishing weekly.',
         metric: '28 posts live',
       },
       {
@@ -169,19 +169,19 @@ export const en: Dictionary = {
   products: {
     eyebrow: '◆ own products',
     title: "It's not just client work.",
-    sub: 'We also build, run and sell our own ideas — from a revenue-generating SaaS to a game with an online ranking. Same stack, same rigor we ship to you.',
+    sub: 'We also build, run and sell our own ideas, from a revenue-generating SaaS to a game with an online ranking. Same stack, same rigor we ship to you.',
     liveLabel: 'live',
     buildingLabel: 'in progress',
     playgroundEyebrow: 'playground',
     playgroundSub:
-      'Engineering we test in public: online ranking, realtime, zero downtime. Jump in and play — the proof of concept is playable.',
+      'Engineering we test in public: online ranking, realtime, zero downtime. Jump in and play: the proof of concept is playable.',
     playCta: 'play',
     items: [
       {
         tag: 'SaaS · Public procurement',
         title: 'Public-tender tracking on PNCP',
         tagline: 'Is this tender worth it?',
-        body: "Our own software to track public tenders on Brazil's PNCP portal: search, filters and deadline alerts by email. Built, run and sold by us — from database to billing.",
+        body: "Our own software to track public tenders on Brazil's PNCP portal: search, filters and deadline alerts by email. Built, run and sold by us, from database to billing.",
       },
       { body: 'A JezzBall remake: capture 75% of the arena and climb the ranking.' },
       { body: 'Spider, Klondike and FreeCell in one place, with a global ranking.' },
@@ -237,7 +237,7 @@ export const en: Dictionary = {
       },
       {
         q: 'How long does it take?',
-        a: 'Simple landing: 2–3 weeks. E-commerce or internal dashboard: 4–6 weeks. AI agent layer: depends on volume, but typically 2–4 weeks on top of something already live.',
+        a: 'Simple landing: 2 to 3 weeks. E-commerce or internal dashboard: 4 to 6 weeks. AI agent layer: depends on volume, but typically 2 to 4 weeks on top of something already live.',
       },
       {
         q: 'Do you maintain the system afterwards?',
@@ -245,11 +245,11 @@ export const en: Dictionary = {
       },
       {
         q: 'What if I want to touch the code myself?',
-        a: 'It’s all yours. Repo, infra, provider accounts — everything delivered in your name. No lock-in, no hidden proprietary CMS.',
+        a: 'It’s all yours. Repo, infra, provider accounts, everything delivered in your name. No lock-in, no hidden proprietary CMS.',
       },
       {
         q: 'How much does it cost?',
-        a: 'Depends on scope. Projects usually fall between 5 and 6 figures (USD/BRL equivalent). The diagnosis already delivers a price range — no obligation to proceed.',
+        a: 'Depends on scope. Projects usually fall between 5 and 6 figures (USD/BRL equivalent). The diagnosis already delivers a price range, no obligation to proceed.',
       },
     ],
   },
@@ -264,7 +264,7 @@ export const en: Dictionary = {
     label: '◆ diagnosis agent · processing live',
     labelGated: '◆ diagnosis agent · free run used',
     placeholder: 'describe your business problem in 1 sentence',
-    placeholderDisabled: '— drop your email below to continue —',
+    placeholderDisabled: 'drop your email below to continue',
     inputAria: 'Describe your business problem in one sentence',
     btnLabel: 'run diagnosis',
     btnLoading: 'running…',
@@ -279,7 +279,7 @@ export const en: Dictionary = {
     emailInputPlaceholder: 'you@email.com',
     emailGate: {
       eyebrowPlan: 'full plan',
-      eyebrowContinue: 'continue —',
+      eyebrowContinue: 'continue ↓',
       title: 'Want the full plan + roadmap by email?',
       sub: 'I’ll drop a detailed implementation plan in your inbox. No spam, no boring newsletter.',
       cta: 'Get the plan',
@@ -289,24 +289,24 @@ export const en: Dictionary = {
       altButton: 'Book a diagnosis →',
     },
     blockedMessage:
-      'To keep asking, drop your email — I’ll reach back. If you’d rather talk directly, book the diagnosis below. Both paths work.',
+      'To keep asking, drop your email and I’ll reach back. If you’d rather talk directly, book the diagnosis below. Both paths work.',
     blockedNetworkMessage:
-      'The free diagnoses for this network were already used today — on shared networks (mobile carrier, office) many people share the same IP. Drop your email and I’ll send you the full plan for your case, or book the diagnosis below.',
+      'The free diagnoses for this network were already used today. On shared networks (mobile carrier, office), many people share the same IP. Drop your email and I’ll send you the full plan for your case, or book the diagnosis below.',
     dailyCap: {
       eyebrow: 'daily cap reached',
       message:
-        'The agent already ran 100 diagnoses today (daily cap to guarantee answer quality). You came close to the limit — let’s talk directly. Book a 30min call with me, no commitment.',
+        'The agent already ran 100 diagnoses today (daily cap to guarantee answer quality). You came close to the limit, so let’s talk directly. Book a 30min call with me, no commitment.',
       button: 'Book a human diagnosis →',
     },
     rateLimit: {
       eyebrow: 'hold on a sec',
       message:
-        'Easy — only 1 question every 10 seconds per visitor. Try again in a moment.',
+        'Easy, only 1 question every 10 seconds per visitor. Try again in a moment.',
       altQuestion: 'Or prefer to talk directly?',
       altButton: 'Book a diagnosis →',
     },
     errorOffline:
-      'ERROR: agent offline. Try again in a few seconds — or book directly on cal.com.',
+      'ERROR: agent offline. Try again in a few seconds or book directly on cal.com.',
     privacy:
       'By using the agent, you agree that your question, IP and email (if provided) are stored for contact and service improvement. Per LGPD.',
   },
@@ -330,7 +330,7 @@ export const en: Dictionary = {
     badge: '404 · Not found',
     title: 'This page',
     titleEm: 'didn’t ship.',
-    body: 'The address you were looking for doesn’t exist — or it was moved. No drama, head back home and keep going.',
+    body: 'The address you were looking for doesn’t exist or it was moved. No drama, head back home and keep going.',
     ctaHome: 'Back to home',
     ctaCases: 'See the cases',
   },
@@ -347,7 +347,7 @@ export const en: Dictionary = {
     sections: [
       {
         title: 'Data we collect',
-        body: 'We collect navigation data via Google Analytics 4 (GA4) — only after your consent — and aggregated usage and performance metrics via Vercel (no cookies, without identifying you personally). If you use the diagnostic agent, we process the question you send, your IP address, your browser identifier (user-agent) and, when provided, your email — to generate the answer, follow up and improve the service. When we run campaigns, we may use advertising cookies (Google Ads) to measure conversions and for remarketing — also only with your consent. We do not collect sensitive personal data.',
+        body: 'We collect navigation data via Google Analytics 4 (GA4), only after your consent, and aggregated usage and performance metrics via Vercel (no cookies, without identifying you personally). If you use the diagnostic agent, we process the question you send, your IP address, your browser identifier (user-agent) and, when provided, your email, to generate the answer, follow up and improve the service. When we run campaigns, we may use advertising cookies (Google Ads) to measure conversions and for remarketing, also only with your consent. We do not collect sensitive personal data.',
       },
       {
         title: 'Legal basis (LGPD / GDPR)',
@@ -363,11 +363,11 @@ export const en: Dictionary = {
       },
       {
         title: 'Retention',
-        body: 'GA4 analytics data follows the retention period configured on the property (currently 14 months). The questions and contact data sent to the agent are not stored in a database of our own — they reach us through the new-contact notifications (email in our Google Workspace inbox and Telegram), where they are retained for up to 24 months after the last contact, unless you request deletion sooner. After these periods, data is anonymised or deleted.',
+        body: 'GA4 analytics data follows the retention period configured on the property (currently 14 months). The questions and contact data sent to the agent are not stored in a database of our own: they reach us through the new-contact notifications (email in our Google Workspace inbox and Telegram), where they are retained for up to 24 months after the last contact, unless you request deletion sooner. After these periods, data is anonymised or deleted.',
       },
       {
         title: 'Your rights',
-        body: 'You can access, correct, port and delete your data, as well as revoke consent. Visitors in the European Union have the equivalent GDPR rights, including objection and restriction of processing. To exercise them, write to the Data Protection Officer (DPO), Vinicius Donadão, at contato@donadaolabs.com — we reply within the legal timeframe. You may also lodge a complaint with the competent authority: ANPD (Brazil) or CNPD (Portugal).',
+        body: 'You can access, correct, port and delete your data, as well as revoke consent. Visitors in the European Union have the equivalent GDPR rights, including objection and restriction of processing. To exercise them, write to the Data Protection Officer (DPO), Vinicius Donadão, at contato@donadaolabs.com. We reply within the legal timeframe. You may also lodge a complaint with the competent authority: ANPD (Brazil) or CNPD (Portugal).',
       },
     ],
     legalNote:
@@ -381,7 +381,7 @@ export const en: Dictionary = {
       'Foundation, verbal system, visual identity, channels and activation of Donadão Labs in a single piece. 24 pages.',
     downloadBtn: 'Download PDF',
     viewBtn: 'View in browser',
-    previewTitle: 'Donadão Labs Brand Book — preview (rev-0.2)',
+    previewTitle: 'Donadão Labs Brand Book · preview (rev-0.2)',
     previewFallback: "Preview didn't load?",
     previewFallbackLink: 'Download the PDF (1.3 MB · 24 pages)',
     langSwitch: 'PT',

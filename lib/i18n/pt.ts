@@ -7,7 +7,7 @@ export const pt: Dictionary = {
       'Lab IA-first que constrói software e agentes de IA para negócios que precisam crescer. Do diagnóstico ao deploy, com infraestrutura que escala.',
     notFoundTitle: 'Página não encontrada · Donadão Labs',
     notFoundDescription:
-      'A página que você procurou não existe — ou foi shipada para outro lugar.',
+      'A página que você procurou não existe ou mudou de endereço.',
   },
   nav: {
     links: [
@@ -28,7 +28,7 @@ export const pt: Dictionary = {
     headline: 'Software de IA',
     headlineEm: 'realmente ships',
     headlineConnector: 'que',
-    sub: 'Construímos sites, sistemas e automações pro seu negócio crescer. Você fala o problema, a gente entrega rodando — sem promessa furada.',
+    sub: 'Construímos sites, sistemas e automações pro seu negócio crescer. Você fala o problema, a gente entrega rodando, sem promessa furada.',
     scheduleCta: 'Ou agende o diagnóstico direto',
   },
   metrics: {
@@ -50,17 +50,17 @@ export const pt: Dictionary = {
       {
         accessibleTitle: 'Software sob medida',
         accessibleBody:
-          'Aquele site, sistema ou app que seu negócio precisa, feito do zero pra você — ou consertando algo que parou de funcionar.',
+          'Aquele site, sistema ou app que seu negócio precisa, feito do zero pra você, ou consertando algo que parou de funcionar.',
         technicalTitle: 'Apps do zero',
         technicalBody:
           'Construa apps do zero ou resgate sistemas legados que pararam de escalar. Full-stack pragmático, sem stack frankenstein.',
         techLabel: 'Apps do zero · Resgate de legado',
-        bullets: ['Full-stack pragmático', 'Sem stack frankenstein', 'Entrega em 2–6 semanas'],
+        bullets: ['Full-stack pragmático', 'Sem stack frankenstein', 'Entrega em 2 a 6 semanas'],
       },
       {
         accessibleTitle: 'Sistemas de gestão',
         accessibleBody:
-          'Um painel pra acompanhar vendas, estoque, equipe e clientes em um lugar só — sem mil planilhas espalhadas.',
+          'Um painel pra acompanhar vendas, estoque, equipe e clientes em um lugar só, sem mil planilhas espalhadas.',
         technicalTitle: 'CRM & SaaS',
         technicalBody:
           'CRM, painel interno e SaaS multi-tenant. Consultas em ms, painéis reais, observabilidade quando importa.',
@@ -70,7 +70,7 @@ export const pt: Dictionary = {
       {
         accessibleTitle: 'Automação com IA',
         accessibleBody:
-          'Um “robô” que atende seu cliente no WhatsApp, faz follow-up e qualifica lead — 24h por dia, sem você precisar estar lá.',
+          'Um “robô” que atende seu cliente no WhatsApp, faz follow-up e qualifica lead 24h por dia, sem você precisar estar lá.',
         technicalTitle: 'Agentes de IA',
         technicalBody:
           'Agentes de IA em cima do software existente. Guardrails, observabilidade e custo controlado por conversa.',
@@ -95,16 +95,16 @@ export const pt: Dictionary = {
   approach: {
     eyebrow: 'Como trabalhamos',
     title: 'Três passos. Sem teatro.',
-    sub: 'Quase tudo em IA hoje para no slide ou no demo bonito. Aqui o software vai pro ar e fatura — e poucos entregam isso.',
+    sub: 'Muita coisa em IA ainda para no slide ou na demo bonita. Aqui o software vai pro ar e fatura.',
     items: [
       {
-        day: 'Dia 0–3',
+        day: 'Dia 0-3',
         label: 'Diagnose',
         title: 'Entender o problema comercial',
         body: 'Antes de uma linha de código: onde sua receita escapa, que processo você roda no braço e o que tecnologia pode mover de fato.',
       },
       {
-        day: 'Dia 3–21',
+        day: 'Dia 3-21',
         label: 'Build',
         title: 'Software que ships',
         titleShipWord: 'ships',
@@ -119,7 +119,7 @@ export const pt: Dictionary = {
     ],
   },
   cases: {
-    eyebrow: 'Projetos · 2025–2026',
+    eyebrow: 'Projetos · 2025-2026',
     title: 'Entregas rodando. Sem rodeios.',
     sub: 'Software real, no ar, gerando venda.',
     internalLabel: 'interno',
@@ -137,7 +137,7 @@ export const pt: Dictionary = {
       {
         kind: 'CRM interno · SaaS',
         title: 'Painel de operação interna',
-        desc: 'Sistema interno do cliente — sem demo pública, mas o resultado fala. Painel enxuto pra acompanhar vendas, estoque e performance, sem cair no excesso de uma ERP cara.',
+        desc: 'Sistema interno do cliente, sem demo pública, mas o resultado fala. Painel enxuto pra acompanhar vendas, estoque e performance, sem cair no excesso de uma ERP cara.',
         metric: '12h/semana economizadas',
       },
       {
@@ -169,19 +169,19 @@ export const pt: Dictionary = {
   products: {
     eyebrow: '◆ produtos próprios',
     title: 'Não é só projeto de cliente.',
-    sub: 'A gente também cria, opera e vende as próprias ideias — do SaaS que fatura ao jogo com ranking. Mesma stack, mesmo rigor que entregamos pra você.',
+    sub: 'A gente também cria, opera e vende as próprias ideias, do SaaS que fatura ao jogo com ranking. Mesma stack, mesmo rigor que entregamos pra você.',
     liveLabel: 'no ar',
     buildingLabel: 'em construção',
     playgroundEyebrow: 'playground',
     playgroundSub:
-      'Engenharia que a gente testa em público: ranking online, tempo real, zero queda. Entra e joga — a prova de conceito é jogável.',
+      'Engenharia que a gente testa em público: ranking online, tempo real, zero queda. Entra e joga: a prova de conceito é jogável.',
     playCta: 'jogar',
     items: [
       {
         tag: 'SaaS · Licitações públicas',
         title: 'Controle de pregões no PNCP',
         tagline: 'Este edital vale a pena?',
-        body: 'Software próprio pra acompanhar pregões e licitações no portal do PNCP: busca, filtros e alerta de prazo por e-mail. Construído, operado e vendido por nós — do banco ao boleto.',
+        body: 'Software próprio pra acompanhar pregões e licitações no portal do PNCP: busca, filtros e alerta de prazo por e-mail. Construído, operado e vendido por nós, do banco ao boleto.',
       },
       { body: 'Remake do JezzBall: capture 75% da arena e suba no ranking.' },
       { body: 'Spider, Klondike e FreeCell num só lugar, com ranking global.' },
@@ -202,7 +202,7 @@ export const pt: Dictionary = {
     title: 'O que rodou nas últimas semanas.',
     sub: 'Registro público das releases. Sem maquiagem.',
     tagLabels: {
-      shipped: 'shipado',
+      shipped: 'no ar',
       agent: 'agente',
       infra: 'infra',
       rfc: 'rfc',
@@ -237,7 +237,7 @@ export const pt: Dictionary = {
       },
       {
         q: 'Quanto tempo demora?',
-        a: 'Landing simples: 2–3 semanas. E-commerce ou painel interno: 4–6 semanas. Camada de agentes de IA: depende do volume, mas tipicamente 2–4 semanas em cima de algo já no ar.',
+        a: 'Landing simples: 2 a 3 semanas. E-commerce ou painel interno: 4 a 6 semanas. Camada de agentes de IA: depende do volume, mas tipicamente 2 a 4 semanas em cima de algo já no ar.',
       },
       {
         q: 'Vocês mantêm o sistema depois?',
@@ -245,11 +245,11 @@ export const pt: Dictionary = {
       },
       {
         q: 'E se eu quiser mexer eu mesmo no código?',
-        a: 'Tudo seu. Repositório, infra, contas de provider — tudo entregue no seu nome. Sem lock-in, sem CMS proprietário escondido.',
+        a: 'Tudo seu. Repositório, infra, contas de provider, tudo entregue no seu nome. Sem lock-in, sem CMS proprietário escondido.',
       },
       {
         q: 'Quanto custa?',
-        a: 'Depende do escopo. Projetos costumam ficar entre 5 e 6 dígitos. O diagnóstico já entrega faixa de preço — sem compromisso de seguir.',
+        a: 'Depende do escopo. Projetos costumam ficar entre 5 e 6 dígitos. O diagnóstico já entrega faixa de preço, sem compromisso de seguir.',
       },
     ],
   },
@@ -264,7 +264,7 @@ export const pt: Dictionary = {
     label: '◆ agente diagnóstico · processando ao vivo',
     labelGated: '◆ agente diagnóstico · diagnóstico grátis usado',
     placeholder: 'descreva o problema do seu negócio em 1 frase',
-    placeholderDisabled: '— deixe seu email abaixo pra continuar —',
+    placeholderDisabled: 'deixe seu email abaixo pra continuar',
     inputAria: 'Descreva o problema do seu negócio em uma frase',
     btnLabel: 'rodar diagnóstico',
     btnLoading: 'rodando…',
@@ -279,7 +279,7 @@ export const pt: Dictionary = {
     emailInputPlaceholder: 'seu@email.com',
     emailGate: {
       eyebrowPlan: 'plano completo',
-      eyebrowContinue: 'continue —',
+      eyebrowContinue: 'continue ↓',
       title: 'Quer o plano completo + roadmap por email?',
       sub: 'Deixo um plano detalhado de implementação na sua caixa. Sem spam, sem newsletter chata.',
       cta: 'Receber plano',
@@ -289,24 +289,24 @@ export const pt: Dictionary = {
       altButton: 'Agendar diagnóstico →',
     },
     blockedMessage:
-      'Pra continuar perguntando, deixe seu email — assim eu te chamo de volta. Se prefere falar comigo direto, agenda o diagnóstico ali embaixo. Os dois caminhos funcionam.',
+      'Pra continuar perguntando, deixe seu email e eu te chamo de volta. Se prefere falar comigo direto, agenda o diagnóstico ali embaixo. Os dois caminhos funcionam.',
     blockedNetworkMessage:
-      'Os diagnósticos grátis desta rede já foram usados hoje — em rede compartilhada (operadora, escritório) várias pessoas dividem o mesmo IP. Deixa seu email que eu te mando o plano completo do seu caso, ou agenda o diagnóstico ali embaixo.',
+      'Os diagnósticos grátis desta rede já foram usados hoje. Em rede compartilhada (operadora, escritório), várias pessoas dividem o mesmo IP. Deixa seu email que eu te mando o plano completo do seu caso, ou agenda o diagnóstico ali embaixo.',
     dailyCap: {
       eyebrow: 'cap diário atingido',
       message:
-        'O agente já rodou 100 diagnósticos hoje (cap diário pra eu garantir qualidade nas respostas). Você chegou bem perto do limite — vamos conversar direto. Agenda uma call de 30min comigo, sem compromisso.',
+        'O agente já rodou 100 diagnósticos hoje (cap diário pra eu garantir qualidade nas respostas). Você chegou bem perto do limite, então vamos conversar direto. Agenda uma call de 30min comigo, sem compromisso.',
       button: 'Agendar diagnóstico humano →',
     },
     rateLimit: {
       eyebrow: 'aguarde um instante',
       message:
-        'Calma — só 1 pergunta a cada 10 segundos por visitante. Tenta de novo em alguns instantes.',
+        'Calma, só 1 pergunta a cada 10 segundos por visitante. Tenta de novo em alguns instantes.',
       altQuestion: 'Ou prefere falar direto?',
       altButton: 'Agendar diagnóstico →',
     },
     errorOffline:
-      'ERRO: agente offline. Tenta de novo em alguns segundos — ou agenda direto no cal.com.',
+      'ERRO: agente offline. Tenta de novo em alguns segundos ou agenda direto no cal.com.',
     privacy:
       'Ao usar o agente, você concorda que sua pergunta, IP e email (se fornecido) sejam armazenados para contato e melhoria do serviço. Conforme LGPD.',
   },
@@ -329,8 +329,8 @@ export const pt: Dictionary = {
   notFound: {
     badge: '404 · Não encontrado',
     title: 'Essa página',
-    titleEm: 'não shipou.',
-    body: 'O endereço que você procurou não existe — ou foi movido. Sem drama, volta pra home e continua de lá.',
+    titleEm: 'não existe.',
+    body: 'O endereço pode ter mudado. Sem drama, volta pra home e continua de lá.',
     ctaHome: 'Voltar pra home',
     ctaCases: 'Ver os cases',
   },
@@ -347,7 +347,7 @@ export const pt: Dictionary = {
     sections: [
       {
         title: 'Dados que coletamos',
-        body: 'Coletamos dados de navegação via Google Analytics 4 (GA4) — somente após o seu consentimento — e métricas agregadas de uso e desempenho via Vercel (sem cookies, sem identificar você pessoalmente). Se você usar o agente de diagnóstico, processamos a pergunta enviada, seu endereço IP, o identificador do seu navegador (user-agent) e, quando fornecido, seu e-mail — para gerar a resposta, retornar contato e melhorar o serviço. Ao rodarmos campanhas, podemos usar cookies de publicidade (Google Ads) para medir conversões e remarketing — também apenas mediante consentimento. Não coletamos dados pessoais sensíveis.',
+        body: 'Coletamos dados de navegação via Google Analytics 4 (GA4), somente após o seu consentimento, e métricas agregadas de uso e desempenho via Vercel (sem cookies, sem identificar você pessoalmente). Se você usar o agente de diagnóstico, processamos a pergunta enviada, seu endereço IP, o identificador do seu navegador (user-agent) e, quando fornecido, seu e-mail, para gerar a resposta, retornar contato e melhorar o serviço. Ao rodarmos campanhas, podemos usar cookies de publicidade (Google Ads) para medir conversões e remarketing, também apenas mediante consentimento. Não coletamos dados pessoais sensíveis.',
       },
       {
         title: 'Base legal (LGPD / RGPD)',
@@ -363,11 +363,11 @@ export const pt: Dictionary = {
       },
       {
         title: 'Retenção',
-        body: 'Dados de análise no GA4 seguem o prazo de retenção configurado na propriedade (atualmente 14 meses). As perguntas e os dados de contato enviados ao agente não são gravados em banco de dados próprio — eles chegam até nós pelas notificações de novo contato (e-mail na nossa caixa do Google Workspace e Telegram), onde ficam retidos por até 24 meses após o último contato, salvo se você pedir a exclusão antes. Após esses prazos, os dados são anonimizados ou eliminados.',
+        body: 'Dados de análise no GA4 seguem o prazo de retenção configurado na propriedade (atualmente 14 meses). As perguntas e os dados de contato enviados ao agente não são gravados em banco de dados próprio: eles chegam até nós pelas notificações de novo contato (e-mail na nossa caixa do Google Workspace e Telegram), onde ficam retidos por até 24 meses após o último contato, salvo se você pedir a exclusão antes. Após esses prazos, os dados são anonimizados ou eliminados.',
       },
       {
         title: 'Seus direitos',
-        body: 'Você pode acessar, corrigir, portar e excluir seus dados, além de revogar o consentimento. Visitantes na União Europeia têm os direitos equivalentes do RGPD, incluindo oposição e limitação do tratamento. Para exercê-los, escreva para o Encarregado de Dados (DPO), Vinicius Donadão, em contato@donadaolabs.com — respondemos no prazo legal. Você também pode reclamar à autoridade competente: ANPD (Brasil) ou CNPD (Portugal).',
+        body: 'Você pode acessar, corrigir, portar e excluir seus dados, além de revogar o consentimento. Visitantes na União Europeia têm os direitos equivalentes do RGPD, incluindo oposição e limitação do tratamento. Para exercê-los, escreva para o Encarregado de Dados (DPO), Vinicius Donadão, em contato@donadaolabs.com. Respondemos no prazo legal. Você também pode reclamar à autoridade competente: ANPD (Brasil) ou CNPD (Portugal).',
       },
     ],
     legalNote:
@@ -381,7 +381,7 @@ export const pt: Dictionary = {
       'Foundation, sistema verbal, identidade visual, canais e ativação da Donadão Labs em uma peça única. 24 páginas.',
     downloadBtn: 'Baixar PDF',
     viewBtn: 'Ver no navegador',
-    previewTitle: 'Brand Book Donadão Labs — preview (rev-0.2)',
+    previewTitle: 'Brand Book Donadão Labs · preview (rev-0.2)',
     previewFallback: 'Preview não carregou?',
     previewFallbackLink: 'Baixar o PDF (1.3 MB · 24 páginas)',
     langSwitch: 'EN',

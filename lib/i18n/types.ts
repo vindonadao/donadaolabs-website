@@ -118,7 +118,7 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     sub: string;
-    /** Label exibido na pill colorida. `shipped` mantém wordplay de marca em PT (SHIPADO). */
+    /** Label exibido na pill colorida. Em PT, `shipped` vira "no ar": a regra de marca não conjuga "ships". */
     tagLabels: {
       shipped: string;
       agent: string;

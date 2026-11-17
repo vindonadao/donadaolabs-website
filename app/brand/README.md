@@ -24,7 +24,7 @@ Página pública que publica o **brand book da Donadão Labs** em PDF, com previ
 | URL estável | `next.config.mjs` → `rewrites()` | `/brand/latest.pdf` → arquivo da revisão atual |
 | Redirect curto | `next.config.mjs` → `redirects()` | `/brand` → `/pt/brand` (assets `/brand/*.*` não são afetados) |
 
-> A página é localizada (`/pt/brand`, `/en/brand`). O `middleware.ts` exclui `/brand`
+> A página é localizada (`/pt/brand`, `/en/brand`). O `proxy.ts` (antigo `middleware.ts`) exclui `/brand`
 > (sem locale) do redirect de idioma — quem cuida dele é o `redirects()` do `next.config.mjs`.
 
 ---

@@ -160,6 +160,9 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
   useEffect(() => {
     clientId.current = getClientId();
     const s = loadState();
+    // Leitura pós-montagem de propósito: o estado vem do localStorage, que não
+    // existe no SSR. Ler no useState quebraria a hidratação. Roda uma vez.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPersisted(s);
     if (s.email) {
       setEmail(s.email);
@@ -253,7 +256,7 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
           e.preventDefault();
           void run(input);
         }}
-        className="mb-3 flex gap-2"
+        className="mb-3 flex flex-col gap-2 sm:flex-row"
       >
         <input
           ref={inputRef}
@@ -268,8 +271,7 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
         <button
           type="submit"
           disabled={loading || !input.trim() || inputDisabled}
-          className="whitespace-nowrap rounded-[8px] bg-accent px-4.5 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black disabled:cursor-not-allowed disabled:opacity-50"
-          style={{ padding: '0 18px' }}
+          className="whitespace-nowrap rounded-[8px] bg-accent px-[18px] py-3 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black disabled:cursor-not-allowed disabled:opacity-50 sm:py-0"
         >
           {loading ? t.btnLoading : t.btnLabel} →
         </button>
@@ -359,7 +361,7 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
           <div className="mb-3.5 text-[13px] leading-relaxed text-offwhite/55">
             {blockMsg || t.emailGate.sub}
           </div>
-          <form onSubmit={submitEmail} className="flex gap-2">
+          <form onSubmit={submitEmail} className="flex flex-col gap-2 sm:flex-row">
             <input
               type="email"
               required
@@ -372,8 +374,7 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
             <button
               type="submit"
               disabled={emailLoading || !email.includes('@')}
-              className="rounded-[8px] bg-accent font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black disabled:opacity-50"
-              style={{ padding: '0 18px' }}
+              className="rounded-[8px] bg-accent px-[18px] py-2.5 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black disabled:opacity-50 sm:py-0"
             >
               {emailLoading ? t.emailGate.ctaLoading : t.emailGate.cta} →
             </button>

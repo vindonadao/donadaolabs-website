@@ -17,12 +17,13 @@ import { PRODUCTS, SITE } from '@/lib/constants';
 import { getDictionary, isLocale } from '@/lib/i18n';
 
 interface HomePageProps {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
-export default function HomePage({ params }: HomePageProps): React.ReactElement {
-  if (!isLocale(params.lang)) notFound();
-  const dict = getDictionary(params.lang);
+export default async function HomePage({ params }: HomePageProps): Promise<React.ReactElement> {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+  const dict = getDictionary(lang);
 
   // FAQPage JSON-LD montado a partir das perguntas visíveis na seção FAQ
   // (requisito do rich result: o texto da resposta tem que existir na página).
@@ -60,9 +61,9 @@ export default function HomePage({ params }: HomePageProps): React.ReactElement 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productsJsonLd) }}
       />
-      <Nav dict={dict} lang={params.lang} />
+      <Nav dict={dict} lang={lang} />
       <main>
-        <Hero dict={dict} lang={params.lang} />
+        <Hero dict={dict} lang={lang} />
         <Metrics dict={dict} />
         <Stack dict={dict} />
         <Services dict={dict} />
@@ -75,7 +76,7 @@ export default function HomePage({ params }: HomePageProps): React.ReactElement 
         <Faq dict={dict} />
         <Cta dict={dict} />
       </main>
-      <Footer dict={dict} lang={params.lang} />
+      <Footer dict={dict} lang={lang} />
     </>
   );
 }

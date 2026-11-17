@@ -31,13 +31,15 @@ function buildCsp(nonce: string): string {
 }
 
 // ENFORCE (rev-2.9.0, TAREFA 4) — promovido após Report-Only limpo em produção.
-// O header da REQUEST permanece 'Content-Security-Policy' — é dele que o Next 14
+// O header da REQUEST permanece 'Content-Security-Policy' — é dele que o Next
 // extrai o nonce p/ injetar nos próprios <script>; esse header é interno e nunca
 // chega ao browser. Pra voltar a Report-Only (rollback), troque o valor abaixo
 // p/ 'Content-Security-Policy-Report-Only'.
 const RESPONSE_CSP_HEADER = 'Content-Security-Policy';
 
-export function middleware(request: NextRequest): NextResponse | undefined {
+// Next 16: o antigo `middleware.ts` passou a se chamar `proxy.ts`, com a
+// função exportada como `proxy`. Roda no runtime Node.js. Comportamento igual.
+export function proxy(request: NextRequest): NextResponse | undefined {
   const { pathname } = request.nextUrl;
 
   // Rotas que não renderizam HTML com nossos scripts → sem nonce/CSP.
@@ -54,9 +56,10 @@ export function middleware(request: NextRequest): NextResponse | undefined {
     return undefined;
   }
 
-  const hasLocale = LOCALES.some(
+  const matchedLocale = LOCALES.find(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
+  const hasLocale = matchedLocale !== undefined;
 
   // A raiz é a URL que as pessoas digitam e que a marca divulga. Redirecionar
   // ela pro idioma padrão custava um round-trip inteiro antes do primeiro byte
@@ -78,13 +81,16 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   const csp = buildCsp(nonce);
 
   // REQUEST: nonce em x-nonce (lido pelo layout) + CSP no nome de ENFORCE
-  // ('Content-Security-Policy') — é assim que o Next 14 acha o nonce e o aplica
+  // ('Content-Security-Policy') — é assim que o Next acha o nonce e o aplica
   // aos próprios <script>. Header interno; não vai pro browser.
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-nonce', nonce);
+  // Idioma da URL pro 404 (`app/[lang]/not-found.tsx` não recebe `params`).
+  requestHeaders.set('x-locale', matchedLocale ?? DEFAULT_LOCALE);
   requestHeaders.set('Content-Security-Policy', csp);
 
-  // RESPONSE: CSP em Report-Only → o browser só REPORTA violações (não bloqueia).
+  // RESPONSE: CSP em ENFORCE (RESPONSE_CSP_HEADER) → o browser bloqueia o que
+  // não tiver o nonce desta request.
   const rootRewriteUrl = request.nextUrl.clone();
   rootRewriteUrl.pathname = `/${DEFAULT_LOCALE}`;
 

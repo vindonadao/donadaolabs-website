@@ -71,19 +71,24 @@ export function generateStaticParams(): { lang: Locale }[] {
 }
 
 // CSP estrita com nonce exige render por REQUEST: o nonce do HTML precisa bater
-// com o nonce do header CSP (gerado no middleware a cada request). Em SSG o HTML
+// com o nonce do header CSP (gerado no proxy a cada request). Em SSG o HTML
 // sai com nonce fixo do build → não casa → enforce bloquearia os scripts.
 // `force-dynamic` garante o casamento. Custo: SSR por request (sem cache estático).
 export const dynamic = 'force-dynamic';
 
 interface LangLayoutProps {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
-export function generateMetadata({ params }: { params: { lang: string } }): Metadata {
-  if (!isLocale(params.lang)) return {};
-  const dict = getDictionary(params.lang);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const dict = getDictionary(lang);
   const titleDefault = `${SITE.name} — ${dict.meta.titleTagline}`;
 
   return {
@@ -114,7 +119,7 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
       shortcut: '/brand/favicon.svg?v=2',
     },
     alternates: {
-      canonical: `/${params.lang}`,
+      canonical: `/${lang}`,
       languages: {
         'pt-BR': '/pt',
         'en-US': '/en',
@@ -123,9 +128,9 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
     },
     openGraph: {
       type: 'website',
-      locale: OG_LOCALE[params.lang],
-      alternateLocale: LOCALES.filter((l) => l !== params.lang).map((l) => OG_LOCALE[l]),
-      url: `${SITE.url}/${params.lang}`,
+      locale: OG_LOCALE[lang],
+      alternateLocale: LOCALES.filter((l) => l !== lang).map((l) => OG_LOCALE[l]),
+      url: `${SITE.url}/${lang}`,
       siteName: SITE.name,
       title: titleDefault,
       description: dict.meta.description,
@@ -160,16 +165,20 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   };
 }
 
-export default function LangLayout({ children, params }: LangLayoutProps): React.ReactElement {
-  if (!isLocale(params.lang)) notFound();
+export default async function LangLayout({
+  children,
+  params,
+}: LangLayoutProps): Promise<React.ReactElement> {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
 
-  // Nonce gerado pelo middleware por request (CSP estrita). Propaga p/ os
-  // scripts inline (JSON-LD) e o GA. `headers()` é síncrono no Next 14.
-  const nonce = headers().get('x-nonce') ?? undefined;
+  // Nonce gerado pelo proxy por request (CSP estrita). Propaga p/ os scripts
+  // inline (JSON-LD) e o GA. Desde o Next 15, `headers()` é assíncrono.
+  const nonce = (await headers()).get('x-nonce') ?? undefined;
 
   return (
     <html
-      lang={HTML_LANG[params.lang]}
+      lang={HTML_LANG[lang]}
       className={`${interTight.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
@@ -187,7 +196,7 @@ export default function LangLayout({ children, params }: LangLayoutProps): React
       <body className="bg-ink text-offwhite antialiased">
         {children}
         <GoogleAnalytics nonce={nonce} />
-        <ConsentBanner dict={getDictionary(params.lang as Locale)} />
+        <ConsentBanner dict={getDictionary(lang as Locale)} />
         <Analytics />
         <SpeedInsights />
       </body>

@@ -1,5 +1,5 @@
-// A Content-Security-Policy agora vive em `middleware.ts` (CSP estrita com nonce
-// + 'strict-dynamic', enforce — rev-2.9.0). Foi removida daqui a versão loose
+// A Content-Security-Policy agora vive em `proxy.ts`, o antigo `middleware.ts`
+// (CSP estrita com nonce + 'strict-dynamic', enforce — rev-2.9.0). Foi removida daqui a versão loose
 // (com 'unsafe-inline') que rodava em Report-Only — substituída pela estrita.
 // Este arquivo mantém os demais headers de segurança (HSTS, X-Frame-Options,
 // X-Content-Type-Options, Referrer-Policy, Permissions-Policy).
@@ -24,8 +24,8 @@ const nextConfig = {
       // www servia o site inteiro com 200 (o domínio está apontado pro projeto
       // na Vercel, sem redirect). Só o canonical absoluto segurava a duplicata.
       // Agora www responde 308 pro apex, preservando o caminho e a query.
-      // Redirect de next.config roda ANTES do middleware, então cobre inclusive
-      // as rotas que o matcher do middleware ignora (/brand/*, /clients/*, api).
+      // Redirect de next.config roda ANTES do proxy, então cobre inclusive
+      // as rotas que o matcher do proxy ignora (/brand/*, /clients/*, api).
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'www.donadaolabs.com' }],

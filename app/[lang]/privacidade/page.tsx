@@ -5,20 +5,21 @@ import { Nav } from '@/components/nav';
 import { LOCALES, getDictionary, isLocale, type Locale } from '@/lib/i18n';
 
 interface PrivacyPageProps {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
 export function generateStaticParams(): { lang: Locale }[] {
   return LOCALES.map((lang) => ({ lang }));
 }
 
-export function generateMetadata({ params }: PrivacyPageProps): Metadata {
-  if (!isLocale(params.lang)) return {};
-  const dict = getDictionary(params.lang);
+export async function generateMetadata({ params }: PrivacyPageProps): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const dict = getDictionary(lang);
   return {
     title: dict.privacy.title,
     alternates: {
-      canonical: `/${params.lang}/privacidade`,
+      canonical: `/${lang}/privacidade`,
       languages: {
         'pt-BR': '/pt/privacidade',
         'en-US': '/en/privacidade',
@@ -30,14 +31,15 @@ export function generateMetadata({ params }: PrivacyPageProps): Metadata {
   };
 }
 
-export default function PrivacyPage({ params }: PrivacyPageProps): React.ReactElement {
-  if (!isLocale(params.lang)) notFound();
-  const dict = getDictionary(params.lang);
+export default async function PrivacyPage({ params }: PrivacyPageProps): Promise<React.ReactElement> {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+  const dict = getDictionary(lang);
   const t = dict.privacy;
 
   return (
     <>
-      <Nav dict={dict} lang={params.lang} />
+      <Nav dict={dict} lang={lang} />
       <main className="mx-auto w-full max-w-[760px] px-6 pb-24 pt-[140px] md:px-10">
         <h1 className="m-0 font-display text-[clamp(2.25rem,6vw,3.5rem)] font-semibold leading-[1.02] tracking-tightest">
           {t.title}
@@ -64,7 +66,7 @@ export default function PrivacyPage({ params }: PrivacyPageProps): React.ReactEl
           {t.legalNote}
         </p>
       </main>
-      <Footer dict={dict} lang={params.lang} />
+      <Footer dict={dict} lang={lang} />
     </>
   );
 }

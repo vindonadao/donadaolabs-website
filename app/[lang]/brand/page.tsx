@@ -7,23 +7,24 @@ import { LOCALES, OG_LOCALE, getDictionary, isLocale, type Locale } from '@/lib/
 const PDF_LATEST = '/brand/latest.pdf';
 
 interface BrandPageProps {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }
 
 export function generateStaticParams(): { lang: Locale }[] {
   return LOCALES.map((lang) => ({ lang }));
 }
 
-export function generateMetadata({ params }: BrandPageProps): Metadata {
-  if (!isLocale(params.lang)) return {};
-  const dict = getDictionary(params.lang);
+export async function generateMetadata({ params }: BrandPageProps): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const dict = getDictionary(lang);
   const title = `Brand Book · ${SITE.name} (rev-0.2)`;
   const description = dict.brand.description;
   return {
     title,
     description,
     alternates: {
-      canonical: `/${params.lang}/brand`,
+      canonical: `/${lang}/brand`,
       languages: {
         'pt-BR': '/pt/brand',
         'en-US': '/en/brand',
@@ -32,8 +33,8 @@ export function generateMetadata({ params }: BrandPageProps): Metadata {
     },
     openGraph: {
       type: 'article',
-      locale: OG_LOCALE[params.lang],
-      url: `${SITE.url}/${params.lang}/brand`,
+      locale: OG_LOCALE[lang],
+      url: `${SITE.url}/${lang}/brand`,
       siteName: SITE.name,
       title,
       description,
@@ -103,9 +104,9 @@ function HighlightCard({ num, label, color, children }: HighlightCardProps): Rea
   );
 }
 
-export default function BrandPage({ params }: BrandPageProps): React.ReactElement {
-  if (!isLocale(params.lang)) notFound();
-  const lang = params.lang;
+export default async function BrandPage({ params }: BrandPageProps): Promise<React.ReactElement> {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
   const t = getDictionary(lang).brand;
   const other: Locale = lang === 'pt' ? 'en' : 'pt';
 

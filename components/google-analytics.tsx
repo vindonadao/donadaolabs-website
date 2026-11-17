@@ -30,7 +30,7 @@ function PageviewTracker(): null {
  * pra granted quando o visitante aceita.
  */
 interface GoogleAnalyticsProps {
-  /** Nonce da CSP estrita (gerado no middleware, lido no layout). */
+  /** Nonce da CSP estrita (gerado no proxy, lido no layout). */
   nonce?: string;
 }
 

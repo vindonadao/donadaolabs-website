@@ -28,6 +28,9 @@ export function ConsentBanner({ dict }: ConsentBannerProps): React.ReactElement 
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored === null) {
+        // Leitura pós-montagem de propósito: no SSR não existe localStorage, e
+        // ler no useState quebraria a hidratação. Roda uma vez, no mount.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setVisible(true);
       } else if (stored === 'granted') {
         setConsent(true);

@@ -7,11 +7,31 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [Unreleased]
 
+### Security
+
+- **Next.js 14.2.35 → 16.4.6, React 18 → 19.3.** O `npm audit` acusava 1 falha crítica e 3 altas que só têm correção no Next 16, entre elas XSS em App Router com CSP por nonce (GHSA-ffhc-5mcf-pf4q), que é exatamente o desenho deste site. Depois do upgrade e de um `npm audit fix` nas transitivas: **0 vulnerabilidades**.
+
 ### Changed
 
 - **Pílula de status: `4 slots out/26` → `3 slots nov/26`** (`nov/26` também no EN) em `lib/constants.ts`, `lib/i18n/pt.ts` e `lib/i18n/en.ts`, e **métrica "Próximo slot" 04 → 03**, alinhada com a pílula.
 - **"Em construção" 04 → 03** (`lib/constants.ts` METRICS), número informado pelo Vinicius em 2026-11-17. A bio do founder acompanha nos três lugares (`quatro` → `três`, `four` → `three`). `PRODUCTS_LIVE_COUNT` segue **16**.
 - **Changelog público reabastecido** (estava parado em 05/09), mantendo **7 linhas** e os três arrays casados por índice. Entram, com datas conferidas nas tags dos repos: Starck rev-0.68 (`2026-11-10`), OPS rev-4.5/4.6 (`2026-11-10`), PregApp rev-0.34 (`2026-10-15`), PregApp rev-0.31 a 0.33 (`2026-10-12`), Cali Garage rev-0.13 (`2026-10-02`), OPS rev-4.4 (`2026-09-23`) e Cali Garage Ops rev-1.0 (`2026-09-18`). Saem as sete anteriores (Cali Garage Ops 05/09 a Produtos próprios 12/07).
+- **`middleware.ts` → `proxy.ts`** (nome novo do Next 16, função exportada como `proxy`, roda em Node.js). Lógica idêntica: nonce por request, CSP em enforce, rewrite da raiz pra `/pt`, redirect 307 das demais rotas sem locale. O comentário que ainda falava em "Report-Only" foi corrigido: a CSP é enforce desde a rev-2.9.0.
+- **`params` e `headers()` assíncronos** (Next 15+) em `app/[lang]/layout.tsx`, `page.tsx`, `privacidade/page.tsx` e `brand/page.tsx`.
+- **ESLint 8 → 9 em flat config** (`eslint.config.mjs`, mesmas regras `core-web-vitals` + `typescript`). O `next lint` saiu no Next 16; o script `lint` agora roda `eslint .`. `.eslintrc.json` removido.
+- **Regra nova `react-hooks/set-state-in-effect`** (vem com o eslint-config-next 16) desligada só em duas linhas, com o motivo no código: `consent-banner.tsx` e `live-agent.tsx` leem o `localStorage` depois de montar de propósito, porque no SSR ele não existe e ler no `useState` quebraria a hidratação. Reescrever com `useSyncExternalStore` mexeria no fluxo de consentimento da LGPD sem ganho visível.
+- **TypeScript fixado em `~6.0`**: o 7.x já saiu, mas o `typescript-eslint` só aceita até `<6.1`. Tailwind segue no 3.4 (a migração pro 4 muda o modelo de configuração e fica pra outra rodada).
+- **Copy sem travessão** em `lib/i18n/pt.ts` e `en.ts` (59 linhas): vírgula, ponto ou dois-pontos no lugar; intervalos viram "2 a 6 semanas"/"2 to 6 weeks" na prosa e hífen nos rótulos (`Dia 0-3`, `2025-2026`).
+- **"ships" não se conjuga**: o rótulo `shipado` do changelog público vira `no ar`; "foi shipada para outro lugar" e "não shipou" saem do 404 PT.
+- **"Como trabalhamos"**: sai o "e poucos entregam isso" (elogio sem dado). PT: "Muita coisa em IA ainda para no slide ou na demo bonita. Aqui o software vai pro ar e fatura."
+
+### Fixed
+
+- **404 com botão sem fundo**: `app/[lang]/not-found.tsx` usava `bg-gradient-purple`, classe que não existe no Tailwind do projeto, então o botão principal ficava sem fundo. O brilho de fundo era roxo, e a v2 reserva o roxo (secundário) para hover de case e badge. Agora o 404 usa o verde primário e o mesmo estilo de botão do CTA.
+- **O 404 da marca nunca aparecia.** Endereço inexistente (`/pt/qualquer-coisa`) caía no 404 padrão do Next, sem marca, estático e com todos os scripts barrados pela CSP por falta de nonce (9 violações no console, já em produção). Novo pega-tudo `app/[lang]/[...rest]/page.tsx` chama `notFound()`, e o 404 da marca passa a renderizar dentro do layout de `[lang]`, com nonce. Status segue 404; zero violações de CSP.
+- **404 no idioma da URL**: o proxy passa o locale em `x-locale` (o not-found não recebe `params`), então `/en/...` mostra o 404 em inglês, com links pra `/en`.
+- **Agente espremido no celular**: o campo de diagnóstico tinha **93px** de largura num iPhone 12, porque o botão "RODAR DIAGNÓSTICO →" não quebra linha e dividia a mesma linha. Abaixo de 640px, campo e botão agora empilham (296px de campo); no desktop nada muda. Mesmo ajuste no formulário de e-mail.
+- **404 ignorava o dicionário**: o texto estava fixo em inglês (apesar do comentário dizer PT) e o `notFound` de `pt.ts`/`en.ts` ficava sem uso. Agora lê o dicionário do idioma padrão.
 
 ---
 

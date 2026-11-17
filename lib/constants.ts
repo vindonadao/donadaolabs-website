@@ -31,7 +31,7 @@ export const NAV_LINKS = [
 
 // Status pill shown at top-right of the nav. Update when slots change.
 export const HEADER = {
-  status: 'live · operando · 4 slots out/26',
+  status: 'live · operando · 3 slots nov/26',
 } as const;
 
 // 7-day throughput chart in the hero (right side, sticky).
@@ -61,8 +61,8 @@ export interface Metric {
  * sistemas internos que não são cases de cliente).
  */
 export const METRICS: readonly Metric[] = [
-  { label: 'Em construção', value: '04', sub: 'no laboratório' },
-  { label: 'Próximo slot',  value: '04', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
+  { label: 'Em construção', value: '03', sub: 'no laboratório' },
+  { label: 'Próximo slot',  value: '03', sub: 'vagas abertas · agendar →', href: 'https://cal.com/donadaolabs/diagnostico' },
   { label: 'Zero quedas',   value: '0',  sub: 'incidentes em 2026' },
 ] as const;
 
@@ -82,7 +82,7 @@ export const METRICS: readonly Metric[] = [
  * O próprio donadaolabs.com NÃO se conta.
  * Ao ligar/desligar algo do ar, ajuste este número e a bio do founder juntos
  * (a bio vive em lib/i18n/pt.ts e en.ts, não aqui).
- * "Em construção" (4) vive em METRICS acima — os projetos em criação NÃO são
+ * "Em construção" (3 desde 2026-11-17, informado pelo Vinicius) vive em METRICS acima — os projetos em criação NÃO são
  * nomeados no site (decisão do Vinicius). Segue em 4 em 2026-09-09: Evogest e
  * Prazer Ardente saíram para "no ar", e outros dois entraram no lugar, entre
  * eles a landing de encomendas de Portimão (serve pela URL da Vercel, mas
@@ -454,13 +454,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
-  { date: '2026-09-05', tag: 'shipped', text: 'Cali Garage Ops · gestão da oficina no ar para o cliente.' },
-  { date: '2026-08-13', tag: 'shipped', text: 'Evogest · site da gestora de condomínios entregue e no ar.' },
-  { date: '2026-08-05', tag: 'agent',   text: 'Fonte · RAG documental com citação de fonte, código aberto.' },
-  { date: '2026-07-28', tag: 'shipped', text: 'VODGOS · site institucional e área do conselho no ar.' },
-  { date: '2026-07-19', tag: 'shipped', text: 'Agenharia · painel interno da operação por agentes no ar.' },
-  { date: '2026-07-18', tag: 'shipped', text: 'Site · Pixel FC entra na vitrine.' },
-  { date: '2026-07-12', tag: 'shipped', text: 'Site · seção Produtos próprios no ar.' },
+  { date: '2026-11-10', tag: 'shipped', text: 'Starck · artes novas no catálogo das marcas representadas.' },
+  { date: '2026-11-10', tag: 'infra',   text: 'OPS · o painel interno responde ao clique na hora.' },
+  { date: '2026-10-15', tag: 'hotfix',  text: 'PregApp · Next.js atualizado com as correções de segurança.' },
+  { date: '2026-10-12', tag: 'shipped', text: 'PregApp · captação do PNCP mais resistente e desfecho da licitação no painel.' },
+  { date: '2026-10-02', tag: 'shipped', text: 'Cali Garage · fotos reais da oficina no site.' },
+  { date: '2026-09-23', tag: 'shipped', text: 'OPS · o painel interno passa a caber no celular.' },
+  { date: '2026-09-18', tag: 'shipped', text: 'Cali Garage Ops · rev-1.0, o CEP já traz o endereço do cliente.' },
 ] as const;
 
 export interface FAQEntry {
@@ -495,7 +495,7 @@ export const FOUNDER = {
   name: 'Vinicius Donadão',
   role: 'Computer Scientist · Founder',
   bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e AI agents que resolvem o problema certo, o de gerar receita.',
-  bio2: 'Donadão Labs é a operação que rodo: dezesseis produtos no ar, quatro em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
+  bio2: 'Donadão Labs é a operação que rodo: dezesseis produtos no ar, três em construção e foco atual em AI agents para negócios que já faturam, mas ainda operam no WhatsApp.',
   photo: '/founder.jpg',
 } as const;
 

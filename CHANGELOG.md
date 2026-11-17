@@ -7,6 +7,12 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [Unreleased]
 
+### Changed
+
+- **Pílula de status: `4 slots out/26` → `3 slots nov/26`** (`nov/26` também no EN) em `lib/constants.ts`, `lib/i18n/pt.ts` e `lib/i18n/en.ts`, e **métrica "Próximo slot" 04 → 03**, alinhada com a pílula.
+- **"Em construção" 04 → 03** (`lib/constants.ts` METRICS), número informado pelo Vinicius em 2026-11-17. A bio do founder acompanha nos três lugares (`quatro` → `três`, `four` → `three`). `PRODUCTS_LIVE_COUNT` segue **16**.
+- **Changelog público reabastecido** (estava parado em 05/09), mantendo **7 linhas** e os três arrays casados por índice. Entram, com datas conferidas nas tags dos repos: Starck rev-0.68 (`2026-11-10`), OPS rev-4.5/4.6 (`2026-11-10`), PregApp rev-0.34 (`2026-10-15`), PregApp rev-0.31 a 0.33 (`2026-10-12`), Cali Garage rev-0.13 (`2026-10-02`), OPS rev-4.4 (`2026-09-23`) e Cali Garage Ops rev-1.0 (`2026-09-18`). Saem as sete anteriores (Cali Garage Ops 05/09 a Produtos próprios 12/07).
+
 ---
 
 ## [rev-2.20.3] — 2026-10-02

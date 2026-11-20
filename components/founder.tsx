@@ -17,8 +17,6 @@ export function Founder({ dict }: FounderProps): React.ReactElement {
   return (
     <section id="founder" className="mt-6 border-t border-white/[0.08]">
       <SectionHeader
-        idx="06"
-        eyebrow={dict.founder.eyebrow}
         title={dict.founder.title}
         sub={dict.founder.sub}
       />
@@ -38,16 +36,6 @@ export function Founder({ dict }: FounderProps): React.ReactElement {
               background: 'linear-gradient(180deg, transparent 55%, #070709 100%)',
             }}
           />
-          <div
-            className="absolute bottom-2.5 left-3 flex items-center gap-1.5 font-mono text-[10px] text-accent"
-            style={{ textShadow: '0 1px 4px #070709' }}
-          >
-            <span
-              className="h-1.5 w-1.5 animate-dl-pulse rounded-full bg-accent"
-              style={{ boxShadow: '0 0 6px #00F57A' }}
-            />
-            {dict.founder.badge}
-          </div>
         </div>
 
         <div>

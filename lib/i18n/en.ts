@@ -24,7 +24,7 @@ export const en: Dictionary = {
     langSwitchLabel: 'PT',
   },
   hero: {
-    badge: 'AI Software Lab · live · 2026',
+    badge: 'AI Software Lab · 2026',
     headline: 'AI software',
     headlineEm: 'actually ships',
     headlineConnector: 'that',
@@ -85,7 +85,7 @@ export const en: Dictionary = {
         technicalBody:
           'Domain, DNS, CI/CD, SSL and monitoring bundled into every project. SLA with response < 4 business hours.',
         techLabel: 'Bundled · Not sold separately',
-        bullets: ['Monitored SLA', 'Daily backups', 'Response < 4h business'],
+        bullets: ['Monitored SLA', 'Response < 4h business'],
       },
     ],
     flipFront: 'see technical',
@@ -137,8 +137,8 @@ export const en: Dictionary = {
       {
         kind: 'Internal CRM · SaaS',
         title: 'Internal operations dashboard',
-        desc: 'Client’s internal system, no public demo, but the results speak. Lean dashboard to track sales, inventory and performance without the bloat of a heavy ERP.',
-        metric: '12h/week saved',
+        desc: 'Client’s internal system, no public demo. Lean dashboard with orders on a kanban board, the client list and the product catalog, without the bloat of a heavy ERP.',
+        metric: 'Orders, clients and catalog in one place',
       },
       {
         kind: 'Landing page · Auto repair',
@@ -219,16 +219,13 @@ export const en: Dictionary = {
     ],
   },
   founder: {
-    eyebrow: 'Who operates',
     title: 'The person behind the code.',
     sub: 'No middleman agency. You talk directly with who builds it.',
     role: 'Computer Scientist · Founder',
-    badge: 'founder · live',
     bio1: 'Computer scientist with a background in critical industrial automation. I build software and AI agents that solve the right problem: generating revenue.',
     bio2: 'Donadão Labs is the operation I run: sixteen products live, three in progress, and current focus on AI agents for businesses already earning, but still operating on WhatsApp.',
   },
   faq: {
-    eyebrow: 'FAQ',
     title: 'Questions that always come up.',
     items: [
       {
@@ -249,7 +246,7 @@ export const en: Dictionary = {
       },
       {
         q: 'How much does it cost?',
-        a: 'Depends on scope. Projects usually fall between 5 and 6 figures (USD/BRL equivalent). The diagnosis already delivers a price range, no obligation to proceed.',
+        a: 'Depends on scope. Websites start at €990 and custom systems at €7,490. The diagnosis already gives you the range for your case, no obligation to proceed.',
       },
     ],
   },
@@ -261,7 +258,7 @@ export const en: Dictionary = {
     orPrefix: 'or',
   },
   agent: {
-    label: '◆ diagnosis agent · processing live',
+    label: '◆ diagnosis agent',
     labelGated: '◆ diagnosis agent · free run used',
     placeholder: 'describe your business problem in 1 sentence',
     placeholderDisabled: 'drop your email below to continue',

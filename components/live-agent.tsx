@@ -235,18 +235,13 @@ export function LiveAgent({ dict, lang }: LiveAgentProps): React.ReactElement {
 
   const inputDisabled = persisted.askedOnce && !persisted.email && needEmail;
   // Estado de gate: email pedido, nenhum diagnóstico na tela e nada rodando.
-  // Aqui o rótulo NÃO pode dizer "processando ao vivo" (era o que fazia o
-  // visitante achar que o agente é encenação) — vira label honesto de limite.
+  // Aqui o rótulo vira o label honesto de limite ("diagnóstico grátis usado").
   const gated = needEmail && !output && !loading;
 
   return (
     <div className="relative overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal p-[20px_22px] text-offwhite">
       {/* Header label */}
-      <div className="mb-3.5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-accent">
-        <span
-          className={`h-[7px] w-[7px] rounded-full bg-accent ${gated ? 'opacity-40' : 'animate-dl-pulse'}`}
-          style={gated ? undefined : { boxShadow: '0 0 8px #00F57A' }}
-        />
+      <div className="mb-3.5 font-mono text-[11px] uppercase tracking-[0.08em] text-accent">
         {gated ? t.labelGated : t.label}
       </div>
 

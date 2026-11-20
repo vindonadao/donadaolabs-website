@@ -24,6 +24,21 @@ and this project uses revision-based versioning (`rev-X.Y`).
 - **Copy sem travessão** em `lib/i18n/pt.ts` e `en.ts` (59 linhas): vírgula, ponto ou dois-pontos no lugar; intervalos viram "2 a 6 semanas"/"2 to 6 weeks" na prosa e hífen nos rótulos (`Dia 0-3`, `2025-2026`).
 - **"ships" não se conjuga**: o rótulo `shipado` do changelog público vira `no ar`; "foi shipada para outro lugar" e "não shipou" saem do 404 PT.
 - **"Como trabalhamos"**: sai o "e poucos entregam isso" (elogio sem dado). PT: "Muita coisa em IA ainda para no slide ou na demo bonita. Aqui o software vai pro ar e fatura."
+- **Menos cara de "dashboard feito por IA"** (decisões do Vinicius em 2026-11-20, a partir da lista dos 20 sinais):
+  - Seções sem o número em caixinha roxa (`01`…`07`); `SectionHeader` perdeu o `idx` e o `eyebrow` virou opcional. Fundador e FAQ ficam sem rótulo, porque "Quem opera" e "FAQ" só repetiam o título.
+  - "Ao vivo" fica só na pílula do menu (que tem informação real de slots): sai do selo do hero (`IA Software Lab · 2026`), do rótulo do agente e da foto do fundador (selo removido). Saem as bolinhas pulsando dos cases, do agente e da foto.
+  - Cards de serviço sem a faixa de 2px no topo (verde na frente, roxa no verso).
+  - Botões sem glow (`shadow-glow`/`glow-strong` em menu, CTA, banner de consentimento, brand e 404); tokens removidos do Tailwind.
+- **Changelog público mostra a tag real** de cada entrega (`rev-0.68`, `rev-4.5`…), novo campo `rev` em `ChangelogEntry`. Antes era um hash inventado a partir da posição (`#a4f{i}b2c`).
+- **FAQ "Quanto custa?"** com preço de entrada do catálogo: PT "Site a partir de R$ 3.490 e sistema sob medida a partir de R$ 7.990"; EN "Websites start at €990 and custom systems at €7,490". Antes dizia "entre 5 e 6 dígitos", acima do que é praticado.
+- **Card "Infra & deploy"** sem "Backups diários" (não vale pra todos os projetos de cliente hoje).
+- **Case Diskat Ops**: métrica "12h/semana economizadas" (sem medição) vira "Pedidos, clientes e catálogo num lugar só"; a descrição deixa de citar "estoque" (o sistema não tem) e passa a descrever o que existe no repo: pedidos em kanban, clientes e catálogo. "Uma ERP cara" corrigido para "um ERP caro".
+- **Stack dos cases Diskat pelo repo**: loja `Next.js, Stripe, Postgres` → `React, Vite, Supabase, Tailwind`; Ops `React, Node, Postgres, Redis` → `React, Supabase, Vercel` (hospedagem conferida pelo header `server: Vercel`).
+
+### Removed
+
+- **Sparkline dos cases**: os 6 cards mostravam a mesma curva fixa no código (`CASE_SPARK`). `components/sparkline.tsx` removido.
+- **`components/throughput-chart.tsx` e `THROUGHPUT`**: gráfico "AGENT THROUGHPUT · 7D" com número inventado (474 conv/sem, ↑18.4%) que não era renderizado em lugar nenhum. Junto sai o campo `spark` de `Metric`.
 
 ### Fixed
 

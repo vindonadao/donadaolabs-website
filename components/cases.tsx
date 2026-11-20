@@ -1,11 +1,8 @@
 import Image from 'next/image';
 import { CaseMark } from '@/components/case-mark';
 import { SectionHeader } from '@/components/section-header';
-import { Sparkline } from '@/components/sparkline';
 import { CASES, type Case, type CaseStyle } from '@/lib/constants';
 import type { Dictionary } from '@/lib/i18n';
-
-const CASE_SPARK = [12, 18, 16, 22, 28, 35, 41, 47];
 
 const FONT_STYLES: Record<CaseStyle, string> = {
   serif: 'font-["Instrument_Serif",Georgia,serif] italic font-normal tracking-[-0.005em]',
@@ -74,11 +71,7 @@ function CaseCardContent({ c, labels }: CaseCardContentProps): React.ReactElemen
             {labels.internalLabel}
           </div>
         ) : (
-          <div className="absolute right-3.5 top-3 flex items-center gap-1.5 font-mono text-[10px] text-accent">
-            <span
-              className="h-1.5 w-1.5 animate-dl-pulse rounded-full bg-accent"
-              style={{ boxShadow: '0 0 6px #00F57A' }}
-            />
+          <div className="absolute right-3.5 top-3 font-mono text-[10px] text-accent">
             {labels.liveLabel}
           </div>
         )}
@@ -91,11 +84,10 @@ function CaseCardContent({ c, labels }: CaseCardContentProps): React.ReactElemen
           <CaseLogoLockup c={c} />
         </div>
 
-        <div className="absolute inset-x-3.5 bottom-2.5 flex items-end justify-between">
+        <div className="absolute inset-x-3.5 bottom-2.5">
           <div className={`font-mono text-xs ${isInternal ? 'text-purple' : 'text-accent'}`}>
             {c.metric}
           </div>
-          <Sparkline data={CASE_SPARK} width={84} />
         </div>
       </div>
 
@@ -178,7 +170,6 @@ export function Cases({ dict }: CasesProps): React.ReactElement {
   return (
     <section id="cases" className="mt-6 border-t border-white/[0.08]">
       <SectionHeader
-        idx="03"
         eyebrow={dict.cases.eyebrow}
         title={dict.cases.title}
         sub={dict.cases.sub}

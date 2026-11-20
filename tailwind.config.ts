@@ -54,9 +54,6 @@ const config: Config = {
         'brand-xl': '16px',
       },
       boxShadow: {
-        glow: '0 0 60px rgba(0, 245, 122, 0.32)',
-        'glow-strong': '0 0 100px rgba(0, 245, 122, 0.55)',
-        'glow-cursor': '0 0 12px rgba(0, 245, 122, 0.9), 0 0 24px rgba(0, 245, 122, 0.6)',
         card: '0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.4)',
         'card-hover': '0 0 0 1px #00F57A, 0 16px 48px rgba(0, 245, 122, 0.2)',
         'card-hover-purple': '0 0 0 1px #7B6BFF, 0 16px 48px rgba(123, 107, 255, 0.22)',

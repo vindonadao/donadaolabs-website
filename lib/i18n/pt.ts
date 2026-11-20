@@ -24,7 +24,7 @@ export const pt: Dictionary = {
     langSwitchLabel: 'EN',
   },
   hero: {
-    badge: 'IA Software Lab · ao vivo · 2026',
+    badge: 'IA Software Lab · 2026',
     headline: 'Software de IA',
     headlineEm: 'realmente ships',
     headlineConnector: 'que',
@@ -85,7 +85,7 @@ export const pt: Dictionary = {
         technicalBody:
           'Domínio, DNS, CI/CD, SSL e monitoramento inclusos em todo projeto. SLA com resposta < 4h úteis.',
         techLabel: 'Incluso · Não vendido separado',
-        bullets: ['SLA monitorado', 'Backups diários', 'Resposta < 4h úteis'],
+        bullets: ['SLA monitorado', 'Resposta < 4h úteis'],
       },
     ],
     flipFront: 'ver técnico',
@@ -137,8 +137,8 @@ export const pt: Dictionary = {
       {
         kind: 'CRM interno · SaaS',
         title: 'Painel de operação interna',
-        desc: 'Sistema interno do cliente, sem demo pública, mas o resultado fala. Painel enxuto pra acompanhar vendas, estoque e performance, sem cair no excesso de uma ERP cara.',
-        metric: '12h/semana economizadas',
+        desc: 'Sistema interno do cliente, sem demo pública. Painel enxuto com os pedidos em kanban, os clientes e o catálogo de produtos, sem cair no excesso de um ERP caro.',
+        metric: 'Pedidos, clientes e catálogo num lugar só',
       },
       {
         kind: 'Landing page · Manutenção veicular',
@@ -219,16 +219,13 @@ export const pt: Dictionary = {
     ],
   },
   founder: {
-    eyebrow: 'Quem opera',
     title: 'Pessoa por trás do código.',
     sub: 'Sem agência intermediária. Você fala direto com quem constrói.',
     role: 'Cientista da Computação · Fundador',
-    badge: 'fundador · ao vivo',
     bio1: 'Cientista da computação com background em automação industrial crítica. Construo software e agentes de IA que resolvem o problema certo, o de gerar receita.',
     bio2: 'Donadão Labs é a operação que rodo: dezesseis produtos no ar, três em construção e foco atual em agentes de IA para negócios que já faturam, mas ainda operam no WhatsApp.',
   },
   faq: {
-    eyebrow: 'FAQ',
     title: 'Perguntas que sempre aparecem.',
     items: [
       {
@@ -249,7 +246,7 @@ export const pt: Dictionary = {
       },
       {
         q: 'Quanto custa?',
-        a: 'Depende do escopo. Projetos costumam ficar entre 5 e 6 dígitos. O diagnóstico já entrega faixa de preço, sem compromisso de seguir.',
+        a: 'Depende do escopo. Site a partir de R$ 3.490 e sistema sob medida a partir de R$ 7.990. O diagnóstico já entrega a faixa do seu caso, sem compromisso de seguir.',
       },
     ],
   },
@@ -261,7 +258,7 @@ export const pt: Dictionary = {
     orPrefix: 'ou',
   },
   agent: {
-    label: '◆ agente diagnóstico · processando ao vivo',
+    label: '◆ agente diagnóstico',
     labelGated: '◆ agente diagnóstico · diagnóstico grátis usado',
     placeholder: 'descreva o problema do seu negócio em 1 frase',
     placeholderDisabled: 'deixe seu email abaixo pra continuar',

@@ -157,7 +157,7 @@ export default async function BrandPage({ params }: BrandPageProps): Promise<Rea
             <a
               href={PDF_LATEST}
               download="donadao-labs-brand-book-rev-0.2.pdf"
-              className="rounded-[6px] bg-gradient-green px-5 py-2.5 text-[14px] font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow"
+              className="rounded-[6px] bg-gradient-green px-5 py-2.5 text-[14px] font-semibold text-black transition-all duration-200 hover:-translate-y-0.5"
             >
               ↓ {t.downloadBtn}
             </a>

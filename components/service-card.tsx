@@ -33,8 +33,6 @@ export function ServiceCard({ item, num, labels }: ServiceCardProps): React.Reac
           onClick={() => setFlipped(true)}
           className="absolute inset-0 flex h-full w-full flex-col overflow-hidden rounded-brand-lg border border-white/[0.08] bg-charcoal p-5 text-left transition-all duration-200 hover:border-purple hover:shadow-card-hover-purple [backface-visibility:hidden]"
         >
-          <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-green opacity-60 transition-opacity duration-200 group-hover:bg-purple group-hover:opacity-100" />
-
           <div className="mb-4">
             <span className="inline-block rounded-[4px] bg-accent px-2 py-[3px] font-mono text-[11px] text-black transition-colors duration-200 group-hover:bg-purple group-hover:text-offwhite">
               {num}
@@ -78,8 +76,6 @@ export function ServiceCard({ item, num, labels }: ServiceCardProps): React.Reac
           onClick={() => setFlipped(false)}
           className="absolute inset-0 flex h-full w-full flex-col overflow-hidden rounded-brand-lg border border-purple/40 bg-ink p-5 text-left transition-colors duration-200 hover:border-purple [transform:rotateY(180deg)] [backface-visibility:hidden]"
         >
-          <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-purple" />
-
           <div className="mb-3 flex items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-purple">
               {'//'} {labels.technicalPrefix}

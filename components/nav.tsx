@@ -52,7 +52,7 @@ export function Nav({ dict, lang }: NavProps): React.ReactElement {
           <TrackedCalLink
             href={LINKS.cal}
             location="nav"
-            className="whitespace-nowrap rounded-[6px] bg-gradient-green px-3.5 py-2 text-[13px] font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow"
+            className="whitespace-nowrap rounded-[6px] bg-gradient-green px-3.5 py-2 text-[13px] font-semibold text-black transition-all duration-200 hover:-translate-y-0.5"
           >
             {/* Mobile usa rótulo curto p/ não quebrar em 2 linhas nem colar no logo. */}
             <span className="md:hidden">{dict.nav.ctaButtonShort}</span>

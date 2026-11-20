@@ -130,17 +130,14 @@ export interface Dictionary {
     entries: { text: string }[];
   };
   founder: {
-    eyebrow: string;
     title: string;
     sub: string;
     /** Cargo/role exibido abaixo do nome (verde, font-mono). */
     role: string;
-    badge: string;
     bio1: string;
     bio2: string;
   };
   faq: {
-    eyebrow: string;
     title: string;
     items: { q: string; a: string }[];
   };

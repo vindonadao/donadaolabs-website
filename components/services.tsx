@@ -10,7 +10,6 @@ export function Services({ dict }: ServicesProps): React.ReactElement {
   return (
     <section id="abordagem">
       <SectionHeader
-        idx="01"
         eyebrow={dict.services.eyebrow}
         title={dict.services.title}
         sub={dict.services.sub}

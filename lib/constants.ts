@@ -34,22 +34,10 @@ export const HEADER = {
   status: 'live · operando · 3 slots nov/26',
 } as const;
 
-// 7-day throughput chart in the hero (right side, sticky).
-// `bars`: 7 numbers (mon–sun). The chart normalizes to the max.
-export const THROUGHPUT = {
-  label: 'AGENT THROUGHPUT · 7D',
-  total: '474',
-  unit: 'conv/sem',
-  delta: '↑ 18.4%',
-  days: ['seg', 'ter', 'qua', 'qui', 'sex', 'sáb', 'dom'],
-  bars: [42, 58, 51, 73, 88, 67, 95],
-} as const;
-
 export interface Metric {
   label: string;
   value: string;
   sub: string;
-  spark?: readonly number[];
   /** Quando presente, o MetricCard é renderizado como <a> clicável (target external auto-detectado) */
   href?: string;
 }
@@ -250,7 +238,7 @@ export const CASES: readonly Case[] = [
     desc: 'Loja completa com checkout otimizado e painel de gestão para venda de produtos impressos em 3D. UX premium em categoria commoditizada.',
     metric: 'Checkout < 90s',
     href: 'https://diskatpresentes.com.br',
-    stack: ['Next.js', 'Stripe', 'Postgres'],
+    stack: ['React', 'Vite', 'Supabase', 'Tailwind'],
     logo: {
       image: '/clients/diskat-presentes.png',
       shape: 'layers',
@@ -264,11 +252,11 @@ export const CASES: readonly Case[] = [
     kind: 'CRM interno · SaaS',
     meta: 'CRM interno · SaaS',
     title: 'Painel de operação interna',
-    desc: 'Sistema interno do cliente — sem demo pública, mas o resultado fala. Painel enxuto pra acompanhar vendas, estoque e performance, sem cair no excesso de uma ERP cara.',
-    metric: '12h/semana economizadas',
+    desc: 'Sistema interno do cliente, sem demo pública. Painel enxuto com os pedidos em kanban, os clientes e o catálogo de produtos, sem cair no excesso de um ERP caro.',
+    metric: 'Pedidos, clientes e catálogo num lugar só',
     href: null,
     internal: true,
-    stack: ['React', 'Node', 'Postgres', 'Redis'],
+    stack: ['React', 'Supabase', 'Vercel'],
     logo: {
       image: '/clients/diskat-ops.png',
       shape: 'grid',
@@ -450,17 +438,19 @@ export const STACK_CHIPS: readonly StackChip[] = [
 export interface ChangelogEntry {
   date: string;
   tag: 'shipped' | 'agent' | 'infra' | 'rfc' | 'hotfix';
+  /** Tag git real da entrega no repo do projeto (ex.: rev-0.68). Exibida na linha. */
+  rev: string;
   text: string;
 }
 
 export const CHANGELOG: readonly ChangelogEntry[] = [
-  { date: '2026-11-10', tag: 'shipped', text: 'Starck · artes novas no catálogo das marcas representadas.' },
-  { date: '2026-11-10', tag: 'infra',   text: 'OPS · o painel interno responde ao clique na hora.' },
-  { date: '2026-10-15', tag: 'hotfix',  text: 'PregApp · Next.js atualizado com as correções de segurança.' },
-  { date: '2026-10-12', tag: 'shipped', text: 'PregApp · captação do PNCP mais resistente e desfecho da licitação no painel.' },
-  { date: '2026-10-02', tag: 'shipped', text: 'Cali Garage · fotos reais da oficina no site.' },
-  { date: '2026-09-23', tag: 'shipped', text: 'OPS · o painel interno passa a caber no celular.' },
-  { date: '2026-09-18', tag: 'shipped', text: 'Cali Garage Ops · rev-1.0, o CEP já traz o endereço do cliente.' },
+  { date: '2026-11-10', tag: 'shipped', rev: 'rev-0.68', text: 'Starck · artes novas no catálogo das marcas representadas.' },
+  { date: '2026-11-10', tag: 'infra',   rev: 'rev-4.5',  text: 'OPS · o painel interno responde ao clique na hora.' },
+  { date: '2026-10-15', tag: 'hotfix',  rev: 'rev-0.34', text: 'PregApp · Next.js atualizado com as correções de segurança.' },
+  { date: '2026-10-12', tag: 'shipped', rev: 'rev-0.33', text: 'PregApp · captação do PNCP mais resistente e desfecho da licitação no painel.' },
+  { date: '2026-10-02', tag: 'shipped', rev: 'rev-0.13', text: 'Cali Garage · fotos reais da oficina no site.' },
+  { date: '2026-09-23', tag: 'shipped', rev: 'rev-4.4',  text: 'OPS · o painel interno passa a caber no celular.' },
+  { date: '2026-09-18', tag: 'shipped', rev: 'rev-1.0',  text: 'Cali Garage Ops · rev-1.0, o CEP já traz o endereço do cliente.' },
 ] as const;
 
 export interface FAQEntry {

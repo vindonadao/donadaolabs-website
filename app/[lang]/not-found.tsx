@@ -28,7 +28,7 @@ export default async function NotFound(): Promise<React.ReactElement> {
 
       <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 py-32 md:px-8">
         <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-accent/40 bg-accent/[0.12] px-4 py-2 font-mono text-xs font-medium uppercase tracking-widest text-accent-bright">
-          <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_16px_rgba(0,245,122,0.7)]" />
+          <span className="h-2 w-2 rounded-full bg-accent" />
           {t.badge}
         </div>
 
@@ -43,7 +43,7 @@ export default async function NotFound(): Promise<React.ReactElement> {
         <div className="flex flex-wrap gap-3">
           <Link
             href={`/${lang}`}
-            className="inline-flex items-center gap-2 rounded-brand-md bg-gradient-green px-8 py-4 font-display text-base font-semibold text-black shadow-glow transition-all hover:-translate-y-0.5 hover:shadow-glow-strong"
+            className="inline-flex items-center gap-2 rounded-brand-md bg-gradient-green px-8 py-4 font-display text-base font-semibold text-black transition-all hover:-translate-y-0.5"
           >
             <span aria-hidden>←</span> {t.ctaHome}
           </Link>

@@ -125,7 +125,7 @@ export function Products({ dict }: ProductsProps): React.ReactElement {
 
   return (
     <section id="produtos" className="mt-6 border-t border-white/[0.08]">
-      <SectionHeader idx="04" eyebrow={t.eyebrow} title={t.title} sub={t.sub} />
+      <SectionHeader eyebrow={t.eyebrow} title={t.title} sub={t.sub} />
       <div className="grid grid-cols-1 items-stretch gap-4 px-6 pb-6 md:grid-cols-2 md:px-10">
         {indexed.map(({ p, item }) => (
           <ProductCard key={p.slug} p={p} item={item} labels={t} />

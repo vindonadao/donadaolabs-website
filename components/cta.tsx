@@ -30,7 +30,7 @@ export function Cta({ dict }: CtaProps): React.ReactElement {
         <TrackedCalLink
           href={LINKS.cal}
           location="cta_final"
-          className="mt-9 inline-block rounded-[8px] bg-gradient-green px-6 py-3.5 text-[15px] font-semibold text-black shadow-glow transition-all duration-200 hover:-translate-y-1 hover:shadow-glow-strong"
+          className="mt-9 inline-block rounded-[8px] bg-gradient-green px-6 py-3.5 text-[15px] font-semibold text-black transition-all duration-200 hover:-translate-y-1"
         >
           {dict.cta.button} →
         </TrackedCalLink>

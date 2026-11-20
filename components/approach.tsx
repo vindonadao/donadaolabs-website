@@ -36,7 +36,6 @@ export function Approach({ dict }: ApproachProps): React.ReactElement {
   return (
     <section className="mt-6 border-t border-white/[0.08]">
       <SectionHeader
-        idx="02"
         eyebrow={dict.approach.eyebrow}
         title={dict.approach.title}
         sub={dict.approach.sub}

@@ -10,7 +10,6 @@ export function Changelog({ dict }: ChangelogProps): React.ReactElement {
   return (
     <section id="changelog" className="border-t border-white/[0.08]">
       <SectionHeader
-        idx="05"
         eyebrow={dict.changelog.eyebrow}
         title={dict.changelog.title}
         sub={dict.changelog.sub}
@@ -33,7 +32,7 @@ export function Changelog({ dict }: ChangelogProps): React.ReactElement {
                 </span>
                 <span className="text-offwhite">{text}</span>
                 <span className="hidden text-right font-mono text-[11px] text-offwhite/30 md:block">
-                  #a4f{i}b2c
+                  {c.rev}
                 </span>
               </div>
             );

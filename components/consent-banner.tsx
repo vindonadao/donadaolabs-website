@@ -63,7 +63,7 @@ export function ConsentBanner({ dict }: ConsentBannerProps): React.ReactElement 
         <button
           type="button"
           onClick={decide(true)}
-          className="rounded-[6px] bg-accent px-3 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow"
+          className="rounded-[6px] bg-accent px-3 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.06em] text-black transition-all duration-200 hover:-translate-y-0.5"
         >
           {dict.consent.accept}
         </button>

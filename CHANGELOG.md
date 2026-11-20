@@ -7,15 +7,18 @@ and this project uses revision-based versioning (`rev-X.Y`).
 
 ## [Unreleased]
 
+---
+
+## [rev-2.22.0] — 2026-11-20
+
+Upgrade de framework por segurança (Next 16, React 19), revisão de copy e de design pra tirar a cara de "dashboard feito por IA", e três bugs que já estavam em produção: o 404 da marca que nunca aparecia, o agente espremido no celular e o 404 sem fundo no botão. O repositório saiu de `~/Desktop` (iCloud) para `~/projetos/donadaolabs-website`: build de 20 min para 6 s.
+
 ### Security
 
 - **Next.js 14.2.35 → 16.4.6, React 18 → 19.3.** O `npm audit` acusava 1 falha crítica e 3 altas que só têm correção no Next 16, entre elas XSS em App Router com CSP por nonce (GHSA-ffhc-5mcf-pf4q), que é exatamente o desenho deste site. Depois do upgrade e de um `npm audit fix` nas transitivas: **0 vulnerabilidades**.
 
 ### Changed
 
-- **Pílula de status: `4 slots out/26` → `3 slots nov/26`** (`nov/26` também no EN) em `lib/constants.ts`, `lib/i18n/pt.ts` e `lib/i18n/en.ts`, e **métrica "Próximo slot" 04 → 03**, alinhada com a pílula.
-- **"Em construção" 04 → 03** (`lib/constants.ts` METRICS), número informado pelo Vinicius em 2026-11-17. A bio do founder acompanha nos três lugares (`quatro` → `três`, `four` → `three`). `PRODUCTS_LIVE_COUNT` segue **16**.
-- **Changelog público reabastecido** (estava parado em 05/09), mantendo **7 linhas** e os três arrays casados por índice. Entram, com datas conferidas nas tags dos repos: Starck rev-0.68 (`2026-11-10`), OPS rev-4.5/4.6 (`2026-11-10`), PregApp rev-0.34 (`2026-10-15`), PregApp rev-0.31 a 0.33 (`2026-10-12`), Cali Garage rev-0.13 (`2026-10-02`), OPS rev-4.4 (`2026-09-23`) e Cali Garage Ops rev-1.0 (`2026-09-18`). Saem as sete anteriores (Cali Garage Ops 05/09 a Produtos próprios 12/07).
 - **`middleware.ts` → `proxy.ts`** (nome novo do Next 16, função exportada como `proxy`, roda em Node.js). Lógica idêntica: nonce por request, CSP em enforce, rewrite da raiz pra `/pt`, redirect 307 das demais rotas sem locale. O comentário que ainda falava em "Report-Only" foi corrigido: a CSP é enforce desde a rev-2.9.0.
 - **`params` e `headers()` assíncronos** (Next 15+) em `app/[lang]/layout.tsx`, `page.tsx`, `privacidade/page.tsx` e `brand/page.tsx`.
 - **ESLint 8 → 9 em flat config** (`eslint.config.mjs`, mesmas regras `core-web-vitals` + `typescript`). O `next lint` saiu no Next 16; o script `lint` agora roda `eslint .`. `.eslintrc.json` removido.
@@ -47,6 +50,18 @@ and this project uses revision-based versioning (`rev-X.Y`).
 - **404 no idioma da URL**: o proxy passa o locale em `x-locale` (o not-found não recebe `params`), então `/en/...` mostra o 404 em inglês, com links pra `/en`.
 - **Agente espremido no celular**: o campo de diagnóstico tinha **93px** de largura num iPhone 12, porque o botão "RODAR DIAGNÓSTICO →" não quebra linha e dividia a mesma linha. Abaixo de 640px, campo e botão agora empilham (296px de campo); no desktop nada muda. Mesmo ajuste no formulário de e-mail.
 - **404 ignorava o dicionário**: o texto estava fixo em inglês (apesar do comentário dizer PT) e o `notFound` de `pt.ts`/`en.ts` ficava sem uso. Agora lê o dicionário do idioma padrão.
+
+---
+
+## [rev-2.21.0] — 2026-11-20
+
+Virada do mês e fatos em dia. Tag no commit `7320d6b`, ainda em Next 14: é o ponto de retorno só com o conteúdo, antes do upgrade.
+
+### Changed
+
+- **Pílula de status: `4 slots out/26` → `3 slots nov/26`** (`nov/26` também no EN) em `lib/constants.ts`, `lib/i18n/pt.ts` e `lib/i18n/en.ts`, e **métrica "Próximo slot" 04 → 03**, alinhada com a pílula.
+- **"Em construção" 04 → 03** (`lib/constants.ts` METRICS), número informado pelo Vinicius em 2026-11-17. A bio do founder acompanha nos três lugares (`quatro` → `três`, `four` → `three`). `PRODUCTS_LIVE_COUNT` segue **16**.
+- **Changelog público reabastecido** (estava parado em 05/09), mantendo **7 linhas** e os três arrays casados por índice. Entram, com datas conferidas nas tags dos repos: Starck rev-0.68 (`2026-11-10`), OPS rev-4.5/4.6 (`2026-11-10`), PregApp rev-0.34 (`2026-10-15`), PregApp rev-0.31 a 0.33 (`2026-10-12`), Cali Garage rev-0.13 (`2026-10-02`), OPS rev-4.4 (`2026-09-23`) e Cali Garage Ops rev-1.0 (`2026-09-18`). Saem as sete anteriores (Cali Garage Ops 05/09 a Produtos próprios 12/07).
 
 ---
 
